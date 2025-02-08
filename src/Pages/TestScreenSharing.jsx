@@ -32,7 +32,6 @@ const ScreenShare = () => {
   };
   return (
     <>
-      <Popup/>
       <div className='share-screen-container'>
         <div className='header'>
           <button onClick={startScreenShare} disabled={isSharing}>

@@ -26,7 +26,6 @@ const Units = () => {
     .then(res => {
       setAllUnits(res.data.data.all)
       setNewArrivalUnits(res.data.data.recent)
-      console.log(res.data);
     })
     .catch(err => {console.log(err);
     })
@@ -52,7 +51,6 @@ const Units = () => {
     )
     .then(res => {
       setAllUnits(res.data.data);
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);

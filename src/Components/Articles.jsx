@@ -46,7 +46,6 @@ const Articles = () => {
     setPopupHeader(header)
     setPopupContent(content)
     setIsOpen(true)
-    console.log();
   }
   return (
     <section className='articles'>

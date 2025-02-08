@@ -7,7 +7,6 @@ export const AppProvider = ({children}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [singleUnit, setSingleUnit] = useState();
   const [filterData, setFilterData] = useState();
-  console.log(popupContent, popupHeader);
   const token = localStorage.getItem('token')
   useEffect(()=>{
     axios.get('https://golden-gate-three.vercel.app/core/get-form-data',
@@ -15,7 +14,6 @@ export const AppProvider = ({children}) => {
     )
     .then(response => {
       setFilterData(response.data.data)
-      console.log(response.data.data);
       
     })
     .catch(error => console.error(error))

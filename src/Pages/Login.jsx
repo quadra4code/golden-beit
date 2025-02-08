@@ -3,7 +3,9 @@ import Image from '../Images/form.png'
 import { FaUser } from "react-icons/fa";
 import axios from 'axios'
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate= useNavigate()
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
@@ -23,15 +25,14 @@ const Login = () => {
   ]
   const handleSubmit = (e)=> {
     e.preventDefault();
-    console.log(isLogin)
     isLogin? 
     axios.post('https://golden-gate-three.vercel.app/accounts/login',{
       username,
       password
     })
     .then((res)=>{
-      localStorage.setItem('token',res.data.data.access_token)
-      console.log(res.data.data.access_token)
+      localStorage.setItem('token', res.data.data.access_token);
+      navigate("/", { replace: true });
     })
     .catch((err)=>console.log(err))
     :
@@ -46,8 +47,8 @@ const Login = () => {
       confirm_password:confirmPassword
     })
     .then((res)=>{
-      localStorage.setItem('token',res.data.data.access_token)
-      console.log(res.data.data.access_token)
+      localStorage.setItem('token', res.data.data.access_token);
+      navigate("/", { replace: true });
     })
     .catch((err)=>console.log(err))
   }

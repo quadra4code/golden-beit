@@ -63,7 +63,6 @@ const WhyUs = () => {
     setPopupHeader(header)
     setPopupContent(content)
     setIsOpen(true)
-    console.log();
     
   }
   return (

@@ -21,7 +21,6 @@ const SingleUnit = () => {
     )
     .then(res => {
       setAllUnits(res.data.data.all);
-      console.log(res.data);
     })
     .catch(err => {console.log(err);
     })
@@ -121,8 +120,6 @@ const SingleUnit = () => {
     const foundUnit = allUnits.find(({id})=>id===id)
     setSingleUnit(foundUnit);
     navigate(`/units/${id}`)
-    console.log(id);
-    
   }
   const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
