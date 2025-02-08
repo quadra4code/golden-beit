@@ -40,7 +40,7 @@ const ScreenShare = () => {
           <input onChange={(e)=>{setInpPass(e.target.value)}} type='password' className='pass' />
         </div>
         <video ref={videoRef} autoPlay playsInline muted style={{ width: '100%' }} />
-        <iframe width="100%" height="709" src="https://www.youtube.com/embed/pc-dAFilXYk" title="كيف تحولت من تارك للصلاة إلى متلذذ بالصلاة؟" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="100%" height="709" src="https://www.youtube.com/embed/SVOnXcVgIoI" title="اجراء القرعة العلنية اليدوية لتخصيص الوحدات السكنية يوم 8 فبراير 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </>
   );
