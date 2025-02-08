@@ -1,9 +1,7 @@
-import React, { useRef, useState, useContext } from 'react';
-import AppContext from '../Context/AppContext';
+import React, { useRef, useState } from 'react';
 import Popup from '../Components/Popup';
 
 const ScreenShare = () => {
-  const {setIsOpen, authDone, setTestPass} = useContext(AppContext)
   const videoRef = useRef(null); // Reference to the video element
   const [isSharing, setIsSharing] = useState(false); // State to track screen sharing
   const [inpPass, setInpPass] = useState()

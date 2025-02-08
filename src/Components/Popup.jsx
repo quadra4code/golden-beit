@@ -5,22 +5,9 @@ const Popup = () => {
   return (
     <main className={`popup ${isOpen ? 'active' : ''}`}>
       <div className='popup_inner'>
-        {popupHeader&&popupContent ?
-        <>
-          <h2>{popupHeader}</h2>
-          <h4>{popupContent}</h4>
-        </>
-        :
-        <>
-          <input type="password" onChange={(e)=>setTestPass(e.target.value)} placeholder='ادخل الرقم السري'/>
-        </>
-        }
-        {
-          popupHeader&&popupContent ?
-          <button onClick={()=>setIsOpen(false)}>اغلاق</button>
-          :
-          <button onClick={handleCheckPass}>تم</button>
-        }
+        <h2>{popupHeader}</h2>
+        <h4>{popupContent}</h4>
+        <button onClick={()=>setIsOpen(false)}>اغلاق</button>
       </div>
     </main>
   )
