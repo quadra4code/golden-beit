@@ -57,6 +57,9 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
   left: 0;
   width: 50%;
 }
+main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .see_more {
+  cursor: pointer;
+}
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p {
   display: flex;
   gap: 60px;
@@ -132,7 +135,8 @@ main.units_page .units_content .all_units .units_list .unit .unit_info h3 {
   color: var(--dark-primary-color);
 }
 main.units_page .units_content .all_units .units_list .unit .unit_info p {
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: bold;
   color: var(--text-color);
 }
 main.units_page .units_content .all_units .units_list .unit .unit_info button.unit_details {
@@ -221,6 +225,29 @@ main.units_page section.filter button.filter_btn:hover {
 }
 .price-range-slider .slider-container .rc-slider-handle:active {
   box-shadow: 0 0 5px #007bff;
+}
+
+.share-screen-container {
+  height: 100%;
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.share-screen-container button {
+  background-color: var(--dark-primary-color);
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 15px;
+  width: 150px;
+  cursor: pointer;
+}
+.share-screen-container .yt_video {
+  height: 100%;
+  width: 100%;
 }
 
 .single_unit_page {
@@ -467,7 +494,7 @@ nav.top-nav .bottom-sec {
   align-items: center;
 }
 nav.top-nav .bottom-sec img {
-  width: 150px;
+  width: 100px;
   margin-right: auto;
 }
 nav.top-nav .bottom-sec .links-holder {
@@ -477,7 +504,7 @@ nav.top-nav .bottom-sec .links-holder {
   margin-right: auto;
 }
 nav.top-nav .bottom-sec .links-holder a {
-  font-size: 26px;
+  font-size: 22px;
   text-decoration: none;
   color: #fff;
   display: flex;
@@ -1152,7 +1179,7 @@ main.login-page .opacity .login-form-box form button.submit_form {
   cursor: pointer;
 }
 main.login-page .opacity .login-form-box form .label {
-  font-size: 20px;
+  font-size: 16px;
   color: #000000;
   display: flex;
   align-items: center;
@@ -1171,10 +1198,10 @@ main.login-page .opacity .login-form-box form .input-box {
   padding: 8px;
   background-color: beige;
   border-radius: 12px;
-  min-width: 300px;
+  min-width: 250px;
 }
 main.login-page .opacity .login-form-box form .input-box input, main.login-page .opacity .login-form-box form .input-box select {
-  font-size: 18px;
+  font-size: 14px;
   padding: 8px;
   background-color: #fff;
   border-radius: 12px;

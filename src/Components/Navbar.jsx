@@ -2,7 +2,7 @@ import React from 'react';
 import { IoIosArrowDown, IoIosCall } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import logo from '../Images/logo.jpg'
+import logo from '../Images/LOGO (2).png'
 const Navbar = () => {
   return (
     <nav className='top-nav'>
@@ -24,11 +24,12 @@ const Navbar = () => {
           <Link to='#'>من نحن</Link>
           <Link to='units'>
             <span>الوحدات</span>
-            <IoIosArrowDown/>
+            {/* <IoIosArrowDown/> */}
           </Link>
-          <Link to='#'>
-            <span>الخدمات</span>
-            <IoIosArrowDown/>
+          <Link to='/share-screen'>
+            <span>نتائج القرعة</span>
+            {/* <span>الخدمات</span>
+            <IoIosArrowDown/> */}
           </Link>
         </div>
         <img src={logo} alt="logo" />

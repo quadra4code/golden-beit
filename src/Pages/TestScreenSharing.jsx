@@ -1,44 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
+import AppContext from '../Context/AppContext';
+import Popup from '../Components/Popup';
 
 const ScreenShare = () => {
+  const {setIsOpen, authDone} = useContext(AppContext)
   const videoRef = useRef(null); // Reference to the video element
   const [isSharing, setIsSharing] = useState(false); // State to track screen sharing
-
-  // Function to start screen sharing
   const startScreenShare = async () => {
-    try {
-      // Request screen capture
-      const stream = await navigator.mediaDevices.getDisplayMedia({
-        video: true,
-        audio: false, // Set to true if you want to share audio as well
-      });
-
-      // Set the stream to the video element
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-
-      setIsSharing(true);
-
-      // Handle when the user stops sharing
-      stream.getTracks().forEach((track) => {
-        track.onended = () => {
-          setIsSharing(false);
-        };
-      });
-    } catch (error) {
-      console.error('Error sharing screen:', error);
-    }
+    if (!authDone) return setIsOpen(true);
   };
-
   return (
-    <div>
-      <h1>Screen Sharing Demo</h1>
-      <button onClick={startScreenShare} disabled={isSharing}>
-        {isSharing ? 'Sharing...' : 'Start Screen Share'}
-      </button>
-      <video ref={videoRef} autoPlay playsInline muted style={{ width: '100%', maxWidth: '800px' }} />
-    </div>
+    <>
+      <Popup/>
+      <div className='share-screen-container'>
+        <button onClick={startScreenShare} disabled={isSharing}>
+          {isSharing ? 'Sharing...' : 'بدء عرض الشاشة'}
+        </button>
+        <video ref={videoRef} autoPlay playsInline muted style={{ width: '100%' }} />
+        <iframe width="100%" height="709" src="https://www.youtube.com/embed/pc-dAFilXYk" title="كيف تحولت من تارك للصلاة إلى متلذذ بالصلاة؟" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/units" element={<Units />} />
         <Route path="units/:id" element={<SingleUnit />} />
-        <Route path="/screen-share" element={<ScreenShare />} />
+        <Route path="/share-screen" element={<ScreenShare />} />
       </Routes>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Footer />}
     </>

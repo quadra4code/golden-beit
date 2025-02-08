@@ -1,15 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { FaStar } from "react-icons/fa";
 import image1 from '../Images/form.png';
 import image2 from '../Images/form.png';
 import image3 from '../Images/landing.png';
 import image4 from '../Images/buyer.png';
 import image5 from '../Images/broker.png';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-
+import AppContext from '../Context/AppContext';
+import axios from 'axios';
 import { Tabs } from 'antd';
 const SingleUnit = () => {
+  const token = localStorage.getItem('token');
+  const [allUnits, setAllUnits] = useState([])
+  const navigate = useNavigate()
+  useEffect(()=>{
+    axios.get('https://golden-gate-three.vercel.app/core/all-properties',
+      {headers: {'Authorization': `Bearer ${token}`}}
+    )
+    .then(res => {
+      setAllUnits(res.data.data.all);
+      console.log(res.data);
+    })
+    .catch(err => {console.log(err);
+    })
+  },[])
+  const {singleUnit, setSingleUnit} = useContext(AppContext)
   const [value, setValue] = useState('1');
   const onChange = (key) => {
     console.log(key);
@@ -100,6 +117,13 @@ const SingleUnit = () => {
       price: '300,000,000'
     },
   ]
+  const handleUnitClick = (id)=> {
+    const foundUnit = allUnits.find(({id})=>id===id)
+    setSingleUnit(foundUnit);
+    navigate(`/units/${id}`)
+    console.log(id);
+    
+  }
   const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
     <main className='single_unit_page'>
@@ -121,17 +145,17 @@ const SingleUnit = () => {
           </div>
         </div>
         <div className='unit_data'>
-          <h2>Unit Name</h2>
-          <p>Unit Description</p>
+          <h2>{singleUnit.title}</h2>
+          <p>{singleUnit.description}</p>
           <div className='stars'>
-            {starNumbers.map(star => <FaStar/>)}
+            {singleUnit&& singleUnit.rate.map(star => <FaStar/>)}
             ( 75 تقييم )
           </div>
-          <span className='holder'><h3>المشروع:</h3> <span>$100,000</span></span>
-          <span className='holder'><h3>الموقع:</h3> <span>$100,000</span></span>
-          <span className='holder'><h3>المساحة:</h3> <span>$100,000</span></span>
-          <span className='holder'><h3>عدد الغرف:</h3> <span>$100,000</span></span>
-          <span className='holder'><h3>السعر:</h3> <span className='price'>$100,000</span></span>
+          <span className='holder'><h3>المشروع:</h3> <span>{singleUnit.project}</span></span>
+          <span className='holder'><h3>الموقع:</h3> <span>{singleUnit.city}</span></span>
+          <span className='holder'><h3>المساحة:</h3> <span>{singleUnit.area}</span></span>
+          <span className='holder'><h3> وسيلة الدفع:</h3> <span>{singleUnit.payment_method}</span></span>
+          <span className='holder'><h3>السعر:</h3> <span className='price'>{singleUnit.price}</span></span>
           <button className='add_fav'>اضافة الى المفضلة</button>
         </div>
       </section>
@@ -149,14 +173,13 @@ const SingleUnit = () => {
             modules={[Pagination]}
             className="mySwiper"
           >
-          {discoverMore.map((discoverMore, index) => 
+          {allUnits.map((discoverMore, index) => 
             <SwiperSlide className='swiper-slide' key={index}>
               <div className="slide-content">
-                <img src={discoverMore.image} alt="project"/>
-                <span className='type'>{discoverMore.type}</span>
-                <h3>{discoverMore.name}</h3>
+                <img src={image1} alt="project"/>
+                <h3>{discoverMore.title}</h3>
                 <p className='price'>{discoverMore.price}</p>
-                <button className='more_details'>التفاصيل</button>
+                <button className='more_details' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
               </div>
             </SwiperSlide>        
           )}

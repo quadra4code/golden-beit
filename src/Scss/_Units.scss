@@ -48,6 +48,9 @@ main.units_page{
                 bottom: 4rem;
                 left: 0;
                 width: 50%;
+                .see_more{
+                  cursor: pointer;
+                }
                 p{
                   display: flex;
                   gap: 60px;
@@ -125,7 +128,8 @@ main.units_page{
               color: var(--dark-primary-color);
             }
             p{
-              font-size: 16px;
+              font-size: 22px;
+              font-weight: bold;
               color: var(--text-color);
             }
             button.unit_details {
@@ -222,4 +226,25 @@ main.units_page{
   }
 }
 
-
+.share-screen-container{
+  height: 100%;
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  button{
+    background-color: var(--dark-primary-color);
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    font-size: 15px;
+    width: 150px;
+    cursor: pointer;
+  }
+  .yt_video{
+    height: 100%;
+    width: 100%;
+  }
+}

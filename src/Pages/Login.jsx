@@ -6,12 +6,21 @@ import { RiLockPasswordFill } from "react-icons/ri";
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
+  const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [userType, setUserType] = useState("");
+  const [email, setEmail] = useState(null);
+  const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState(null);
+  const interestedCities =[
+    'القاهرة الجديدة (سكن - جنة)','بدر (إسكان متميز -متوسط)','⁠الشروق (سكن - أكثر تميز)',
+    'العاشر (دار - مميز)','حدائق أكتوبر (سكن - دار - متوسط)','اكتوبر (سكن - جنة - أكثر تميز)',
+    'لسادات (دار - متوسط - مميز)','دمياط (سكن - جنة - إسكان متميز)','المنصورة (إسكان متميز)',
+    '⁠برج العرب (متوسط)', '⁠العلمين (سكن)','⁠العبور (روضة - أكثر تميز)','بني سويف (متوسط)',
+    'الفيوم (مميز)',' ⁠المنيا (سكن - متوسط)','ملوي (مميز)','قنا (سكن - متوسط - مميز)',
+    'طيبة (متوسط)','⁠أسوان (مميز)','أسيوط (سكن - متوسط - مميز)','سوهاج (مميز)','⁠أخميم (مميز)'
+  ]
   const handleSubmit = (e)=> {
     e.preventDefault();
     console.log(isLogin)
@@ -20,7 +29,10 @@ const Login = () => {
       username,
       password
     })
-    .then((res)=>console.log(res))
+    .then((res)=>{
+      localStorage.setItem('token',res.data.data.access_token)
+      console.log(res.data.data.access_token)
+    })
     .catch((err)=>console.log(err))
     :
     axios.post('https://golden-gate-three.vercel.app/accounts/register',{
@@ -28,11 +40,15 @@ const Login = () => {
       last_name: lastName,
       username,
       email,
+      interested_city: interestedCity,
       user_type: userType,
       password,
       confirm_password:confirmPassword
     })
-    .then((res)=>console.log(res))
+    .then((res)=>{
+      localStorage.setItem('token',res.data.data.access_token)
+      console.log(res.data.data.access_token)
+    })
     .catch((err)=>console.log(err))
   }
   return (
@@ -101,10 +117,21 @@ const Login = () => {
                     <RiLockPasswordFill />
                     <p> نوع الحساب :</p>
                   </div>
-                  <select onChange={(e)=>setUserType(e.target.value)} name="" id="">
+                  <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
                     <option value="5">مشتري</option>
                     <option value="6">بائع</option>
                     <option value="7">وسيط</option>
+                  </select>
+                </div>
+                <div className="input-box">
+                  <div className='label'>
+                    <RiLockPasswordFill />
+                    <p> أكثر مدينة مهتم بها :</p>
+                  </div>
+                  <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
+                  {interestedCities.map((index, key)=>
+                  <option key={key} value={index}>{index}</option>
+                  )}
                   </select>
                 </div>
                 <div className="input-box">

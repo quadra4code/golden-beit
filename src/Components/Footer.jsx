@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { RiTwitterXFill } from "react-icons/ri";
 import backgroundImage from '../Images/article.png';
-import logo from '../Images/logo3.png';
+import logo from '../Images/LOGO (2).png';
 const Footer = () => {
   return (
     <footer className='footer'>
