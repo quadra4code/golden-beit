@@ -227,29 +227,6 @@ main.units_page section.filter button.filter_btn:hover {
   box-shadow: 0 0 5px #007bff;
 }
 
-.share-screen-container {
-  height: 100%;
-  padding: 0 1rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.share-screen-container button {
-  background-color: var(--dark-primary-color);
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  outline: none;
-  border-radius: 12px;
-  font-size: 15px;
-  width: 150px;
-  cursor: pointer;
-}
-.share-screen-container .yt_video {
-  height: 100%;
-  width: 100%;
-}
-
 .single_unit_page {
   display: flex;
   flex-direction: column;
@@ -1350,4 +1327,38 @@ main.popup .popup_inner button {
   width: 150px;
   cursor: pointer;
   align-self: center;
+}
+
+.share-screen-container {
+  height: 100%;
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.share-screen-container .header {
+  display: flex;
+  gap: 20px;
+}
+.share-screen-container .header input {
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 18px;
+  padding: 5px 0;
+}
+.share-screen-container button {
+  background-color: var(--dark-primary-color);
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 15px;
+  width: 150px;
+  cursor: pointer;
+}
+.share-screen-container .yt_video {
+  height: 100%;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */
