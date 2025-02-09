@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Image from '../Images/form.png'
 import { FaUser } from "react-icons/fa";
 import axios from 'axios'
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import Loader from '../Components/Loader';
+import AppContext from '../Context/AppContext';
 const Login = () => {
   const navigate= useNavigate()
-  const [isLogin, setIsLogin] = useState(true);
+  const { openNotificationWithIcon, contextHolder, loading, setLoading} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
   const [password, setPassword] = useState("");
@@ -15,6 +17,7 @@ const Login = () => {
   const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState(null);
+  const [isLogin, setIsLogin] = useState(true);
   const interestedCities =[
     'القاهرة الجديدة (سكن - جنة)','بدر (إسكان متميز -متوسط)','⁠الشروق (سكن - أكثر تميز)',
     'العاشر (دار - مميز)','حدائق أكتوبر (سكن - دار - متوسط)','اكتوبر (سكن - جنة - أكثر تميز)',
@@ -23,37 +26,52 @@ const Login = () => {
     'الفيوم (مميز)',' ⁠المنيا (سكن - متوسط)','ملوي (مميز)','قنا (سكن - متوسط - مميز)',
     'طيبة (متوسط)','⁠أسوان (مميز)','أسيوط (سكن - متوسط - مميز)','سوهاج (مميز)','⁠أخميم (مميز)'
   ]
-  const handleSubmit = (e)=> {
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
-    isLogin? 
-    axios.post('https://golden-gate-three.vercel.app/accounts/login',{
-      username,
-      password
-    })
-    .then((res)=>{
-      localStorage.setItem('token', res.data.data.access_token);
-      navigate("/", { replace: true });
-    })
-    .catch((err)=>console.log(err))
-    :
-    axios.post('https://golden-gate-three.vercel.app/accounts/register',{
-      first_name: firstName,
-      last_name: lastName,
-      username,
-      email,
-      interested_city: interestedCity,
-      user_type: userType,
-      password,
-      confirm_password:confirmPassword
-    })
-    .then((res)=>{
-      localStorage.setItem('token', res.data.data.access_token);
-      navigate("/", { replace: true });
-    })
-    .catch((err)=>console.log(err))
-  }
+    setLoading(true);
+    if (isLogin) {
+      axios.post('https://golden-gate-three.vercel.app/accounts/login', {
+        username,
+        password,
+      })
+      .then((res) => {
+        localStorage.setItem('token', res.data.data.access_token);
+        localStorage.setItem('name', res.data.data.user.full_name);
+        window.location.href = `/`
+      })
+      .catch((err) => {
+        openNotificationWithIcon('error', 'عملية خاطئه', err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    }else {
+      axios.post('https://golden-gate-three.vercel.app/accounts/register', {
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        email,
+        interested_city: interestedCity,
+        user_type: userType,
+        password,
+        confirm_password: confirmPassword,
+      })
+      .then((res) => {
+        localStorage.setItem('name', res.data.data.first_name);
+        localStorage.setItem('token', res.data.data.access_token);
+        window.location.href = `/`
+      })
+      .catch((err) => {
+        openNotificationWithIcon('error', 'عملية خاطئه', err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    }
+  };
   return (
     <main className='login-page'>
+      {contextHolder}
       <img src={Image} alt="login-background" />
       <div className='opacity'>
         <div className="login-form-box">
@@ -61,7 +79,7 @@ const Login = () => {
             <div className={isLogin? 'tab active' : 'tab'} onClick={()=>setIsLogin(true)}>تسجيل الدخول</div>
             <div className={!isLogin? 'tab active' : 'tab'}onClick={()=>setIsLogin(false)}>انشاء حساب</div>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitLogin}>
             {isLogin 
             ?
             <>
@@ -152,7 +170,7 @@ const Login = () => {
               </div>
             </>
             }
-            <button onClick={handleSubmit} className='submit_form' >دخول</button>
+            <button disabled={loading} className='submit_form' >{loading ? 'جاري التحميل...' : 'دخول'}</button>
           </form>
         </div>
       </div>

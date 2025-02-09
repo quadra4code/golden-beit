@@ -1,24 +1,34 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Landing from '../Components/Landing';
 import AboutUs from '../Components/AboutUs';
 import WhyUs from '../Components/WhyUs';
-import Navbar from '../Components/Navbar';
 import OurProjects from '../Components/OurProjects';
 import Articles from '../Components/Articles';
 import OurReviews from '../Components/OurReviews';
 import Popup from '../Components/Popup';
+import AppContext from '../Context/AppContext';
+import Loader from '../Components/Loader';
 const Home = () => {
+  const {loading, contextHolder} = useContext(AppContext)
   return (
     <>
-      <Popup/>
-      <main className='home'>
-        <Landing/>
-        <OurProjects/>
-        <AboutUs/>
-        <WhyUs/>
-        <OurReviews/>
-        <Articles/>
-      </main>
+    {loading
+      ?
+      <Loader/>
+      :    
+      <>
+        <Popup/>
+        <main className='home'>
+          {contextHolder}
+          <Landing/>
+          <OurProjects/>
+          <AboutUs/>
+          <WhyUs/>
+          <OurReviews/>
+          <Articles/>
+        </main>
+      </>
+    }
     </>
   )
 }

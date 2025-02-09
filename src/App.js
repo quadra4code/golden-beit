@@ -4,13 +4,15 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'rc-slider/assets/index.css';
 import { AppProvider } from './Context/AppContext';
 import Units from './Pages/Units';
 import SingleUnit from './Pages/SingleUnit';
-import ScreenShare from './Pages/TestScreenSharing';
+import ProtectedRoute from './Components/ProtectedRoute';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'rc-slider/assets/index.css';
+import Table from './Pages/Table';
+import AddNewUnit from './Pages/AddNewUnit';
 
 const App = () => {
   const location = useLocation();
@@ -18,11 +20,12 @@ const App = () => {
     <>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/units" element={<Units />} />
-        <Route path="units/:id" element={<SingleUnit />} />
-        <Route path="/share-screen" element={<ScreenShare />} />
+        <Route path="/all-units" element={<ProtectedRoute><Units /></ProtectedRoute>} />
+        <Route path="/add-new-unit" element={<ProtectedRoute><AddNewUnit /></ProtectedRoute>} />
+        <Route path="/winners-data" element={<ProtectedRoute><Table /></ProtectedRoute>} />
+        <Route path="all-units/:id" element={<ProtectedRoute><SingleUnit /></ProtectedRoute>} />
       </Routes>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Footer />}
     </>

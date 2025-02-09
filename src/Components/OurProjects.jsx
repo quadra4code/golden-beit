@@ -51,7 +51,7 @@ const OurProjects = () => {
   ];
   return (
     <section className='our-projects'>
-      <h1 className='title'>مشاريعنا المتميزة</h1>
+      <h1 className='title'>وحداتنا المتميزة</h1>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}

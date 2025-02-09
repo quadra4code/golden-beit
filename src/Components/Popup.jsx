@@ -6,7 +6,7 @@ const Popup = () => {
     <main className={`popup ${isOpen ? 'active' : ''}`}>
       <div className='popup_inner'>
         <h2>{popupHeader}</h2>
-        <h4>{popupContent}</h4>
+        <p>{popupContent}</p>
         <button onClick={()=>setIsOpen(false)}>اغلاق</button>
       </div>
     </main>
