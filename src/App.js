@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 import 'rc-slider/assets/index.css';
 import Table from './Pages/Table';
 import AddNewUnit from './Pages/AddNewUnit';
+import InquiryPage from './Pages/InquiryPage';
 
 const App = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/all-units" element={<ProtectedRoute><Units /></ProtectedRoute>} />
         <Route path="/add-new-unit" element={<ProtectedRoute><AddNewUnit /></ProtectedRoute>} />
         <Route path="/winners-data" element={<ProtectedRoute><Table /></ProtectedRoute>} />
+        <Route path="/inquiry-page" element={<ProtectedRoute><InquiryPage /></ProtectedRoute>} />
         <Route path="all-units/:id" element={<ProtectedRoute><SingleUnit /></ProtectedRoute>} />
       </Routes>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Footer />}
