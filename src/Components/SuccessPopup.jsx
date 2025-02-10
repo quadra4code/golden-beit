@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
 const SuccessPopup = ({ message }) => {
   const [show, setShow] = useState(true);
   useEffect(() => {
@@ -17,11 +15,7 @@ const SuccessPopup = ({ message }) => {
       <div className="popup">
         <div className="popup-content">
           <div className="icon">
-          <DotLottieReact
-            src="https://lottie.host/37d4af8f-d382-4438-b96f-d6a1197d7818/X3u7fvqHFA.lottie"
-            loop
-            autoplay
-          />
+          <iframe src="https://lottie.host/embed/27ce34d2-256d-4972-bcb4-03b04ffab370/nGgaGVReix.lottie"></iframe>
           </div>
           <div className='success-msg'>
             <p>الاسم : {message.winner_name}</p>
