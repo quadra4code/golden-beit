@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 import SuccessPopup from '../Components/SuccessPopup';
 
@@ -7,21 +7,34 @@ const InquiryPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
+  const [hasInquired, setHasInquired] = useState(false);
   const { token, openNotificationWithIcon, contextHolder } = useContext(AppContext);
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
+  useEffect(() => {
+    const inquiryTimes = localStorage.getItem('oneTimeInquiry');
+    if (inquiryTimes === 'true') {
+      setHasInquired(true);
+    }
+    console.log(inquiryTimes,hasInquired,token);
+    
+  }, []);
   const winnerData = (response) => {
     return response
   };
   const handleSubmit = (e) => {
     setShowPopup(false);
     e.preventDefault();
+    if (!token && hasInquired) {
+      openNotificationWithIcon('info', 'يجب تسجيل الدخول', 'لقد قمت بالاستعلام مرة واحدة بالفعل. يرجى تسجيل الدخول للاستعلام مرة أخرى.');
+      return;
+    }
     axios
       .post(
         'https://golden-gate-three.vercel.app/core/draw-results',
         { full_name: inputValue },
-        { headers: { Authorization: `Bearer ${token}` } }
+        // { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {
         const response = res.data.data;
@@ -32,6 +45,10 @@ const InquiryPage = () => {
         const message = winnerData(response);
         setPopupMessage(message);
         setShowPopup(true);
+        if (!token) {
+          localStorage.setItem('oneTimeInquiry', 'true');
+          setHasInquired(true);
+        }
       })
       .catch((err) => {
         openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg);
@@ -55,7 +72,7 @@ const InquiryPage = () => {
                 required
               />
             </div>
-            <button type="submit">Send</button>
+            <button type="submit">بحث</button>
           </form>
         </div>
       </div>

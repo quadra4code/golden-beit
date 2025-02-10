@@ -6,6 +6,7 @@
 @import 'AddNewUnit';
 @import 'InquiryPage';
 @import 'SuccessPopup';
+@import 'Footer';
 *{
   margin: 0;
   padding: 0;
@@ -843,109 +844,7 @@ main.login-page {
     }
   }
 }
-/////////////// Footer /////////////////
-footer.footer {
-  width: 100%;
-  background-color: var(--primary-color);
-  display: flex;
-  justify-content: center;
-  padding: 1.3rem 0;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-  section.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 2rem 0;
-    h1{
-      font-size: 50px;
-      color: #000000;
-    }
-    p{
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: var(--text-color);
-      span {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        svg{
-        font-size: 20px;
-        color: var(--text-color);
-        font-weight: bold;
-        }
-      }
-    }
-    .mail-us {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-      input {
-        outline: none;
-        border: none;
-        border-radius: 12px;
-        padding: 8px 15px;
-        font-size: 18px;
-        width: 320px;
-      }
-      button {
-        background-color: var(--dark-primary-color);
-        color: #fff;
-        padding: 8px 15px;
-        border: none;
-        outline: none;
-        border-radius: 12px;
-        font-size: 18px;
-        width: 150px;
-        cursor: pointer;
-      }
-    }
-  }
-  section.footer-links{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      color: var(--text-color);
-      li.header {
-        font-weight: bold;
-        color: var(--dark-primary-color);
-      }
-      li{
-        font-size: 25px;
-        svg{
-          font-size: 20px;
-          color: var(--text-color);
-          margin-right: 10px;
-        }
-      }
-    }
-    .logo-slogan{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      img{
-        width: 300px;
-      }
-      span{
-        font-size: 20px;
-        font-weight: bold;
-        color: var(--text-color);
-      }
-    }
-  }
-}
+/////////////// popup /////////////////
 main.popup {
   background-color: #00000054;
   display: none;

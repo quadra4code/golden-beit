@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import React, {createContext, useState, useEffect, useRef} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 const AppContext = createContext();
 export const AppProvider = ({children}) => {
   const navigate = useNavigate()
@@ -15,6 +15,7 @@ export const AppProvider = ({children}) => {
   const [allUnits, setAllUnits] = useState();
   const [newArrivalUnits, setNewArrivalUnits] = useState();
   const [loading, setLoading] = useState(false);
+  const [numberInpValue, setNumberInpValue] = useState()
   const [api, contextHolder] = notification.useNotification();
   const token = localStorage.getItem('token')
   const openNotificationWithIcon = (type, message, description) => {
@@ -39,18 +40,14 @@ export const AppProvider = ({children}) => {
   },[])
   /////////////// get articles in home screen
   useEffect(()=>{
-    if(token){
-      setLoading(true)
-      axios.get('https://golden-gate-three.vercel.app/core/home-articles',
-        {headers: {'Authorization': `Bearer ${token}`}}
-      )
-      .then(response => {
-        console.log(response.data.data);
-        setArticlesData(response.data.data)
-      })
-      .catch(error => console.error(error))
-      .finally(()=>{setLoading(false)})
-    }
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/home-articles')
+    .then(response => {
+      console.log(response.data.data);
+      setArticlesData(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
   },[])
   /////////////// get all winners
   useEffect(()=>{
@@ -143,7 +140,8 @@ export const AppProvider = ({children}) => {
       setPopupContent, popupHeader, setPopupHeader ,setSingleUnit,singleUnit,
       filterData, setFilterData, loading, setLoading,articlesData, allUnits,
       contextHolder, openNotificationWithIcon, setAllUnits,
-      handleFilterClick, handleApplySearch, token, winnersData, setWinnersData
+      handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
+      numberInpValue, setNumberInpValue
       }}>
       {children}
     </AppContext.Provider>

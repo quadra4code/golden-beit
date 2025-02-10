@@ -12,11 +12,12 @@
   }
   .nav-menu {
     opacity: 0;
-    visibility: hidden; /* Ensure the element is not interactable */
+    visibility: hidden; 
     position: absolute;
     bottom: -135px;
     right: -5px;
     padding: 8px;
+    width: max-content;
     min-width: 160px;
     border-radius: 10px;
     background-color: #fff;
@@ -24,7 +25,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    transform: translateY(-10px); /* Initial state */
+    transform: translateY(-10px); 
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
     .list-unit {
       background-color: #eee;

@@ -62,11 +62,13 @@ const Navbar = () => {
   const name = localStorage.getItem('name')
   const ourPrograms = [
     { name: 'اضف وحدتك', href: '/add-new-unit'},
+    { name: 'استعلام عن الفائزين', href: '/inquiry-page'},
   ]
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleLogout =()=> {
     localStorage.removeItem('name');
     localStorage.removeItem('token');
+    localStorage.setItem('oneTimeInquiry','true');
     window.location.reload();
   }
   return (
@@ -96,7 +98,7 @@ const Navbar = () => {
             </span>
             <div className="nav-menu">
               <Link className='list-unit' to="/add-new-unit">اضف وحدتك</Link>
-              <Link className='list-unit' to="/winners-data">اعلان الفائزين</Link>
+              <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
             </div>
           </div>
           <Link to= "/all-units" className="font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">

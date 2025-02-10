@@ -453,11 +453,13 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide
 }
 .links-nav .nav-menu, .user-span .nav-menu {
   opacity: 0;
-  visibility: hidden; /* Ensure the element is not interactable */
+  visibility: hidden;
   position: absolute;
   bottom: -135px;
   right: -5px;
   padding: 8px;
+  width: -moz-max-content;
+  width: max-content;
   min-width: 160px;
   border-radius: 10px;
   background-color: #fff;
@@ -465,7 +467,7 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide
   display: flex;
   flex-direction: column;
   gap: 5px;
-  transform: translateY(-10px); /* Initial state */
+  transform: translateY(-10px);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 .links-nav .nav-menu .list-unit, .user-span .nav-menu .list-unit {
@@ -572,10 +574,12 @@ main.table_page .container table tr:hover {
 
 main.add_unit {
   margin-top: 6rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
 }
 main.add_unit .add-build-unit {
-  width: 50%;
-  margin: 50px auto;
+  width: 100%;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -735,6 +739,182 @@ main.success-popup .popup .popup-content p {
   margin: 0;
 }
 
+footer.footer {
+  width: 100%;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  padding: 1.3rem 0;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+footer.footer section.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 2rem 0;
+  text-align: center; /* Center text for smaller screens */
+}
+
+footer.footer section.header h1 {
+  font-size: 50px;
+  color: #000000;
+}
+
+footer.footer section.header p {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+  flex-wrap: wrap; /* Allow text to wrap on smaller screens */
+  justify-content: center; /* Center content */
+}
+
+footer.footer section.header p span {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+footer.footer section.header p span svg {
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+footer.footer section.header .mail-us {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap; /* Allow inputs and button to wrap on smaller screens */
+  justify-content: center; /* Center content */
+}
+
+footer.footer section.header .mail-us input {
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 15px;
+  font-size: 18px;
+  width: 320px;
+  max-width: 100%; /* Ensure inputs don't overflow on smaller screens */
+}
+
+footer.footer section.header .mail-us button {
+  background-color: var(--dark-primary-color);
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 18px;
+  width: 150px;
+  cursor: pointer;
+}
+
+footer.footer section.footer-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+  gap: 20px; /* Add gap between sections */
+}
+
+footer.footer section.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--text-color);
+  text-align: center; /* Center text for smaller screens */
+}
+
+footer.footer section.footer-links ul li.header {
+  font-weight: bold;
+  color: var(--dark-primary-color);
+}
+
+footer.footer section.footer-links ul li {
+  font-size: 25px;
+}
+
+footer.footer section.footer-links ul li svg {
+  font-size: 20px;
+  color: var(--text-color);
+  margin-right: 10px;
+}
+
+footer.footer section.footer-links .logo-slogan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center; /* Center text for smaller screens */
+}
+
+footer.footer section.footer-links .logo-slogan img {
+  width: 300px;
+  max-width: 100%; /* Ensure logo doesn't overflow on smaller screens */
+}
+
+footer.footer section.footer-links .logo-slogan span {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  footer.footer section.header h1 {
+    font-size: 40px; /* Reduce font size for smaller screens */
+  }
+  footer.footer section.header p {
+    font-size: 18px; /* Reduce font size for smaller screens */
+  }
+  footer.footer section.footer-links ul li {
+    font-size: 20px; /* Reduce font size for smaller screens */
+  }
+}
+@media (max-width: 768px) {
+  footer.footer section.header h1 {
+    font-size: 30px; /* Further reduce font size for mobile */
+  }
+  footer.footer section.header p {
+    flex-direction: column; /* Stack text vertically on mobile */
+    gap: 10px;
+  }
+  footer.footer section.header .mail-us {
+    flex-direction: column; /* Stack inputs and button vertically on mobile */
+    gap: 10px;
+  }
+  footer.footer section.header .mail-us input,
+  footer.footer section.header .mail-us button {
+    width: 100%; /* Full width for inputs and button on mobile */
+  }
+  footer.footer section.footer-links {
+    align-items: center;
+  }
+  footer.footer section.footer-links ul {
+    align-items: center; /* Center align links on mobile */
+  }
+}
+@media (max-width: 480px) {
+  footer.footer section.header h1 {
+    font-size: 24px; /* Further reduce font size for very small screens */
+  }
+  footer.footer section.header p {
+    font-size: 16px; /* Further reduce font size for very small screens */
+  }
+  footer.footer section.footer-links ul li {
+    font-size: 18px; /* Further reduce font size for very small screens */
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -1566,109 +1746,6 @@ main.login-page .opacity .login-form-box form .input-box input, main.login-page 
   border: none;
   outline: none;
   width: 100%;
-}
-
-footer.footer {
-  width: 100%;
-  background-color: var(--primary-color);
-  display: flex;
-  justify-content: center;
-  padding: 1.3rem 0;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-}
-footer.footer section.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 2rem 0;
-}
-footer.footer section.header h1 {
-  font-size: 50px;
-  color: #000000;
-}
-footer.footer section.header p {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-color);
-}
-footer.footer section.header p span {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-footer.footer section.header p span svg {
-  font-size: 20px;
-  color: var(--text-color);
-  font-weight: bold;
-}
-footer.footer section.header .mail-us {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-footer.footer section.header .mail-us input {
-  outline: none;
-  border: none;
-  border-radius: 12px;
-  padding: 8px 15px;
-  font-size: 18px;
-  width: 320px;
-}
-footer.footer section.header .mail-us button {
-  background-color: var(--dark-primary-color);
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  outline: none;
-  border-radius: 12px;
-  font-size: 18px;
-  width: 150px;
-  cursor: pointer;
-}
-footer.footer section.footer-links {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-}
-footer.footer section.footer-links ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  color: var(--text-color);
-}
-footer.footer section.footer-links ul li.header {
-  font-weight: bold;
-  color: var(--dark-primary-color);
-}
-footer.footer section.footer-links ul li {
-  font-size: 25px;
-}
-footer.footer section.footer-links ul li svg {
-  font-size: 20px;
-  color: var(--text-color);
-  margin-right: 10px;
-}
-footer.footer section.footer-links .logo-slogan {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-footer.footer section.footer-links .logo-slogan img {
-  width: 300px;
-}
-footer.footer section.footer-links .logo-slogan span {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-color);
 }
 
 main.popup {

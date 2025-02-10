@@ -5,9 +5,11 @@ $border-color: #ddd;
 $font-family: 'Arial', sans-serif;
 main.add_unit{
   margin-top: 6rem;
+  padding:0 1rem;
+  display: flex;
+  justify-content: center;
   .add-build-unit {
-    width: 50%;
-    margin: 50px auto;
+    width: 100%;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -26,6 +28,11 @@ main.add_unit{
     }
     .form-group {
       margin-bottom: 15px;
+      .radio-cont{
+        display: flex;
+        justify-content: space-evenly;
+
+      }
       label {
         display: block;
         margin-bottom: 5px;

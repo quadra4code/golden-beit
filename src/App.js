@@ -21,12 +21,11 @@ const App = () => {
     <>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Navbar />}
       <Routes>
-        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/all-units" element={<ProtectedRoute><Units /></ProtectedRoute>} />
         <Route path="/add-new-unit" element={<ProtectedRoute><AddNewUnit /></ProtectedRoute>} />
-        <Route path="/winners-data" element={<ProtectedRoute><Table /></ProtectedRoute>} />
-        <Route path="/inquiry-page" element={<ProtectedRoute><InquiryPage /></ProtectedRoute>} />
+        <Route path="/inquiry-page" element={<InquiryPage />} />
         <Route path="all-units/:id" element={<ProtectedRoute><SingleUnit /></ProtectedRoute>} />
       </Routes>
       {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Footer />}
