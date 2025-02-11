@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
 import { AppProvider } from './Context/AppContext';
+import { DesktopProvider } from './Context/IsDesktop';
 import Units from './Pages/Units';
 import SingleUnit from './Pages/SingleUnit';
 import ProtectedRoute from './Components/ProtectedRoute';
@@ -36,7 +37,9 @@ const MainApp = () => {
   return (
     <BrowserRouter>
       <AppProvider>
-        <App />
+        <DesktopProvider>
+          <App />
+        </DesktopProvider>
       </AppProvider>
     </BrowserRouter>
   )

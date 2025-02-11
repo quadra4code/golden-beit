@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { FaRegStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import image from '../Images/form.png';
+import IsDesktop from '../Context/IsDesktop'
 const OurReviews = () => {
+  const {isDesktop} = useContext(IsDesktop)
   const reviews = [
     {
       image: image,
@@ -54,7 +56,7 @@ const OurReviews = () => {
         </div>
       </header>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={isDesktop?3:1}
         spaceBetween={30}
         pagination={{
           clickable: true,

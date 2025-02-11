@@ -1,105 +1,3 @@
-// footer.footer {
-//   width: 100%;
-//   background-color: var(--primary-color);
-//   display: flex;
-//   justify-content: center;
-//   padding: 1.3rem 0;
-//   flex-direction: column;
-//   align-items: center;
-//   margin-top: 1rem;
-//   section.header {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 20px;
-//     padding: 2rem 0;
-//     h1{
-//       font-size: 50px;
-//       color: #000000;
-//     }
-//     p{
-//       display: flex;
-//       align-items: center;
-//       gap: 30px;
-//       font-size: 20px;
-//       font-weight: bold;
-//       color: var(--text-color);
-//       span {
-//         display: flex;
-//         gap: 10px;
-//         align-items: center;
-//         svg{
-//         font-size: 20px;
-//         color: var(--text-color);
-//         font-weight: bold;
-//         }
-//       }
-//     }
-//     .mail-us {
-//       display: flex;
-//       gap: 30px;
-//       align-items: center;
-//       input {
-//         outline: none;
-//         border: none;
-//         border-radius: 12px;
-//         padding: 8px 15px;
-//         font-size: 18px;
-//         width: 320px;
-//       }
-//       button {
-//         background-color: var(--dark-primary-color);
-//         color: #fff;
-//         padding: 8px 15px;
-//         border: none;
-//         outline: none;
-//         border-radius: 12px;
-//         font-size: 18px;
-//         width: 150px;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-//   section.footer-links{
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-around;
-//     padding: 1rem;
-//     ul {
-//       list-style: none;
-//       display: flex;
-//       flex-direction: column;
-//       gap: 20px;
-//       color: var(--text-color);
-//       li.header {
-//         font-weight: bold;
-//         color: var(--dark-primary-color);
-//       }
-//       li{
-//         font-size: 25px;
-//         svg{
-//           font-size: 20px;
-//           color: var(--text-color);
-//           margin-right: 10px;
-//         }
-//       }
-//     }
-//     .logo-slogan{
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       gap: 20px;
-//       img{
-//         width: 300px;
-//       }
-//       span{
-//         font-size: 20px;
-//         font-weight: bold;
-//         color: var(--text-color);
-//       }
-//     }
-//   }
-// }
 footer.footer {
   width: 100%;
   background-color: var(--primary-color);
@@ -109,174 +7,167 @@ footer.footer {
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
-}
-
-footer.footer section.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 2rem 0;
-  text-align: center; /* Center text for smaller screens */
-}
-
-footer.footer section.header h1 {
-  font-size: 50px;
-  color: #000000;
-}
-
-footer.footer section.header p {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-color);
-  flex-wrap: wrap; /* Allow text to wrap on smaller screens */
-  justify-content: center; /* Center content */
-}
-
-footer.footer section.header p span {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-footer.footer section.header p span svg {
-  font-size: 20px;
-  color: var(--text-color);
-  font-weight: bold;
-}
-
-footer.footer section.header .mail-us {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  flex-wrap: wrap; /* Allow inputs and button to wrap on smaller screens */
-  justify-content: center; /* Center content */
-}
-
-footer.footer section.header .mail-us input {
-  outline: none;
-  border: none;
-  border-radius: 12px;
-  padding: 8px 15px;
-  font-size: 18px;
-  width: 320px;
-  max-width: 100%; /* Ensure inputs don't overflow on smaller screens */
-}
-
-footer.footer section.header .mail-us button {
-  background-color: var(--dark-primary-color);
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  outline: none;
-  border-radius: 12px;
-  font-size: 18px;
-  width: 150px;
-  cursor: pointer;
-}
-
-footer.footer section.footer-links {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
-  gap: 20px; /* Add gap between sections */
-}
-
-footer.footer section.footer-links ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  color: var(--text-color);
-  text-align: center; /* Center text for smaller screens */
-}
-
-footer.footer section.footer-links ul li.header {
-  font-weight: bold;
-  color: var(--dark-primary-color);
-}
-
-footer.footer section.footer-links ul li {
-  font-size: 25px;
-}
-
-footer.footer section.footer-links ul li svg {
-  font-size: 20px;
-  color: var(--text-color);
-  margin-right: 10px;
-}
-
-footer.footer section.footer-links .logo-slogan {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center; /* Center text for smaller screens */
-}
-
-footer.footer section.footer-links .logo-slogan img {
-  width: 300px;
-  max-width: 100%; /* Ensure logo doesn't overflow on smaller screens */
-}
-
-footer.footer section.footer-links .logo-slogan span {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-  footer.footer section.header h1 {
-    font-size: 40px; /* Reduce font size for smaller screens */
-  }
-
-  footer.footer section.header p {
-    font-size: 18px; /* Reduce font size for smaller screens */
-  }
-
-  footer.footer section.footer-links ul li {
-    font-size: 20px; /* Reduce font size for smaller screens */
-  }
-}
-
-@media (max-width: 768px) {
-  footer.footer section.header h1 {
-    font-size: 30px; /* Further reduce font size for mobile */
-  }
-  footer.footer section.header p {
-    flex-direction: column; /* Stack text vertically on mobile */
-    gap: 10px;
-  }
-  footer.footer section.header .mail-us {
-    flex-direction: column; /* Stack inputs and button vertically on mobile */
-    gap: 10px;
-  }
-  footer.footer section.header .mail-us input,
-  footer.footer section.header .mail-us button {
-    width: 100%; /* Full width for inputs and button on mobile */
-  }
-  footer.footer section.footer-links {
+  section.header {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+    padding: 2rem 0;
+    text-align: center; // Center text for smaller screens
+    h1 {
+      font-size: 50px;
+      color: #000000;
+    }
+    p {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--text-color);
+      flex-wrap: wrap; // Allow text to wrap on smaller screens
+      justify-content: center; // Center content
+      span {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        svg {
+          font-size: 20px;
+          color: var(--text-color);
+          font-weight: bold;
+        }
+      }
+    }
+    .mail-us {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap; // Allow inputs and button to wrap on smaller screens
+      justify-content: center; // Center content
+      input {
+        outline: none;
+        border: none;
+        border-radius: 12px;
+        padding: 8px 15px;
+        font-size: 18px;
+        width: 320px;
+        max-width: 100%; // Ensure inputs don't overflow on smaller screens
+      }
+      button {
+        background-color: var(--dark-primary-color);
+        color: #fff;
+        padding: 8px 15px;
+        border: none;
+        outline: none;
+        border-radius: 12px;
+        font-size: 18px;
+        width: 150px;
+        cursor: pointer;
+      }
+    }
   }
-  footer.footer section.footer-links ul {
-    align-items: center; /* Center align links on mobile */
+  section.footer-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    flex-wrap: wrap; // Allow links to wrap on smaller screens
+    gap: 20px; // Add gap between sections
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: var(--text-color);
+      text-align: center; // Center text for smaller screens
+      li.header {
+        font-weight: bold;
+        color: var(--dark-primary-color);
+      }
+      li {
+        font-size: 25px;
+        svg {
+          font-size: 20px;
+          color: var(--text-color);
+          margin-right: 10px;
+        }
+      }
+    }
+    .logo-slogan {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center; // Center text for smaller screens
+      img {
+        width: 300px;
+        max-width: 100%; // Ensure logo doesn't overflow on smaller screens
+      }
+      span {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-color);
+      }
+    }
   }
-}
-
-@media (max-width: 480px) {
-  footer.footer section.header h1 {
-    font-size: 24px; /* Further reduce font size for very small screens */
+  // Media Queries for Responsiveness
+  @media (max-width: 1200px) {
+    section.header {
+      h1 {
+        font-size: 40px; // Reduce font size for smaller screens
+      }
+      p {
+        font-size: 18px; // Reduce font size for smaller screens
+      }
+    }
+    section.footer-links {
+      ul {
+        li {
+          font-size: 20px; // Reduce font size for smaller screens
+        }
+      }
+    }
   }
-  footer.footer section.header p {
-    font-size: 16px; /* Further reduce font size for very small screens */
+  @media (max-width: 768px) {
+    section.header {
+      h1 {
+        font-size: 30px; // Further reduce font size for mobile
+      }
+      p {
+        flex-direction: column; // Stack text vertically on mobile
+        gap: 10px;
+      }
+      .mail-us {
+        flex-direction: column; // Stack inputs and button vertically on mobile
+        gap: 10px;
+        input,
+        button {
+          width: 100%; // Full width for inputs and button on mobile
+        }
+      }
+    }
+    section.footer-links {
+      align-items: center;
+      ul {
+        align-items: center; // Center align links on mobile
+      }
+    }
   }
-  footer.footer section.footer-links ul li {
-    font-size: 18px; /* Further reduce font size for very small screens */
+  @media (max-width: 480px) {
+    section.header {
+      h1 {
+        font-size: 24px; 
+      }
+      p {
+        font-size: 16px; 
+      }
+    }
+    section.footer-links {
+      ul {
+        li {
+          font-size: 18px; 
+        }
+      }
+    }
   }
 }

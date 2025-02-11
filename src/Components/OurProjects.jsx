@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import image1 from '../Images/form.png';
@@ -6,7 +6,9 @@ import image2 from '../Images/landing.png';
 import { FaLocationDot } from "react-icons/fa6";
 import { LuBedDouble } from "react-icons/lu";
 import { TbRulerMeasure2 } from "react-icons/tb";
+import IsDesktop from '../Context/IsDesktop';
 const OurProjects = () => {
+  const {isDesktop} = useContext(IsDesktop)
   const projects = [
     {
       image: image1,
@@ -53,7 +55,7 @@ const OurProjects = () => {
     <section className='our-projects'>
       <h1 className='title'>وحداتنا المتميزة</h1>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={isDesktop?3:1}
         spaceBetween={30}
         pagination={{
           clickable: true,
