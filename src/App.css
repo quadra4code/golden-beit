@@ -1071,7 +1071,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 1200px) {
   section.landing .hero {
-    margin-top: -30%;
+    margin-top: -10%;
     width: 80%; /* Adjust width for smaller screens */
   }
   section.landing .hero h1 {
