@@ -1066,6 +1066,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 1200px) {
   section.landing .hero {
+    top: 40%;
     width: 80%; /* Adjust width for smaller screens */
   }
   section.landing .hero h1 {
@@ -1082,6 +1083,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 768px) {
   section.landing .hero {
+    top: 40%;
     width: 90%; /* Adjust width for mobile */
     padding: 1rem; /* Reduce padding for mobile */
   }
@@ -1117,6 +1119,9 @@ section.landing .search-bar button {
   }
 }
 @media (max-width: 480px) {
+  section.landing .hero {
+    top: 40%;
+  }
   section.landing .hero h1 {
     font-size: 30px; /* Further reduce font size for very small screens */
   }
