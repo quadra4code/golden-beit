@@ -21,9 +21,9 @@ const Home = () => {
         <main className='home'>
           {contextHolder}
           <Landing/>
-          <OurProjects/>
-          <AboutUs/>
           <WhyUs/>
+          <OurProjects/>
+          {/* <AboutUs/> */}
           <OurReviews/>
           <Articles/>
         </main>
