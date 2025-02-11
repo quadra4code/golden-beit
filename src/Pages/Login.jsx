@@ -4,7 +4,6 @@ import { FaUser } from "react-icons/fa";
 import axios from 'axios'
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
-import Loader from '../Components/Loader';
 import AppContext from '../Context/AppContext';
 const Login = () => {
   const navigate= useNavigate()

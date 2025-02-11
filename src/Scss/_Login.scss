@@ -217,6 +217,10 @@ main.login-page {
   main.login-page .opacity .login-form-box .tabs .tab {
     font-size: 18px;
   }
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width:100%;
+  }
 
   main.login-page .opacity .login-form-box form .label {
     font-size: 14px;
@@ -235,6 +239,10 @@ main.login-page {
 
   main.login-page .opacity .login-form-box {
     padding: 1rem;
+  }
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width:100%;
   }
 
   main.login-page .opacity .login-form-box .tabs .tab {
@@ -290,7 +298,10 @@ main.login-page {
       font-size: 16px;
     }
   }
-
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width:100%;
+  }
   main.login-page .opacity .login-form-box form button.submit_form {
     width: 100px;
     font-size: 12px;
@@ -298,7 +309,6 @@ main.login-page {
 
   main.login-page .opacity .login-form-box form .input-box {
     width: 100%;
-
     input,
     select {
       font-size: 10px;

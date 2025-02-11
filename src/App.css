@@ -1672,6 +1672,10 @@ main.login-page .opacity .login-form-box form .input-box select {
   main.login-page .opacity .login-form-box .tabs .tab {
     font-size: 18px;
   }
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width: 100%;
+  }
   main.login-page .opacity .login-form-box form .label {
     font-size: 14px;
   }
@@ -1686,6 +1690,10 @@ main.login-page .opacity .login-form-box form .input-box select {
   }
   main.login-page .opacity .login-form-box {
     padding: 1rem;
+  }
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width: 100%;
   }
   main.login-page .opacity .login-form-box .tabs .tab {
     font-size: 16px;
@@ -1727,6 +1735,10 @@ main.login-page .opacity .login-form-box form .input-box select {
   }
   main.login-page .opacity .login-form-box form .label svg {
     font-size: 16px;
+  }
+  main.login-page .opacity .login-form-box form .col {
+    flex-direction: column;
+    width: 100%;
   }
   main.login-page .opacity .login-form-box form button.submit_form {
     width: 100px;
