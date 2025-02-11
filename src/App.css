@@ -1221,7 +1221,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 768px) {
   section.why-us {
-    padding: 2rem;
+    padding: 7rem 2rem;
   }
   section.why-us h1 {
     font-size: 40px;
@@ -1244,7 +1244,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 480px) {
   section.why-us {
-    padding: 1rem;
+    padding: 7rem 2rem;
   }
   section.why-us h1 {
     font-size: 30px;
