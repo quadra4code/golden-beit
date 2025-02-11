@@ -899,9 +899,10 @@ footer.footer section.footer-links .logo-slogan span {
 }
 
 section.landing {
-  background-image: url("./Images/landing.png");
+  background-image: url("./Images/dense_tiled_logo_background.png");
   background-size: cover;
   background-position: center;
+  background-repeat: repeat;
   height: 100lvh;
   width: 100%;
   position: relative;
@@ -909,11 +910,15 @@ section.landing {
   /* Search Bar */
   /* Media Queries for Responsiveness */
 }
+section.landing .opacity {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3098039216);
+}
 section.landing .hero {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.631);
   border-radius: 80px 0 80px 0;
   display: flex;
@@ -1066,7 +1071,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 1200px) {
   section.landing .hero {
-    top: 40%;
+    margin-top: -30%;
     width: 80%; /* Adjust width for smaller screens */
   }
   section.landing .hero h1 {
@@ -1083,7 +1088,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 768px) {
   section.landing .hero {
-    top: 40%;
+    margin-top: -30%;
     width: 90%; /* Adjust width for mobile */
     padding: 1rem; /* Reduce padding for mobile */
   }
@@ -1102,7 +1107,7 @@ section.landing .search-bar button {
   section.landing .search-bar {
     flex-direction: column; /* Stack search bar items vertically */
     gap: 10px;
-    bottom: -26%; /* Adjust position for mobile */
+    bottom: -20%; /* Adjust position for mobile */
     padding: 15px; /* Reduce padding for mobile */
   }
   section.landing .search-bar .custom-select {
@@ -1120,7 +1125,7 @@ section.landing .search-bar button {
 }
 @media (max-width: 480px) {
   section.landing .hero {
-    top: 40%;
+    margin-top: -30%;
   }
   section.landing .hero h1 {
     font-size: 30px; /* Further reduce font size for very small screens */
@@ -1133,7 +1138,7 @@ section.landing .search-bar button {
     font-size: 18px; /* Further reduce font size for very small screens */
   }
   section.landing .search-bar {
-    bottom: -26%; /* Adjust position for very small screens */
+    bottom: -20%; /* Adjust position for very small screens */
   }
 }
 
@@ -1226,7 +1231,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 768px) {
   section.why-us {
-    padding: 7rem 2rem;
+    padding: 3rem 2rem;
   }
   section.why-us h1 {
     font-size: 40px;
@@ -1249,7 +1254,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 480px) {
   section.why-us {
-    padding: 7rem 2rem;
+    padding: 3rem 2rem;
   }
   section.why-us h1 {
     font-size: 30px;

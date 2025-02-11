@@ -1,16 +1,21 @@
 section.landing {
-  background-image: url('./Images/landing.png');
+  background-image: url('./Images/dense_tiled_logo_background.png');
   background-size: cover;
   background-position: center;
+  background-repeat: repeat;
   height: 100lvh;
   width: 100%;
   position: relative;
+  .opacity{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000004f;
+  }
   /* Hero Section */
   .hero {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.631);
     border-radius: 80px 0 80px 0;
     display: flex;
@@ -165,7 +170,7 @@ section.landing {
   /* Media Queries for Responsiveness */
   @media (max-width: 1200px) {
     .hero {
-      top: 40%;
+      margin-top: -30%;
       width: 80%; /* Adjust width for smaller screens */
       h1 {
         font-size: 50px; /* Reduce font size for smaller screens */
@@ -182,7 +187,7 @@ section.landing {
   }
   @media (max-width: 768px) {
     .hero {
-      top: 40%;
+      margin-top: -30%;
       width: 90%; /* Adjust width for mobile */
       padding: 1rem; /* Reduce padding for mobile */
       h1 {
@@ -201,7 +206,7 @@ section.landing {
     .search-bar {
       flex-direction: column; /* Stack search bar items vertically */
       gap: 10px;
-      bottom: -26%; /* Adjust position for mobile */
+      bottom: -20%; /* Adjust position for mobile */
       padding: 15px; /* Reduce padding for mobile */
       .custom-select {
         width: 100%; /* Full width for smaller screens */
@@ -219,7 +224,7 @@ section.landing {
   }
   @media (max-width: 480px) {
     .hero {
-      top: 40%;
+      margin-top: -30%;
       h1 {
         font-size: 30px; /* Further reduce font size for very small screens */
       }
@@ -232,7 +237,7 @@ section.landing {
       }
     }
     .search-bar {
-      bottom: -26%; /* Adjust position for very small screens */
+      bottom: -20%; /* Adjust position for very small screens */
     }
   }
 }
