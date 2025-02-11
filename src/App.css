@@ -1616,6 +1616,8 @@ main.login-page .opacity .login-form-box form {
   align-items: center;
   padding: 1rem;
   border-radius: 12px;
+  max-height: 38rem;
+  overflow-y: auto;
 }
 main.login-page .opacity .login-form-box form button.submit_form {
   background-color: var(--primary-color);
@@ -1642,6 +1644,7 @@ main.login-page .opacity .login-form-box form .label svg {
 main.login-page .opacity .login-form-box form .col {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   gap: 10px;
 }
 main.login-page .opacity .login-form-box form .input-box {

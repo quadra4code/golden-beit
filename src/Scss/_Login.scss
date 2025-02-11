@@ -152,7 +152,8 @@ main.login-page {
         align-items: center;
         padding: 1rem;
         border-radius: 12px;
-
+        max-height: 38rem;
+        overflow-y: auto;
         button.submit_form {
           background-color: var(--primary-color);
           color: #fff;
@@ -181,6 +182,7 @@ main.login-page {
         .col {
           display: flex;
           justify-content: space-between;
+          flex-direction: column;
           gap: 10px;
         }
 
