@@ -1,64 +1,25 @@
-// import React from 'react';
-// import { IoIosArrowDown, IoIosCall } from "react-icons/io";
-// import { FaUserAlt } from "react-icons/fa";
-// import { Link } from 'react-router-dom';
-// import logo from '../Images/LOGO (2).png';
-// import { HashLink } from "react-router-hash-link"; 
-
-// const Navbar = () => {
-//   return (
-//     <nav className='top-nav'>
-//       <div className="top-sec">
-//         <Link to='/login' className='link'>
-//           <IoIosArrowDown/>
-//           <span>تسجيل الدخول</span>
-//           <div className='list'>
-//             <Link to='/add-new-unit'>اضف وحدتك</Link>
-//           </div>
-//           <FaUserAlt/>
-//         </Link>
-//         <Link to='#'>
-//           <span>اتصل بنا</span>
-//           <IoIosCall/>
-//         </Link>
-//       </div>
-//       <div className="bottom-sec">
-//         <div className="links-holder">
-//           <Link to='/' className='link'>الرئيسية</Link>
-//           <HashLink smooth to="/#why-us" className='link'>الاستشارات</HashLink>
-//           <HashLink smooth to="/#about-us" className='link'>من نحن</HashLink>
-//           <Link to='units' className='link'>
-//             <span>الوحدات</span>
-//             {/* <IoIosArrowDown/> */}
-//           </Link>
-//           <Link to='units' className='link'>
-//             <span>اتصل بنا</span>
-//           </Link>
-//           <Link to='#' className='link'>
-//             <span>الخدمات</span>
-//             <div className='list'>
-//               <Link to='/add-new-unit'>اضف وحدتك</Link>
-//             </div>
-//             <IoIosArrowDown/>
-//           </Link>
-//         </div>
-//         <img src={logo} alt="logo" />
-//       </div>
-//     </nav>
-//   )
-// }
-
-// export default Navbar
 import React,{ useState } from 'react';
 import Logo from '../Images/LOGO (2).png';
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 import { HashLink } from "react-router-hash-link"; 
 import { Link } from "react-router-dom"; 
 import { IoIosArrowDown } from "react-icons/io";
 import {Dialog,DialogPanel,PopoverGroup,Disclosure,DisclosureButton,DisclosurePanel,} from '@headlessui/react';
 import { ChevronDownIcon} from '@heroicons/react/20/solid';
 import {Bars3Icon,XMarkIcon,} from '@heroicons/react/24/outline';
+import { useContext } from 'react';
+import AppContext from '../Context/AppContext';
 const Navbar = () => {
+  const navigate = useNavigate()
+  const { token, openNotificationWithIcon } = useContext(AppContext)
+  const handleAddUnitRoute = ()=> {
+    if(token){
+      navigate('/add-new-unit') 
+    }else{
+      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
+    }
+  }
   const name = localStorage.getItem('name')
   const ourPrograms = [
     { name: 'اضف وحدتك', href: '/add-new-unit'},
@@ -103,7 +64,7 @@ const Navbar = () => {
               خدماتنا
             </span>
             <div className="nav-menu">
-              <Link className='list-unit' to="/add-new-unit">اضف وحدتك</Link>
+              <span className='list-unit' onClick={handleAddUnitRoute}>اضف وحدتك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
             </div>
           </div>

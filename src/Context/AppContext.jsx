@@ -64,6 +64,8 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/all-properties')
     .then(res => {
+      console.log(res);
+      
       setAllUnits(res.data.data.all)
       setNewArrivalUnits(res.data.data.recent)
     })
@@ -126,6 +128,29 @@ export const AppProvider = ({children}) => {
       console.log(err);
     })
   }
+  const handleReqUnit = () => {
+    if(token){
+      axios.post(
+        'https://golden-gate-three.vercel.app/core/request-property',
+        {
+          property_id:singleUnit.id
+        },
+        {
+          headers: { 'Authorization': `Bearer ${token}` },
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+        openNotificationWithIcon('success', 'عملية ناجحة ', 'سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else{
+      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
+    }
+    
+  }
   return (
     <AppContext.Provider 
       value={{isOpen, setIsOpen, popupContent,newArrivalUnits,setNewArrivalUnits,
@@ -133,7 +158,7 @@ export const AppProvider = ({children}) => {
       filterData, setFilterData, loading, setLoading,articlesData, allUnits,
       contextHolder, openNotificationWithIcon, setAllUnits,
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
-      numberInpValue, setNumberInpValue
+      numberInpValue, setNumberInpValue, handleReqUnit
       }}>
       {children}
     </AppContext.Provider>

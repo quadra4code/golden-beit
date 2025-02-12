@@ -351,9 +351,9 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 22px;
   width: 100%;
   padding: 10px;
 }
@@ -361,28 +361,35 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 8px;
+  border-radius: 16px;
 }
-main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content .type {
-  background-color: var(--primary-color);
-  font-size: 16px;
-  padding: 5px;
-  border-radius: 10px;
-  width: -moz-max-content;
-  width: max-content;
+main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
-main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content h3 {
-  font-size: 16px;
+main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content h1 {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-color);
 }
+main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content h1 .label {
+  font-size: 16px;
+  font-weight: normal;
+}
 main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content .price {
   color: var(--primary-color);
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 24px;
 }
-main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content button.more_details {
-  width: 100%;
+main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content button.see_more {
+  border-radius: 16px;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
   background-color: transparent;
   border: 1px solid #333;
   font-size: 18px;
@@ -390,7 +397,7 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide
   color: #333;
   cursor: pointer;
 }
-main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content button.more_details:hover {
+main.single_unit_page section.more_units .mySwiper .swiper-wrapper .swiper-slide .slide-content button.see_more:hover {
   background-color: var(--dark-primary-color);
   color: #ccc;
 }
@@ -907,7 +914,7 @@ footer.footer section.footer-links .logo-slogan span {
 }
 
 section.landing {
-  background-image: url("./Images/dense_tiled_logo_background.png");
+  background-image: url("./Images/landing.png");
   background-size: cover;
   background-position: center;
   background-repeat: repeat;

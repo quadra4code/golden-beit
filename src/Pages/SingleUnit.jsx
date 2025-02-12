@@ -5,6 +5,10 @@ import image2 from '../Images/form.png';
 import image3 from '../Images/landing.png';
 import image4 from '../Images/buyer.png';
 import image5 from '../Images/broker.png';
+import { BsBuildings } from "react-icons/bs";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { TbRulerMeasure2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -19,9 +23,7 @@ const SingleUnit = () => {
   const navigate = useNavigate()
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/all-properties',
-      {headers: {'Authorization': `Bearer ${token}`}}
-    )
+    axios.get('https://golden-gate-three.vercel.app/core/all-properties')
     .then(res => {
       setAllUnits(res.data.data.all);
     })
@@ -29,7 +31,7 @@ const SingleUnit = () => {
     })
     .finally(() => {setLoading(false)})
   },[])
-  const {singleUnit, setSingleUnit} = useContext(AppContext)
+  const {singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
   const [value, setValue] = useState('1');
   const onChange = (key) => {
     console.log(key);
@@ -81,44 +83,6 @@ const SingleUnit = () => {
       children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
     },
   ];
-  const discoverMore = [
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image1,
-      price: '300,000,000'
-    },
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image2,
-      price: '300,000,000'
-    },
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image3,
-      price: '300,000,000'
-    },
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image4,
-      price: '300,000,000'
-    },
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image4,
-      price: '300,000,000'
-    },
-    {
-      name:'عقار جنة اكتوبر',
-      type:'ارض',
-      image: image4,
-      price: '300,000,000'
-    },
-  ]
   const handleUnitClick = (id)=> {
     const foundUnit = allUnits.find(({id})=>id===id)
     setSingleUnit(foundUnit);
@@ -131,6 +95,7 @@ const SingleUnit = () => {
       <Loader/>
       :
       <main className='single_unit_page'>
+        {contextHolder}
         <section className='unit_info'>
           <div className="galleria-container">
             <div className="main-image">
@@ -160,7 +125,7 @@ const SingleUnit = () => {
             <span className='holder'><h3>المساحة:</h3> <span>{singleUnit.area}</span></span>
             <span className='holder'><h3> وسيلة الدفع:</h3> <span>{singleUnit.payment_method}</span></span>
             <span className='holder'><h3>السعر:</h3> <span className='price'>{singleUnit.price}</span></span>
-            <button className='add_fav'>اضافة الى المفضلة</button>
+            <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
           </div>
         </section>
         <section className='tab_view'>
@@ -181,10 +146,28 @@ const SingleUnit = () => {
               <SwiperSlide className='swiper-slide' key={index}>
                 <div className="slide-content">
                   <img src={image1} alt="project"/>
+                  <div className="content">
+                    <h1>
+                      <FaLocationDot/>
+                      {discoverMore.title}
+                    </h1>
+                    <h1>
+                      <span className='label'><TbRulerMeasure2/></span>
+                      {discoverMore.area} متر مربع
+                    </h1>
+                    <h1 className='price'>
+                      <span className='label'>EGP  </span>
+                      {discoverMore.area}
+                    </h1>
+                    <button className='see_more' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
+                  </div>
+                </div>
+                {/* <div className="slide-content">
+                  <img src={image1} alt="project"/>
                   <h3>الموقع : {discoverMore.title}</h3>
                   <p className='price'>السعر : {discoverMore.price}</p>
                   <button className='more_details' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
-                </div>
+                </div> */}
               </SwiperSlide>        
             )}
           </Swiper>

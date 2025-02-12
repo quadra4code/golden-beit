@@ -76,7 +76,7 @@ const App = () => {
     { path: "/", element: <Home /> },
     { path: "/login", element: <Login /> },
     { path: "/all-units", element: <Units /> },
-    { path: "/add-new-unit", element: <ProtectedRoute><AddNewUnit /></ProtectedRoute> },
+    { path: "/add-new-unit", element: <AddNewUnit /> },
     { path: "/inquiry-page", element: <InquiryPage /> },
     { path: "/faq", element: <FAQ /> },
     { path: "all-units/:id", element: <SingleUnit /> },

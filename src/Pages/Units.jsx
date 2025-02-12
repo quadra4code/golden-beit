@@ -5,11 +5,11 @@ import Slider from 'rc-slider';
 import unitImage from '../Images/form.png'; 
 import { BsBuildings } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
+import { TbRulerMeasure2 } from "react-icons/tb";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader';
-import { TbRulerMeasure2 } from "react-icons/tb";
-import { MdOutlineAttachMoney } from "react-icons/md";
 const Units = () => {
   const {handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits,loading} = useContext(AppContext);
   const [priceRange, setPriceRange] = useState([25000, 2000000]);
