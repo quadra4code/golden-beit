@@ -26,17 +26,13 @@ export const AppProvider = ({children}) => {
   };
   ///////////////// get filter data in all units screen
   useEffect(()=>{
-    if(token){
-      setLoading(true)
-      axios.get('https://golden-gate-three.vercel.app/core/get-form-data',
-        {headers: {'Authorization': `Bearer ${token}`}}
-      )
-      .then(response => {
-        setFilterData(response.data.data)
-      })
-      .catch(error => console.error(error))
-      .finally(()=>{setLoading(false)})
-    }
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/get-form-data')
+    .then(response => {
+      setFilterData(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
   },[])
   /////////////// get articles in home screen
   useEffect(()=>{
@@ -65,18 +61,14 @@ export const AppProvider = ({children}) => {
   },[])
   ///////////// get all units and new arrival units
   useEffect(()=>{
-    if(token){
-      setLoading(true)
-      axios.get('https://golden-gate-three.vercel.app/core/all-properties',
-        {headers: {'Authorization': `Bearer ${token}`}}
-      )
-      .then(res => {
-        setAllUnits(res.data.data.all)
-        setNewArrivalUnits(res.data.data.recent)
-      })
-      .catch(err => {console.log(err);})
-      .finally(() => setLoading(false))
-    }
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/all-properties')
+    .then(res => {
+      setAllUnits(res.data.data.all)
+      setNewArrivalUnits(res.data.data.recent)
+    })
+    .catch(err => {console.log(err);})
+    .finally(() => setLoading(false))
   },[])
   //////////////post all units screen filter
   const handleFilterClick = (project_id, payment_method, city_id, min_price, max_price)=> {

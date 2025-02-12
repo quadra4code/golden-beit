@@ -7,7 +7,7 @@ import backgroundImage from '../Images/article.png';
 import logo from '../Images/LOGO (2).png';
 const Footer = () => {
   return (
-    <footer className='footer'>
+    <footer className='footer' id='footer'>
       <section className='header'>
         <h1>اذا كان لديك اى استفسار <br/> فضلا قم بالتواصل معنا</h1>
         <p>

@@ -68,7 +68,6 @@ const AddNewUnit = () => {
   // State to track the selected project
   // Handle radio button change
   const handleTypeChange = (event) => {
-
     setSelectedType(event.target.value); // Update selected type
     setSelectedProject(''); // Reset selected project when type changes
   };

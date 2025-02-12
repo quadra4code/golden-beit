@@ -10,7 +10,7 @@ main.units_page .units_content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 83%;
+  width: 76%;
 }
 main.units_page .units_content .new_arrive {
   display: flex;
@@ -25,6 +25,12 @@ main.units_page .units_content .new_arrive h2 {
 main.units_page .units_content .new_arrive .mySwiper {
   width: 100%;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+main.units_page .units_content .new_arrive .mySwiper .swiper-pagination {
+  position: unset;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-pagination-bullet {
   width: 15px;
@@ -33,75 +39,57 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-pagination-bullet {
 main.units_page .units_content .new_arrive .mySwiper .swiper-pagination-bullet-active {
   background: var(--dark-primary-color);
 }
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper {
-  padding: 0 0 4rem 0;
-}
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide {
   width: 450px;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content {
   display: flex;
 }
+main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content:hover .content {
+  opacity: 1;
+}
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 14px;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content {
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  width: 100%;
+  transition: 0.3s;
+  height: 100%;
+  opacity: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3215686275);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 10px;
   position: absolute;
-  bottom: 4rem;
-  left: 0;
-  width: 50%;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .see_more {
-  cursor: pointer;
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p {
-  display: flex;
-  gap: 60px;
-  align-items: center;
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p .price {
-  font-size: 30px;
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p span {
-  font-size: 20px;
-  font-weight: 600;
-  color: #4e3426;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p span svg {
-  font-size: 30px;
-  color: #4e3426;
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p button {
-  margin-right: auto;
-  background-color: var(--dark-primary-color);
+  padding: 5px 16px;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+  border: 1px solid #fff;
+  transition: 0.3s;
   color: #fff;
-  font-size: 20px;
-  border-radius: 8px;
-  padding: 5px 10px;
-  outline: none;
-  border: none;
-  cursor: pointer;
+  font-size: 22px;
+}
+main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .see_more:hover {
+  background-color: #fff;
+  color: #333;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content h1 {
-  font-size: 25px;
-  color: var(--dark-primary-color);
-}
-main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content h1 svg {
-  font-size: 25px;
-  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 22px;
+  color: #fff;
 }
 main.units_page .units_content .all_units {
   display: flex;
@@ -121,19 +109,31 @@ main.units_page .units_content .all_units .units_list {
 main.units_page .units_content .all_units .units_list .unit {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  max-width: 310px;
 }
 main.units_page .units_content .all_units .units_list .unit .unit_image {
-  width: 270px;
+  width: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 main.units_page .units_content .all_units .units_list .unit .unit_info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  padding: 15px 8px;
+  background-color: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 main.units_page .units_content .all_units .units_list .unit .unit_info h3 {
-  font-size: 20px;
+  display: flex;
+  font-size: 19px;
+  font-weight: 600;
   color: var(--dark-primary-color);
+}
+main.units_page .units_content .all_units .units_list .unit .unit_info h3 svg {
+  font-size: 22px;
+  margin-left: 10px;
 }
 main.units_page .units_content .all_units .units_list .unit .unit_info p {
   font-size: 22px;
@@ -145,7 +145,9 @@ main.units_page .units_content .all_units .units_list .unit .unit_info button.un
   border: 1px solid var(--text-color);
   padding: 5px 20px;
   font-size: 18px;
-  width: 100%;
+  width: 60%;
+  align-self: center;
+  border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -157,26 +159,32 @@ main.units_page section.filter {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-right: 2px solid var(--dark-primary-color);
+  padding: 0 5px;
+  width: 24%;
 }
 main.units_page section.filter .filter_unit {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-bottom: 1px solid #333;
+  gap: 20px;
   padding-bottom: 40px;
 }
 main.units_page section.filter .filter_unit h2 {
   font-size: 18px;
   color: #333;
+  font-weight: 600;
 }
 main.units_page section.filter .filter_unit select {
   width: 100%;
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   outline: none;
   border-radius: 12px;
-  padding: 6px 20px;
+  padding: 6px;
   font-size: 18px;
+}
+main.units_page section.filter .filter_unit select option[disabled] {
+  font-weight: 600;
 }
 main.units_page section.filter button.filter_btn {
   width: 100%;
@@ -1766,6 +1774,74 @@ main.login-page .opacity .login-form-box form .input-box select {
     padding: 4px;
   }
 }
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.faq-main {
+  margin-top: 6rem;
+  height: 100vh;
+}
+.faq-main .faq-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-main .faq-page h1 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.faq-main .faq-page .faq-list .faq-item {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-question h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-question span {
+  font-size: 1.5rem;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 1rem;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-answer p {
+  margin: 0;
+  padding: 1rem 0;
+}
+.faq-main .faq-page .faq-list .faq-item .faq-answer.open {
+  max-height: 100px;
+  transition: max-height 0.3s ease-in, padding 0.3s ease-in;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1974,6 +2050,21 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
   border-bottom-left-radius: 14px;
   gap: 18px;
 }
+main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top h1 {
+  display: flex;
+  font-size: 21px;
+  color: var(--dark-primary-color);
+}
+main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top h1 svg {
+  font-size: 25px;
+  margin-left: 10px;
+}
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p {
   display: flex;
   gap: 60px;
@@ -2007,14 +2098,6 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
   outline: none;
   border: none;
   cursor: pointer;
-}
-main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content h1 {
-  font-size: 25px;
-  color: var(--dark-primary-color);
-}
-main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content h1 svg {
-  font-size: 25px;
-  margin-left: 10px;
 }
 
 main.popup {

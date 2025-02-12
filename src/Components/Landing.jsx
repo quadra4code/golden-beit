@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 const Landing = () => {
   return (
-    <section className='landing'>
+    <section className='landing' id='landing'>
       <div className="opacity">
         <div className='hero'>
           <h1>استكشف منزل أحلامك</h1>

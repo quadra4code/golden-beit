@@ -12,6 +12,8 @@
 @import 'OurReviews';
 @import 'Articles';
 @import 'Login';
+@import 'PageTransition';
+@import 'FAQ';
 *{
   margin: 0;
   padding: 0;
@@ -211,6 +213,21 @@ main.home {
               border-bottom-right-radius:14px;
               border-bottom-left-radius:14px;
               gap:18px;
+              .top{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                h1{
+                  display: flex;
+                  font-size: 21px;
+                  color: var(--dark-primary-color);
+                  svg{
+                    font-size: 25px;
+                    margin-left: 10px;
+                  }
+                }  
+              }
               p{
                 display: flex;
                 gap: 60px;
@@ -245,14 +262,6 @@ main.home {
                   cursor: pointer;
                 }
               }
-              h1{
-                font-size: 25px;
-                color: var(--dark-primary-color);
-                svg{
-                  font-size: 25px;
-                  margin-left: 10px;
-                }
-              }
             }
           }
         }
@@ -260,6 +269,7 @@ main.home {
     }
   }
 }
+// ///////// Slide Content 
 /////////////// popup /////////////////
 main.popup {
   background-color: #00000054;
