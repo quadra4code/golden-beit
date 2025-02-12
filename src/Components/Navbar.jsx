@@ -152,7 +152,9 @@ const Navbar = () => {
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...ourPrograms].map((item) => (
+                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={handleAddUnitRoute}>اضف وحدتك</span>
+                    <Link className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
+                    {/* {[...ourPrograms].map((item) => (
                       <HashLink
                         key={item.name}
                         smooth
@@ -167,7 +169,7 @@ const Navbar = () => {
                       >
                         {item.name}
                       </HashLink>
-                    ))}
+                    ))} */}
                   </DisclosurePanel>
                 </Disclosure>
                 <Link

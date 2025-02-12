@@ -272,7 +272,7 @@ const AddNewUnit = () => {
               )}
             </select>
           </div>
-          <button type="submit">Add Unit</button>
+          <button type="submit">أضف وحدتك</button>
         </form>
       </div>
     </main>
