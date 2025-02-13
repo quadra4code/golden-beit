@@ -45,6 +45,17 @@ export const AppProvider = ({children}) => {
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
   },[])
+  /////////////// get consultations in home screen
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/home-consultations')
+    .then(response => {
+      console.log(response.data.data);
+      setArticlesData(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
+  },[])
   /////////////// get all winners
   useEffect(()=>{
     if(token){

@@ -11,14 +11,17 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import  Pagination  from '../Components/Pagination';
 import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
 import axios from 'axios';
 import { Tabs } from 'antd';
+import UnitCard from '../Components/UnitCard';
 const SingleUnit = () => {
   const token = localStorage.getItem('token');
   const [allUnits, setAllUnits] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [unitsPerPage] = useState(10);
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   useEffect(()=>{
@@ -39,6 +42,11 @@ const SingleUnit = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const indexOfLastUnit = currentPage * unitsPerPage;
+  const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
+  const currentUnits = allUnits&& allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const images = [
     {
       id: 1,
@@ -133,7 +141,27 @@ const SingleUnit = () => {
         </section>
         <section className='more_units'>
           <h2>استكشف المزيد</h2>
-          <Swiper
+          <div className="all_units">
+            <div className="units_list">
+              {currentUnits.map((discoverMore, index) =>
+                <UnitCard 
+                key={discoverMore.id}
+                title={discoverMore.title} 
+                area={discoverMore.area}
+                price = {discoverMore.price}
+                id = {discoverMore.id}
+                onClick = {()=>{handleUnitClick(discoverMore.id)}}
+                />
+              )}
+            </div>
+            <Pagination
+              unitsPerPage={unitsPerPage}
+              totalUnits={allUnits&& allUnits.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          </div>
+          {/* <Swiper
               slidesPerView={4}
               spaceBetween={10}
               pagination={{
@@ -144,6 +172,13 @@ const SingleUnit = () => {
             >
             {allUnits.map((discoverMore, index) => 
               <SwiperSlide className='swiper-slide' key={index}>
+                <UnitCard 
+                  title={discoverMore.title} 
+                  area={discoverMore.area}
+                  price = {discoverMore.price}
+                  id = {discoverMore.id}
+                  onClick = {()=>{handleUnitClick(discoverMore.id)}}
+                  />
                 <div className="slide-content">
                   <img src={image1} alt="project"/>
                   <div className="content">
@@ -162,15 +197,9 @@ const SingleUnit = () => {
                     <button className='see_more' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
                   </div>
                 </div>
-                {/* <div className="slide-content">
-                  <img src={image1} alt="project"/>
-                  <h3>الموقع : {discoverMore.title}</h3>
-                  <p className='price'>السعر : {discoverMore.price}</p>
-                  <button className='more_details' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
-                </div> */}
               </SwiperSlide>        
             )}
-          </Swiper>
+          </Swiper> */}
         </section>
       </main>
       }
