@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 import NumberInput from '../Components/InputNumber';
 import axios from 'axios';
@@ -7,6 +7,9 @@ const AddNewUnit = () => {
   const [selectedType, setSelectedType] = useState(null);
   const { filterData, token, openNotificationWithIcon } = useContext(AppContext)
   console.log(filterData);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     project_type_id: selectedType,
     project_id: selectedProject,

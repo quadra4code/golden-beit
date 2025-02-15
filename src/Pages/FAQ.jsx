@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bgImage from '../Images/unnamed.jpg'
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const faqs = [
     {
       question: " كيف تختار العقار المثالي للاستثمار؟",

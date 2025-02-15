@@ -24,6 +24,9 @@ const SingleUnit = () => {
   const [unitsPerPage] = useState(10);
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(()=>{
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/all-properties')
