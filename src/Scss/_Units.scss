@@ -243,13 +243,11 @@ main.units_page {
   padding: 0 1rem;
   margin-top: 6rem;
   position: relative;
-
   .units_content {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 76%;
-
     .new_arrive {
       display: flex;
       flex-direction: column;
@@ -360,12 +358,10 @@ main.units_page {
         flex-wrap: wrap;
         padding: 0.5rem;
         gap: 15px;
-
         .unit {
           display: flex;
           flex-direction: column;
           max-width: 310px;
-
           .unit_image {
             width: 100%;
             border-top-left-radius: 12px;
@@ -433,7 +429,7 @@ main.units_page {
     border-bottom: 1px solid #646363;
     padding: 10px 20px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 10;
   }
   section.filter {
     display: flex;
@@ -442,34 +438,33 @@ main.units_page {
     padding: 0 5px;
     width: 24%;
     transition: transform 0.3s ease-in-out;
-
     .filter_unit {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding-bottom: 40px;
-
+      padding-top: 40px;
+      &:last-child{
+        background-color: #000000;
+        select{
+          border: none;
+        }
+      }
       h2 {
         font-size: 18px;
         color: #333;
         font-weight: 600;
       }
-
       select {
         width: 100%;
         background-color: transparent;
-        border: none;
         outline: none;
-        border-radius: 12px;
         padding: 6px;
         font-size: 18px;
-
+        border-bottom: 1px solid #d7d7d7;
         option[disabled] {
           font-weight: 600;
         }
       }
     }
-
     button.filter_btn {
       width: 100%;
       background-color: transparent;
@@ -485,30 +480,31 @@ main.units_page {
       }
     }
   }
-
   section.filter.open {
     transform: translateY(0);
   }
-
   .close_filter {
     display: none;
-    background-color: #333;
-    color: #fff;
-    border: none;
+    color: #333;
+    border-bottom: 1px solid #333;
+    outline: none;
     padding: 10px;
     cursor: pointer;
     align-self: flex-end;
+    font-weight: 700;
   }
-
   ///////////////////// price range ///////////////////////
   .price-range-slider {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    input{
+      outline: none;
+      border-bottom: 1px solid #d7d7d7;
+      padding: 10px;
+      max-width: 140px;
+    }
     .slider-container {
       display: flex;
       flex-direction: column;
@@ -544,20 +540,19 @@ main.units_page {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
   main.units_page {
     flex-direction: column;
-
     .units_content {
       width: 100%;
     }
-
     .filter_toggle {
       display: flex;
     }
-
     section.filter {
       position: fixed;
+      max-height: 575px;
+      overflow-y: auto;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -567,14 +562,23 @@ main.units_page {
       transform: translateY(100%);
       display: none;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-
       .close_filter {
         display: block;
       }
     }
-
     section.filter.open {
       display: flex;
+    }
+  }
+}
+@media (max-width: 780px) {
+  main.units_page {
+    flex-direction: column;
+    .units_content {
+      width: 100%;
+      .unit-card{
+        width: 100%;
+      }
     }
   }
 }

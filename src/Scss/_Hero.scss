@@ -206,7 +206,7 @@ section.landing {
     .search-bar {
       flex-direction: column; /* Stack search bar items vertically */
       gap: 10px;
-      bottom: -20%; /* Adjust position for mobile */
+      bottom: -28%; /* Adjust position for mobile */
       padding: 15px; /* Reduce padding for mobile */
       .custom-select {
         width: 100%; /* Full width for smaller screens */
@@ -237,7 +237,7 @@ section.landing {
       }
     }
     .search-bar {
-      bottom: -20%; /* Adjust position for very small screens */
+      bottom: -28%; /* Adjust position for very small screens */
     }
   }
 }

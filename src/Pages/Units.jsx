@@ -197,7 +197,8 @@ import UnitCard from '../Components/UnitCard';
 
 const Units = () => {
   const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, loading } = useContext(AppContext);
-  const [priceRange, setPriceRange] = useState([25000, 2000000]);
+  const [max_price, setMax_price] = useState();
+  const [min_price, setMin_price] = useState();
   const [unitFilter, setUnitFilter] = useState();
   const [selectedCity, setSelectedCity] = useState();
   const [currentPage, setCurrentPage] = useState(1);
@@ -205,9 +206,9 @@ const Units = () => {
   const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const handlePriceChange = (value) => {
-    setPriceRange(value);
-  };
+  // const handlePriceChange = (value) => {
+  //   setPriceRange(value);
+  // };
 
   const navigate = useNavigate();
   const handleUnitClick = (id) => {
@@ -236,7 +237,7 @@ const Units = () => {
         <main className="units_page">
           {contextHolder}
           <section className="units_content">
-            {newArrivalUnits.length>0 &&  
+            {newArrivalUnits&& newArrivalUnits.length>0 &&  
               <div className="new_arrive">
                 <h2>المعروض حديثا</h2>
                 <Swiper
@@ -300,7 +301,7 @@ const Units = () => {
             <IoIosArrowDown/>
           </button>
           <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
-            <button className="close_filter" onClick={() => setIsFilterOpen(false)}>Close</button>
+            <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
             <div className="filter_unit">
               <select name="unit" id="unit" onChange={(e) => setUnitFilter(e.target.value)}>
                 <option value="اختر الوحدة" selected disabled>اختر الوحدة</option>
@@ -317,9 +318,11 @@ const Units = () => {
               </select>
             </div>
             <div className="filter_unit">
-              <h2 className="filter_title">التصنيف حسب السعر</h2>
+              <p className="filter_title">التصنيف حسب السعر</p>
               <div className="price-range-slider">
-                <div className="slider-container">
+                <input type="number" placeholder='من'/>
+                <input type="number" placeholder='إلى'/>
+                {/* <div className="slider-container">
                   <Slider
                     range
                     min={20000}
@@ -334,7 +337,7 @@ const Units = () => {
                       السعر : {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="filter_unit">
@@ -352,7 +355,7 @@ const Units = () => {
                 <option value="CS">تقسيط</option>
               </select>
             </div>
-            <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, priceRange[0], priceRange[1]) }}>تصنيف</button>
+            <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price) }}>تصنيف</button>
           </section>
         </main>
       )}
