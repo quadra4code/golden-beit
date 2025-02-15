@@ -13,6 +13,9 @@ const InquiryPage = () => {
     setInputValue(e.target.value);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     const inquiryTimes = localStorage.getItem('oneTimeInquiry');
     if (inquiryTimes === 'true') {
       setHasInquired(true);

@@ -14,6 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const { token, openNotificationWithIcon } = useContext(AppContext)
   const handleAddUnitRoute = ()=> {
+    setMobileMenuOpen(false)
     if(token){
       navigate('/add-new-unit') 
     }else{
@@ -153,7 +154,7 @@ const Navbar = () => {
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={handleAddUnitRoute}>اضف وحدتك</span>
-                    <Link className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
+                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
                     {/* {[...ourPrograms].map((item) => (
                       <HashLink
                         key={item.name}
