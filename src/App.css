@@ -243,6 +243,7 @@ main.units_page .price-range-slider input {
   border-bottom: 1px solid #d7d7d7;
   padding: 10px;
   max-width: 140px;
+  border-radius: none;
 }
 main.units_page .price-range-slider .slider-container {
   display: flex;
