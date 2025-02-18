@@ -72,7 +72,7 @@ const SearchBar = () => {
           <TbHomeFilled/>
           <div className={`choices ${typeSelected? 'active' : null}`} >
             {filterData &&
-              filterData.project_types.map((projectType, index) => (
+              filterData.unit_types.map((projectType, index) => (
                 <div key={projectType.id} label={projectType.name}>
                   {projectType.projects.map((project) => (
                     <span onClick={()=>setSelectedProject(project)} className="option" key={project.id} value={project.id}>

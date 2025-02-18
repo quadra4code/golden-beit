@@ -438,30 +438,33 @@ main.units_page {
     padding: 0 5px;
     width: 24%;
     transition: transform 0.3s ease-in-out;
+    .filter_title{
+      font-weight: 600;
+      font-size: 18px;
+    }
     .filter_unit {
       display: flex;
       flex-direction: column;
-      padding-top: 40px;
-      &:last-child{
-        background-color: #000000;
-        select{
-          border: none;
-        }
-      }
-      h2 {
-        font-size: 18px;
-        color: #333;
-        font-weight: 600;
-      }
+      padding: 20px 0;
+      border-bottom: 1px solid #d7d7d7;
+      gap: 20px;
       select {
         width: 100%;
         background-color: transparent;
         outline: none;
         padding: 6px;
         font-size: 18px;
-        border-bottom: 1px solid #d7d7d7;
         option[disabled] {
           font-weight: 600;
+        }
+      }
+      .radio-container{
+        display: flex;
+        justify-content: space-evenly;
+        .radio{
+          display: flex;
+          gap: 5px;
+          align-items: center;
         }
       }
     }
@@ -495,22 +498,19 @@ main.units_page {
   }
   ///////////////////// price range ///////////////////////
   .price-range-slider {
-    padding: 10px 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 20px;
     input{
       outline: none;
       border-bottom: 1px solid #d7d7d7;
       padding: 10px;
-      max-width: 140px;
       border-radius: none;
     }
     .slider-container {
       display: flex;
       flex-direction: column;
       gap: 10px;
-
       .slider-labels {
         display: flex;
         justify-content: space-between;

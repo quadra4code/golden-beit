@@ -205,30 +205,33 @@ const Units = () => {
   const [unitsPerPage] = useState(10);
   const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
+  const [isFlat, setIsFlat] = useState(unitFilter);
   // const handlePriceChange = (value) => {
   //   setPriceRange(value);
   // };
-
   const navigate = useNavigate();
   const handleUnitClick = (id) => {
     const foundUnit = allUnits.find((unit) => unit.id === id);
     setSingleUnit(foundUnit);
     navigate(`/all-units/${id}`);
   };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  console.log(unitFilter);
+  const handleSelectUnitType = (e)=> {
+    console.log(e.target.value);
+    setUnitFilter(e.target.value);
+  }
+  const filteredProjects = unitFilter
+  ? filterData&& filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
+  : [];
   // Get current units
   const indexOfLastUnit = currentPage * unitsPerPage;
   const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
   const currentUnits = allUnits && allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
-
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <>
       {loading ? (
@@ -303,10 +306,42 @@ const Units = () => {
           <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
             <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
             <div className="filter_unit">
-              <select name="unit" id="unit" onChange={(e) => setUnitFilter(e.target.value)}>
-                <option value="اختر الوحدة" selected disabled>اختر الوحدة</option>
-                {filterData &&
-                  filterData.project_types.map((projectType) => (
+              <p className="filter_title">اختر نوع الوحدة</p>
+              <div className="radio-container">
+                <div className='radio'>
+                  <input
+                    type="radio" 
+                    id="land" 
+                    name="project_type_id" 
+                    value="1" 
+                    checked={unitFilter==='1'}
+                    onChange={handleSelectUnitType}
+                  />
+                  <label for="land">أرض</label>
+                </div>
+                <div className='radio'>
+                  <input
+                    type="radio" 
+                    id="flat" 
+                    name="project_type_id" 
+                    value="2" 
+                    checked={unitFilter==='2'}
+                    onChange={handleSelectUnitType}
+                  />
+                  <label for="flat">شقة</label>
+                </div>
+              </div>
+            </div>
+            <div className="filter_unit">
+              <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
+                <option hidden value="اختر اسم الوحدة" selected disabled>اختر اسم الوحدة</option>
+                {filteredProjects.map((project) => (
+                  <option key={project.id}  value={project.id}>
+                    {project.name}
+                  </option>
+                  ))}
+                {/* {filterData &&
+                  filterData.unit_types.map((projectType) => (
                     <optgroup key={projectType.id} label={projectType.name}>
                       {projectType.projects.map((project) => (
                         <option key={project.id} value={project.id}>
@@ -314,14 +349,14 @@ const Units = () => {
                         </option>
                       ))}
                     </optgroup>
-                  ))}
+                  ))} */}
               </select>
             </div>
             <div className="filter_unit">
               <p className="filter_title">التصنيف حسب السعر</p>
               <div className="price-range-slider">
-                <input type="number" placeholder='من'/>
-                <input type="number" placeholder='إلى'/>
+                <input type="number" min={filterData&& filterData.min_price} placeholder='من'/>
+                <input type="number" max={filterData&& filterData.max_price}  placeholder='إلى'/>
                 {/* <div className="slider-container">
                   <Slider
                     range
@@ -341,16 +376,44 @@ const Units = () => {
               </div>
             </div>
             <div className="filter_unit">
+              <p className="filter_title">المساحة</p>
+              <div className="price-range-slider">
+                <input type="number"
+                  man={filterData&& filterData.max_area}
+                  min={filterData&& filterData.min_area} placeholder='ادخل المساحة بالمتر'/>
+              </div>
+            </div>
+            <div className="filter_unit">
               <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                <option value="اختر الوحدة" disabled selected>اختر المدينة</option>
+                <option value="اختر المدينة"hidden disabled selected>اختر المدينة</option>
                 {filterData && filterData.cities.map((index, key) =>
                   <option key={key} value={index.id}>{index.name}</option>
                 )}
               </select>
             </div>
+            {unitFilter=== '2'&&
+              <div className="filter_unit">
+                <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                  <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
+                  {filterData && filterData.floors.map((index, key) =>
+                    <option key={key} value={index.id}>{index.name}</option>
+                  )}
+                </select>
+              </div>            
+            }
+            {unitFilter=== '2'&&
+              <div className="filter_unit">
+                <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                  <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
+                  {filterData && filterData.facades.map((index, key) =>
+                    <option key={key} value={index.id}>{index.name}</option>
+                  )}
+                </select>
+              </div>
+            }
             <div className="filter_unit">
               <select name="" id="" onChange={(e) => setPaymentMethod(e.target.value)}>
-                <option disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
+                <option hidden disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
                 <option value="IN">كاش</option>
                 <option value="CS">تقسيط</option>
               </select>

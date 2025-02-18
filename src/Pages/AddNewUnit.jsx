@@ -28,8 +28,6 @@ const AddNewUnit = () => {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.name);
-    
     setFormData({
       ...formData,
       [name]: value
@@ -76,7 +74,7 @@ const AddNewUnit = () => {
   };
   // Filter projects based on the selected type
   const filteredProjects = formData.project_type_id
-    ? filterData&& filterData.project_types.find((type) => type.id.toString() === formData.project_type_id)?.projects || []
+    ? filterData&& filterData.unit_types.find((type) => type.id.toString() === formData.project_type_id)?.projects || []
     : [];
   const handlePaymentChange = (e)=> {
     console.log(formData.payment_method);
