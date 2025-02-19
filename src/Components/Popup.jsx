@@ -41,9 +41,9 @@ const Popup = () => {
       :
       <div className='popup_inner'>
         <h2>{popupHeader}</h2>
-        <p>
+        <div className='wrapper'>
           <span onClick={isNormalPop? handleCopy:null}>{popupContent}</span>
-        </p>
+        </div>
         <button onClick={handleClose}>اغلاق</button>
       </div>
       }
