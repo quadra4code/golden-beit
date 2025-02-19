@@ -22,7 +22,7 @@ const Navbar = () => {
         setIsNormalPop(true)
         setIsOpen(true);
         setPopupHeader('قم بنسخ لينك الدعوة')
-        setPopupContent(`https://golden-beit.vercel.app/login/${referral_code}`)    
+        setPopupContent(`https://goldenbeit.com/login/${referral_code}`)    
       }else if(type==='add-review'){
         setIsNormalPop(true)
         setIsOpen(true);
@@ -246,3 +246,4 @@ const Navbar = () => {
   )
 }
 export default Navbar;
+

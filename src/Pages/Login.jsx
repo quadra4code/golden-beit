@@ -68,7 +68,7 @@ const Login = () => {
         referral_code
       })
       .then((res) => {
-        localStorage.setItem('referral_code', res.data.data.user.referral_code);
+        localStorage.setItem('referral_code', res.data.data.referral_code);
         localStorage.setItem('name', res.data.data.first_name);
         localStorage.setItem('token', res.data.data.access_token);
         localStorage.setItem('oneTimeInquiry','false');
