@@ -196,6 +196,7 @@ import Loader from '../Components/Loader';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 import axios from 'axios';
+import notFoundImage from '../Images/not found.webp'
 const Units = () => {
   const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, loading } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
@@ -250,191 +251,201 @@ const Units = () => {
       {loading ? (
         <Loader />
       ) : (
-        <main className="units_page">
-          <Popup/>
-          {contextHolder}
-          <section className="units_content">
-            {newArrivalUnits&& newArrivalUnits.length>0 &&  
-              <div className="new_arrive">
-                <h2>المعروض حديثا</h2>
-                <Swiper
-                  slidesPerView={2}
-                  spaceBetween={10}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  modules={[Pagination]}
-                  className="mySwiper"
-                >
-                  {newArrivalUnits && newArrivalUnits.map((newArrivalUnit) => (
-                    <SwiperSlide className="swiper-slide" key={newArrivalUnit.id}>
-                      <div className="slide-content">
-                        <img src={unitImage} alt="project" />
-                        <div className="content">
-                          <h1>
-                            <FaLocationDot />
-                            {newArrivalUnit.title}
-                          </h1>
-                          <h1>
-                            <TbRulerMeasure2 />
-                            المساحة : {newArrivalUnit.area}
-                          </h1>
-                          <h1>
-                            <MdOutlineAttachMoney />
-                            السعر : {newArrivalUnit.area}
-                          </h1>
-                          <button className="see_more" onClick={() => { handleUnitClick(newArrivalUnit.id) }}>التفاصيل</button>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-            }
-            <div className="all_units">
-              <h2 className="units_title">جميع الوحدات</h2>
-              <div className="units_list">
-                {currentUnits && currentUnits.map((unit) => (
-                  <UnitCard
-                    key={unit.id}
-                    title={unit.title}
-                    area={unit.area}
-                    price={unit.price}
-                    id={unit.id}
-                    onClick={() => { handleSingleUnitDetails(unit.id) }}
-                  />
-                ))}
-              </div>
-              <Pagination
-                unitsPerPage={unitsPerPage}
-                totalUnits={allUnits && allUnits.length}
-                paginate={paginate}
-                currentPage={currentPage}
-              />
-            </div>
-          </section>
-          <button className="filter_toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
-            <span>تصنيف</span>
-            <IoIosArrowDown/>
-          </button>
-          <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
-            <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
-            <div className="filter_unit">
-              <p className="filter_title">اختر نوع الوحدة</p>
-              <div className="radio-container">
-                <div className='radio'>
-                  <input
-                    type="radio" 
-                    id="land" 
-                    name="project_type_id" 
-                    value="1" 
-                    checked={unitFilter==='1'}
-                    onChange={handleSelectUnitType}
-                  />
-                  <label for="land">أرض</label>
-                </div>
-                <div className='radio'>
-                  <input
-                    type="radio" 
-                    id="flat" 
-                    name="project_type_id" 
-                    value="2" 
-                    checked={unitFilter==='2'}
-                    onChange={handleSelectUnitType}
-                  />
-                  <label for="flat">شقة</label>
-                </div>
-              </div>
-            </div>
-            <div className="filter_unit">
-              <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
-                <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
-                {filteredProjects.map((project) => (
-                  <option key={project.id}  value={project.id}>
-                    {project.name}
-                  </option>
-                  ))}
-                {/* {filterData &&
-                  filterData.unit_types.map((projectType) => (
-                    <optgroup key={projectType.id} label={projectType.name}>
-                      {projectType.projects.map((project) => (
-                        <option key={project.id} value={project.id}>
-                          {project.name}
-                        </option>
+        <>
+          {newArrivalUnits&& newArrivalUnits.length>0 && allUnits&& allUnits.length>0 ?
+            <main className="units_page">
+              <Popup/>
+              {contextHolder}
+              <section className="units_content">
+                {newArrivalUnits&& newArrivalUnits.length>0 &&  
+                  <div className="new_arrive">
+                    <h2>المعروض حديثا</h2>
+                    <Swiper
+                      slidesPerView={2}
+                      spaceBetween={10}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      modules={[Pagination]}
+                      className="mySwiper"
+                    >
+                      {newArrivalUnits && newArrivalUnits.map((newArrivalUnit) => (
+                        <SwiperSlide className="swiper-slide" key={newArrivalUnit.id}>
+                          <div className="slide-content">
+                            <img src={unitImage} alt="project" />
+                            <div className="content">
+                              <h1>
+                                <FaLocationDot />
+                                {newArrivalUnit.title}
+                              </h1>
+                              <h1>
+                                <TbRulerMeasure2 />
+                                المساحة : {newArrivalUnit.area}
+                              </h1>
+                              <h1>
+                                <MdOutlineAttachMoney />
+                                السعر : {newArrivalUnit.area}
+                              </h1>
+                              <button className="see_more" onClick={() => { handleUnitClick(newArrivalUnit.id) }}>التفاصيل</button>
+                            </div>
+                          </div>
+                        </SwiperSlide>
                       ))}
-                    </optgroup>
-                  ))} */}
-              </select>
-            </div>
-            <div className="filter_unit">
-              <p className="filter_title">التصنيف حسب السعر</p>
-              <div className="price-range-slider">
-                <input type="number" min={filterData&& filterData.min_price} placeholder='من'/>
-                <input type="number" max={filterData&& filterData.max_price}  placeholder='إلى'/>
-                {/* <div className="slider-container">
-                  <Slider
-                    range
-                    min={20000}
-                    max={800000}
-                    step={20000}
-                    defaultValue={[25000, 2000000]}
-                    value={priceRange}
-                    onChange={handlePriceChange}
-                  />
-                  <div className="slider-labels">
-                    <span>
-                      السعر : {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
-                    </span>
+                    </Swiper>
                   </div>
-                </div> */}
-              </div>
-            </div>
-            <div className="filter_unit">
-              <p className="filter_title">المساحة</p>
-              <div className="price-range-slider">
-                <input type="number"
-                  man={filterData&& filterData.max_area}
-                  min={filterData&& filterData.min_area} placeholder='ادخل المساحة بالمتر'/>
-              </div>
-            </div>
-            <div className="filter_unit">
-              <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                <option value="اختر المدينة"hidden disabled selected>اختر المدينة</option>
-                {filterData && filterData.cities.map((index, key) =>
-                  <option key={key} value={index.id}>{index.name}</option>
-                )}
-              </select>
-            </div>
-            {unitFilter=== '2'&&
-              <div className="filter_unit">
-                <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                  <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
-                  {filterData && filterData.floors.map((index, key) =>
-                    <option key={key} value={index.id}>{index.name}</option>
-                  )}
-                </select>
-              </div>            
-            }
-            {unitFilter=== '2'&&
-              <div className="filter_unit">
-                <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                  <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
-                  {filterData && filterData.facades.map((index, key) =>
-                    <option key={key} value={index.id}>{index.name}</option>
-                  )}
-                </select>
-              </div>
-            }
-            <div className="filter_unit">
-              <select name="" id="" onChange={(e) => setPaymentMethod(e.target.value)}>
-                <option hidden disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
-                <option value="IN">كاش</option>
-                <option value="CS">تقسيط</option>
-              </select>
-            </div>
-            <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price) }}>تصنيف</button>
-          </section>
-        </main>
+                }
+                <div className="all_units">
+                  <h2 className="units_title">جميع الوحدات</h2>
+                  <div className="units_list">
+                    {currentUnits && currentUnits.map((unit) => (
+                      <UnitCard
+                        key={unit.id}
+                        title={unit.title}
+                        area={unit.area}
+                        price={unit.price}
+                        id={unit.id}
+                        onClick={() => { handleSingleUnitDetails(unit.id) }}
+                      />
+                    ))}
+                  </div>
+                  <Pagination
+                    unitsPerPage={unitsPerPage}
+                    totalUnits={allUnits && allUnits.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                  />
+                </div>
+              </section>
+              <button className="filter_toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+                <span>تصنيف</span>
+                <IoIosArrowDown/>
+              </button>
+              <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
+                <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
+                <div className="filter_unit">
+                  <p className="filter_title">اختر نوع الوحدة</p>
+                  <div className="radio-container">
+                    <div className='radio'>
+                      <input
+                        type="radio" 
+                        id="land" 
+                        name="project_type_id" 
+                        value="1" 
+                        checked={unitFilter==='1'}
+                        onChange={handleSelectUnitType}
+                      />
+                      <label for="land">أرض</label>
+                    </div>
+                    <div className='radio'>
+                      <input
+                        type="radio" 
+                        id="flat" 
+                        name="project_type_id" 
+                        value="2" 
+                        checked={unitFilter==='2'}
+                        onChange={handleSelectUnitType}
+                      />
+                      <label for="flat">شقة</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="filter_unit">
+                  <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
+                    <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
+                    {filteredProjects.map((project) => (
+                      <option key={project.id}  value={project.id}>
+                        {project.name}
+                      </option>
+                      ))}
+                    {/* {filterData &&
+                      filterData.unit_types.map((projectType) => (
+                        <optgroup key={projectType.id} label={projectType.name}>
+                          {projectType.projects.map((project) => (
+                            <option key={project.id} value={project.id}>
+                              {project.name}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))} */}
+                  </select>
+                </div>
+                <div className="filter_unit">
+                  <p className="filter_title">التصنيف حسب السعر</p>
+                  <div className="price-range-slider">
+                    <input type="number" min={filterData&& filterData.min_price} placeholder='من'/>
+                    <input type="number" max={filterData&& filterData.max_price}  placeholder='إلى'/>
+                    {/* <div className="slider-container">
+                      <Slider
+                        range
+                        min={20000}
+                        max={800000}
+                        step={20000}
+                        defaultValue={[25000, 2000000]}
+                        value={priceRange}
+                        onChange={handlePriceChange}
+                      />
+                      <div className="slider-labels">
+                        <span>
+                          السعر : {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
+                        </span>
+                      </div>
+                    </div> */}
+                  </div>
+                </div>
+                <div className="filter_unit">
+                  <p className="filter_title">المساحة</p>
+                  <div className="price-range-slider">
+                    <input type="number"
+                      man={filterData&& filterData.max_area}
+                      min={filterData&& filterData.min_area} placeholder='ادخل المساحة بالمتر'/>
+                  </div>
+                </div>
+                <div className="filter_unit">
+                  <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                    <option value="اختر المدينة"hidden disabled selected>اختر المدينة</option>
+                    {filterData && filterData.cities.map((index, key) =>
+                      <option key={key} value={index.id}>{index.name}</option>
+                    )}
+                  </select>
+                </div>
+                {unitFilter=== '2'&&
+                  <div className="filter_unit">
+                    <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                      <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
+                      {filterData && filterData.floors.map((index, key) =>
+                        <option key={key} value={index.id}>{index.name}</option>
+                      )}
+                    </select>
+                  </div>            
+                }
+                {unitFilter=== '2'&&
+                  <div className="filter_unit">
+                    <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                      <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
+                      {filterData && filterData.facades.map((index, key) =>
+                        <option key={key} value={index.id}>{index.name}</option>
+                      )}
+                    </select>
+                  </div>
+                }
+                <div className="filter_unit">
+                  <select name="" id="" onChange={(e) => setPaymentMethod(e.target.value)}>
+                    <option hidden disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
+                    <option value="IN">كاش</option>
+                    <option value="CS">تقسيط</option>
+                  </select>
+                </div>
+                <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price) }}>تصنيف</button>
+              </section>
+            </main>
+          :
+          <div className="data-notFound">
+            <img src={notFoundImage} alt="" />
+            <h1>عفوا لا يوجد وحدات متاحة</h1>
+            
+          </div>
+          }
+        </>
       )}
     </>
   );

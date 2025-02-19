@@ -67,6 +67,7 @@ import InquiryPage from './Pages/InquiryPage';
 import PageTransition from './Components/PageTransition';
 import FAQ from './Pages/FAQ';
 import ContactButton from './Components/ContactUsBtn';
+import ErrorPage from './Pages/ErrorPage';
 const App = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -74,20 +75,21 @@ const App = () => {
   const location = useLocation();
   const routes = [
     { path: "/", element: <Home /> },
-    { path: "/login/:params", element: <Login /> },
-    { path: "/login", element: <Login /> },
+    { path: "/register/:params", element: <Login /> },
+    { path: "/register", element: <Login /> },
     { path: "/all-units", element: <Units /> },
     { path: "/add-new-unit", element: <AddNewUnit /> },
     { path: "/inquiry-page", element: <InquiryPage /> },
     { path: "/faq", element: <FAQ /> },
     { path: "all-units/:id", element: <SingleUnit /> },
+    { path: "*", element: <ErrorPage /> },
   ];
   return (
     <>
-      {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Navbar />}
-      <ContactButton/>
+      {!location.pathname.startsWith('/register') && <Navbar />}
+      {!location.pathname.startsWith('/register') && <ContactButton/>}
       <PageTransition routes={routes} />
-      {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Footer />}
+      {!location.pathname.startsWith('/register') && <Footer />}
     </>
   );
 }

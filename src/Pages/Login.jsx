@@ -134,7 +134,7 @@ const Login = () => {
                     <RiLockPasswordFill />
                     <p> البريد الالكترونى :</p>
                   </div>
-                  <input onChange={(e)=>setEmail(e.target.value)} type="password" placeholder="hello@domain.com" />
+                  <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="hello@domain.com" />
                 </div>
                 <div className="input-box">
                   <div className='label'>
@@ -184,7 +184,7 @@ const Login = () => {
               </div>
             </>
             }
-            <button disabled={loading} className='submit_form' >{loading ? 'جاري التحميل...' : 'دخول'}</button>
+            <button disabled={loading} className='submit_form' >{loading ? 'جاري التحميل...' : 'تسجيل الدخول'}</button>
           </form>
         </div>
       </div>

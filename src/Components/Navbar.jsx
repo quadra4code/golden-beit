@@ -22,7 +22,7 @@ const Navbar = () => {
         setIsNormalPop(true)
         setIsOpen(true);
         setPopupHeader('قم بنسخ لينك الدعوة')
-        setPopupContent(`https://goldenbeit.com/login/${referral_code}`)    
+        setPopupContent(`https://goldenbeit.com/register/${referral_code}`)    
       }else if(type==='add-review'){
         setIsNormalPop(true)
         setIsOpen(true);
@@ -31,7 +31,7 @@ const Navbar = () => {
       }
       else{navigate('/add-new-unit')}
     }else{
-      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
+      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
     }
   }
   const name = localStorage.getItem('name')
@@ -120,7 +120,7 @@ const Navbar = () => {
             </div>
           </span>
           :
-          <Link to="/login" className="font-bold py-3 px-6 flex gap-2 items-center text-lg leading-6 rounded-2xl text-navbar-blue">
+          <Link to="/register" className="font-bold py-3  flex gap-2 items-center text-lg leading-6 rounded-2xl text-navbar-blue">
             <FaUserAlt className='text-xl '/> 
             <p className='text-lg '>تسجيل الدخول</p>
           </Link>
@@ -233,10 +233,24 @@ const Navbar = () => {
                 </HashLink>
               </div>
               <div className="py-6">
-              <Link to="/login" className="font-bold py-3 px-6 flex gap-2 items-center text-lg leading-6 rounded-2xl">
-                <FaUserAlt className='text-xl '/> 
-                <p className='text-lg'>تسجيل الدخول</p>
-              </Link>
+                {name&&token?
+                <span className='user-span w-max'>
+                  <span>مرحبا {name}</span>
+                  <IoIosArrowDown/>
+                  <div className="nav-menu">
+                    <span className='list-unit' to="/#" onClick={handleLogout}>تسجيل الخروج</span>
+                  </div>
+                </span>
+                :
+                <Link to="/register" className="font-bold py-3 px-6 flex gap-2 items-center text-lg leading-6 rounded-2xl text-navbar-blue">
+                  <FaUserAlt className='text-xl '/> 
+                  <p className='text-lg '>تسجيل الدخول</p>
+                </Link>
+                }
+                {/* <Link to="/login" className="font-bold py-3 px-6 flex gap-2 items-center text-lg leading-6 rounded-2xl">
+                  <FaUserAlt className='text-xl '/> 
+                  <p className='text-lg'>تسجيل الدخول</p>
+                </Link> */}
               </div>
             </div>
           </div>
