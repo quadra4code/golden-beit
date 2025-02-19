@@ -23,6 +23,7 @@ main.popup {
     max-width: 650px;
     .btns{
       display: flex;
+      justify-content: center;
       gap: 20px;
       align-items: center;
     }
