@@ -111,7 +111,7 @@ const Navbar = () => {
           </HashLink>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {name?
+          {name&&token?
           <span className='user-span'>
             <span>مرحبا {name}</span>
             <IoIosArrowDown/>

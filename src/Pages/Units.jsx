@@ -195,7 +195,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
-
+import axios from 'axios';
 const Units = () => {
   const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, loading } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
@@ -233,6 +233,18 @@ const Units = () => {
   const currentUnits = allUnits && allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handleSingleUnitDetails= (id) => {
+    axios
+    .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+    .then((res)=>{
+      console.log(res.data);
+      setSingleUnit(res.data.data)
+      navigate(`/all-units/${id}`)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   return (
     <>
       {loading ? (
@@ -289,7 +301,7 @@ const Units = () => {
                     area={unit.area}
                     price={unit.price}
                     id={unit.id}
-                    onClick={() => { handleUnitClick(unit.id) }}
+                    onClick={() => { handleSingleUnitDetails(unit.id) }}
                   />
                 ))}
               </div>
