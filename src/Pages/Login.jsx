@@ -2,9 +2,12 @@ import React, {useState, useContext, useEffect} from 'react';
 import Image from '../Images/form.png'
 import { FaUser } from "react-icons/fa";
 import axios from 'axios'
-import { RiLockPasswordFill } from "react-icons/ri";
+import { RiLockPasswordFill, RiPhoneFill  } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
 import AppContext from '../Context/AppContext';
+import { MdAlternateEmail } from "react-icons/md";
+import { MdManageAccounts } from "react-icons/md";
+import { MdLocationCity } from "react-icons/md";
 const Login = () => {
   const navigate= useNavigate()
   const params = useParams()
@@ -99,7 +102,7 @@ const Login = () => {
             <>
               <div className="input-box">
                 <div className='label'>
-                  <FaUser />
+                  <RiPhoneFill />
                   <p>رقم الهاتف :</p>
                 </div>
                 <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
@@ -131,14 +134,14 @@ const Login = () => {
                 </div>
                 <div className="input-box">
                   <div className='label'>
-                    <RiLockPasswordFill />
+                    <MdAlternateEmail />
                     <p> البريد الالكترونى :</p>
                   </div>
                   <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="hello@domain.com" />
                 </div>
                 <div className="input-box">
                   <div className='label'>
-                    <RiLockPasswordFill />
+                    <RiPhoneFill />
                     <p> رقم الهاتف :</p>
                   </div>
                   <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="01234567891" />
@@ -147,7 +150,7 @@ const Login = () => {
               <div className='col'>
                 <div className="input-box">
                   <div className='label'>
-                    <RiLockPasswordFill />
+                    <MdManageAccounts />
                     <p> نوع الحساب :</p>
                   </div>
                   <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
@@ -158,7 +161,7 @@ const Login = () => {
                 </div>
                 <div className="input-box">
                   <div className='label'>
-                    <RiLockPasswordFill />
+                    <MdLocationCity />
                     <p> أكثر مدينة مهتم بها :</p>
                   </div>
                   <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
