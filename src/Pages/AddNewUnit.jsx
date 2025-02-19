@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 import NumberInput from '../Components/InputNumber';
 import axios from 'axios';
+import Popup from '../Components/Popup';
 const AddNewUnit = () => {
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedType, setSelectedType] = useState(null);
-  const { filterData, token, openNotificationWithIcon } = useContext(AppContext)
+  const { filterData, token, openNotificationWithIcon, contextHolder } = useContext(AppContext)
   console.log(filterData);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,16 +14,21 @@ const AddNewUnit = () => {
   const [formData, setFormData] = useState({
     project_type_id: selectedType,
     project_id: selectedProject,
+    proposal_id: '',
     city_id: '',
+    floor: null,
+    facade: null,
     area: '',
     description: '',
-    property_number: '',
+    unit_number: '',
     payment_method: 'CS',
-    building_or_region: '',
+    building_number: '',
     installment_period: 0,
     first_installment_value: 0,
     phone_number: '',
-    price: '',
+    total_price: '',
+    over_price: '',
+    meter_price: '',
     floor: '',
     title: '',
   });
@@ -35,24 +41,33 @@ const AddNewUnit = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic
     console.log(formData);
     
+    // Handle form submission logic
+    if (!formData.meter_price && !formData.over_price && !formData.total_price) {
+      openNotificationWithIcon('error', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
+      return;
+    }
     axios
-    .post('https://golden-gate-three.vercel.app/core/propose-property',
+    .post('https://golden-gate-three.vercel.app/core/propose-unit',
       {
-        project_type_id:formData.project_type_id,
+        unit_type_id:formData.project_type_id,
         project_id:formData.project_id,
+        proposal_id:formData.proposal_id,
         city_id:formData.city_id,
+        floor:formData.floor,
+        facade:formData.facade,
         area:formData.area,
         description:formData.description,
-        property_number:formData.property_number,
+        unit_number:formData.unit_number,
         payment_method:formData.payment_method,
-        building_or_region:formData.building_or_region,
+        building_number:formData.building_number,
         installment_period:formData.installment_period,
         first_installment_value:formData.first_installment_value,
         phone_number:formData.phone_number,
-        price:formData.price,
+        total_price:formData.total_price,
+        over_price:formData.over_price,
+        meter_price:formData.meter_price,
         floor:formData.floor,
         title:formData.title,
       },
@@ -61,9 +76,14 @@ const AddNewUnit = () => {
       }
     )  
     .then((res)=>{
+      console.log(res);
+      
       openNotificationWithIcon('success', 'عملية ناجحة ', 'تم اضافة وحدتك بنجاح')
     })
-    .catch((err)=>openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg))
+    .catch((err)=>{
+      console.log(err);
+      openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg)
+    })
   };
   // State to track the selected type (e.g., "شقة" or "أرض")
   // State to track the selected project
@@ -85,6 +105,8 @@ const AddNewUnit = () => {
   }
     return (
     <main className='add_unit'>
+      {contextHolder}
+      <Popup/>
       <div className="add-build-unit">
         <h2>اضافة وحدة جديدة</h2>
         <form onSubmit={handleSubmit}>
@@ -129,6 +151,21 @@ const AddNewUnit = () => {
             </select>
           </div>
           <div className="form-group">
+            <label htmlFor="floorNumber">الطرح</label>
+            <select
+              id="unitType"
+              name="proposal_id"
+              value={formData.proposal_id}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>أختر الطرح</option>
+              {filterData&& filterData.proposals.map((proposal)=>
+                <option key={proposal.id} value={proposal.id}>{proposal.name}</option>
+              )}
+            </select>
+          </div>
+          <div className="form-group">
             <label htmlFor="floorNumber">الموقع</label>
             <select
               id="unitType"
@@ -144,27 +181,61 @@ const AddNewUnit = () => {
             </select>
           </div>
           <div className="form-group">
+            <label htmlFor="floorNumber">الواجهة</label>
+            <select
+              id="unitType"
+              name="facade"
+              value={formData.facade}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>أختر الواجهة</option>
+              {filterData&& filterData.facades.map((facade)=>
+                <option key={facade.id} value={facade.id}>{facade.name}</option>
+              )}
+            </select>
+          </div>
+          {formData.project_type_id==='2'&&
+          <div className="form-group">
+            <label htmlFor="floorNumber">الطابق</label>
+            <select
+              id="unitType"
+              name="floor"
+              value={formData.floor}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>أختر الطابق</option>
+              {filterData&& filterData.floors.map((floor)=>
+                <option key={floor.id} value={floor.id}>{floor.name}</option>
+              )}
+            </select>
+          </div>
+          }
+          <div className="form-group">
             <label htmlFor="area">رقم الوحدة / القطعة</label>
             <input
               type="number"
               id="area"
-              name="property_number"
-              value={formData.property_number}
+              name="unit_number"
+              value={formData.unit_number}
               onChange={handleChange}
               required
             />
           </div>
+          {formData.project_type_id==='2'&&
           <div className="form-group">
-            <label htmlFor="unitType">رقم العمارة / اسم المنطقة</label>
+            <label htmlFor="unitType">رقم العمارة</label>
             <input
               type="text"
               id="area"
-              name="building_or_region"
-              value={formData.building_or_region}
+              name="building_number"
+              value={formData.building_number}
               onChange={handleChange}
               required
             />
           </div>
+          }
           <div className="form-group">
             <label htmlFor="saleStatus">طريقة الدفع</label>
             <select
@@ -215,14 +286,33 @@ const AddNewUnit = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="price">السعر</label>
+            <label htmlFor="price">سعر المتر</label>
             <input
               type="number"
               id="price"
-              name="price"
-              value={formData.price}
+              name="meter_price"
+              value={formData.meter_price}
               onChange={handleChange}
-              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="price">قيمة الاوفر</label>
+            <input
+              type="number"
+              id="price"
+              name="over_price"
+              value={formData.over_price}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="price">اجمالى السعر</label>
+            <input
+              type="number"
+              id="price"
+              name="total_price"
+              value={formData.total_price}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -257,21 +347,6 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="currency">الدور</label>
-            <select
-              id="currency"
-              name="floor"
-              value={formData.floor}
-              onChange={handleChange}
-              required
-            >
-              <option value="" disabled>أختر الدور</option>
-              {filterData&& filterData.floors.map((type)=>
-                <option value={type.id}>{type.name}</option>
-              )}
-            </select>
           </div>
           <button type="submit">أضف وحدتك</button>
         </form>

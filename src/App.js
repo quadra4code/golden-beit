@@ -59,7 +59,6 @@ import { AppProvider } from './Context/AppContext';
 import { DesktopProvider } from './Context/IsDesktop';
 import Units from './Pages/Units';
 import SingleUnit from './Pages/SingleUnit';
-import ProtectedRoute from './Components/ProtectedRoute';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'rc-slider/assets/index.css';
@@ -74,6 +73,7 @@ const App = () => {
   const location = useLocation();
   const routes = [
     { path: "/", element: <Home /> },
+    { path: "/login/:params", element: <Login /> },
     { path: "/login", element: <Login /> },
     { path: "/all-units", element: <Units /> },
     { path: "/add-new-unit", element: <AddNewUnit /> },
@@ -83,9 +83,9 @@ const App = () => {
   ];
   return (
     <>
-      {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Navbar />}
+      {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Navbar />}
       <PageTransition routes={routes} />
-      {location.pathname !== '/sign-up' && location.pathname !== '/login' && <Footer />}
+      {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Footer />}
     </>
   );
 }

@@ -5,15 +5,17 @@ import { MdDesignServices } from "react-icons/md";
 import { MdOutlineInventory } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import  AppContext  from '../Context/AppContext';
+import { useNavigate } from 'react-router-dom';
 const WhyUs = () => {
-  const {isOpen, setIsOpen, setPopupHeader, setPopupContent} = useContext(AppContext)
+  const {setFaqId} = useContext(AppContext)
+  const navigate = useNavigate()
   const services = [
     {
       icon: <FaHandshake/>,
       title: 'استشارات عقارية',
       description: 'Providing peace of mind with our responsive and attentive customer service',
       content :`
-      . كيف تختار العقار المثالي للاستثمار؟
+      كيف تختار العقار المثالي للاستثمار؟
       الموقع، ثم الموقع، ثم الموقع!
       لا شك أن الموقع هو العنصر الأهم، لذا اختر منطقة واعدة تشهد تطورًا اقتصاديًا وسكانيًا، فهذا يضمن لك زيادة مستمرة في قيمة العقار.
       احسب العائد المتوقع بحكمة
@@ -37,7 +39,7 @@ const WhyUs = () => {
     },
     {
       icon: <MdDesignServices/>,
-      title: 'استشارات خاصة بالتشطيبات',
+      title: 'استشارات  قانونية',
       description: 'Our services adapt to your unique needs, making your journey stress-free',
       content :`
       كيف تبيع عقارك بسرعة وبأفضل سعر؟
@@ -49,7 +51,7 @@ const WhyUs = () => {
     },
     {
       icon: <MdOutlineInventory/>,
-      title: ' تحليلات استثمارية',
+      title: ' استشارات مالية',
       description: `Benefit from our team's seasoned expertise for a smooth buying experience`,
       content :`
       أخطاء شائعة عند شراء عقار: تجنبها قبل فوات الأوان!
@@ -59,11 +61,15 @@ const WhyUs = () => {
       `
     }
   ]
-  const handleOpenPopup = (header, content) => {
-    setPopupHeader(header)
-    setPopupContent(content)
-    setIsOpen(true)
-    
+  // const handleOpenPopup = (header, content) => {
+  //   setPopupHeader(header)
+  //   setIsNormalPop(false)
+  //   setPopupContent(content)
+  //   setIsOpen(true)
+  // }
+  const handleConsultions = (id) =>{
+    setFaqId(id)
+    navigate('/faq')
   }
   return (
     <section className='why-us' id='why-us'>
@@ -73,7 +79,7 @@ const WhyUs = () => {
       <div className='cols-container'>
         {services.map((service, index) => 
           <div className="col" key={index}
-            onClick={()=>handleOpenPopup(service.title, service.content)}>
+            onClick={()=>handleConsultions(index)}>
             {service.icon}
             <h1>{service.title}</h1>
             <span>{service.description}</span>

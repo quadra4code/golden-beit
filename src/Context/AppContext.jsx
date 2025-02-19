@@ -11,12 +11,19 @@ export const AppProvider = ({children}) => {
   const [singleUnit, setSingleUnit] = useState();
   const [filterData, setFilterData] = useState();
   const [articlesData, setArticlesData] = useState();
+  const [consultationsData, setConsultationsData] = useState();
   const [winnersData, setWinnersData] = useState();
   const [allUnits, setAllUnits] = useState();
   const [newArrivalUnits, setNewArrivalUnits] = useState();
   const [loading, setLoading] = useState(false);
   const [numberInpValue, setNumberInpValue] = useState()
+  const [isNormalPop, setIsNormalPop] = useState(false)
+  const [isReview, setIsReview] = useState(false)
+  const [ourReviewsData, setOurReviewsData] = useState(false)
   const [api, contextHolder] = notification.useNotification();
+  const [rating, setRating] = useState(0);
+  const [faqId, setFaqId] = useState(0);
+  const [reviewMessage, setReviewMessage] = useState('');
   const token = localStorage.getItem('token')
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
@@ -52,7 +59,18 @@ export const AppProvider = ({children}) => {
     axios.get('https://golden-gate-three.vercel.app/core/home-consultations')
     .then(response => {
       console.log(response.data.data);
-      setArticlesData(response.data.data)
+      setConsultationsData(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
+  },[])
+  /////////////// get Our Reviews in home screen
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/home-reviews')
+    .then(response => {
+      console.log(response.data.data);
+      setOurReviewsData(response.data.data)
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -72,23 +90,24 @@ export const AppProvider = ({children}) => {
   //   }
   // },[])
   ///////////// get all units and new arrival units
-  // useEffect(()=>{
-  //   setLoading(true)
-  //   axios.get('https://golden-gate-three.vercel.app/core/all-units')
-  //   .then(res => {
-  //     console.log(res);
-  //     setAllUnits(res.data.data.all)
-  //     setNewArrivalUnits(res.data.data.recent)
-  //   })
-  //   .catch(err => {console.log(err);})
-  //   .finally(() => setLoading(false))
-  // },[])
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/all-units')
+    .then(res => {
+      console.log(res);
+      setAllUnits(res.data.data.all)
+      setNewArrivalUnits(res.data.data.recent)
+    })
+    .catch(err => {console.log(err);})
+    .finally(() => setLoading(false))
+  },[])
   //////////////post all units screen filter
-  const handleFilterClick = (project_id, payment_method, city_id, min_price, max_price)=> {
+  const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price)=> {
     setLoading(true)
     axios.post(
       'https://golden-gate-three.vercel.app/core/filter-properties',
       {
+        unit_type_id,
         project_id,
         payment_method,
         city_id,
@@ -101,7 +120,7 @@ export const AppProvider = ({children}) => {
     )
     .then(res => {
       if(res.data.data.length<1){
-        openNotificationWithIcon('error', 'عملية خاطئه ', 'لا يوجد مطابقة لبحثك')
+        openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }
       setAllUnits(res.data.data);
@@ -128,7 +147,7 @@ export const AppProvider = ({children}) => {
     )
     .then(res => {
       if(res.data.data.length<1){
-        openNotificationWithIcon('error', 'عملية خاطئه ', 'لا يوجد مطابقة لبحثك')
+        openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }
       navigate("/all-units")
@@ -152,13 +171,39 @@ export const AppProvider = ({children}) => {
       )
       .then(res => {
         console.log(res.data);
-        openNotificationWithIcon('success', 'عملية ناجحة ', 'سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
+        openNotificationWithIcon('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
       })
       .catch(err => {
         console.log(err);
       })
     }else{
-      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
+      openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')
+    }
+    
+  }
+  const handleAddReview = () => {
+    if(token){
+      axios.post(
+        'https://golden-gate-three.vercel.app/core/add-review',
+        {
+          rate:rating,
+          review:reviewMessage
+        },
+        {
+          headers: { 'Authorization': `Bearer ${token}` },
+        }
+      )
+      .then(res => {
+        setReviewMessage('')
+        setRating(0)
+        console.log(res.data);
+        openNotificationWithIcon('success','شكرا لتقييمك')
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else{
+      openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة تقييمك')
     }
     
   }
@@ -167,9 +212,11 @@ export const AppProvider = ({children}) => {
       value={{isOpen, setIsOpen, popupContent,newArrivalUnits,setNewArrivalUnits,
       setPopupContent, popupHeader, setPopupHeader ,setSingleUnit,singleUnit,
       filterData, setFilterData, loading, setLoading,articlesData, allUnits,
-      contextHolder, openNotificationWithIcon, setAllUnits,
+      contextHolder, openNotificationWithIcon, setAllUnits,isReview, setIsReview,
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
-      numberInpValue, setNumberInpValue, handleReqUnit
+      numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
+      rating, setRating,handleAddReview, setReviewMessage, consultationsData,
+      faqId, setFaqId, ourReviewsData
       }}>
       {children}
     </AppContext.Provider>

@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import bgImage from '../Images/unnamed.jpg'
+import AppContext from '../Context/AppContext';
+import Popup from '../Components/Popup';
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const {consultationsData, faqId} =useContext(AppContext)
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -41,8 +44,13 @@ const FAQ = () => {
     },
     // Add more FAQs as needed
   ];
+  console.log(
+    consultationsData[0]
+  );
+  
   return (
     <main className='faq-main'>
+      <Popup/>
       <div className="faq-page">
         <div className='faq-header'>
           {/* <img src={bgImage} alt="" /> */}
@@ -54,14 +62,14 @@ const FAQ = () => {
           </span>
         </div>
         <div className="faq-list">
-          {faqs.map((faq, index) => (
+          {consultationsData&& consultationsData[faqId].consults.map((faq, index) => (
             <div key={index} className="faq-item">
               <div className="faq-question" onClick={() => toggleAnswer(index)}>
-                <h2>{faq.question}</h2>
+                <h2>{faq.title}</h2>
                 <span>{openIndex === index ? '-' : '+'}</span>
               </div>
               <div className={`faq-answer ${openIndex === index ? 'open' : ''}`}>
-                <p>{faq.answer}</p>
+                <p>{faq.body}</p>
               </div>
             </div>
           ))}

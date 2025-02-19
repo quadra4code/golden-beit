@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 import SuccessPopup from '../Components/SuccessPopup';
+import Popup from '../Components/Popup';
 
 const InquiryPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -60,6 +61,7 @@ const InquiryPage = () => {
   return (
     <>
       {showPopup && <SuccessPopup message={popupMessage} />}
+      <Popup/>
       <div className="input-page">
         {contextHolder}
         <div className="container">

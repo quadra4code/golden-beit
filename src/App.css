@@ -503,7 +503,7 @@ main.single_unit_page section.more_units .all_units .units_list {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  bottom: -135px;
+  bottom: -224px;
   right: -5px;
   padding: 8px;
   width: -moz-max-content;
@@ -1430,6 +1430,9 @@ section.reviews .mySwiper .slide-content .content section.user-info .user {
   align-items: center;
   color: #000;
 }
+section.reviews .mySwiper .slide-content .content section.user-info .user h3 {
+  font-weight: bold;
+}
 section.reviews .mySwiper .slide-content .content section.user-info .rate {
   display: flex;
   gap: 5px;
@@ -1859,7 +1862,6 @@ main.login-page .opacity .login-form-box form .input-box select {
 
 .faq-main {
   margin-top: 5rem;
-  background-color: #fff;
   height: 100vh;
 }
 .faq-main .faq-page .faq-header {
@@ -2327,6 +2329,27 @@ main.popup .popup_inner {
   gap: 20px;
   max-width: 650px;
 }
+main.popup .popup_inner .btns {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+main.popup .popup_inner .review-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+main.popup .popup_inner .review-us .stars {
+  display: flex;
+  gap: 5px;
+}
+main.popup .popup_inner .review-us textarea {
+  background-color: #eee;
+  padding: 8px;
+  outline: none;
+  border-radius: 8px;
+}
 main.popup .popup_inner h2 {
   font-size: 28px;
   font-weight: bold;
@@ -2335,9 +2358,26 @@ main.popup .popup_inner h2 {
 main.popup .popup_inner p {
   font-size: 22px;
   line-height: 1.5;
+  background-color: #eee;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+main.popup .popup_inner p span {
+  display: block;
+  background-color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  padding: 10px;
+}
+main.popup .popup_inner .rate-btn {
+  background-color: #007bff;
+}
+main.popup .popup_inner .rate-btn:hover {
+  background-color: #0057b3;
 }
 main.popup .popup_inner button {
-  background-color: var(--dark-primary-color);
+  background-color: #735240;
   color: #fff;
   padding: 8px 15px;
   border: none;
@@ -2347,6 +2387,10 @@ main.popup .popup_inner button {
   width: 150px;
   cursor: pointer;
   align-self: center;
+  transition: 0.3s;
+}
+main.popup .popup_inner button:hover {
+  background-color: var(--dark-primary-color);
 }
 
 .share-screen-container {

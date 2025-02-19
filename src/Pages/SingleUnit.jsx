@@ -17,6 +17,7 @@ import Loader from '../Components/Loader';
 import axios from 'axios';
 import { Tabs } from 'antd';
 import UnitCard from '../Components/UnitCard';
+import Popup from '../Components/Popup';
 const SingleUnit = () => {
   const token = localStorage.getItem('token');
   const [allUnits, setAllUnits] = useState([])
@@ -106,6 +107,7 @@ const SingleUnit = () => {
       <Loader/>
       :
       <main className='single_unit_page'>
+        <Popup/>
         {contextHolder}
         <section className='unit_info'>
           <div className="galleria-container">

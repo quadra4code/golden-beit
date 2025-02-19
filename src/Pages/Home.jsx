@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Landing from '../Components/Landing';
 import AboutUs from '../Components/AboutUs';
 import WhyUs from '../Components/WhyUs';
@@ -9,7 +9,10 @@ import Popup from '../Components/Popup';
 import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
 const Home = () => {
-  const {loading, contextHolder} = useContext(AppContext)
+  const {loading, contextHolder} = useContext(AppContext);
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <>
     {loading

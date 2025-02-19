@@ -295,6 +295,27 @@ main.popup {
     flex-direction: column;
     gap: 20px;
     max-width: 650px;
+    .btns{
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .review-us {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .stars{
+        display: flex;
+        gap: 5px;
+      }
+      textarea{
+        background-color: #eee;
+        padding: 8px;
+        outline: none;
+        border-radius: 8px;
+      }
+    }
     h2{
       font-size: 28px;
       font-weight: bold;
@@ -303,9 +324,26 @@ main.popup {
     p{
       font-size: 22px;
       line-height: 1.5;
+      background-color: #eee;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      span{
+        display: block;
+        background-color: #fff;
+        border-radius:12px;
+        width: 100%;
+        padding: 10px;
+      }
+    }
+    .rate-btn{
+      background-color: #007bff;
+      &:hover {
+        background-color: #0057b3;
+      }
     }
     button{
-      background-color: var(--dark-primary-color);
+      background-color: #735240;
       color: #fff;
       padding: 8px 15px;
       border: none;
@@ -315,6 +353,10 @@ main.popup {
       width: 150px;
       cursor: pointer;
       align-self: center;
+      transition: .3s;
+      &:hover {
+        background-color: var(--dark-primary-color);        
+      }
     }
   }
 }

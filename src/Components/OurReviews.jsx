@@ -4,8 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import image from '../Images/form.png';
 import IsDesktop from '../Context/IsDesktop'
+import AppContext from '../Context/AppContext';
 const OurReviews = () => {
   const {isDesktop} = useContext(IsDesktop)
+  const {ourReviewsData} = useContext(AppContext)
   const reviews = [
     {
       image: image,
@@ -64,18 +66,18 @@ const OurReviews = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {reviews.map((review, index) => 
+        {ourReviewsData&& ourReviewsData.map((review, index) => 
           <SwiperSlide className='swiper-slide' key={index}>
             <div className="slide-content">
-              <img src={review.image} alt="project"/>
+              <img src={image} alt="project"/>
               <div className="content">
                 <section className='user-info'>
                   <div className='user'>
-                    <h3>{review.name}</h3>
+                    <h3>{review.client_name}</h3>
                     <h4>{review.city}</h4>
                   </div>
                   <p className='rate'>
-                    <span>{review.rating}</span>
+                    <span>{review.rate}</span>
                     <FaRegStar/>
                   </p>
                 </section>

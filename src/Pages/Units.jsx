@@ -194,6 +194,7 @@ import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader';
 import UnitCard from '../Components/UnitCard';
+import Popup from '../Components/Popup';
 
 const Units = () => {
   const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, loading } = useContext(AppContext);
@@ -238,6 +239,7 @@ const Units = () => {
         <Loader />
       ) : (
         <main className="units_page">
+          <Popup/>
           {contextHolder}
           <section className="units_content">
             {newArrivalUnits&& newArrivalUnits.length>0 &&  
@@ -334,7 +336,7 @@ const Units = () => {
             </div>
             <div className="filter_unit">
               <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
-                <option hidden value="اختر اسم الوحدة" selected disabled>اختر اسم الوحدة</option>
+                <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
                 {filteredProjects.map((project) => (
                   <option key={project.id}  value={project.id}>
                     {project.name}

@@ -11,12 +11,25 @@ import {Bars3Icon,XMarkIcon,} from '@heroicons/react/24/outline';
 import { useContext } from 'react';
 import AppContext from '../Context/AppContext';
 const Navbar = () => {
+  const referral_code = localStorage.getItem('referral_code')
   const navigate = useNavigate()
-  const { token, openNotificationWithIcon } = useContext(AppContext)
-  const handleAddUnitRoute = ()=> {
+  const { token, openNotificationWithIcon, setIsNormalPop,
+        setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
+  const handleAddUnitRoute = (type)=> {
     setMobileMenuOpen(false)
     if(token){
-      navigate('/add-new-unit') 
+      if(type==='invite'){
+        setIsNormalPop(true)
+        setIsOpen(true);
+        setPopupHeader('قم بنسخ لينك الدعوة')
+        setPopupContent(`https://golden-beit.vercel.app/login/${referral_code}`)    
+      }else if(type==='add-review'){
+        setIsNormalPop(true)
+        setIsOpen(true);
+        setIsReview(true)
+        setPopupHeader('')
+      }
+      else{navigate('/add-new-unit')}
     }else{
       openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
     }
@@ -30,6 +43,7 @@ const Navbar = () => {
   const handleLogout =()=> {
     localStorage.removeItem('name');
     localStorage.removeItem('token');
+    localStorage.removeItem('referral_code');
     localStorage.setItem('oneTimeInquiry','true');
     window.location.reload();
   }
@@ -65,7 +79,9 @@ const Navbar = () => {
               خدماتنا
             </span>
             <div className="nav-menu">
-              <span className='list-unit' onClick={handleAddUnitRoute}>اضف وحدتك</span>
+              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
+              <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
+              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
             </div>
           </div>
@@ -153,7 +169,9 @@ const Navbar = () => {
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={handleAddUnitRoute}>اضف وحدتك</span>
+                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
+                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
+                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
                     <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
                     {/* {[...ourPrograms].map((item) => (
                       <HashLink

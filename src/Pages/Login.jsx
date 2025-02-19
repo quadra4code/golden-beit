@@ -1,12 +1,14 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Image from '../Images/form.png'
 import { FaUser } from "react-icons/fa";
 import axios from 'axios'
 import { RiLockPasswordFill } from "react-icons/ri";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AppContext from '../Context/AppContext';
 const Login = () => {
   const navigate= useNavigate()
+  const params = useParams()
+  console.log(params);
   const { openNotificationWithIcon, contextHolder, loading, setLoading} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
@@ -17,6 +19,7 @@ const Login = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState(null);
   const [isLogin, setIsLogin] = useState(true);
+  const [referral_code, setReferral_code] = useState(true);
   const interestedCities =[
     'القاهرة الجديدة (سكن - جنة)','بدر (إسكان متميز -متوسط)','⁠الشروق (سكن - أكثر تميز)',
     'العاشر (دار - مميز)','حدائق أكتوبر (سكن - دار - متوسط)','اكتوبر (سكن - جنة - أكثر تميز)',
@@ -25,6 +28,11 @@ const Login = () => {
     'الفيوم (مميز)',' ⁠المنيا (سكن - متوسط)','ملوي (مميز)','قنا (سكن - متوسط - مميز)',
     'طيبة (متوسط)','⁠أسوان (مميز)','أسيوط (سكن - متوسط - مميز)','سوهاج (مميز)','⁠أخميم (مميز)'
   ]
+  useEffect(()=>{
+    params.params?.length>0 ?
+    setReferral_code(params.params)
+    :setReferral_code(null)
+  })
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,12 +42,14 @@ const Login = () => {
         password,
       })
       .then((res) => {
+        localStorage.setItem('referral_code', res.data.data.user.referral_code);
         localStorage.setItem('token', res.data.data.access_token);
         localStorage.setItem('name', res.data.data.user.full_name);
         localStorage.setItem('oneTimeInquiry','false');
         window.location.href = `/`
       })
       .catch((err) => {
+        console.log(err);
         openNotificationWithIcon('error', 'عملية خاطئه', err.message);
       })
       .finally(() => {
@@ -55,14 +65,17 @@ const Login = () => {
         user_type: userType,
         password,
         confirm_password: confirmPassword,
+        referral_code
       })
       .then((res) => {
+        localStorage.setItem('referral_code', res.data.data.user.referral_code);
         localStorage.setItem('name', res.data.data.first_name);
         localStorage.setItem('token', res.data.data.access_token);
         localStorage.setItem('oneTimeInquiry','false');
         window.location.href = `/`
       })
       .catch((err) => {
+        console.log(err);
         openNotificationWithIcon('error', 'عملية خاطئه', err.message);
       })
       .finally(() => {
