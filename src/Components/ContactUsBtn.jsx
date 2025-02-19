@@ -7,10 +7,10 @@ const ContactButton = () => {
     <div className='contactContainer'>
       {isOpen && (
         <div className='contactOptions'>
-          <a href="tel:+1234567890" className='contactBtn phone'>
+          <a href="tel:+201040333703" className='contactBtn phone'>
             <FaPhone size={24} />
           </a>
-          <a href="https://wa.me/1234567890" className='contactBtn whatsapp'>
+          <a href="https://wa.me/+201040333703" className='contactBtn whatsapp'>
             <FaWhatsapp size={26} />
           </a>
           <button onClick={() => setIsOpen(false)} className='contactBtn close'>
