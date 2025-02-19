@@ -66,6 +66,7 @@ import AddNewUnit from './Pages/AddNewUnit';
 import InquiryPage from './Pages/InquiryPage';
 import PageTransition from './Components/PageTransition';
 import FAQ from './Pages/FAQ';
+import ContactButton from './Components/ContactUsBtn';
 const App = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,6 +85,7 @@ const App = () => {
   return (
     <>
       {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Navbar />}
+      <ContactButton/>
       <PageTransition routes={routes} />
       {location.pathname !== '/sign-up' && !location.pathname.startsWith('/login') && <Footer />}
     </>

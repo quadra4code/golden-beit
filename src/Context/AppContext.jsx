@@ -37,7 +37,6 @@ export const AppProvider = ({children}) => {
     axios.get('https://golden-gate-three.vercel.app/core/get-form-data')
     .then(response => {
       setFilterData(response.data.data)
-      console.log(response.data);
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -47,7 +46,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-articles')
     .then(response => {
-      console.log(response.data.data);
       setArticlesData(response.data.data)
     })
     .catch(error => console.error(error))
@@ -58,7 +56,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-consultations')
     .then(response => {
-      console.log(response.data.data);
       setConsultationsData(response.data.data)
     })
     .catch(error => console.error(error))
@@ -69,7 +66,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-reviews')
     .then(response => {
-      console.log(response.data.data);
       setOurReviewsData(response.data.data)
     })
     .catch(error => console.error(error))
@@ -94,7 +90,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/all-units')
     .then(res => {
-      console.log(res);
       setAllUnits(res.data.data.all)
       setNewArrivalUnits(res.data.data.recent)
     })
@@ -124,7 +119,6 @@ export const AppProvider = ({children}) => {
         return
       }
       setAllUnits(res.data.data);
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);
@@ -151,7 +145,6 @@ export const AppProvider = ({children}) => {
         return
       }
       navigate("/all-units")
-      console.log(res.data);
       setAllUnits(res.data.data);
     })
     .catch(err => {
@@ -170,7 +163,6 @@ export const AppProvider = ({children}) => {
         }
       )
       .then(res => {
-        console.log(res.data);
         openNotificationWithIcon('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
       })
       .catch(err => {
@@ -196,7 +188,6 @@ export const AppProvider = ({children}) => {
       .then(res => {
         setReviewMessage('')
         setRating(0)
-        console.log(res.data);
         openNotificationWithIcon('success','شكرا لتقييمك')
       })
       .catch(err => {
