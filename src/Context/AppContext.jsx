@@ -24,13 +24,23 @@ export const AppProvider = ({children}) => {
   const [rating, setRating] = useState(0);
   const [faqId, setFaqId] = useState(0);
   const [reviewMessage, setReviewMessage] = useState('');
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message,
       description
     });
   };
+  //////////////// unAuth handle//////////
+  const handleUnAuth = async() => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('referral_code')
+    localStorage.removeItem('name')
+    await setTimeout(()=>{
+      openNotificationWithIcon('error','قم يتسجيل الدخول من جديد ');
+    },3000)
+    window.location.href='/'
+  }
   ///////////////// get filter data in all units screen
   useEffect(()=>{
     setLoading(true)
@@ -166,7 +176,10 @@ export const AppProvider = ({children}) => {
         openNotificationWithIcon('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
       })
       .catch(err => {
-        console.log(err);
+        if(err.status===401){
+          handleUnAuth()
+        }
+        console.log(err.status);
       })
     }else{
       openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')
@@ -191,6 +204,9 @@ export const AppProvider = ({children}) => {
         openNotificationWithIcon('success','شكرا لتقييمك')
       })
       .catch(err => {
+        if(err.status===401){
+          handleUnAuth()
+        }
         console.log(err);
       })
     }else{
@@ -207,7 +223,7 @@ export const AppProvider = ({children}) => {
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
       numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
-      faqId, setFaqId, ourReviewsData
+      faqId, setFaqId, ourReviewsData, handleUnAuth
       }}>
       {children}
     </AppContext.Provider>

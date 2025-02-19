@@ -49,13 +49,13 @@
 //   )
 // }
 // export default MainApp;
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
-import { AppProvider } from './Context/AppContext';
+import AppContext, { AppProvider } from './Context/AppContext';
 import { DesktopProvider } from './Context/IsDesktop';
 import Units from './Pages/Units';
 import SingleUnit from './Pages/SingleUnit';
@@ -69,6 +69,7 @@ import FAQ from './Pages/FAQ';
 import ContactButton from './Components/ContactUsBtn';
 import ErrorPage from './Pages/ErrorPage';
 const App = () => {
+  const {contextHolder} = useContext(AppContext)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

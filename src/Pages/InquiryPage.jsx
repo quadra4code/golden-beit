@@ -9,7 +9,7 @@ const InquiryPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
   const [hasInquired, setHasInquired] = useState(false);
-  const { token, openNotificationWithIcon, contextHolder } = useContext(AppContext);
+  const { token, openNotificationWithIcon, contextHolder, handleUnAuth } = useContext(AppContext);
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -55,6 +55,9 @@ const InquiryPage = () => {
         }
       })
       .catch((err) => {
+        if(err.status===401){
+          handleUnAuth()
+        }  
         openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg);
       });
   };

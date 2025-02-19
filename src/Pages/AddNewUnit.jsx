@@ -6,7 +6,7 @@ import Popup from '../Components/Popup';
 const AddNewUnit = () => {
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedType, setSelectedType] = useState(null);
-  const { filterData, token, openNotificationWithIcon, contextHolder } = useContext(AppContext)
+  const {handleUnAuth, filterData, token, openNotificationWithIcon, contextHolder } = useContext(AppContext)
   console.log(filterData);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,7 +42,6 @@ const AddNewUnit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    
     // Handle form submission logic
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
       openNotificationWithIcon('error', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
@@ -77,10 +76,12 @@ const AddNewUnit = () => {
     )  
     .then((res)=>{
       console.log(res);
-      
       openNotificationWithIcon('success', 'عملية ناجحة ', 'تم اضافة وحدتك بنجاح')
     })
     .catch((err)=>{
+      if(err.status===401){
+        handleUnAuth()
+      }
       console.log(err);
       openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg)
     })
