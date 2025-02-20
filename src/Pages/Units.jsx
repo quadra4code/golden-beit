@@ -220,7 +220,6 @@ const Units = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log(unitFilter);
   const handleSelectUnitType = (e)=> {
     console.log(e.target.value);
     setUnitFilter(e.target.value);

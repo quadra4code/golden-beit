@@ -10,9 +10,6 @@ import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
 const Home = () => {
   const {loading, contextHolder} = useContext(AppContext);
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
   return (
     <>
     {loading

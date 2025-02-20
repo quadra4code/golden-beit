@@ -26,6 +26,9 @@
   direction: rtl;
   font-family: "cairo", serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: #eceae6;
   overflow-x: hidden;

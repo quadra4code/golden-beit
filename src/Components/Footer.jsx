@@ -2,7 +2,7 @@ import React from 'react';
 import { IoCloudDoneOutline } from "react-icons/io5";
 import { FaInstagram } from "react-icons/fa";
 import { AiOutlineFacebook } from "react-icons/ai";
-import { RiTwitterXFill, RiTiktokFill } from "react-icons/ri";
+import { RiTiktokFill, RiYoutubeFill } from "react-icons/ri";
 import logo from '../Images/LOGO (2).png';
 const Footer = () => {
   return (
@@ -42,10 +42,22 @@ const Footer = () => {
         </ul>
         <ul>
           <li className='header'>Our Social</li>
-          <li> <FaInstagram/><a href="https://www.instagram.com/golden_beit/">Instagram</a></li>
-          <li><AiOutlineFacebook/> <a href="https://www.facebook.com/golden.beit/">Facebook</a></li>
-          <li><RiTiktokFill /> <a href="https://www.tiktok.com/@golden_beit">TikTok</a></li>
-          <li><RiTwitterXFill/> <a href="https://www.youtube.com/@Golden_Beit">Youtube</a></li>
+          <li>
+            <a href="https://www.instagram.com/golden_beit/">Instagram</a>
+            <FaInstagram/>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/golden.beit/">Facebook</a>
+            <AiOutlineFacebook/> 
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@golden_beit">TikTok</a>
+            <RiTiktokFill /> 
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@Golden_Beit">Youtube</a>
+            <RiYoutubeFill />
+          </li>
         </ul>
         <div className='logo-slogan'>
           <img src={logo} alt="logo" />

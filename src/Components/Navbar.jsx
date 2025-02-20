@@ -35,10 +35,6 @@ const Navbar = () => {
     }
   }
   const name = localStorage.getItem('name')
-  const ourPrograms = [
-    { name: 'اضف وحدتك', href: '/add-new-unit'},
-    { name: 'استعلام عن الفائزين', href: '/inquiry-page'},
-  ]
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleLogout =()=> {
     localStorage.removeItem('name');
@@ -68,12 +64,14 @@ const Navbar = () => {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <HashLink 
-            scroll={(el) => {
-              const yOffset = -100; // Adjust this value to match the height of your navbar
-              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }}
-            smooth to='/#landing' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">الرئيسية</HashLink>
+          scroll={(el) => {
+            const yOffset = -100; // Adjust this value to match the height of your navbar
+            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }}
+          smooth to='/#landing' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+            الرئيسية
+          </HashLink>
           <div className="links-nav font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
             <span >
               خدماتنا
@@ -93,18 +91,9 @@ const Navbar = () => {
               const yOffset = -60; // Adjust this value to match the height of your navbar
               const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
               window.scrollTo({ top: y, behavior: 'smooth' });
-            }}
-            smooth to="/#why-us" className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+              }}
+              smooth to="/#why-us" className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
             الاستشارات
-          </HashLink>
-          <HashLink 
-            scroll={(el) => {
-              const yOffset = -60; // Adjust this value to match the height of your navbar
-              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }}
-            smooth to="/#about-us" className="font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
-            من نحن
           </HashLink>
           <HashLink smooth to='/#footer' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
             اتصل بنا
@@ -173,22 +162,6 @@ const Navbar = () => {
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
                     <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
-                    {/* {[...ourPrograms].map((item) => (
-                      <HashLink
-                        key={item.name}
-                        smooth
-                        to={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        scroll={(el) => {
-                          const yOffset = -60; // Adjust this value to match the height of your navbar
-                          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                          window.scrollTo({ top: y, behavior: 'smooth' });
-                        }}
-                        className="font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50"
-                      >
-                        {item.name}
-                      </HashLink>
-                    ))} */}
                   </DisclosurePanel>
                 </Disclosure>
                 <Link
@@ -224,7 +197,8 @@ const Navbar = () => {
                 >
                   من نحن
                 </HashLink>
-                <HashLink smooth
+                <HashLink 
+                smooth
                   to='/#footer'
                   onClick={() => setMobileMenuOpen(false)}
                   className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
@@ -247,10 +221,6 @@ const Navbar = () => {
                   <p className='text-lg '>تسجيل الدخول</p>
                 </Link>
                 }
-                {/* <Link to="/login" className="font-bold py-3 px-6 flex gap-2 items-center text-lg leading-6 rounded-2xl">
-                  <FaUserAlt className='text-xl '/> 
-                  <p className='text-lg'>تسجيل الدخول</p>
-                </Link> */}
               </div>
             </div>
           </div>

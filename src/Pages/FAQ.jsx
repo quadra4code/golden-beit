@@ -4,7 +4,7 @@ import AppContext from '../Context/AppContext';
 import Popup from '../Components/Popup';
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
-  const {consultationsData, faqId} =useContext(AppContext)
+  const {consultationsData, faqId, contextHolder} =useContext(AppContext)
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -51,6 +51,7 @@ const FAQ = () => {
   return (
     <main className='faq-main'>
       <Popup/>
+      {contextHolder}
       <div className="faq-page">
         <div className='faq-header'>
           {/* <img src={bgImage} alt="" /> */}

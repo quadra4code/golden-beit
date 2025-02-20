@@ -68,11 +68,9 @@ import PageTransition from './Components/PageTransition';
 import FAQ from './Pages/FAQ';
 import ContactButton from './Components/ContactUsBtn';
 import ErrorPage from './Pages/ErrorPage';
+import useScrollToTop from './Components/ScrollToTop';
 const App = () => {
-  const {contextHolder} = useContext(AppContext)
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useScrollToTop()
   const location = useLocation();
   const routes = [
     { path: "/", element: <Home /> },

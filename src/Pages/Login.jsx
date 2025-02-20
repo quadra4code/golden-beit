@@ -101,88 +101,60 @@ const Login = () => {
             ?
             <>
               <div className="input-box">
-                <div className='label'>
-                  <RiPhoneFill />
-                  <p>رقم الهاتف :</p>
-                </div>
+                <RiPhoneFill />
                 <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
               </div>
               <div className="input-box">
-                <div className='label'>
-                  <RiLockPasswordFill />
-                  <p>الرقم السرى :</p>
-                </div>
-                <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="*********" />
+                <RiLockPasswordFill />
+                <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />
               </div>
             </>
             :
             <>
               <div className='col'>
                 <div className="input-box">
-                  <div className='label'>
-                    <FaUser />
-                    <p>الأسم الأول :</p>
-                  </div>
+                  <FaUser />
                   <input onChange={(e)=>setFirstName(e.target.value)} type="text" required placeholder="الاسم الأول" />
                 </div>
                 <div className="input-box">
-                  <div className='label'>
-                    <FaUser />
-                    <p>الأسم الأخير :</p>
-                  </div>
+                  <FaUser />
                   <input onChange={(e)=>setLastName(e.target.value)} type="text" placeholder="الاسم الأخير" />
                 </div>
                 <div className="input-box">
-                  <div className='label'>
-                    <MdAlternateEmail />
-                    <p> البريد الالكترونى :</p>
-                  </div>
-                  <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="hello@domain.com" />
+                  <MdAlternateEmail />
+                  <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="البريد الالكترونى" />
                 </div>
                 <div className="input-box">
-                  <div className='label'>
-                    <RiPhoneFill />
-                    <p> رقم الهاتف :</p>
-                  </div>
-                  <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="01234567891" />
+                  <RiPhoneFill />
+                  <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
                 </div>
               </div>
               <div className='col'>
                 <div className="input-box">
-                  <div className='label'>
-                    <MdManageAccounts />
-                    <p> نوع الحساب :</p>
-                  </div>
+                  <RiLockPasswordFill />
+                  <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />
+                </div>
+                <div className="input-box">
+                  <RiLockPasswordFill />
+                  <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" required placeholder="تأكيد كلمة المرور " />
+                </div>
+                <div className="input-box">
+                  <MdManageAccounts />
                   <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
+                    <option style={{color:'#ddd'}} value="نوع الحساب" disabled hidden selected>نوع الحساب</option>
                     <option value="5">مشتري</option>
                     <option value="6">بائع</option>
                     <option value="7">وسيط</option>
                   </select>
                 </div>
                 <div className="input-box">
-                  <div className='label'>
-                    <MdLocationCity />
-                    <p> أكثر مدينة مهتم بها :</p>
-                  </div>
+                  <MdLocationCity />
                   <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
+                    <option selected disabled hidden value="أكثر مدينة مهتم بها ">أكثر مدينة مهتم بها </option>
                   {interestedCities.map((index, key)=>
                   <option key={key} value={index}>{index}</option>
                   )}
                   </select>
-                </div>
-                <div className="input-box">
-                  <div className='label'>
-                    <RiLockPasswordFill />
-                    <p>الرقم السرى :</p>
-                  </div>
-                  <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="*********" />
-                </div>
-                <div className="input-box">
-                  <div className='label'>
-                    <RiLockPasswordFill />
-                    <p> تأكيد الرقم السرى :</p>
-                  </div>
-                  <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" required placeholder="*********" />
                 </div>
               </div>
             </>
