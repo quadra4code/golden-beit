@@ -111,51 +111,47 @@ const Login = () => {
             </>
             :
             <>
-              <div className='col'>
-                <div className="input-box">
-                  <FaUser />
-                  <input onChange={(e)=>setFirstName(e.target.value)} type="text" required placeholder="الاسم الأول" />
-                </div>
-                <div className="input-box">
-                  <FaUser />
-                  <input onChange={(e)=>setLastName(e.target.value)} type="text" placeholder="الاسم الأخير" />
-                </div>
-                <div className="input-box">
-                  <MdAlternateEmail />
-                  <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="البريد الالكترونى" />
-                </div>
-                <div className="input-box">
-                  <RiPhoneFill />
-                  <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
-                </div>
+              <div className="input-box">
+                <FaUser />
+                <input onChange={(e)=>setFirstName(e.target.value)} type="text" required placeholder="الاسم الأول" />
               </div>
-              <div className='col'>
-                <div className="input-box">
-                  <RiLockPasswordFill />
-                  <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />
-                </div>
-                <div className="input-box">
-                  <RiLockPasswordFill />
-                  <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" required placeholder="تأكيد كلمة المرور " />
-                </div>
-                <div className="input-box">
-                  <MdManageAccounts />
-                  <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
-                    <option style={{color:'#ddd'}} value="نوع الحساب" disabled hidden selected>نوع الحساب</option>
-                    <option value="5">مشتري</option>
-                    <option value="6">بائع</option>
-                    <option value="7">وسيط</option>
-                  </select>
-                </div>
-                <div className="input-box">
-                  <MdLocationCity />
-                  <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
-                    <option selected disabled hidden value="أكثر مدينة مهتم بها ">أكثر مدينة مهتم بها </option>
-                  {interestedCities.map((index, key)=>
-                  <option key={key} value={index}>{index}</option>
-                  )}
-                  </select>
-                </div>
+              <div className="input-box">
+                <FaUser />
+                <input onChange={(e)=>setLastName(e.target.value)} type="text" placeholder=" الاسم الاخير (اختيارى)" />
+              </div>
+              <div className="input-box">
+                <MdAlternateEmail />
+                <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder=" البريد الالكترونى (اختيارى)" />
+              </div>
+              <div className="input-box">
+                <RiPhoneFill />
+                <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
+              </div>
+              <div className="input-box">
+                <RiLockPasswordFill />
+                <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />
+              </div>
+              <div className="input-box">
+                <RiLockPasswordFill />
+                <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" required placeholder="تأكيد كلمة المرور " />
+              </div>
+              <div className="input-box">
+                <MdManageAccounts />
+                <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
+                  <option style={{color:'#ddd'}} value="نوع الحساب" disabled hidden selected>نوع الحساب</option>
+                  <option value="5">مشتري</option>
+                  <option value="6">بائع</option>
+                  <option value="7">وسيط</option>
+                </select>
+              </div>
+              <div className="input-box">
+                <MdLocationCity />
+                <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
+                  <option selected disabled hidden value="أكثر مدينة مهتم بها ">أكثر مدينة مهتم بها (اختيارى)</option>
+                {interestedCities.map((index, key)=>
+                <option key={key} value={index}>{index}</option>
+                )}
+                </select>
               </div>
             </>
             }

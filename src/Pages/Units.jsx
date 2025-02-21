@@ -181,9 +181,314 @@
 
 // export default Units
 
+// import React, { useEffect, useState, useContext } from 'react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import PaginationComponent from '../Components/Pagination';
+// import { Pagination } from 'swiper/modules';
+// import Slider from 'rc-slider';
+// import unitImage from '../Images/form.png';
+// import { IoIosArrowDown } from "react-icons/io";
+// import { FaLocationDot } from "react-icons/fa6";
+// import { TbRulerMeasure2 } from "react-icons/tb";
+// import { MdOutlineAttachMoney } from "react-icons/md";
+// import AppContext from '../Context/AppContext';
+// import { useNavigate } from 'react-router-dom';
+// import Loader from '../Components/Loader';
+// import UnitCard from '../Components/UnitCard';
+// import Popup from '../Components/Popup';
+// import axios from 'axios';
+// import notFoundImage from '../Images/not found.webp'
+// import IsDesktop from '../Context/IsDesktop';
+// const Units = () => {
+//   const { setLoading, handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, setAllUnits, setNewArrivalUnits, loading } = useContext(AppContext);
+//   const [max_price, setMax_price] = useState();
+//   const [min_price, setMin_price] = useState();
+//   const [max_area, setMax_area] = useState();
+//   const [min_area, setMin_area] = useState();
+//   const [unitFilter, setUnitFilter] = useState();
+//   const [selectedCity, setSelectedCity] = useState();
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [unitsPerPage] = useState(12);
+//   const [paymentMethod, setPaymentMethod] = useState();
+//   const [isFilterOpen, setIsFilterOpen] = useState(false);
+//   const {isDesktop} = useContext(IsDesktop)
+//   const [dataLoaded, setDataLoaded] = useState(false);
+//   const [isFlat, setIsFlat] = useState(unitFilter);
+//   // const handlePriceChange = (value) => {
+//   //   setPriceRange(value);
+//   // };
+//   const navigate = useNavigate();
+//   const handleUnitClick = (id) => {
+//     const foundUnit = allUnits.find((unit) => unit.id === id);
+//     setSingleUnit(foundUnit);
+//     navigate(`/all-units/${id}`);
+//   };
+//   useEffect(() => {
+//     window.scrollTo(0, 0);
+//   }, []);
+//   const handleSelectUnitType = (e)=> {
+//     console.log(e.target.value);
+//     setUnitFilter(e.target.value);
+//   }
+//   const filteredProjects = unitFilter
+//   ? filterData&& filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
+//   : [];
+//   // Get current units
+//   const indexOfLastUnit = currentPage * unitsPerPage;
+//   const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
+//   const currentUnits = allUnits ? allUnits.slice(indexOfFirstUnit, indexOfLastUnit) : [];
+//   // Change page
+//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+//   const handleSingleUnitDetails= (id) => {
+//     axios
+//     .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+//     .then((res)=>{
+//       console.log(res.data);
+//       setSingleUnit(res.data.data)
+//       navigate(`/all-units/${id}`)
+//     })
+//     .catch((err)=>{
+//       console.log(err);
+//     })
+//   }
+//   useEffect(()=>{
+//     setLoading(true)
+//     axios.get('https://golden-gate-three.vercel.app/core/all-units')
+//     .then(res => {
+//       setAllUnits(res.data.data.all)
+//       console.log(res.data);
+//       setDataLoaded(true);
+//       setNewArrivalUnits(res.data.data.recent)
+//     })
+//     .catch(err => {
+//       console.log(err)
+//       setDataLoaded(true)
+//     })
+//     .finally(() => setLoading(false))
+//   },[])
+//   return (
+//     <>
+//       {/* {loading ? (
+//         <Loader />
+//       ) : (
+//         <> */}
+//           { dataLoaded && allUnits && allUnits.length>0 ?
+//             <div className="data-notFound">
+//               <img src={notFoundImage} alt="" />
+//               <h1>عفوا لا يوجد وحدات متاحة</h1>
+//             </div>        
+//           :
+//             <>
+//               {dataLoaded && loading ? 
+//                 <Loader/>
+//                 :
+//                 <main className="units_page">
+//                   <Popup/>
+//                   {contextHolder}
+//                   <section className="units_content">
+//                     {newArrivalUnits&& newArrivalUnits.length>0 &&  
+//                       <div className="new_arrive">
+//                         <h2>المعروض حديثا</h2>
+//                         <Swiper
+//                           slidesPerView={isDesktop?3:1}
+//                           spaceBetween={10}
+//                           pagination={{
+//                             clickable: true,
+//                           }}
+//                           modules={[Pagination]}
+//                           className="mySwiper"
+//                         >
+//                           {newArrivalUnits && newArrivalUnits.map((newArrivalUnit) => (
+//                             <SwiperSlide className="swiper-slide" key={newArrivalUnit.id}>
+//                               <div className="slide-content">
+//                                 <img src={unitImage} alt="project" />
+//                                 <div className="content">
+//                                   <h1>
+//                                     <FaLocationDot />
+//                                     {newArrivalUnit.title}
+//                                   </h1>
+//                                   <h1>
+//                                     <TbRulerMeasure2 />
+//                                     المساحة : {newArrivalUnit.area}
+//                                   </h1>
+//                                   <h1>
+//                                     <MdOutlineAttachMoney />
+//                                     السعر : {newArrivalUnit.area}
+//                                   </h1>
+//                                   <button className="see_more" onClick={() => { handleUnitClick(newArrivalUnit.id) }}>التفاصيل</button>
+//                                 </div>
+//                               </div>
+//                             </SwiperSlide>
+//                           ))}
+//                         </Swiper>
+//                       </div>
+//                     }
+//                     <div className="all_units">
+//                       <h2 className="units_title">جميع الوحدات</h2>
+//                       <div className="units_list">
+//                         {currentUnits && currentUnits.map((unit) => (
+//                           <UnitCard
+//                             key={unit.id}
+//                             title={unit.title}
+//                             project={unit.project}
+//                             city={unit.city}
+//                             area={unit.area}
+//                             price={unit.price}
+//                             id={unit.id}
+//                             onClick={() => { handleSingleUnitDetails(unit.id) }}
+//                           />
+//                         ))}
+//                       </div>
+//                       <PaginationComponent
+//                         itemsPerPage={unitsPerPage}
+//                         totalItems={allUnits ? allUnits.length : 0}
+//                         paginate={paginate}
+//                         currentPage={currentPage}
+//                       />
+//                     </div>
+//                   </section>
+//                   <button className="filter_toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+//                     <span>تصنيف</span>
+//                     <IoIosArrowDown/>
+//                   </button>
+//                   <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
+//                     <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
+//                     <div className="filter_unit">
+//                       <p className="filter_title">اختر نوع الوحدة</p>
+//                       <div className="radio-container">
+//                         <div className='radio'>
+//                           <input
+//                             type="radio" 
+//                             id="land" 
+//                             name="project_type_id" 
+//                             value="1" 
+//                             checked={unitFilter==='1'}
+//                             onChange={handleSelectUnitType}
+//                           />
+//                           <label for="land">أرض</label>
+//                         </div>
+//                         <div className='radio'>
+//                           <input
+//                             type="radio" 
+//                             id="flat" 
+//                             name="project_type_id" 
+//                             value="2" 
+//                             checked={unitFilter==='2'}
+//                             onChange={handleSelectUnitType}
+//                           />
+//                           <label for="flat">شقة</label>
+//                         </div>
+//                       </div>
+//                     </div>
+//                     <div className="filter_unit">
+//                       <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
+//                         <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
+//                         {filteredProjects.map((project) => (
+//                           <option key={project.id}  value={project.id}>
+//                             {project.name}
+//                           </option>
+//                           ))}
+//                         {/* {filterData &&
+//                           filterData.unit_types.map((projectType) => (
+//                             <optgroup key={projectType.id} label={projectType.name}>
+//                               {projectType.projects.map((project) => (
+//                                 <option key={project.id} value={project.id}>
+//                                   {project.name}
+//                                 </option>
+//                               ))}
+//                             </optgroup>
+//                           ))} */}
+//                       </select>
+//                     </div>
+//                     <div className="filter_unit">
+//                       <p className="filter_title">التصنيف حسب السعر</p>
+//                       <div className="price-range-slider">
+//                         <input type="number" onClick={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
+//                         <input type="number" onClick={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
+//                         {/* <div className="slider-container">
+//                           <Slider
+//                             range
+//                             min={20000}
+//                             max={800000}
+//                             step={20000}
+//                             defaultValue={[25000, 2000000]}
+//                             value={priceRange}
+//                             onChange={handlePriceChange}
+//                           />
+//                           <div className="slider-labels">
+//                             <span>
+//                               السعر : {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
+//                             </span>
+//                           </div>
+//                         </div> */}
+//                       </div>
+//                     </div>
+//                     <div className="filter_unit">
+//                       <p className="filter_title">المساحة بالمتر</p>
+//                       <div className="price-range-slider">
+//                         <input type="number"
+//                           max={filterData&& filterData.max_area}
+//                           onClick={(e)=>setMin_area(e.target.value)}
+//                           placeholder='من'/>
+//                         <input type="number"
+//                           min={filterData&& filterData.min_area} 
+//                           onClick={(e)=>setMax_area(e.target.value)}
+//                           placeholder='إلى'/>
+//                       </div>
+//                     </div>
+//                     <div className="filter_unit">
+//                       <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+//                         <option value="اختر المدينة"hidden disabled selected>اختر المدينة</option>
+//                         {filterData && filterData.cities.map((index, key) =>
+//                           <option key={key} value={index.id}>{index.name}</option>
+//                         )}
+//                       </select>
+//                     </div>
+//                     {unitFilter=== '2'&&
+//                       <div className="filter_unit">
+//                         <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+//                           <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
+//                           {filterData && filterData.floors.map((index, key) =>
+//                             <option key={key} value={index.id}>{index.name}</option>
+//                           )}
+//                         </select>
+//                       </div>            
+//                     }
+//                     {unitFilter=== '2'&&
+//                       <div className="filter_unit">
+//                         <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+//                           <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
+//                           {filterData && filterData.facades.map((index, key) =>
+//                             <option key={key} value={index.id}>{index.name}</option>
+//                           )}
+//                         </select>
+//                       </div>
+//                     }
+//                     <div className="filter_unit">
+//                       <select name="" id="" onChange={(e) => setPaymentMethod(e.target.value)}>
+//                         <option hidden disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
+//                         <option value="IN">كاش</option>
+//                         <option value="CS">تقسيط</option>
+//                       </select>
+//                     </div>
+//                     <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price, min_area, max_area) }}>تصنيف</button>
+//                   </section>
+//                 </main>
+//               }
+//             </>
+//           }
+//         {/* </>
+//       )} */}
+//     </>
+//   );
+// };
+
+// export default Units;
+
 import React, { useEffect, useState, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Pagination from '../Components/Pagination';
+import PaginationComponent from '../Components/Pagination';
+import { Pagination } from 'swiper/modules';
 import Slider from 'rc-slider';
 import unitImage from '../Images/form.png';
 import { IoIosArrowDown } from "react-icons/io";
@@ -197,70 +502,89 @@ import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 import axios from 'axios';
 import notFoundImage from '../Images/not found.webp'
+import IsDesktop from '../Context/IsDesktop';
+
 const Units = () => {
-  const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, loading } = useContext(AppContext);
+  const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, setAllUnits, setNewArrivalUnits } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
+  const [max_area, setMax_area] = useState();
+  const [min_area, setMin_area] = useState();
   const [unitFilter, setUnitFilter] = useState();
   const [selectedCity, setSelectedCity] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [unitsPerPage] = useState(10);
+  const [unitsPerPage] = useState(9);
   const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const { isDesktop } = useContext(IsDesktop);
   const [isFlat, setIsFlat] = useState(unitFilter);
-  // const handlePriceChange = (value) => {
-  //   setPriceRange(value);
-  // };
+  const [loading, setLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const navigate = useNavigate();
+
   const handleUnitClick = (id) => {
     const foundUnit = allUnits.find((unit) => unit.id === id);
     setSingleUnit(foundUnit);
     navigate(`/all-units/${id}`);
   };
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setLoading(true);
+    axios.get('https://golden-gate-three.vercel.app/core/all-units')
+      .then(res => {
+        setAllUnits(res.data.data.all);
+        console.log(res.data);
+        setNewArrivalUnits(res.data.data.recent);
+        setDataLoaded(true);
+      })
+      .catch(err => {
+        console.log(err);
+        setDataLoaded(true);
+      })
+      .finally(() => setLoading(false));
   }, []);
-  const handleSelectUnitType = (e)=> {
-    console.log(e.target.value);
+
+  const handleSelectUnitType = (e) => {
     setUnitFilter(e.target.value);
-  }
+  };
+
   const filteredProjects = unitFilter
-  ? filterData&& filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
-  : [];
-  // Get current units
+    ? filterData && filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
+    : [];
+
   const indexOfLastUnit = currentPage * unitsPerPage;
   const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
-  const currentUnits = allUnits && allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
-  // Change page
+  const currentUnits = allUnits ? allUnits.slice(indexOfFirstUnit, indexOfFirstUnit + unitsPerPage) : [];
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const handleSingleUnitDetails= (id) => {
-    axios
-    .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
-    .then((res)=>{
-      console.log(res.data);
-      setSingleUnit(res.data.data)
-      navigate(`/all-units/${id}`)
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-  }
+
+  const handleSingleUnitDetails = (id) => {
+    axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+      .then((res) => {
+        setSingleUnit(res.data.data);
+        navigate(`/all-units/${id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
         <>
-          {newArrivalUnits&& newArrivalUnits.length>0 && allUnits&& allUnits.length>0 ?
+          {dataLoaded &&  allUnits && allUnits.length > 0 ? (
             <main className="units_page">
-              <Popup/>
+              <Popup />
               {contextHolder}
               <section className="units_content">
-                {newArrivalUnits&& newArrivalUnits.length>0 &&  
+                {newArrivalUnits && newArrivalUnits.length > 0 && (
                   <div className="new_arrive">
                     <h2>المعروض حديثا</h2>
                     <Swiper
-                      slidesPerView={2}
+                      slidesPerView={isDesktop ? 3 : 1}
                       spaceBetween={10}
                       pagination={{
                         clickable: true,
@@ -268,7 +592,7 @@ const Units = () => {
                       modules={[Pagination]}
                       className="mySwiper"
                     >
-                      {newArrivalUnits && newArrivalUnits.map((newArrivalUnit) => (
+                      {newArrivalUnits.map((newArrivalUnit) => (
                         <SwiperSlide className="swiper-slide" key={newArrivalUnit.id}>
                           <div className="slide-content">
                             <img src={unitImage} alt="project" />
@@ -285,14 +609,14 @@ const Units = () => {
                                 <MdOutlineAttachMoney />
                                 السعر : {newArrivalUnit.area}
                               </h1>
-                              <button className="see_more" onClick={() => { handleUnitClick(newArrivalUnit.id) }}>التفاصيل</button>
+                              <button className="see_more" onClick={() => handleUnitClick(newArrivalUnit.id)}>التفاصيل</button>
                             </div>
                           </div>
                         </SwiperSlide>
                       ))}
                     </Swiper>
                   </div>
-                }
+                )}
                 <div className="all_units">
                   <h2 className="units_title">جميع الوحدات</h2>
                   <div className="units_list">
@@ -300,16 +624,18 @@ const Units = () => {
                       <UnitCard
                         key={unit.id}
                         title={unit.title}
+                        project={unit.project}
+                        city={unit.city}
                         area={unit.area}
                         price={unit.price}
                         id={unit.id}
-                        onClick={() => { handleSingleUnitDetails(unit.id) }}
+                        onClick={() => handleSingleUnitDetails(unit.id)}
                       />
                     ))}
                   </div>
-                  <Pagination
-                    unitsPerPage={unitsPerPage}
-                    totalUnits={allUnits && allUnits.length}
+                  <PaginationComponent
+                    itemsPerPage={unitsPerPage}
+                    totalItems={allUnits ? allUnits.length : 0}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
@@ -317,7 +643,7 @@ const Units = () => {
               </section>
               <button className="filter_toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
                 <span>تصنيف</span>
-                <IoIosArrowDown/>
+                <IoIosArrowDown />
               </button>
               <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
                 <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
@@ -356,47 +682,26 @@ const Units = () => {
                         {project.name}
                       </option>
                       ))}
-                    {/* {filterData &&
-                      filterData.unit_types.map((projectType) => (
-                        <optgroup key={projectType.id} label={projectType.name}>
-                          {projectType.projects.map((project) => (
-                            <option key={project.id} value={project.id}>
-                              {project.name}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))} */}
                   </select>
                 </div>
                 <div className="filter_unit">
                   <p className="filter_title">التصنيف حسب السعر</p>
                   <div className="price-range-slider">
-                    <input type="number" min={filterData&& filterData.min_price} placeholder='من'/>
-                    <input type="number" max={filterData&& filterData.max_price}  placeholder='إلى'/>
-                    {/* <div className="slider-container">
-                      <Slider
-                        range
-                        min={20000}
-                        max={800000}
-                        step={20000}
-                        defaultValue={[25000, 2000000]}
-                        value={priceRange}
-                        onChange={handlePriceChange}
-                      />
-                      <div className="slider-labels">
-                        <span>
-                          السعر : {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
-                        </span>
-                      </div>
-                    </div> */}
+                    <input type="number" onClick={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
+                    <input type="number" onClick={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
                   </div>
                 </div>
                 <div className="filter_unit">
-                  <p className="filter_title">المساحة</p>
+                  <p className="filter_title">المساحة بالمتر</p>
                   <div className="price-range-slider">
                     <input type="number"
-                      man={filterData&& filterData.max_area}
-                      min={filterData&& filterData.min_area} placeholder='ادخل المساحة بالمتر'/>
+                      max={filterData&& filterData.max_area}
+                      onClick={(e)=>setMin_area(e.target.value)}
+                      placeholder='من'/>
+                    <input type="number"
+                      min={filterData&& filterData.min_area} 
+                      onClick={(e)=>setMax_area(e.target.value)}
+                      placeholder='إلى'/>
                   </div>
                 </div>
                 <div className="filter_unit">
@@ -434,16 +739,15 @@ const Units = () => {
                     <option value="CS">تقسيط</option>
                   </select>
                 </div>
-                <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price) }}>تصنيف</button>
+                <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price, min_area, max_area) }}>تصنيف</button>
               </section>
             </main>
-          :
-          <div className="data-notFound">
-            <img src={notFoundImage} alt="" />
-            <h1>عفوا لا يوجد وحدات متاحة</h1>
-            
-          </div>
-          }
+          ) : (
+            <div className="data-notFound">
+              <img src={notFoundImage} alt="" />
+              <h1>عفوا لا يوجد وحدات متاحة</h1>
+            </div>
+          )}
         </>
       )}
     </>

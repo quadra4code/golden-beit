@@ -171,17 +171,17 @@ main.login-page {
         //     }
         //   }
         // }
-        .col {
-          display: flex;
-          justify-content: space-between;
-          flex-direction: column;
-          gap: 10px;
-        }
+        // .col {
+        //   display: flex;
+        //   justify-content: space-between;
+        //   flex-direction: column;
+        //   gap: 10px;
+        // }
         .input-box {
           padding:0 8px;
           background-color: beige;
           border-radius: 12px;
-          min-width: 250px;
+          width: 100%;
           display: flex;
           align-items: center;
           border: 1px solid #ddd;

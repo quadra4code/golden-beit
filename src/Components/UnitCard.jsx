@@ -1,16 +1,25 @@
 import React from 'react'
 import image1 from '../Images/form.png';
-import { FaLocationDot } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
-
-const UnitCard = ({title, area, price, onClick, key}) => {
+import { BsBuildings } from "react-icons/bs";
+import { BiRename } from "react-icons/bi";
+import { IoLocationOutline } from "react-icons/io5";
+const UnitCard = ({title, area, price, city, project, onClick, key}) => {
   return (
     <div className="unit-card" key={key}>
       <img src={image1} alt="project"/>
       <div className="content">
         <h1>
-          <FaLocationDot/>
+          <BiRename/>
           {title}
+        </h1>
+        <h1>
+          <IoLocationOutline/>
+          {city}
+        </h1>
+        <h1>
+          <BsBuildings/>
+          {project}
         </h1>
         <h1>
           <span className='label'><TbRulerMeasure2/></span>

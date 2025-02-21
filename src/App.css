@@ -96,7 +96,7 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
   border: 1px solid #fff;
   transition: 0.3s;
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .see_more:hover {
   background-color: #fff;
@@ -107,7 +107,7 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
   align-items: center;
   gap: 5px;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 18px;
   color: #fff;
 }
 main.units_page .units_content .all_units {
@@ -1732,17 +1732,11 @@ main.login-page .opacity .login-form-box form button.submit_form {
   font-size: 18px;
   cursor: pointer;
 }
-main.login-page .opacity .login-form-box form .col {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 10px;
-}
 main.login-page .opacity .login-form-box form .input-box {
   padding: 0 8px;
   background-color: beige;
   border-radius: 12px;
-  min-width: 250px;
+  width: 100%;
   display: flex;
   align-items: center;
   border: 1px solid #ddd;

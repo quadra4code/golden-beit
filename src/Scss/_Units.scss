@@ -269,52 +269,42 @@ main.units_page {
       flex-direction: column;
       gap: 10px;
       width: 100%;
-
       h2 {
         font-size: 35px;
         color: #333;
       }
-
       .mySwiper {
         width: 100%;
         padding: 0 1rem;
         display: flex;
         flex-direction: column;
         gap: 2rem;
-
         .swiper-pagination {
           position: unset;
         }
-
         .swiper-pagination-bullet {
           width: 15px;
           height: 15px;
         }
-
         .swiper-pagination-bullet-active {
           background: var(--dark-primary-color);
         }
-
         .swiper-wrapper {
           .swiper-slide {
             width: 450px;
-
             .slide-content {
               display: flex;
-
               &:hover {
                 .content {
                   opacity: 1;
                 }
               }
-
               img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 14px;
               }
-
               .content {
                 border-radius: 14px;
                 width: 100%;
@@ -336,7 +326,7 @@ main.units_page {
                   border: 1px solid #fff;
                   transition: 0.3s;
                   color: #fff;
-                  font-size: 22px;
+                  font-size: 18px;
 
                   &:hover {
                     background-color: #fff;
@@ -349,7 +339,7 @@ main.units_page {
                   align-items: center;
                   gap: 5px;
                   font-weight: 600;
-                  font-size: 22px;
+                  font-size: 18px;
                   color: #fff;
                 }
               }
