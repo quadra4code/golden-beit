@@ -3,11 +3,13 @@ import { IoCloudDoneOutline } from "react-icons/io5";
 import { FaInstagram } from "react-icons/fa";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { RiTiktokFill, RiYoutubeFill } from "react-icons/ri";
+import { HashLink } from 'react-router-hash-link';
 import logo from '../Images/LOGO (2).png';
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className='footer' id='footer'>
-      <section className='header'>
+      {/* <section className='header'>
         <h1>اذا كان لديك اى استفسار <br/> فضلا قم بالتواصل معنا</h1>
         <p>
           <span>الدردشة المباشرة مع فريق الدعم لدينا</span>
@@ -18,21 +20,44 @@ const Footer = () => {
           <input type="text" required placeholder='ادخل رسالتك'/>
           <button>ارسال</button>
         </div>
-      </section>
+      </section> */}
       <section className='footer-links'>
+        <div className='logo-slogan'>
+          <img src={logo} alt="logo" />
+          <span>نحن نقربك من منزل أحلامك<br/> بنقرة واحدة في كل مرة</span>
+        </div>
         <ul>
-          <li className='header'>About</li>
-          <li>OurStory</li>
-          <li>Careers</li>
-          <li>Our Team</li>
-          <li>Resources</li>
+          <li className='header'>ماذا عنا</li>
+          <li>
+            <HashLink 
+              scroll={(el) => {
+                const yOffset = -60; // Adjust this value to match the height of your navbar
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }}
+              smooth to='/#why-us'>
+                من نحن
+            </HashLink>
+          </li>
+          <li>
+            <HashLink 
+              scroll={(el) => {
+                const yOffset = -60; // Adjust this value to match the height of your navbar
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }}
+              smooth to='/#why-us'>
+                الإستشارات
+            </HashLink>
+          </li>
+          <li><Link to='/contact-us'>تواصل معنا</Link></li>
         </ul>
         <ul>
-          <li className='header'>Support</li>
-          <li>FAQ</li>
-          <li>Contact Us</li>
-          <li>Help Center</li>
-          <li>Terms Of Services</li>
+          <li className='header'>الروابط</li>
+          <li><Link to='add-new-unit'>أضف وحدتك</Link></li>
+          <li><Link to='/all-units'>جميع الوحدات</Link></li>
+          <li><Link to='inquiry-page'>استعلام عن الفائزين</Link></li>
+          <li><Link to='/loader-board'>لوحة المتصدرين</Link></li>
         </ul>
         <ul>
           <li className='header'>Find Us</li>
@@ -40,7 +65,7 @@ const Footer = () => {
           <li>Locations</li>
           <li>Newsletter</li>
         </ul>
-        <ul>
+        {/* <ul>
           <li className='header'>Our Social</li>
           <li>
             <a href="https://www.instagram.com/golden_beit/">Instagram</a>
@@ -58,11 +83,7 @@ const Footer = () => {
             <a href="https://www.youtube.com/@Golden_Beit">Youtube</a>
             <RiYoutubeFill />
           </li>
-        </ul>
-        <div className='logo-slogan'>
-          <img src={logo} alt="logo" />
-          <span>نحن نقربك من منزل أحلامك<br/> بنقرة واحدة في كل مرة</span>
-        </div>
+        </ul> */}
       </section>
     </footer>
   )

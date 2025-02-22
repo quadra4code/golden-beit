@@ -882,6 +882,7 @@ footer.footer {
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
+  padding-top: 10rem;
 }
 footer.footer section.header {
   display: flex;
@@ -954,17 +955,27 @@ footer.footer section.footer-links ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 20px;
   color: var(--text-color);
   text-align: center;
 }
 footer.footer section.footer-links ul li.header {
+  position: relative;
   font-weight: bold;
+  font-size: 18px;
   color: var(--dark-primary-color);
 }
+footer.footer section.footer-links ul li.header::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  height: 2px;
+  width: 50%;
+  background-color: #000000;
+}
 footer.footer section.footer-links ul li {
-  font-size: 25px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -982,11 +993,11 @@ footer.footer section.footer-links .logo-slogan {
   text-align: center;
 }
 footer.footer section.footer-links .logo-slogan img {
-  width: 300px;
+  width: 150px;
   max-width: 100%;
 }
 footer.footer section.footer-links .logo-slogan span {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: var(--text-color);
 }
