@@ -346,13 +346,32 @@ main.single_unit_page {
 }
 main.single_unit_page section.unit_info {
   display: flex;
-  gap: 10px;
+  gap: 40px;
 }
 main.single_unit_page section.unit_info .unit_data {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem 0;
+}
+main.single_unit_page section.unit_info .unit_data .btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+main.single_unit_page section.unit_info .unit_data .btns button.add_fav {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #333;
+  font-size: 16px;
+  padding: 5px;
+  width: 150px;
+  color: #333;
+  cursor: pointer;
+}
+main.single_unit_page section.unit_info .unit_data .btns button.add_fav:hover {
+  background-color: var(--dark-primary-color);
+  color: #ccc;
 }
 main.single_unit_page section.unit_info .unit_data h2 {
   font-size: 22px;
@@ -385,19 +404,6 @@ main.single_unit_page section.unit_info .unit_data .holder span {
 main.single_unit_page section.unit_info .unit_data .holder .price {
   color: var(--primary-color);
   font-size: 26px;
-}
-main.single_unit_page section.unit_info .unit_data button.add_fav {
-  width: 100%;
-  background-color: transparent;
-  border: 1px solid #333;
-  font-size: 18px;
-  padding: 5px 20px;
-  color: #333;
-  cursor: pointer;
-}
-main.single_unit_page section.unit_info .unit_data button.add_fav:hover {
-  background-color: var(--dark-primary-color);
-  color: #ccc;
 }
 main.single_unit_page section.tab_view {
   background-color: #fff;

@@ -6,12 +6,31 @@ main.single_unit_page {
   margin-top: 6rem;
   section.unit_info {
     display: flex;
-    gap: 10px;
+    gap: 40px;
     .unit_data{
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 1rem 0;
+      .btns {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        button.add_fav {
+          width: 100%;
+          background-color: transparent;
+          border: 1px solid #333;
+          font-size: 16px;
+          padding: 5px ;
+          width: 150px;
+          color: #333;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--dark-primary-color);
+            color: #ccc;
+          }  
+        }
+      }
       h2{
         font-size: 22px;
         font-weight: 700;
@@ -43,19 +62,6 @@ main.single_unit_page {
           color: var(--primary-color);
           font-size: 26px;
         }
-      }
-      button.add_fav {
-        width: 100%;
-        background-color: transparent;
-        border: 1px solid #333;
-        font-size: 18px;
-        padding: 5px 20px;
-        color: #333;
-        cursor: pointer;
-        &:hover {
-          background-color: var(--dark-primary-color);
-          color: #ccc;
-        }  
       }
     }
   }

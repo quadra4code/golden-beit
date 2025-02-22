@@ -14,8 +14,7 @@ import { Tabs } from 'antd';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 const SingleUnit = () => {
-  const token = localStorage.getItem('token');
-  const {singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
+  const {token, openNotificationWithIcon, singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
   const [value, setValue] = useState('1');
   const [allUnits, setAllUnits] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
@@ -115,6 +114,25 @@ const SingleUnit = () => {
       console.log(err);
     })
   }
+  const handelAddToFav = (id) => {
+    axios
+    .post(`https://golden-gate-three.vercel.app/core/add-favorite`,
+    {
+      unit:id
+    },
+    {
+      headers: { 'Authorization': `Bearer ${token}` },
+    }
+    )
+    .then((res)=>{
+      openNotificationWithIcon('success','تم إضافة الوحدة بنجاح')
+      console.log(res.data);
+    })
+    .catch((err)=>{
+      openNotificationWithIcon('error','حدث خطأ برجاء المحاولة لاحقا')
+      console.log(err);
+    })
+  }
   return (
     <>
       {loading&& !dataLoaded?
@@ -161,7 +179,10 @@ const SingleUnit = () => {
             {singleUnit&& singleUnit.over_price&&
               <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span></span>
             }
-            <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
+            <div className='btns'>
+              <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
+              <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>إضافة إلى المفضلة</button>
+            </div>
           </div>
         </section>
         <section className='tab_view'>
