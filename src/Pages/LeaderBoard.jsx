@@ -1,84 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Loader from '../Components/Loader';
 const Leaderboard = () => {
-  const [donors, setDonors] = useState(
-    [
-      {
-        "id": 1,
-        "name": "John Doe",
-        "amount": 15000
-      },
-      {
-        "id": 2,
-        "name": "Jane Smith",
-        "amount": 12000
-      },
-      {
-        "id": 3,
-        "name": "Michael Johnson",
-        "amount": 11000
-      },
-      {
-        "id": 4,
-        "name": "Emily Davis",
-        "amount": 10500
-      },
-      {
-        "id": 5,
-        "name": "William Brown",
-        "amount": 9500
-      },
-      {
-        "id": 6,
-        "name": "Olivia Wilson",
-        "amount": 9000
-      },
-      {
-        "id": 7,
-        "name": "James Taylor",
-        "amount": 8500
-      },
-      {
-        "id": 8,
-        "name": "Linda Martinez",
-        "amount": 8000
-      },
-      {
-        "id": 9,
-        "name": "Robert Anderson",
-        "amount": 7500
-      },
-      {
-        "id": 10,
-        "name": "Patricia Thomas",
-        "amount": 7000
-      }
-    ]
-  );
+  const [donors, setDonors] = useState();
+  const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
-    axios.get('https://example.com/api/top-donors')
+    setDataLoaded(false)
+    axios.get('https://golden-gate-three.vercel.app/accounts/leaderboard')
       .then(response => {
-        setDonors(response.data);
+        setDonors(response.data.data);
+        console.log(response.data.data);
       })
       .catch(error => {
         console.error("There was an error fetching the donors!", error);
-      });
+      })
+      .finally(()=>setDataLoaded(true))
   }, []);
   return (
-    <div className="leaderboard-container">
-      <h1 className="leaderboard-title">Top 10 Donors</h1>
-      <div className="leaderboard">
-        {donors.map((donor, index) => (
-          <div className="leaderboard-item" key={donor.id}>
-            <span className="leaderboard-rank">{index + 1}</span>
-            <div className="leaderboard-details">
-              <span className="leaderboard-name">{donor.name}</span>
-              <span className="leaderboard-amount">{donor.amount.toLocaleString()} دعوة</span>
+    <>
+    {!dataLoaded? 
+      <Loader/>
+      :
+      <div className="leaderboard-container">
+        <h1 className="leaderboard-title">لوحة المتصدرين</h1>
+        <div className="leaderboard">
+          {donors&& donors.map((donor, index) => (
+            <div className="leaderboard-item" key={donor.id}>
+              <span className="leaderboard-rank">{donor.rank}</span>
+              <div className="leaderboard-details">
+                <span className="leaderboard-name">{donor.name}</span>
+                <span className="leaderboard-amount">{donor.referral_count.toLocaleString()} دعوة</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+      }
+    </>
   );
 };
 

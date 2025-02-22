@@ -81,6 +81,7 @@ const Navbar = () => {
               <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
               <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
+              <Link className='list-unit' to="/leader-board">لوحة المتصدرين</Link>
             </div>
           </div>
           <Link to= "/all-units" className="font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
@@ -95,9 +96,9 @@ const Navbar = () => {
               smooth to="/#why-us" className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
             الاستشارات
           </HashLink>
-          <HashLink smooth to='/#footer' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+          <Link to='/contact-us' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
             اتصل بنا
-          </HashLink>
+          </Link>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {name&&token?
@@ -162,6 +163,7 @@ const Navbar = () => {
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
                     <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
+                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/leader-board">لوحة المتصدرين</Link>
                   </DisclosurePanel>
                 </Disclosure>
                 <Link
@@ -197,14 +199,13 @@ const Navbar = () => {
                 >
                   من نحن
                 </HashLink>
-                <HashLink 
-                smooth
-                  to='/#footer'
+                <Link 
+                  to='/contact-us'
                   onClick={() => setMobileMenuOpen(false)}
                   className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
                 >
                   اتصل بنا
-                </HashLink>
+                </Link>
               </div>
               <div className="py-6">
                 {name&&token?

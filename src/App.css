@@ -526,7 +526,7 @@ main.single_unit_page section.more_units .all_units .units_list {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  bottom: -224px;
+  bottom: -269px;
   right: -5px;
   padding: 8px;
   width: -moz-max-content;

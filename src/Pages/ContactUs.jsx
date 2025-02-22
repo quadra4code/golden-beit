@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaInstagram } from "react-icons/fa";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { RiTiktokFill, RiYoutubeFill } from "react-icons/ri";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineMail } from "react-icons/md";
+import axios from 'axios';
+import AppContext from '../Context/AppContext';
 const ContactUs = () => {
+  const {openNotificationWithIcon, contextHolder} = useContext(AppContext)
   const [formData, setFormData] = useState({
+    name:'',
     email: '',
     phone: '',
     message: ''
@@ -20,14 +24,40 @@ const ContactUs = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic
     console.log('Form submitted:', formData);
+    axios
+    .post('https://golden-gate-three.vercel.app/core/add-contact-us-msg',{
+      name:formData.name,
+      email:formData.email,
+      phone:formData.phone,
+      message:formData.message
+    })
+    .then((res)=>{
+      console.log(res);
+      openNotificationWithIcon('success','سيتم التواصل معكم عن طريق احد ممثلي خدمة العملاء')
+    })
+    .catch((err)=>{
+      openNotificationWithIcon('error','من فضلك قم بالتواصل معنا في وقت لاحق')
+      console.log(err);
+    })
   };
   return (
     <div className="contact-us-container">
+      {contextHolder}
       <h1 className="contact-us-title">تواصل معنا</h1>
       <div className="cols-container">
         <form className="contact-us-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="phone"> الاسم</label>
+            <input
+              type="text"
+              id="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="phone">رقم الهاتف</label>
             <input
@@ -47,7 +77,6 @@ const ContactUs = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-group">
