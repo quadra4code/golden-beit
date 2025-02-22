@@ -178,6 +178,7 @@ main.single_unit_page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
@@ -198,6 +199,7 @@ main.single_unit_page {
 .thumbnail-carousel {
   display: flex;
   gap: 10px;
+  height: 20%;
   overflow-x: auto;
   padding: 10px;
   background-color: #fff;

@@ -445,6 +445,7 @@ main.single_unit_page section.more_units .all_units .units_list {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
@@ -467,6 +468,7 @@ main.single_unit_page section.more_units .all_units .units_list {
 .thumbnail-carousel {
   display: flex;
   gap: 10px;
+  height: 20%;
   overflow-x: auto;
   padding: 10px;
   background-color: #fff;
@@ -2048,6 +2050,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 16px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.0509803922);
 }
 .unit-card .content {
   display: flex;

@@ -3,11 +3,12 @@ import image1 from '../Images/form.png';
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { BsBuildings } from "react-icons/bs";
 import { BiRename } from "react-icons/bi";
+import image2 from '../Images/form.png';
 import { IoLocationOutline } from "react-icons/io5";
-const UnitCard = ({title, area, price, city, project, onClick, key}) => {
+const UnitCard = ({title, area, price, city, project, onClick, key, mainImage}) => {
   return (
     <div className="unit-card" key={key}>
-      <img src={image1} alt="project"/>
+      <img src={mainImage==null?image2:mainImage} alt="project"/>
       <div className="content">
         <h1>
           <BiRename/>

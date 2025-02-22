@@ -5,12 +5,7 @@ import image2 from '../Images/form.png';
 import image3 from '../Images/landing.png';
 import image4 from '../Images/buyer.png';
 import image5 from '../Images/broker.png';
-import { BsBuildings } from "react-icons/bs";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdOutlineAttachMoney } from "react-icons/md";
-import { TbRulerMeasure2 } from "react-icons/tb";
 import { useNavigate, useParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import  Pagination  from '../Components/Pagination';
 import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
@@ -30,25 +25,41 @@ const SingleUnit = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const params = useParams()
+  const defaultImage = {
+    id:1,
+    src:image2
+  }
+  const [selectedImage, setSelectedImage] = useState(singleUnit && singleUnit.images && singleUnit.images.length > 0 ? singleUnit.images[0] : defaultImage);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(()=>{
     setLoading(true)
+    setDataLoaded(false)
     axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${params.id}`)
     .then(res => {
       setSingleUnit(res.data.data);
-      console.log(res);
+      console.log(singleUnit);
     })
     .catch(err => {console.log(err);
     })
-    .finally(() => {setLoading(false)})
+    .finally(() => {
+      setDataLoaded(true);
+      setLoading(false)
+    })
   },[])
+  useEffect(() => {
+    if (singleUnit && singleUnit.images && singleUnit.images.length > 0) {
+      setSelectedImage(singleUnit.images[0]);
+    }
+  }, [singleUnit]);
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/all-units')
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{})
     .then(res => {
       setAllUnits(res.data.data.all);
+      console.log();
+      setPaginationData(res.data.data.pagination)
     })
     .catch(err => {console.log(err);
     })
@@ -60,10 +71,6 @@ const SingleUnit = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const indexOfLastUnit = currentPage * unitsPerPage;
-  const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
-  const currentUnits = allUnits&& allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
-  // Change page
   const paginate = (pageNumber) => {
     setLoading(true);
     axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
@@ -84,49 +91,12 @@ const SingleUnit = () => {
       );
     setCurrentPage(pageNumber)
   };
-  const images = [
-    {
-      id: 1,
-      src: image1,
-      alt: "Main Image",
-    },
-    {
-      id: 2,
-      src: image2,
-      alt: "Thumbnail 1",
-    },
-    {
-      id: 3,
-      src: image3,
-      alt: "Thumbnail 2",
-    },
-    {
-      id: 4,
-      src: image4,
-      alt: "Thumbnail 3",
-    },
-    {
-      id: 5,
-      src: image5,
-      alt: "Thumbnail 4",
-    },
-  ];
   const items = [
     {
       key: '1',
       label: 'الوصف',
       children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
     },
-    // {
-    //   key: '2',
-    //   label: 'معلومات',
-    //   children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
-    // },
-    // {
-    //   key: '3',
-    //   label: 'التقييم',
-    //   children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
-    // },
   ];
   const handleUnitClick = (id)=> {
     const foundUnit = allUnits.find(({id})=>id===id)
@@ -145,10 +115,9 @@ const SingleUnit = () => {
       console.log(err);
     })
   }
-  const [selectedImage, setSelectedImage] = useState(images[0]);
   return (
     <>
-      {loading?
+      {loading&& !dataLoaded?
       <Loader/>
       :
       <main className='single_unit_page'>
@@ -157,16 +126,16 @@ const SingleUnit = () => {
         <section className='unit_info'>
           <div className="galleria-container">
             <div className="main-image">
-              <img src={selectedImage.src} alt={selectedImage.alt} />
+              <img src={selectedImage.src} alt='unit image' />
             </div>
             <div className="thumbnail-carousel">
-              {images.map((image) => (
+              {singleUnit && singleUnit.images && singleUnit.images.map((image) => (
                 <div
                   key={image.id}
                   className={`thumbnail ${image.id === selectedImage.id ? "active" : ""}`}
                   onClick={() => setSelectedImage(image)}
                 >
-                  <img src={image.src} alt={image.alt} />
+                  <img src={image.src} alt="unit image" />
                 </div>
               ))}
             </div>
@@ -207,6 +176,7 @@ const SingleUnit = () => {
                 key={discoverMore.id}
                 title={discoverMore.title} 
                 area={discoverMore.area}
+                mainImage={discoverMore.main_image}
                 price = {discoverMore.price}
                 id = {discoverMore.id}
                 onClick = {()=>{handleSingleUnitDetails(discoverMore.id)}}
