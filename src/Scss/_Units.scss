@@ -293,6 +293,9 @@ main.units_page {
           .swiper-slide {
             width: 450px;
             .slide-content {
+              border-radius: 14px;
+              background-color: #fff;
+              padding: 5px;
               display: flex;
               &:hover {
                 .content {
@@ -303,7 +306,7 @@ main.units_page {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 14px;
+                border-radius: 11px;
               }
               .content {
                 border-radius: 14px;

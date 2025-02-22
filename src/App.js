@@ -69,6 +69,8 @@ import FAQ from './Pages/FAQ';
 import ContactButton from './Components/ContactUsBtn';
 import ErrorPage from './Pages/ErrorPage';
 import useScrollToTop from './Components/ScrollToTop';
+import ContactUs from './Pages/ContactUs';
+import Leaderboard from './Pages/LeaderBoard';
 const App = () => {
   useScrollToTop()
   const location = useLocation();
@@ -79,6 +81,8 @@ const App = () => {
     { path: "/all-units", element: <Units /> },
     { path: "/add-new-unit", element: <AddNewUnit /> },
     { path: "/inquiry-page", element: <InquiryPage /> },
+    { path: "/contact-us", element: <ContactUs /> },
+    { path: "/leader-board", element: <Leaderboard /> },
     { path: "/faq/:id", element: <FAQ /> },
     { path: "all-units/:id", element: <SingleUnit /> },
     { path: "*", element: <ErrorPage /> },

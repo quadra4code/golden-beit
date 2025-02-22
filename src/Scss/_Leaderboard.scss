@@ -1,0 +1,53 @@
+.leaderboard-container {
+  max-width: 800px;
+  margin: 50px auto;
+  margin-top: 6rem;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  .leaderboard-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  .leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      &:hover{
+        transform: translateY(-5px);
+      }
+      .leaderboard-rank {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ff9800;
+        margin-left: 20px;
+      }
+      .leaderboard-details {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .leaderboard-name {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+        
+        .leaderboard-amount {
+          font-size: 1.2rem;
+          color: #4caf50;
+        }
+      }
+    }
+  }
+}
+

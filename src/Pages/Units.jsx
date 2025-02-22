@@ -612,7 +612,7 @@ const Units = () => {
                       {newArrivalUnits.map((newArrivalUnit) => (
                         <SwiperSlide className="swiper-slide" key={newArrivalUnit.id}>
                           <div className="slide-content">
-                            <img src={unitImage} alt="project" />
+                            <img src={newArrivalUnit.main_image? newArrivalUnit.main_image:unitImage} alt="project" />
                             <div className="content">
                               <h1>
                                 <FaLocationDot />
@@ -642,6 +642,7 @@ const Units = () => {
                         key={unit.id}
                         title={unit.title}
                         project={unit.project}
+                        mainImage={unit.main_image}
                         city={unit.city}
                         area={unit.area}
                         price={unit.price}
