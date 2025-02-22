@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { FaHandshake } from "react-icons/fa";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { MdDesignServices } from "react-icons/md";
+import { MdOutlineInventory } from "react-icons/md";
 import React, {createContext, useState, useEffect} from 'react';
 const AppContext = createContext();
 export const AppProvider = ({children}) => {
@@ -31,6 +35,7 @@ export const AppProvider = ({children}) => {
       description
     });
   };
+  const icons = [<FaHandshake/>,<GiTakeMyMoney/>,<MdDesignServices/>,<MdOutlineInventory/>]
   //////////////// unAuth handle//////////
   const handleUnAuth = async() => {
     localStorage.removeItem('token')
@@ -64,9 +69,12 @@ export const AppProvider = ({children}) => {
   /////////////// get consultations in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-consultations')
+    axios.get('https://golden-gate-three.vercel.app/core/home-consultation-types')
     .then(response => {
-      setConsultationsData(response.data.data)
+      console.log(response.data);
+      const responseData = response.data.data
+      responseData.map((ele,key)=>{ele['iconKey']=icons[key]})
+      setConsultationsData(responseData)
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -81,20 +89,20 @@ export const AppProvider = ({children}) => {
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
   },[])
-  /////////////// get all winners
-  // useEffect(()=>{
-  //   if(token){
-  //     setLoading(true)
-  //     axios.get('https://golden-gate-three.vercel.app/core/draw-results'
-  //     )
-  //     .then(response => {
-  //       console.log(response.data.data);
-  //       setWinnersData(response.data.data)
-  //     })
-  //     .catch(error => {console.error(error);setLoading(false)})
-  //     .finally(()=>{setLoading(false)})
-  //   }
-  // },[])
+  ///////////// get all winners
+  useEffect(()=>{
+    if(token){
+      setLoading(true)
+      axios.get('https://golden-gate-three.vercel.app/core/recent-units'
+      )
+      .then(response => {
+        console.log(response.data.data);
+        setNewArrivalUnits(response.data.data)
+      })
+      .catch(error => {console.error(error);setLoading(false)})
+      .finally(()=>{setLoading(false)})
+    }
+  },[])
   //////////////post all units screen filter
   const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area)=> {
     setLoading(true)

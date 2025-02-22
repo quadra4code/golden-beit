@@ -505,59 +505,77 @@ import notFoundImage from '../Images/not found.webp'
 import IsDesktop from '../Context/IsDesktop';
 
 const Units = () => {
-  const { handleFilterClick, contextHolder, setSingleUnit, filterData, allUnits, newArrivalUnits, setAllUnits, setNewArrivalUnits } = useContext(AppContext);
+  const { handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
   const [min_area, setMin_area] = useState();
   const [unitFilter, setUnitFilter] = useState();
+  const [allUnits, setAllUnits] = useState();
   const [selectedCity, setSelectedCity] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [unitsPerPage] = useState(9);
+  const [unitsPerPage] = useState(12);
   const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { isDesktop } = useContext(IsDesktop);
   const [isFlat, setIsFlat] = useState(unitFilter);
   const [loading, setLoading] = useState(true);
+  const [paginationData, setPaginationData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false);
   const navigate = useNavigate();
-
   const handleUnitClick = (id) => {
     const foundUnit = allUnits.find((unit) => unit.id === id);
     setSingleUnit(foundUnit);
     navigate(`/all-units/${id}`);
   };
-
+  useEffect(() => {
+    console.log("Updated allUnits:", allUnits);
+  }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    axios.get('https://golden-gate-three.vercel.app/core/all-units')
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    })
       .then(res => {
         setAllUnits(res.data.data.all);
-        console.log(res.data);
-        setNewArrivalUnits(res.data.data.recent);
-        setDataLoaded(true);
+        setPaginationData(res.data.data.pagination)
+        console.log(res.data.data);
       })
       .catch(err => {
         console.log(err);
         setDataLoaded(true);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false)
+        setDataLoaded(true);
+      });
   }, []);
-
   const handleSelectUnitType = (e) => {
     setUnitFilter(e.target.value);
   };
-
   const filteredProjects = unitFilter
     ? filterData && filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
     : [];
-
-  const indexOfLastUnit = currentPage * unitsPerPage;
-  const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
-  const currentUnits = allUnits ? allUnits.slice(indexOfFirstUnit, indexOfFirstUnit + unitsPerPage) : [];
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const paginate = (pageNumber) => {
+    setLoading(true);
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+      page_number:pageNumber
+    })
+      .then(res => {
+        console.log(res.data);
+        
+        setAllUnits(res.data.data.all);
+        setPaginationData(res.data.data.pagination)
+      })
+      .catch(err => {
+        console.log(err);
+        setDataLoaded(true);
+      })
+      .finally(() => {
+        setDataLoaded(true);
+        setLoading(false)}
+      );
+    setCurrentPage(pageNumber)
+  };
   const handleSingleUnitDetails = (id) => {
     axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
       .then((res) => {
@@ -568,14 +586,13 @@ const Units = () => {
         console.log(err);
       });
   };
-
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
         <>
-          {dataLoaded &&  allUnits && allUnits.length > 0 ? (
+          {dataLoaded &&  allUnits&& allUnits.length > 0 ? (
             <main className="units_page">
               <Popup />
               {contextHolder}
@@ -620,7 +637,7 @@ const Units = () => {
                 <div className="all_units">
                   <h2 className="units_title">جميع الوحدات</h2>
                   <div className="units_list">
-                    {currentUnits && currentUnits.map((unit) => (
+                    {allUnits && allUnits.map((unit) => (
                       <UnitCard
                         key={unit.id}
                         title={unit.title}
@@ -634,8 +651,7 @@ const Units = () => {
                     ))}
                   </div>
                   <PaginationComponent
-                    itemsPerPage={unitsPerPage}
-                    totalItems={allUnits ? allUnits.length : 0}
+                    totalItems={paginationData&& paginationData.total_pages}
                     paginate={paginate}
                     currentPage={currentPage}
                   />

@@ -24,6 +24,8 @@ const SingleUnit = () => {
   const [value, setValue] = useState('1');
   const [allUnits, setAllUnits] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
+  const [paginationData, setPaginationData] = useState();
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [unitsPerPage] = useState(10);
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -62,7 +64,26 @@ const SingleUnit = () => {
   const indexOfFirstUnit = indexOfLastUnit - unitsPerPage;
   const currentUnits = allUnits&& allUnits.slice(indexOfFirstUnit, indexOfLastUnit);
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setLoading(true);
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+      page_number:pageNumber
+    })
+      .then(res => {
+        console.log(res.data);
+        setAllUnits(res.data.data.all);
+        setPaginationData(res.data.data.pagination)
+      })
+      .catch(err => {
+        console.log(err);
+        setDataLoaded(true);
+      })
+      .finally(() => {
+        setDataLoaded(true);
+        setLoading(false)}
+      );
+    setCurrentPage(pageNumber)
+  };
   const images = [
     {
       id: 1,
@@ -181,7 +202,7 @@ const SingleUnit = () => {
           <h2>استكشف المزيد</h2>
           <div className="all_units">
             <div className="units_list">
-              {currentUnits.map((discoverMore, index) =>
+              {allUnits&& allUnits.map((discoverMore, index) =>
                 <UnitCard 
                 key={discoverMore.id}
                 title={discoverMore.title} 
@@ -193,8 +214,7 @@ const SingleUnit = () => {
               )}
             </div>
             <Pagination
-              unitsPerPage={unitsPerPage}
-              totalUnits={allUnits&& allUnits.length}
+              totalItems={paginationData&& paginationData.total_pages}
               paginate={paginate}
               currentPage={currentPage}
             />
