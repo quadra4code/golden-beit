@@ -951,7 +951,12 @@ footer.footer section.footer-links {
   flex-wrap: wrap;
   gap: 20px;
 }
-footer.footer section.footer-links ul {
+footer.footer section.footer-links .links {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+footer.footer section.footer-links .links ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -959,13 +964,13 @@ footer.footer section.footer-links ul {
   color: var(--text-color);
   text-align: center;
 }
-footer.footer section.footer-links ul li.header {
+footer.footer section.footer-links .links ul li.header {
   position: relative;
   font-weight: bold;
   font-size: 18px;
   color: var(--dark-primary-color);
 }
-footer.footer section.footer-links ul li.header::after {
+footer.footer section.footer-links .links ul li.header::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -974,13 +979,13 @@ footer.footer section.footer-links ul li.header::after {
   width: 50%;
   background-color: #000000;
 }
-footer.footer section.footer-links ul li {
+footer.footer section.footer-links .links ul li {
   font-size: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-footer.footer section.footer-links ul li svg {
+footer.footer section.footer-links .links ul li svg {
   font-size: 20px;
   color: var(--text-color);
   margin-right: 10px;
@@ -1013,6 +1018,22 @@ footer.footer section.footer-links .logo-slogan span {
   }
 }
 @media (max-width: 768px) {
+  footer.footer section.footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  footer.footer section.footer-links .links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: -moz-fit-content;
+    width: fit-content;
+    gap: 40px;
+  }
+  footer.footer section.footer-links .links ul {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
   footer.footer section.header h1 {
     font-size: 30px;
   }

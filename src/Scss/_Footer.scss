@@ -74,37 +74,42 @@ footer.footer {
     padding: 1rem;
     flex-wrap: wrap; // Allow links to wrap on smaller screens
     gap: 20px; // Add gap between sections
-    ul {
-      list-style: none;
+    .links {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      color: var(--text-color);
-      text-align: center; // Center text for smaller screens
-      li.header {
-        position: relative;
-        font-weight: bold;
-        font-size: 18px;
-        color: var(--dark-primary-color);
-        &::after{
-          content: '';
-          position: absolute;
-          bottom: -5px;
-          right: 0;
-          height: 2px;
-          width: 50%;
-          background-color: #000000;
-        }
-      }
-      li {
-        font-size: 16px;
+      justify-content: space-between;
+      width: 60%;
+      ul {
+        list-style: none;
         display: flex;
-        align-items: center;
-        gap: 10px;
-        svg {
-          font-size: 20px;
-          color: var(--text-color);
-          margin-right: 10px;
+        flex-direction: column;
+        gap: 20px;
+        color: var(--text-color);
+        text-align: center; // Center text for smaller screens
+        li.header {
+          position: relative;
+          font-weight: bold;
+          font-size: 18px;
+          color: var(--dark-primary-color);
+          &::after{
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            height: 2px;
+            width: 50%;
+            background-color: #000000;
+          }
+        }
+        li {
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          svg {
+            font-size: 20px;
+            color: var(--text-color);
+            margin-right: 10px;
+          }
         }
       }
     }
@@ -144,6 +149,20 @@ footer.footer {
     }
   }
   @media (max-width: 768px) {
+    section.footer-links{
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      .links{
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: fit-content;
+        gap: 40px;
+        ul{
+          width: fit-content;
+        }
+      }
+    }
     section.header {
       h1 {
         font-size: 30px; // Further reduce font size for mobile
