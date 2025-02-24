@@ -1314,20 +1314,20 @@ section.landing .search-bar button {
 }
 
 section.why-us {
-  background-color: #e6e6e6;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   width: 100%;
   padding: 3rem;
+  margin-top: 2rem;
 }
 section.why-us h1 {
-  font-size: 60px;
+  font-size: 45px;
   color: var(--dark-primary-color);
 }
 section.why-us h3 {
-  font-size: 30px;
+  font-size: 25px;
   color: rgb(107, 78, 48);
 }
 section.why-us .cols-container {
@@ -1336,25 +1336,39 @@ section.why-us .cols-container {
   align-items: center;
   width: 100%;
   height: 320px;
+  margin-top: 2rem;
 }
 section.why-us .cols-container .col {
   height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 14px;
   justify-content: space-between;
-  padding: 30px 10px 10px 10px;
-  box-shadow: 0px 9px 12px 0 rgba(0, 0, 0, 0.2117647059);
-  background: linear-gradient(rgba(78, 52, 38, 0.53), transparent);
+  padding: 45px 10px 10px 10px;
+  box-shadow: 0px 0px 12px 0 rgba(0, 0, 0, 0.2117647059);
   cursor: pointer;
 }
-section.why-us .cols-container .col svg {
+section.why-us .cols-container .col .icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #fff;
   color: var(--dark-primary-color);
   padding: 8px;
-  font-size: 80px;
-  border-radius: 8px;
+  font-size: 30px;
+  background-color: rgba(138, 114, 93, 0.5098039216);
+  border: 1px solid rgba(138, 114, 93, 0.5098039216);
+  border-radius: 40%;
+  box-shadow: inset 0 0 0 3px #e6e6e6;
+  height: 60px;
+  padding: 1px;
+  width: 60px;
 }
 section.why-us .cols-container .col h1 {
   font-size: 20px;
@@ -1382,22 +1396,20 @@ section.why-us .cols-container .col .arrow {
     height: auto;
     flex-direction: column;
   }
-  section.why-us .col {
+  section.why-us .cols-container .col {
     width: 100%;
     max-width: 600px;
     margin-bottom: 20px;
+    gap: 12px;
   }
-  section.why-us .col svg {
-    font-size: 60px;
-  }
-  section.why-us .col h1 {
+  section.why-us .cols-container .col h1 {
     font-size: 18px;
   }
-  section.why-us .col span {
+  section.why-us .cols-container .col span {
     font-size: 18px;
   }
-  section.why-us .col .arrow {
-    font-size: 40px;
+  section.why-us .cols-container .col .arrow {
+    font-size: 30px;
   }
 }
 @media (max-width: 768px) {
@@ -1410,8 +1422,8 @@ section.why-us .cols-container .col .arrow {
   section.why-us h3 {
     font-size: 20px;
   }
-  section.why-us .col svg {
-    font-size: 50px;
+  section.why-us .col {
+    gap: 12px;
   }
   section.why-us .col h1 {
     font-size: 16px;
@@ -1433,8 +1445,8 @@ section.why-us .cols-container .col .arrow {
   section.why-us h3 {
     font-size: 18px;
   }
-  section.why-us .col svg {
-    font-size: 40px;
+  section.why-us .col {
+    gap: 12px;
   }
   section.why-us .col h1 {
     font-size: 14px;
@@ -1443,7 +1455,7 @@ section.why-us .cols-container .col .arrow {
     font-size: 14px;
   }
   section.why-us .col .arrow {
-    font-size: 25px;
+    font-size: 30px;
   }
 }
 

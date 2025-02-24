@@ -11,14 +11,14 @@ const WhyUs = () => {
   }
   return (
     <section className='why-us' id='why-us'>
-      <h1>لماذا نحن ؟؟</h1>
-      <h3>لاننا نسعى للارتقاء بتجربة شراء منزلك بالخبرة و النزاهة و الخدمة الشخصية التي لا مثيل لها</h3>
+      {/* <h1>لماذا نحن ؟؟</h1>
+      <h3>لاننا نسعى للارتقاء بتجربة شراء منزلك بالخبرة و النزاهة و الخدمة الشخصية التي لا مثيل لها</h3> */}
       <h1>خدماتنا المتميرة</h1>
       <div className='cols-container'>
         {consultationsData&& consultationsData.map((service, index) => 
           <div className="col" key={index}
             onClick={()=>handleConsultionFaq(service.id)}>
-            {service.iconKey}
+            <i className='icon'>{service.iconKey}</i>
             <h1>{service.name}</h1>
             <span>{service.brief}</span>
             <FaArrowLeft className='arrow'/>
