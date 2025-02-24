@@ -505,7 +505,7 @@ import notFoundImage from '../Images/not found.webp'
 import IsDesktop from '../Context/IsDesktop';
 
 const Units = () => {
-  const { handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
+  const { handleSingleUnitDetails, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
@@ -575,16 +575,6 @@ const Units = () => {
         setLoading(false)}
       );
     setCurrentPage(pageNumber)
-  };
-  const handleSingleUnitDetails = (id) => {
-    axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
-      .then((res) => {
-        setSingleUnit(res.data.data);
-        navigate(`/all-units/${id}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
   return (
     <>

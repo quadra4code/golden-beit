@@ -8,55 +8,10 @@ import { LuBedDouble } from "react-icons/lu";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import IsDesktop from '../Context/IsDesktop';
 import { BsBuildings } from "react-icons/bs";
+import AppContext from '../Context/AppContext';
 const OurProjects = () => {
   const {isDesktop} = useContext(IsDesktop)
-  const projects = [
-    {
-      image: image1,
-      location: 'جنة أكتوبر',
-      desc: 'شقق مشروع فالي تاور',
-      space: '4000 قدم مربع',
-      outlook: '4 غرف ',
-      price: '3,700,000',
-      status: 'التفاصيل'
-    },
-    {
-      image: image2,
-      location: 'جنة أكتوبر',
-      desc: 'شقق مشروع فالي تاور',
-      space: '4000 قدم مربع',
-      outlook: '4 غرف ',
-      price: '7,700,000',
-      status: 'التفاصيل'
-    },
-    {
-      image: image1,
-      location: 'جنة أكتوبر',
-      desc: 'شقق مشروع فالي تاور',
-      space: '4000 قدم مربع',
-      outlook: '4 غرف ',
-      price: '3,700,000',
-      status: 'التفاصيل'
-    },
-    {
-      image: image2,
-      location: 'جنة أكتوبر',
-      desc: 'شقق مشروع فالي تاور',
-      space: '4000 قدم مربع',
-      outlook: '4 غرف ',
-      price: '7,700,000',
-      status: 'التفاصيل'
-    },
-    {
-      image: image1,
-      location: 'جنة أكتوبر',
-      desc: 'شقق مشروع فالي تاور',
-      space: '4000 قدم مربع',
-      outlook: '4 غرف ',
-      price: '3,700,000',
-      status: 'التفاصيل'
-    },
-  ];
+  const {featuredUnits, handleSingleUnitDetails} = useContext(AppContext)
   return (
     <section className='our-projects'>
       <h1 className='title'>وحداتنا المتميزة</h1>
@@ -69,28 +24,32 @@ const OurProjects = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {projects.map((project, index) => 
+        {featuredUnits&& featuredUnits.map((project, index) => 
           <SwiperSlide className='swiper-slide' key={index}>
             <div className="slide-content">
-              <img src={project.image} alt="project"/>
+              <img src={project.main_image&& project.main_image?project.main_image:image1} alt="project"/>
               <div className="content">
                 <div className="top">
+                  <h1 className='title'>
+                    {/* <FaLocationDot/> */}
+                    {project.title}
+                  </h1>
                   <h1>
                     <FaLocationDot/>
-                    {project.location}
+                    {project.city}
                   </h1>
                   <h1>
                     <BsBuildings/>
-                    {project.desc}
+                    {project.project}
+                  </h1>
+                  <h1>
+                    <TbRulerMeasure2/>
+                    {project.area} متر
                   </h1>
                 </div>
                 <p>
-                  <span><TbRulerMeasure2/> {project.space}</span>
-                  <span><LuBedDouble/> {project.outlook}</span>
-                </p>
-                <p>
                   <span className='price'>LE {project.price}</span>
-                  <button>{project.status}</button>
+                  <button onClick={()=>{handleSingleUnitDetails(project.id)}}>التفاصيل</button>
                 </p>
               </div>
             </div>

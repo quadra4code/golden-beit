@@ -2661,7 +2661,7 @@ main.home section.our-projects {
   margin: 6rem 0;
   border-top: 40px solid var(--primary-color);
 }
-main.home section.our-projects .title {
+main.home section.our-projects > .title {
   font-size: 60px;
   padding: 3rem 0;
   color: var(--dark-primary-color);
@@ -2683,24 +2683,27 @@ main.home section.our-projects .mySwiper .swiper-wrapper {
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide {
   border-radius: 14px;
   width: 450px;
+  height: auto;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content img {
   width: 100%;
-  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-top-right-radius: 14px;
   border-top-left-radius: 14px;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content {
+  height: 60%;
   padding: 1rem;
   background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   border-bottom-right-radius: 14px;
   border-bottom-left-radius: 14px;
   gap: 18px;
@@ -2708,17 +2711,24 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
+}
+main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top .title {
+  color: #fff;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top h1 {
   display: flex;
+  gap: 10px;
   font-size: 21px;
   color: var(--dark-primary-color);
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content .top h1 svg {
-  font-size: 25px;
-  margin-left: 10px;
+  font-size: 30px;
+  color: #4e3426;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content .content p {
   display: flex;

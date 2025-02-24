@@ -18,6 +18,7 @@ export const AppProvider = ({children}) => {
   const [consultationsData, setConsultationsData] = useState();
   const [winnersData, setWinnersData] = useState();
   const [allUnits, setAllUnits] = useState();
+  const [featuredUnits, setFeaturedUnits] = useState();
   const [newArrivalUnits, setNewArrivalUnits] = useState();
   const [loading, setLoading] = useState(false);
   const [numberInpValue, setNumberInpValue] = useState()
@@ -89,6 +90,17 @@ export const AppProvider = ({children}) => {
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
   },[])
+  /////////////// get home-featured-units screen
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/home-featured-units')
+    .then(response => {
+      console.log(response.data.data);
+      setFeaturedUnits(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
+  },[])
   ///////////// get all winners
   useEffect(()=>{
     if(token){
@@ -103,6 +115,17 @@ export const AppProvider = ({children}) => {
       .finally(()=>{setLoading(false)})
     }
   },[])
+  // ///////handleSingleUnitDetails//////
+  const handleSingleUnitDetails = (id) => {
+    axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+      .then((res) => {
+        setSingleUnit(res.data.data);
+        navigate(`/all-units/${id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   //////////////post all units screen filter
   const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area)=> {
     setLoading(true)
@@ -222,7 +245,7 @@ export const AppProvider = ({children}) => {
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
       numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
-      faqId, setFaqId, ourReviewsData, handleUnAuth
+      faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails
       }}>
       {children}
     </AppContext.Provider>
