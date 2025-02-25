@@ -584,7 +584,13 @@ main.single_unit_page section.more_units .all_units .units_list {
   font-size: 18px;
 }
 .user-span .nav-menu {
-  bottom: -60px;
+  bottom: -105px;
+}
+.user-span .nav-menu .list-unit {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .pagination {

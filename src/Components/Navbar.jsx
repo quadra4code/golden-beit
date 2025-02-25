@@ -48,7 +48,8 @@ const Navbar = () => {
   }
   const handleChangePass = () => {
     setChangePassUi(true);
-    setIsOpen(true)
+    setIsOpen(true);
+    setMobileMenuOpen(false);
     setPopupHeader('تغيير كلمة المرور')
   }
   return (
@@ -229,7 +230,14 @@ const Navbar = () => {
                   <span>مرحبا {name}</span>
                   <IoIosArrowDown/>
                   <div className="nav-menu">
-                    <span className='list-unit' to="/#" onClick={handleLogout}>تسجيل الخروج</span>
+                    <span className='list-unit' onClick={handleChangePass}> 
+                      تغيير كلمة المرور
+                      <RiLockPasswordLine />
+                    </span>
+                    <span className='list-unit' onClick={handleLogout}> 
+                      تسجيل الخروج
+                      <MdLogout />
+                    </span>
                   </div>
                 </span>
                 :

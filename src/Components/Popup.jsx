@@ -90,25 +90,6 @@ const Popup = () => {
   else{
     return (
       <main className={`popup ${isOpen ? 'active' : ''}`}>
-        {/* {isReview? 
-        <div className='popup_inner'>
-          <h2>{popupHeader}</h2>
-          <div className='review-us'>
-            <StarRating/>
-            <textarea 
-            cols='35' rows='6'
-            value={reviewMessage}
-            placeholder='اكتب تقييمك'
-            onChange={(e)=>setReviewMessage(e.target.value)}
-            />
-          </div>
-          <div className="btns">
-            <button onClick={handleAddReview} className='rate-btn'>تقييم</button>
-            <button onClick={handleClose}>اغلاق</button>
-          </div>
-        </div>
-        :
-        } */}
         <div className='popup_inner'>
           <h2>{popupHeader}</h2>
           <div className='wrapper'>

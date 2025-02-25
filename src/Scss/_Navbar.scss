@@ -64,6 +64,12 @@
     font-size: 18px;
   }
   .nav-menu{
-    bottom: -60px;
+    bottom: -105px;
+    .list-unit{
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }
