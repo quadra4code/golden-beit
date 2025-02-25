@@ -501,8 +501,8 @@ import Loader from '../Components/Loader';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 import axios from 'axios';
-import notFoundImage from '../Images/not found.webp'
 import IsDesktop from '../Context/IsDesktop';
+import UnitsNotFound from './UnitsNotFound';
 
 const Units = () => {
   const { handleSingleUnitDetails, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
@@ -752,10 +752,7 @@ const Units = () => {
               </section>
             </main>
           ) : (
-            <div className="data-notFound">
-              <img src={notFoundImage} alt="" />
-              <h1>عفوا لا يوجد وحدات متاحة</h1>
-            </div>
+            <UnitsNotFound description='عفوا لا يوجد وحدات متاحة'/>
           )}
         </>
       )}

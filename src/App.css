@@ -559,7 +559,7 @@ main.single_unit_page section.more_units .all_units .units_list {
   background-color: var(--text-color);
 }
 .links-nav .nav-menu-logout, .user-span .nav-menu-logout {
-  bottom: -126px !important;
+  bottom: -172px !important;
 }
 .links-nav .nav-menu-logout .list-unit, .user-span .nav-menu-logout .list-unit {
   display: flex;
@@ -584,7 +584,7 @@ main.single_unit_page section.more_units .all_units .units_list {
   font-size: 18px;
 }
 .user-span .nav-menu {
-  bottom: -105px;
+  bottom: -150px;
 }
 .user-span .nav-menu .list-unit {
   display: flex;
@@ -2539,6 +2539,49 @@ main.popup .popup_inner .wrapper span {
   .contact-us-container .cols-container .contact-us-form {
     width: 100%;
   }
+}
+
+.favorites-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  margin-top: 6rem;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.favorites-container .favorites-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+.favorites-container .favorites-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.favorites-container .favorites-grid .unit-card-wrapper {
+  position: relative;
+}
+.favorites-container .favorites-grid .unit-card-wrapper .delete-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 30%;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.favorites-container .favorites-grid .unit-card-wrapper .delete-button:hover {
+  background-color: #ff1a1a;
+}
+.favorites-container .favorites-grid .unit-card-wrapper .delete-button svg {
+  font-size: 1.2rem;
 }
 
 * {

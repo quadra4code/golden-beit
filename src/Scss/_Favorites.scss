@@ -1,0 +1,51 @@
+$favorites-bg-color: #f4f4f9;
+$favorites-title-color: #333;
+$favorites-title-font-size: 2.5rem;
+$favorites-grid-gap: 20px;
+$delete-button-bg-color: #ff4d4d;
+
+.favorites-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  margin-top: 6rem;
+  padding: 20px;
+  background-color: $favorites-bg-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  .favorites-title {
+    font-size: $favorites-title-font-size;
+    margin-bottom: 20px;
+    color: $favorites-title-color;
+  }
+  .favorites-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $favorites-grid-gap;
+    justify-content: center;
+    .unit-card-wrapper {
+      position: relative;
+      .delete-button {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: $delete-button-bg-color;
+        border: none;
+        border-radius: 30%;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      
+        &:hover {
+          background-color: darken($delete-button-bg-color, 10%);
+        }
+      
+        svg {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+

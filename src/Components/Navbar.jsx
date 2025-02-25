@@ -8,6 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import {Dialog,DialogPanel,PopoverGroup,Disclosure,DisclosureButton,DisclosurePanel,} from '@headlessui/react';
 import { ChevronDownIcon} from '@heroicons/react/20/solid';
 import { RiLockPasswordLine } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa";
 import {Bars3Icon,XMarkIcon,} from '@heroicons/react/24/outline';
 import { MdLogout } from "react-icons/md";
 import { useContext } from 'react';
@@ -119,6 +120,10 @@ const Navbar = () => {
               <span className='list-unit' onClick={handleChangePass}> 
                 تغيير كلمة المرور
                 <RiLockPasswordLine />
+              </span>
+              <span className='list-unit' onClick={()=>navigate('/favorites')}> 
+                المفضلة
+                <FaRegHeart />
               </span>
               <span className='list-unit' onClick={handleLogout}> 
                 تسجيل الخروج
@@ -233,6 +238,10 @@ const Navbar = () => {
                     <span className='list-unit' onClick={handleChangePass}> 
                       تغيير كلمة المرور
                       <RiLockPasswordLine />
+                    </span>
+                    <span className='list-unit' onClick={()=>navigate('/favorites')}> 
+                      المفضلة
+                      <FaRegHeart />
                     </span>
                     <span className='list-unit' onClick={handleLogout}> 
                       تسجيل الخروج

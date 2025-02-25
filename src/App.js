@@ -71,6 +71,7 @@ import ErrorPage from './Pages/ErrorPage';
 import useScrollToTop from './Components/ScrollToTop';
 import ContactUs from './Pages/ContactUs';
 import Leaderboard from './Pages/LeaderBoard';
+import Favorites from './Pages/Favorites';
 const App = () => {
   useScrollToTop()
   const location = useLocation();
@@ -79,6 +80,7 @@ const App = () => {
     { path: "/register/:params", element: <Login /> },
     { path: "/register", element: <Login /> },
     { path: "/all-units", element: <Units /> },
+    { path: "/favorites", element: <Favorites /> },
     { path: "/add-new-unit", element: <AddNewUnit /> },
     { path: "/inquiry-page", element: <InquiryPage /> },
     { path: "/contact-us", element: <ContactUs /> },
