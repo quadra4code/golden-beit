@@ -489,7 +489,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import PaginationComponent from '../Components/Pagination';
 import { Pagination } from 'swiper/modules';
-import Slider from 'rc-slider';
+// import Slider from 'rc-slider';
 import unitImage from '../Images/form.png';
 import { IoIosArrowDown } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
@@ -510,24 +510,27 @@ const Units = () => {
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
   const [min_area, setMin_area] = useState();
-  const [unitFilter, setUnitFilter] = useState();
+  const [unitTypeId, setUnitTypeId] = useState();
   const [allUnits, setAllUnits] = useState();
   const [selectedCity, setSelectedCity] = useState();
+  const [selectedFloor, setSelectedFloor] = useState();
+  const [selectedFacade, setSelectedFacade] = useState();
+  const [selectedProject, setSelectedProject] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [unitsPerPage] = useState(12);
-  const [paymentMethod, setPaymentMethod] = useState();
+  // const [unitsPerPage] = useState(12);
+  // const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { isDesktop } = useContext(IsDesktop);
-  const [isFlat, setIsFlat] = useState(unitFilter);
+  // const [isFlat, setIsFlat] = useState(unitFilter);
   const [loading, setLoading] = useState(true);
   const [paginationData, setPaginationData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false);
   const navigate = useNavigate();
-  const handleUnitClick = (id) => {
-    const foundUnit = allUnits.find((unit) => unit.id === id);
-    setSingleUnit(foundUnit);
-    navigate(`/all-units/${id}`);
-  };
+  // const handleUnitClick = (id) => {
+  //   const foundUnit = allUnits.find((unit) => unit.id === id);
+  //   setSingleUnit(foundUnit);
+  //   navigate(`/all-units/${id}`);
+  // };
   useEffect(() => {
     console.log("Updated allUnits:", allUnits);
   }, [allUnits]);
@@ -549,11 +552,11 @@ const Units = () => {
         setDataLoaded(true);
       });
   }, []);
-  const handleSelectUnitType = (e) => {
-    setUnitFilter(e.target.value);
-  };
-  const filteredProjects = unitFilter
-    ? filterData && filterData.unit_types.find((type) => type.id.toString() === unitFilter)?.projects || []
+  // const handleSelectUnitType = (e) => {
+  //   setUnitTypeId(e.target.value);
+  // };
+  const filteredProjects = unitTypeId
+    ? filterData && filterData.unit_types.find((type) => type.id.toString() === unitTypeId)?.projects || []
     : [];
   const paginate = (pageNumber) => {
     setLoading(true);
@@ -616,7 +619,7 @@ const Units = () => {
                                 <MdOutlineAttachMoney />
                                 السعر : {newArrivalUnit.area}
                               </h1>
-                              <button className="see_more" onClick={() => handleUnitClick(newArrivalUnit.id)}>التفاصيل</button>
+                              <button className="see_more" onClick={() => navigate(`/all-units/${newArrivalUnit.id}`)}>التفاصيل</button>
                             </div>
                           </div>
                         </SwiperSlide>
@@ -637,7 +640,7 @@ const Units = () => {
                         area={unit.area}
                         price={unit.price}
                         id={unit.id}
-                        onClick={() => handleSingleUnitDetails(unit.id)}
+                        onClick={() => navigate(`/all-units/${unit.id}`)}
                       />
                     ))}
                   </div>
@@ -661,10 +664,10 @@ const Units = () => {
                       <input
                         type="radio" 
                         id="land" 
-                        name="project_type_id" 
+                        name="unit_type_id" 
                         value="1" 
-                        checked={unitFilter==='1'}
-                        onChange={handleSelectUnitType}
+                        checked={unitTypeId==='1'}
+                        onChange={(e)=>setUnitTypeId(e.target.value)}
                       />
                       <label for="land">أرض</label>
                     </div>
@@ -672,17 +675,17 @@ const Units = () => {
                       <input
                         type="radio" 
                         id="flat" 
-                        name="project_type_id" 
+                        name="unit_type_id" 
                         value="2" 
-                        checked={unitFilter==='2'}
-                        onChange={handleSelectUnitType}
+                        checked={unitTypeId==='2'}
+                        onChange={(e)=>setUnitTypeId(e.target.value)}
                       />
                       <label for="flat">شقة</label>
                     </div>
                   </div>
                 </div>
                 <div className="filter_unit">
-                  <select name="unit" id="unit" onChange={(e) => handleSelectUnitType(e.target)}>
+                  <select name="unit" id="unit" onChange={(e) => setSelectedProject(e.target.value)}>
                     <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
                     {filteredProjects.map((project) => (
                       <option key={project.id}  value={project.id}>
@@ -719,9 +722,9 @@ const Units = () => {
                     )}
                   </select>
                 </div>
-                {unitFilter=== '2'&&
+                {unitTypeId=== '2'&&
                   <div className="filter_unit">
-                    <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
+                    <select name="" id="" onChange={(e) => setSelectedFloor(e.target.value)}>
                       <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
                       {filterData && filterData.floors.map((index, key) =>
                         <option key={key} value={index.id}>{index.name}</option>
@@ -729,24 +732,22 @@ const Units = () => {
                     </select>
                   </div>            
                 }
-                {unitFilter=== '2'&&
-                  <div className="filter_unit">
-                    <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                      <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
-                      {filterData && filterData.facades.map((index, key) =>
-                        <option key={key} value={index.id}>{index.name}</option>
-                      )}
-                    </select>
-                  </div>
-                }
                 <div className="filter_unit">
+                  <select name="" id="" onChange={(e) => setSelectedFacade(e.target.value)}>
+                    <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
+                    {filterData && filterData.facades.map((index, key) =>
+                      <option key={key} value={index.id}>{index.name}</option>
+                    )}
+                  </select>
+                </div>
+                {/* <div className="filter_unit">
                   <select name="" id="" onChange={(e) => setPaymentMethod(e.target.value)}>
                     <option hidden disabled selected value="اختر وسيلة الدفع">اختر وسيلة الدفع</option>
                     <option value="IN">كاش</option>
                     <option value="CS">تقسيط</option>
                   </select>
-                </div>
-                <button className="filter_btn" onClick={() => { handleFilterClick(unitFilter, paymentMethod, selectedCity, min_price, max_price, min_area, max_area) }}>تصنيف</button>
+                </div> */}
+                <button className="filter_btn" onClick={() => { handleFilterClick(unitTypeId,selectedProject, selectedCity, min_price, max_price, min_area, max_area,selectedFloor,selectedFacade) }}>تصنيف</button>
               </section>
             </main>
           ) : (

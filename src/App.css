@@ -558,8 +558,14 @@ main.single_unit_page section.more_units .all_units .units_list {
   color: #fff;
   background-color: var(--text-color);
 }
-.links-nav .nav-menu2, .user-span .nav-menu2 {
-  bottom: -160px;
+.links-nav .nav-menu-logout, .user-span .nav-menu-logout {
+  bottom: -126px !important;
+}
+.links-nav .nav-menu-logout .list-unit, .user-span .nav-menu-logout .list-unit {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .user-span {
@@ -1382,7 +1388,7 @@ section.why-us .cols-container .col span {
 }
 section.why-us .cols-container .col .arrow {
   font-size: 50px;
-  color: #8c7061;
+  color: rgba(138, 114, 93, 0.5764705882);
   background-color: transparent;
 }
 @media (max-width: 1200px) {

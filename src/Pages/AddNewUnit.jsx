@@ -377,7 +377,9 @@ const AddNewUnit = () => {
     area: '',
     description: '',
     unit_number: '',
-    payment_method: 'CS',
+    payment_method: '',
+    paid_amount: '',
+    remaining_amount: '',
     building_number: '',
     installment_period: 0,
     first_installment_value: 0,
@@ -537,7 +539,7 @@ const AddNewUnit = () => {
           <div className="form-group">
             <label htmlFor="unitName">اسم المشروع </label>
             <select value={formData.project_id} name="project_id" id="unit" onChange={handleChange}>
-              <option value="" disabled>
+              <option value="" disabled hidden>
                 اختر مشروع
               </option>
               {filteredProjects.map((project) => (
@@ -556,7 +558,7 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled>أختر الطرح</option>
+              <option value="" disabled hidden>أختر الطرح</option>
               {filterData && filterData.proposals.map((proposal) =>
                 <option key={proposal.id} value={proposal.id}>{proposal.name}</option>
               )}
@@ -571,7 +573,7 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled>أختر الموقع</option>
+              <option value="" disabled hidden>أختر الموقع</option>
               {filterData && filterData.cities.map((city) =>
                 <option key={city.id} value={city.id}>{city.name}</option>
               )}
@@ -586,7 +588,7 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled>أختر الواجهة</option>
+              <option value="" disabled hidden selected>أختر الواجهة</option>
               {filterData && filterData.facades.map((facade) =>
                 <option key={facade.id} value={facade.id}>{facade.name}</option>
               )}
@@ -602,7 +604,7 @@ const AddNewUnit = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled>أختر الطابق</option>
+                <option value="" disabled hidden>أختر الطابق</option>
                 {filterData && filterData.floors.map((floor) =>
                   <option key={floor.id} value={floor.id}>{floor.name}</option>
                 )}
@@ -634,7 +636,38 @@ const AddNewUnit = () => {
             </div>
           }
           <div className="form-group">
-            <label htmlFor="saleStatus">طريقة الدفع</label>
+            <label htmlFor="unitType">نظام السداد</label>
+            <input
+              type="text"
+              id="area"
+              name="payment_method"
+              value={formData.payment_method}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="unitType">المدفوع </label>
+            <input
+              type="text"
+              id="area"
+              name="paid_amount"
+              value={formData.paid_amount}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="unitType"> المتبقي</label>
+            <input
+              type="text"
+              id="area"
+              name="remaining_amount"
+              value={formData.remaining_amount}
+              onChange={handleChange}
+            />
+          </div>
+          {/* <div className="form-group">
+            <label htmlFor="saleStatus">نظام السداد</label>
             <select
               id="saleStatus"
               name="payment_method"
@@ -646,7 +679,7 @@ const AddNewUnit = () => {
               <option value="CS">كاش</option>
               <option value="IN">تقسيط</option>
             </select>
-          </div>
+          </div> */}
           <div className="form-group">
             <label htmlFor="price">مدة التقسيط</label>
             <input
@@ -655,8 +688,6 @@ const AddNewUnit = () => {
               name="installment_period"
               value={formData.installment_period}
               onChange={handleChange}
-              required
-              disabled={formData.payment_method === 'CS' ? true : false}
             />
           </div>
           <div className="form-group">
@@ -667,8 +698,6 @@ const AddNewUnit = () => {
               name="first_installment_value"
               value={formData.first_installment_value}
               onChange={handleChange}
-              required
-              disabled={formData.payment_method === 'CS' ? true : false}
             />
           </div>
           <div className="form-group">

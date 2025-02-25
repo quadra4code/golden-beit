@@ -39,8 +39,14 @@
       }
     }
   }
-  .nav-menu2{
-    bottom: -160px;
+  .nav-menu-logout{
+    bottom: -126px !important;
+    .list-unit{
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }
 .user-span{

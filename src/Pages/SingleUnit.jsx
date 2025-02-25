@@ -169,15 +169,15 @@ const SingleUnit = () => {
             <span className='holder'><h3>المشروع:</h3> <span>{singleUnit&& singleUnit.project}</span></span>
             <span className='holder'><h3>الموقع:</h3> <span>{singleUnit&& singleUnit.city}</span></span>
             <span className='holder'><h3>المساحة:</h3> <span>{singleUnit&& singleUnit.area}</span></span>
-            <span className='holder'><h3> وسيلة الدفع:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
+            <span className='holder'><h3> نظام السداد:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
             {singleUnit&& singleUnit.meter_price&&
               <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span></span>
             }
             {singleUnit&& singleUnit.total_price&&
-              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span></span>
+              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span></span>
             }
             {singleUnit&& singleUnit.over_price&&
-              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span></span>
+              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span></span>
             }
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
@@ -200,7 +200,7 @@ const SingleUnit = () => {
                 mainImage={discoverMore.main_image}
                 price = {discoverMore.price}
                 id = {discoverMore.id}
-                onClick = {()=>{handleSingleUnitDetails(discoverMore.id)}}
+                onClick = {()=>{navigate(`/all-units/${discoverMore.id}`)}}
                 />
               )}
             </div>

@@ -9,8 +9,10 @@ import { TbRulerMeasure2 } from "react-icons/tb";
 import IsDesktop from '../Context/IsDesktop';
 import { BsBuildings } from "react-icons/bs";
 import AppContext from '../Context/AppContext';
+import { useNavigate } from 'react-router-dom';
 const OurProjects = () => {
   const {isDesktop} = useContext(IsDesktop)
+  const {navigate} = useNavigate()
   const {featuredUnits, handleSingleUnitDetails} = useContext(AppContext)
   return (
     <section className='our-projects'>
@@ -49,7 +51,7 @@ const OurProjects = () => {
                 </div>
                 <p>
                   <span className='price'>LE {project.price}</span>
-                  <button onClick={()=>{handleSingleUnitDetails(project.id)}}>التفاصيل</button>
+                  <button onClick={()=>{navigate(`/all-units/${project.id}`)}}>التفاصيل</button>
                 </p>
               </div>
             </div>

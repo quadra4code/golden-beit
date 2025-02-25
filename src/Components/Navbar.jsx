@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
 import {Dialog,DialogPanel,PopoverGroup,Disclosure,DisclosureButton,DisclosurePanel,} from '@headlessui/react';
 import { ChevronDownIcon} from '@heroicons/react/20/solid';
+import { RiLockPasswordLine } from "react-icons/ri";
 import {Bars3Icon,XMarkIcon,} from '@heroicons/react/24/outline';
+import { MdLogout } from "react-icons/md";
 import { useContext } from 'react';
 import AppContext from '../Context/AppContext';
 const Navbar = () => {
@@ -43,6 +45,9 @@ const Navbar = () => {
     localStorage.setItem('oneTimeInquiry','true');
     window.location.reload();
   }
+  const handleChangePass = () => {
+
+  }
   return (
     <header className="z-10 bg-white fixed navbar top-0 w-full">
       <nav aria-label="Global" className="mx-auto px-2 flex max-w-7xl items-center justify-between p-1 lg:px-8">
@@ -77,7 +82,8 @@ const Navbar = () => {
               خدماتنا
             </span>
             <div className="nav-menu">
-              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
+              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك
+              </span>
               <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
               <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
@@ -105,8 +111,15 @@ const Navbar = () => {
           <span className='user-span'>
             <span>مرحبا {name}</span>
             <IoIosArrowDown/>
-            <div className="nav-menu">
-              <span className='list-unit' to="/#" onClick={handleLogout}>تسجيل الخروج</span>
+            <div className="nav-menu nav-menu-logout">
+              <span className='list-unit' onClick={handleLogout}> 
+                تسجيل الخروج
+                <MdLogout />
+              </span>
+              <span className='list-unit' onClick={handleChangePass}> 
+                تغيير كلمة المرور
+                <RiLockPasswordLine />
+              </span>
             </div>
           </span>
           :
