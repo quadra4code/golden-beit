@@ -28,6 +28,7 @@ export const AppProvider = ({children}) => {
   const [api, contextHolder] = notification.useNotification();
   const [rating, setRating] = useState(0);
   const [faqId, setFaqId] = useState(0);
+  const [changePassUi, setChangePassUi] = useState(false);
   const [reviewMessage, setReviewMessage] = useState('');
   const token = localStorage.getItem('token');
   const openNotificationWithIcon = (type, message, description) => {
@@ -247,7 +248,8 @@ export const AppProvider = ({children}) => {
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
       numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
-      faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails
+      faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
+      changePassUi, setChangePassUi,
       }}>
       {children}
     </AppContext.Provider>

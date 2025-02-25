@@ -5,13 +5,13 @@ import { BsBuildings } from "react-icons/bs";
 import { BiRename } from "react-icons/bi";
 import image2 from '../Images/form.png';
 import { IoLocationOutline } from "react-icons/io5";
-const UnitCard = ({title, area, price, city, project, onClick, key, mainImage}) => {
+const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,isSoldOut}) => {
   return (
     <div className="unit-card" key={key}>
+      {isSoldOut && <span className='sold_out'>تم البيع</span>}
       <img src={mainImage==null?image2:mainImage} alt="project"/>
       <div className="content">
         <h1>
-          <BiRename/>
           {title}
         </h1>
         <h1>

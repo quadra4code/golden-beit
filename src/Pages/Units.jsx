@@ -640,6 +640,7 @@ const Units = () => {
                         area={unit.area}
                         price={unit.price}
                         id={unit.id}
+                        isSoldOut={unit.status.code==4 && true}
                         onClick={() => navigate(`/all-units/${unit.id}`)}
                       />
                     ))}

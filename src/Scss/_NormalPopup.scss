@@ -21,11 +21,47 @@ main.popup {
     flex-direction: column;
     gap: 20px;
     max-width: 650px;
+    form.change-pass{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      input{
+        padding: 8px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #ddd;
+        width: 100%;
+      }
+    }
     .btns{
       display: flex;
       justify-content: center;
       gap: 20px;
       align-items: center;
+      .rate-btn{
+        background-color: #007bff;
+        &:hover {
+          background-color: #0057b3;
+        }
+      }
+      .close-btn{
+        background-color: #d40000;
+        &:hover {
+          background-color: #990000;
+        }
+      }
+      button{
+        color: #fff;
+        padding: 8px 15px;
+        border: none;
+        outline: none;
+        border-radius: 12px;
+        font-size: 14px;
+        min-width: 140px;
+        cursor: pointer;
+        align-self: center;
+        transition: .3s;
+      }  
     }
     .review-us {
       display: flex;
@@ -61,28 +97,6 @@ main.popup {
         border-radius:12px;
         width: 100%;
         padding: 10px;
-      }
-    }
-    .rate-btn{
-      background-color: #007bff;
-      &:hover {
-        background-color: #0057b3;
-      }
-    }
-    button{
-      background-color: #735240;
-      color: #fff;
-      padding: 8px 15px;
-      border: none;
-      outline: none;
-      border-radius: 12px;
-      font-size: 18px;
-      width: 150px;
-      cursor: pointer;
-      align-self: center;
-      transition: .3s;
-      &:hover {
-        background-color: var(--dark-primary-color);        
       }
     }
   }

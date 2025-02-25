@@ -15,12 +15,13 @@ import AppContext from '../Context/AppContext';
 const Navbar = () => {
   const referral_code = localStorage.getItem('referral_code')
   const navigate = useNavigate()
-  const { token, openNotificationWithIcon, setIsNormalPop,
+  const { token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
   const handleAddUnitRoute = (type)=> {
     setMobileMenuOpen(false)
     if(token){
       if(type==='invite'){
+        setChangePassUi(false)
         setIsNormalPop(true)
         setIsOpen(true);
         setPopupHeader('قم بنسخ لينك الدعوة')
@@ -46,7 +47,9 @@ const Navbar = () => {
     window.location.reload();
   }
   const handleChangePass = () => {
-
+    setChangePassUi(true);
+    setIsOpen(true)
+    setPopupHeader('تغيير كلمة المرور')
   }
   return (
     <header className="z-10 bg-white fixed navbar top-0 w-full">
@@ -112,13 +115,13 @@ const Navbar = () => {
             <span>مرحبا {name}</span>
             <IoIosArrowDown/>
             <div className="nav-menu nav-menu-logout">
-              <span className='list-unit' onClick={handleLogout}> 
-                تسجيل الخروج
-                <MdLogout />
-              </span>
               <span className='list-unit' onClick={handleChangePass}> 
                 تغيير كلمة المرور
                 <RiLockPasswordLine />
+              </span>
+              <span className='list-unit' onClick={handleLogout}> 
+                تسجيل الخروج
+                <MdLogout />
               </span>
             </div>
           </span>

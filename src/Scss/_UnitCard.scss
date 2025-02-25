@@ -7,6 +7,16 @@
   border-radius: 22px;
   width: 310px;
   padding: 10px;
+  position: relative;
+  .sold_out{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 22px;
+    background-color: red;
+    padding: 5px 12px;
+    color: #fff;
+  }
   img{
     width: 100%;
     object-fit: cover;

@@ -2104,6 +2104,16 @@ main.login-page .opacity .login-form-box form .input-box svg {
   border-radius: 22px;
   width: 310px;
   padding: 10px;
+  position: relative;
+}
+.unit-card .sold_out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 22px;
+  background-color: red;
+  padding: 5px 12px;
+  color: #fff;
 }
 .unit-card img {
   width: 100%;
@@ -2279,11 +2289,47 @@ main.popup .popup_inner {
   gap: 20px;
   max-width: 650px;
 }
+main.popup .popup_inner form.change-pass {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+main.popup .popup_inner form.change-pass input {
+  padding: 8px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #ddd;
+  width: 100%;
+}
 main.popup .popup_inner .btns {
   display: flex;
   justify-content: center;
   gap: 20px;
   align-items: center;
+}
+main.popup .popup_inner .btns .rate-btn {
+  background-color: #007bff;
+}
+main.popup .popup_inner .btns .rate-btn:hover {
+  background-color: #0057b3;
+}
+main.popup .popup_inner .btns .close-btn {
+  background-color: #d40000;
+}
+main.popup .popup_inner .btns .close-btn:hover {
+  background-color: #990000;
+}
+main.popup .popup_inner .btns button {
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 14px;
+  min-width: 140px;
+  cursor: pointer;
+  align-self: center;
+  transition: 0.3s;
 }
 main.popup .popup_inner .review-us {
   display: flex;
@@ -2320,28 +2366,6 @@ main.popup .popup_inner .wrapper span {
   border-radius: 12px;
   width: 100%;
   padding: 10px;
-}
-main.popup .popup_inner .rate-btn {
-  background-color: #007bff;
-}
-main.popup .popup_inner .rate-btn:hover {
-  background-color: #0057b3;
-}
-main.popup .popup_inner button {
-  background-color: #735240;
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  outline: none;
-  border-radius: 12px;
-  font-size: 18px;
-  width: 150px;
-  cursor: pointer;
-  align-self: center;
-  transition: 0.3s;
-}
-main.popup .popup_inner button:hover {
-  background-color: var(--dark-primary-color);
 }
 @media (max-width: 780px) {
   main.popup .popup_inner {
