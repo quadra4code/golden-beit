@@ -9,7 +9,7 @@ main.popup {
   left: 0;
   width: 100%;
   height: 100lvh;
-  z-index: 3;
+  z-index: 1000;
   &.active {
     display: flex;
   }

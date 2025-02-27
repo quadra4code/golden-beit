@@ -364,6 +364,9 @@ main.single_unit_page section.unit_info .unit_data .btns button.add_fav {
   background-color: transparent;
   border: 1px solid #333;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px;
   width: 150px;
   color: #333;
@@ -2281,7 +2284,7 @@ main.popup {
   left: 0;
   width: 100%;
   height: 100lvh;
-  z-index: 3;
+  z-index: 1000;
 }
 main.popup.active {
   display: flex;

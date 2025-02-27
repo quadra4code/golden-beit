@@ -8,6 +8,7 @@ import image5 from '../Images/broker.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import  Pagination  from '../Components/Pagination';
 import AppContext from '../Context/AppContext';
+import { FaRegHeart } from "react-icons/fa";
 import Loader from '../Components/Loader';
 import axios from 'axios';
 import { Tabs } from 'antd';
@@ -181,7 +182,7 @@ const SingleUnit = () => {
             }
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
-              <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>إضافة إلى المفضلة</button>
+              <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}><FaRegHeart/></button>
             </div>
           </div>
         </section>
@@ -200,6 +201,7 @@ const SingleUnit = () => {
                 mainImage={discoverMore.main_image}
                 price = {discoverMore.price}
                 id = {discoverMore.id}
+                isSoldOut={discoverMore.status.code==4 && true}
                 onClick = {()=>{navigate(`/all-units/${discoverMore.id}`)}}
                 />
               )}
