@@ -12,8 +12,9 @@ import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 const OurProjects = () => {
   const {isDesktop} = useContext(IsDesktop)
-  const {navigate} = useNavigate()
+  const navigate = useNavigate()
   const {featuredUnits, handleSingleUnitDetails} = useContext(AppContext)
+  console.log(featuredUnits);
   return (
     <section className='our-projects'>
       <h1 className='title'>وحداتنا المتميزة</h1>
@@ -50,7 +51,7 @@ const OurProjects = () => {
                   </h1>
                 </div>
                 <p>
-                  <span className='price'>LE {project.price}</span>
+                  <span className='price'>{project.price_obj.price_value} {project.price_obj.currency} </span>
                   <button onClick={()=>{navigate(`/all-units/${project.id}`)}}>التفاصيل</button>
                 </p>
               </div>

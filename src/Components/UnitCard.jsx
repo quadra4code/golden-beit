@@ -27,8 +27,8 @@ const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,is
           {area} متر مربع
         </h1>
         <h1 className='price'>
-          <span className='label'>EGP  </span>
-          {price}
+          <span className='label'>{price.currency} </span>
+          {price.price_value}
         </h1>
         <button className='see_more' onClick={onClick}>التفاصيل</button>
       </div>

@@ -505,13 +505,13 @@ import IsDesktop from '../Context/IsDesktop';
 import UnitsNotFound from './UnitsNotFound';
 
 const Units = () => {
-  const { handleSingleUnitDetails, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
+  const { allUnits, setAllUnits, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
   const [min_area, setMin_area] = useState();
   const [unitTypeId, setUnitTypeId] = useState();
-  const [allUnits, setAllUnits] = useState();
+  // const [allUnits, setAllUnits] = useState();
   const [selectedCity, setSelectedCity] = useState();
   const [selectedFloor, setSelectedFloor] = useState();
   const [selectedFacade, setSelectedFacade] = useState();
@@ -638,7 +638,7 @@ const Units = () => {
                         mainImage={unit.main_image}
                         city={unit.city}
                         area={unit.area}
-                        price={unit.price}
+                        price={unit.price_obj}
                         id={unit.id}
                         isSoldOut={unit.status.code==4 && true}
                         onClick={() => navigate(`/all-units/${unit.id}`)}

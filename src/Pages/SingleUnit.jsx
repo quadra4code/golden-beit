@@ -199,7 +199,7 @@ const SingleUnit = () => {
                 title={discoverMore.title} 
                 area={discoverMore.area}
                 mainImage={discoverMore.main_image}
-                price = {discoverMore.price}
+                price = {discoverMore.price_obj}
                 id = {discoverMore.id}
                 isSoldOut={discoverMore.status.code==4 && true}
                 onClick = {()=>{navigate(`/all-units/${discoverMore.id}`)}}

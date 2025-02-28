@@ -131,7 +131,7 @@ export const AppProvider = ({children}) => {
   const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true)
     axios.post(
-      'https://golden-gate-three.vercel.app/core/paginated-filter-units',
+      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
       {
         unit_type_id,
         project_id,
@@ -153,7 +153,8 @@ export const AppProvider = ({children}) => {
         openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }
-      setAllUnits(res.data.data);
+      console.log(res);
+      setAllUnits(res.data.data.all);
     })
     .catch(err => {
       console.log(err);
