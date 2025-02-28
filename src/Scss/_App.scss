@@ -29,6 +29,22 @@
   direction: rtl;
   font-family: "cairo", serif;
 }
+::-webkit-progress-bar {
+  background-color: #000000;
+}
+::-webkit-progress-value {
+  background-color: #8a725d;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #8a725d;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #eceae6;
+}
 html {
   scroll-behavior: smooth;
 }

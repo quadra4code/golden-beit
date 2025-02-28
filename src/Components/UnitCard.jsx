@@ -23,7 +23,7 @@ const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,is
           {project}
         </h1>
         <h1>
-          <span className='label'><TbRulerMeasure2/></span>
+          <TbRulerMeasure2/>
           {area} متر مربع
         </h1>
         <h1 className='price'>

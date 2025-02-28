@@ -131,7 +131,7 @@ export const AppProvider = ({children}) => {
   const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true)
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-properties',
+      'https://golden-gate-three.vercel.app/core/paginated-filter-units',
       {
         unit_type_id,
         project_id,
@@ -163,7 +163,7 @@ export const AppProvider = ({children}) => {
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-properties',
+      'https://golden-gate-three.vercel.app/core/filter-units',
       {
         project_id,
         city_id ,

@@ -187,7 +187,9 @@ main.units_page .filter_toggle {
   color: #000000;
   font-weight: 600;
   border: none;
-  border-bottom: 1px solid #646363;
+  background-color: #fff;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1490196078);
+  border-radius: 15px;
   padding: 10px 20px;
   cursor: pointer;
   z-index: 10;
@@ -263,7 +265,8 @@ main.units_page .price-range-slider {
 }
 main.units_page .price-range-slider input {
   outline: none;
-  border-bottom: 1px solid #d7d7d7;
+  background-color: #fff;
+  border-radius: 5px;
   padding: 10px;
   border-radius: none;
 }
@@ -2134,6 +2137,8 @@ main.login-page .opacity .login-form-box form .input-box svg {
 .unit-card .content {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
   gap: 10px;
   width: 100%;
 }
@@ -2170,6 +2175,22 @@ main.login-page .opacity .login-form-box form .input-box svg {
   color: #ccc;
 }
 
+@media (max-width: 1350px) {
+  .unit-card {
+    width: 258px;
+  }
+  .unit-card h1 {
+    font-size: 16px;
+  }
+  .unit-card h1 .label {
+    font-size: 14px;
+  }
+  .unit-card button.see_more {
+    font-size: 14px;
+    padding: 2px 15px;
+    border-radius: 8px;
+  }
+}
 .contactContainer {
   position: fixed;
   bottom: 20px;
@@ -2593,6 +2614,27 @@ main.popup .popup_inner .wrapper span {
   box-sizing: border-box;
   direction: rtl;
   font-family: "cairo", serif;
+}
+
+::-webkit-progress-bar {
+  background-color: #000000;
+}
+
+::-webkit-progress-value {
+  background-color: #8a725d;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8a725d;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #eceae6;
 }
 
 html {

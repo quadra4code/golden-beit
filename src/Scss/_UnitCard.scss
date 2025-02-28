@@ -26,6 +26,8 @@
   .content{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
     gap: 10px;
     width: 100%;
   }
@@ -59,5 +61,21 @@
       background-color: var(--dark-primary-color);
       color: #ccc;
     }        
+  }
+}
+@media(max-width: 1350px){
+  .unit-card{
+    width: 258px;
+    h1{
+      font-size: 16px;
+      .label {
+        font-size: 14px;
+      }
+    }
+    button.see_more{
+      font-size: 14px;
+      padding: 2px 15px;
+      border-radius: 8px;
+    }
   }
 }
