@@ -47,7 +47,7 @@ const OurProjects = () => {
                   </h1>
                   <h1>
                     <TbRulerMeasure2/>
-                    {project.area} متر
+                    {project.area} متر مربع
                   </h1>
                 </div>
                 <p>

@@ -17,16 +17,17 @@ main.single_unit_page {
         align-items: center;
         gap: 20px;
         button.add_fav {
-          width: 100%;
           background-color: transparent;
           border: 1px solid #333;
-          font-size: 16px;
+          font-size: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 5px ;
+          gap: 10px;
           width: 150px;
+          padding: 5px;
           color: #333;
+          border-radius: 4px;
           cursor: pointer;
           &:hover {
             background-color: var(--dark-primary-color);
@@ -51,8 +52,9 @@ main.single_unit_page {
       .holder {
         display: flex;
         align-items: center;
-        width: 16rem;
-        justify-content: space-between;
+        // width: 16rem;
+        gap: 1rem;
+        // justify-content: space-between;
         h3{
           font-size: 18px;
           font-weight: 600;
@@ -234,7 +236,19 @@ main.single_unit_page {
     }
   }
 }
-@media (max-width: 1200px) {
+// @media (max-width: 1200px) {
+//   main.single_unit_page section.unit_info{
+//     gap: 20px;
+//     flex-direction: column;
+//     .galleria-container{
+//       max-width: 100%;
+//     }
+//     .unit_data{
+//       gap: 20px;
+//     }
+//   }
+// }
+@media (max-width: 768px) {
   main.single_unit_page section.unit_info{
     gap: 20px;
     flex-direction: column;
@@ -246,5 +260,15 @@ main.single_unit_page {
     }
   }
 }
-@media (max-width: 768px) {}
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+  main.single_unit_page section.unit_info{
+    gap: 20px;
+    flex-direction: column;
+    .galleria-container{
+      max-width: 100%;
+    }
+    .unit_data{
+      gap: 20px;
+    }
+  }
+}

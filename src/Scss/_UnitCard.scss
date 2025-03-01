@@ -46,6 +46,10 @@
   .price{
     color: var(--primary-color);
     font-size: 24px;
+    .price-type{
+      font-size: 16px;
+      color: var(--text-color);
+    }
   }
   button.see_more {
     border-radius: 16px;

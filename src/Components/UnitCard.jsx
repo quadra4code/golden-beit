@@ -6,8 +6,6 @@ import { BiRename } from "react-icons/bi";
 import image2 from '../Images/form.png';
 import { IoLocationOutline } from "react-icons/io5";
 const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,isSoldOut}) => {
-  console.log(price&& price);
-  
   return (
     <div className="unit-card" key={key}>
       {isSoldOut && <span className='sold_out'>تم البيع</span>}
@@ -29,8 +27,9 @@ const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,is
           {area} متر مربع
         </h1>
         <h1 className='price'>
-          <span className='label'>{price.currency} </span>
+          <span className='price-type'>{price.price_type} :</span>
           {price.price_value}
+          <span className='label'>{price.currency}</span>
         </h1>
         <button className='see_more' onClick={onClick}>التفاصيل</button>
       </div>

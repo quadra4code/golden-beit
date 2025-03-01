@@ -73,7 +73,7 @@ const Favorites = () => {
                     <UnitCard
                       title={unit.title}
                       area={unit.area}
-                      price={unit.price}
+                      price={unit.price_obj}
                       city={unit.city}
                       project={unit.project}
                       mainImage={unit.mainImage}

@@ -1,10 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { FaStar } from "react-icons/fa";
-import image1 from '../Images/form.png';
 import image2 from '../Images/form.png';
-import image3 from '../Images/landing.png';
-import image4 from '../Images/buyer.png';
-import image5 from '../Images/broker.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import  Pagination  from '../Components/Pagination';
 import AppContext from '../Context/AppContext';
@@ -39,6 +35,8 @@ const SingleUnit = () => {
     axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${params.id}`)
     .then(res => {
       setSingleUnit(res.data.data);
+      console.log(res.data.data);
+      
     })
     .catch(err => {console.log(err);
     })
@@ -59,6 +57,8 @@ const SingleUnit = () => {
     .then(res => {
       setAllUnits(res.data.data.all);
       setPaginationData(res.data.data.pagination)
+      console.log(res.data);
+      
     })
     .catch(err => {console.log(err);
     })
@@ -68,9 +68,9 @@ const SingleUnit = () => {
   const onChange = (key) => {
     console.log(key);
   }
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
   const paginate = (pageNumber) => {
     setLoading(true);
     axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
@@ -98,23 +98,23 @@ const SingleUnit = () => {
       children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
     },
   ];
-  const handleUnitClick = (id)=> {
-    const foundUnit = allUnits.find(({id})=>id===id)
-    setSingleUnit(foundUnit);
-    navigate(`/all-units/${id}`)
-  }
-  const handleSingleUnitDetails= (id) => {
-    axios
-    .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
-    .then((res)=>{
-      console.log(res.data);
-      setSingleUnit(res.data.data)
-      navigate(`/all-units/${id}`)
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-  }
+  // const handleUnitClick = (id)=> {
+  //   const foundUnit = allUnits.find(({id})=>id===id)
+  //   setSingleUnit(foundUnit);
+  //   navigate(`/all-units/${id}`)
+  // }
+  // const handleSingleUnitDetails= (id) => {
+  //   axios
+  //   .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+  //   .then((res)=>{
+  //     console.log(res.data);
+  //     setSingleUnit(res.data.data)
+  //     navigate(`/all-units/${id}`)
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err);
+  //   })
+  // }
   const handelAddToFav = (id) => {
     axios
     .post(`https://golden-gate-three.vercel.app/core/add-favorite`,
@@ -169,8 +169,14 @@ const SingleUnit = () => {
             </div>
             <span className='holder'><h3>المشروع:</h3> <span>{singleUnit&& singleUnit.project}</span></span>
             <span className='holder'><h3>الموقع:</h3> <span>{singleUnit&& singleUnit.city}</span></span>
-            <span className='holder'><h3>المساحة:</h3> <span>{singleUnit&& singleUnit.area}</span></span>
+            <span className='holder'><h3>المساحة:</h3> <span>{singleUnit&& singleUnit.area} متر مربع</span></span>
             <span className='holder'><h3> نظام السداد:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
+            {singleUnit&& singleUnit.paid_amount&&
+              <span className='holder'><h3>المدفوع :</h3> <span className='price'>{singleUnit&& singleUnit.paid_amount}</span> {singleUnit&& singleUnit.currency}</span>
+            }
+            {singleUnit&& singleUnit.remaining_amount&&
+              <span className='holder'><h3> الباقي:</h3> <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span> {singleUnit&& singleUnit.currency}</span>
+            }
             {singleUnit&& singleUnit.meter_price&&
               <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span> {singleUnit&& singleUnit.currency}</span>
             }
@@ -182,7 +188,10 @@ const SingleUnit = () => {
             }
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
-              <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}><FaRegHeart/></button>
+              <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
+                ({singleUnit&& singleUnit.favorite_count})
+                <FaRegHeart/>
+              </button>
             </div>
           </div>
         </section>
@@ -197,6 +206,8 @@ const SingleUnit = () => {
                 <UnitCard 
                 key={discoverMore.id}
                 title={discoverMore.title} 
+                city={discoverMore.city} 
+                project={discoverMore.project} 
                 area={discoverMore.area}
                 mainImage={discoverMore.main_image}
                 price = {discoverMore.price_obj}

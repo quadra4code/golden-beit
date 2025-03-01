@@ -363,16 +363,17 @@ main.single_unit_page section.unit_info .unit_data .btns {
   gap: 20px;
 }
 main.single_unit_page section.unit_info .unit_data .btns button.add_fav {
-  width: 100%;
   background-color: transparent;
   border: 1px solid #333;
-  font-size: 16px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  gap: 10px;
   width: 150px;
+  padding: 5px;
   color: #333;
+  border-radius: 4px;
   cursor: pointer;
 }
 main.single_unit_page section.unit_info .unit_data .btns button.add_fav:hover {
@@ -396,8 +397,7 @@ main.single_unit_page section.unit_info .unit_data .stars svg {
 main.single_unit_page section.unit_info .unit_data .holder {
   display: flex;
   align-items: center;
-  width: 16rem;
-  justify-content: space-between;
+  gap: 1rem;
 }
 main.single_unit_page section.unit_info .unit_data .holder h3 {
   font-size: 18px;
@@ -510,7 +510,19 @@ main.single_unit_page section.more_units .all_units .units_list {
   transform: scale(1.05);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
+  main.single_unit_page section.unit_info {
+    gap: 20px;
+    flex-direction: column;
+  }
+  main.single_unit_page section.unit_info .galleria-container {
+    max-width: 100%;
+  }
+  main.single_unit_page section.unit_info .unit_data {
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) {
   main.single_unit_page section.unit_info {
     gap: 20px;
     flex-direction: column;
@@ -2157,6 +2169,10 @@ main.login-page .opacity .login-form-box form .input-box svg {
 .unit-card .price {
   color: var(--primary-color);
   font-size: 24px;
+}
+.unit-card .price .price-type {
+  font-size: 16px;
+  color: var(--text-color);
 }
 .unit-card button.see_more {
   border-radius: 16px;
