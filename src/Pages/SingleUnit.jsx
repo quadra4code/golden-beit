@@ -39,7 +39,6 @@ const SingleUnit = () => {
     axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${params.id}`)
     .then(res => {
       setSingleUnit(res.data.data);
-      console.log(singleUnit);
     })
     .catch(err => {console.log(err);
     })
@@ -48,6 +47,7 @@ const SingleUnit = () => {
       setLoading(false)
     })
   },[])
+  console.log(singleUnit);
   useEffect(() => {
     if (singleUnit && singleUnit.images && singleUnit.images.length > 0) {
       setSelectedImage(singleUnit.images[0]);
@@ -58,13 +58,13 @@ const SingleUnit = () => {
     axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{})
     .then(res => {
       setAllUnits(res.data.data.all);
-      console.log();
       setPaginationData(res.data.data.pagination)
     })
     .catch(err => {console.log(err);
     })
     .finally(() => {setLoading(false)})
   },[])
+  allUnits&& console.log(allUnits);
   const onChange = (key) => {
     console.log(key);
   }
@@ -172,13 +172,13 @@ const SingleUnit = () => {
             <span className='holder'><h3>المساحة:</h3> <span>{singleUnit&& singleUnit.area}</span></span>
             <span className='holder'><h3> نظام السداد:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
             {singleUnit&& singleUnit.meter_price&&
-              <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span></span>
+              <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span> {singleUnit&& singleUnit.currency}</span>
             }
             {singleUnit&& singleUnit.total_price&&
-              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span></span>
+              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span> {singleUnit&& singleUnit.currency}</span>
             }
             {singleUnit&& singleUnit.over_price&&
-              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span></span>
+              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span> {singleUnit&& singleUnit.currency}</span>
             }
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
@@ -193,7 +193,7 @@ const SingleUnit = () => {
           <h2>استكشف المزيد</h2>
           <div className="all_units">
             <div className="units_list">
-              {allUnits&& allUnits.map((discoverMore, index) =>
+              {allUnits&& allUnits.length>0 &&  allUnits.map((discoverMore, index) =>
                 <UnitCard 
                 key={discoverMore.id}
                 title={discoverMore.title} 
