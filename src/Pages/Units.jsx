@@ -565,7 +565,6 @@ const Units = () => {
     })
       .then(res => {
         console.log(res.data);
-        
         setAllUnits(res.data.data.all);
         setPaginationData(res.data.data.pagination)
       })

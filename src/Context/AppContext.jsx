@@ -190,7 +190,7 @@ export const AppProvider = ({children}) => {
   const handleReqUnit = () => {
     if(token){
       axios.post(
-        'https://golden-gate-three.vercel.app/core/request-property',
+        'https://golden-gate-three.vercel.app/core/request-unit',
         {
           unit_id:singleUnit.id
         },
@@ -207,6 +207,7 @@ export const AppProvider = ({children}) => {
         }
         console.log(err.status);
       })
+      openNotificationWithIcon('error','حدث خطأ برجاء المحاولة مرة اخرى')
     }else{
       openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')
     }
