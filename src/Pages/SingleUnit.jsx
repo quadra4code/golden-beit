@@ -10,10 +10,12 @@ import axios from 'axios';
 import { Tabs } from 'antd';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 const SingleUnit = () => {
   const {token, openNotificationWithIcon, singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
   const [value, setValue] = useState('1');
-  const [allUnits, setAllUnits] = useState([])
+  const [discoverMore, setDiscoverMore] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationData, setPaginationData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -34,9 +36,9 @@ const SingleUnit = () => {
     setDataLoaded(false)
     axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${params.id}`)
     .then(res => {
-      setSingleUnit(res.data.data);
+      setSingleUnit(res.data.data.unit_details);
+      setDiscoverMore(res.data.data.discover_more);
       console.log(res.data.data);
-      
     })
     .catch(err => {console.log(err);
     })
@@ -51,20 +53,20 @@ const SingleUnit = () => {
       setSelectedImage(singleUnit.images[0]);
     }
   }, [singleUnit]);
-  useEffect(()=>{
-    setLoading(true)
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{})
-    .then(res => {
-      setAllUnits(res.data.data.all);
-      setPaginationData(res.data.data.pagination)
-      console.log(res.data);
+  // useEffect(()=>{
+  //   setLoading(true)
+  //   axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{})
+  //   .then(res => {
+  //     setAllUnits(res.data.data.all);
+  //     setPaginationData(res.data.data.pagination)
+  //     console.log(res.data);
       
-    })
-    .catch(err => {console.log(err);
-    })
-    .finally(() => {setLoading(false)})
-  },[])
-  allUnits&& console.log(allUnits);
+  //   })
+  //   .catch(err => {console.log(err);
+  //   })
+  //   .finally(() => {setLoading(false)})
+  // },[])
+  // allUnits&& console.log(allUnits);
   const onChange = (key) => {
     console.log(key);
   }
@@ -78,7 +80,7 @@ const SingleUnit = () => {
     })
       .then(res => {
         console.log(res.data);
-        setAllUnits(res.data.data.all);
+        setDiscoverMore(res.data.data.all);
         setPaginationData(res.data.data.pagination)
       })
       .catch(err => {
@@ -95,7 +97,7 @@ const SingleUnit = () => {
     {
       key: '1',
       label: 'الوصف',
-      children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non accusantium quasi sit dolorum odio eos atque deserunt. Vitae velit officia, ea itaque ratione est consequatur temporibus fugit! Consequatur, obcaecati ullam!',
+      children: singleUnit&& singleUnit.description,
     },
   ];
   // const handleUnitClick = (id)=> {
@@ -161,16 +163,11 @@ const SingleUnit = () => {
           </div>
           <div className='unit_data'>
             <h2>{singleUnit&& singleUnit.title}</h2>
-            <p>{singleUnit&& singleUnit.description}</p>
-            <div className='stars'>
-              {singleUnit&& singleUnit.rate&& singleUnit&& singleUnit.rate.map(star => <FaStar/>)}
-              {singleUnit&& singleUnit.rate&& '( 75 تقييم )'}
-              
-            </div>
             <span className='holder'><h3>المشروع:</h3> <span>{singleUnit&& singleUnit.project}</span></span>
             <span className='holder'><h3>الموقع:</h3> <span>{singleUnit&& singleUnit.city}</span></span>
             <span className='holder'><h3>المساحة:</h3> <span>{singleUnit&& singleUnit.area} متر مربع</span></span>
             <span className='holder'><h3> نظام السداد:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
+            <span className='holder'><h3> اّخر تحديث :</h3> <span>{singleUnit&& singleUnit.latest_date}</span></span>
             {singleUnit&& singleUnit.paid_amount&&
               <span className='holder'><h3>المدفوع :</h3> <span className='price'>{singleUnit&& singleUnit.paid_amount}</span> {singleUnit&& singleUnit.currency}</span>
             }
@@ -201,19 +198,19 @@ const SingleUnit = () => {
         <section className='more_units'>
           <h2>استكشف المزيد</h2>
           <div className="all_units">
-            <div className="units_list">
-              {allUnits&& allUnits.length>0 &&  allUnits.map((discoverMore, index) =>
+            {/* <div className="units_list">
+              {discoverMore&& discoverMore.length>0 &&  discoverMore.map((unit, index) =>
                 <UnitCard 
-                key={discoverMore.id}
-                title={discoverMore.title} 
-                city={discoverMore.city} 
-                project={discoverMore.project} 
-                area={discoverMore.area}
-                mainImage={discoverMore.main_image}
-                price = {discoverMore.price_obj}
-                id = {discoverMore.id}
-                isSoldOut={discoverMore.status.code==4 && true}
-                onClick = {()=>{navigate(`/all-units/${discoverMore.id}`)}}
+                key={unit.id}
+                title={unit.title} 
+                city={unit.city} 
+                project={unit.project} 
+                area={unit.area}
+                mainImage={unit.main_image}
+                price = {unit.price_obj}
+                id = {unit.id}
+                isSoldOut={unit.status.code==4 && true}
+                onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
                 />
               )}
             </div>
@@ -221,47 +218,52 @@ const SingleUnit = () => {
               totalItems={paginationData&& paginationData.total_pages}
               paginate={paginate}
               currentPage={currentPage}
-            />
-          </div>
-          {/* <Swiper
-              slidesPerView={4}
-              spaceBetween={10}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-            {allUnits.map((discoverMore, index) => 
-              <SwiperSlide className='swiper-slide' key={index}>
-                <UnitCard 
-                  title={discoverMore.title} 
-                  area={discoverMore.area}
-                  price = {discoverMore.price}
-                  id = {discoverMore.id}
-                  onClick = {()=>{handleUnitClick(discoverMore.id)}}
+            /> */}
+            <Swiper
+                slidesPerView={4}
+                spaceBetween={10}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+              {discoverMore&& discoverMore.length>0 && discoverMore.map((unit, index) => 
+                <SwiperSlide className='swiper-slide' key={index}>
+                  <UnitCard 
+                  key={unit.id}
+                  title={unit.title} 
+                  city={unit.city} 
+                  project={unit.project} 
+                  area={unit.area}
+                  mainImage={unit.main_image}
+                  price = {unit.price_obj}
+                  id = {unit.id}
+                  isSoldOut={unit.status.code==4 && true}
+                  onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
                   />
-                <div className="slide-content">
-                  <img src={image1} alt="project"/>
-                  <div className="content">
-                    <h1>
-                      <FaLocationDot/>
-                      {discoverMore.title}
-                    </h1>
-                    <h1>
-                      <span className='label'><TbRulerMeasure2/></span>
-                      {discoverMore.area} متر مربع
-                    </h1>
-                    <h1 className='price'>
-                      <span className='label'>EGP  </span>
-                      {discoverMore.area}
-                    </h1>
-                    <button className='see_more' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
-                  </div>
-                </div>
-              </SwiperSlide>        
-            )}
-          </Swiper> */}
+                  {/* <div className="slide-content">
+                    <img src={image1} alt="project"/>
+                    <div className="content">
+                      <h1>
+                        <FaLocationDot/>
+                        {discoverMore.title}
+                      </h1>
+                      <h1>
+                        <span className='label'><TbRulerMeasure2/></span>
+                        {discoverMore.area} متر مربع
+                      </h1>
+                      <h1 className='price'>
+                        <span className='label'>EGP  </span>
+                        {discoverMore.area}
+                      </h1>
+                      <button className='see_more' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
+                    </div>
+                  </div> */}
+                </SwiperSlide>        
+              )}
+            </Swiper>
+          </div>
         </section>
       </main>
       }

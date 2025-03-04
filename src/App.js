@@ -72,6 +72,7 @@ import useScrollToTop from './Components/ScrollToTop';
 import ContactUs from './Pages/ContactUs';
 import Leaderboard from './Pages/LeaderBoard';
 import Favorites from './Pages/Favorites';
+import EditUnit from './Pages/EditUnit';
 const App = () => {
   useScrollToTop()
   const location = useLocation();
@@ -87,6 +88,7 @@ const App = () => {
     { path: "/leader-board", element: <Leaderboard /> },
     { path: "/faq/:id", element: <FAQ /> },
     { path: "all-units/:id", element: <SingleUnit /> },
+    { path: "edit-unit/:id", element: <EditUnit /> },
     { path: "*", element: <ErrorPage /> },
   ];
   return (

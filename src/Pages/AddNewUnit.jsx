@@ -364,31 +364,31 @@ import axios from 'axios';
 import Popup from '../Components/Popup';
 import { FaTrashAlt } from 'react-icons/fa';
 const AddNewUnit = () => {
-  const [selectedProject, setSelectedProject] = useState('');
-  const [selectedType, setSelectedType] = useState(null);
+  // const [selectedProject, setSelectedProject] = useState('');
+  // const [selectedType, setSelectedType] = useState(null);
   const { handleUnAuth, filterData, token, openNotificationWithIcon, contextHolder } = useContext(AppContext);
   const [formData, setFormData] = useState({
-    unit_type_id: selectedType,
-    project_id: selectedProject,
-    proposal_id: '',
-    city_id: '',
+    unit_type_id: null,
+    project_id: null,
+    proposal_id: null,
+    city_id: null,
     floor: null,
     facade: null,
-    area: '',
-    description: '',
-    unit_number: '',
-    payment_method: '',
-    paid_amount: '',
-    remaining_amount: '',
-    building_number: '',
+    area: null,
+    description: null,
+    unit_number: null,
+    payment_method: null,
+    paid_amount: null,
+    remaining_amount: null,
+    building_number: null,
     installment_period: 0,
     first_installment_value: 0,
-    phone_number: '',
-    total_price: '',
-    over_price: '',
-    meter_price: '',
-    floor: '',
-    title: '',
+    phone_number: null,
+    total_price: null,
+    over_price: null,
+    meter_price: null,
+    floor: null,
+    title: null,
   });
   const [images, setImages] = useState([]);
   const [showImageFields, setShowImageFields] = useState([]);
@@ -488,20 +488,20 @@ const AddNewUnit = () => {
   //       openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg);
   //     });
   // };
-  const handleTypeChange = (event) => {
-    setSelectedType(event.target.value);
-    setSelectedProject('');
-  };
+  // const handleTypeChange = (event) => {
+  //   setSelectedType(event.target.value);
+  //   setSelectedProject('');
+  // };
   const filteredProjects = formData.unit_type_id
     ? filterData && filterData.unit_types.find((type) => type.id.toString() === formData.unit_type_id)?.projects || []
     : [];
-  const handlePaymentChange = (e) => {
-    console.log(formData.payment_method);
-    setFormData((prevData) => ({
-      ...prevData,
-      payment_method: e,
-    }));
-  };
+  // const handlePaymentChange = (e) => {
+  //   console.log(formData.payment_method);
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     payment_method: e,
+  //   }));
+  // };
   return (
     <main className='add_unit'>
       {contextHolder}
@@ -558,7 +558,7 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled hidden>أختر الطرح</option>
+              <option value="" disabled selected hidden>أختر الطرح</option>
               {filterData && filterData.proposals.map((proposal) =>
                 <option key={proposal.id} value={proposal.id}>{proposal.name}</option>
               )}
@@ -573,7 +573,7 @@ const AddNewUnit = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled hidden>أختر الموقع</option>
+              <option value="" selected disabled hidden>أختر الموقع</option>
               {filterData && filterData.cities.map((city) =>
                 <option key={city.id} value={city.id}>{city.name}</option>
               )}
@@ -586,7 +586,7 @@ const AddNewUnit = () => {
               name="facade"
               value={formData.facade}
               onChange={handleChange}
-              required
+              
             >
               <option value="" disabled hidden selected>أختر الواجهة</option>
               {filterData && filterData.facades.map((facade) =>
@@ -666,20 +666,6 @@ const AddNewUnit = () => {
               onChange={handleChange}
             />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="saleStatus">نظام السداد</label>
-            <select
-              id="saleStatus"
-              name="payment_method"
-              value={formData.payment_method}
-              onChange={(e) => handlePaymentChange(e.target.value)}
-              required
-            >
-              <option value="" disabled>أختر طريقة الدفع</option>
-              <option value="CS">كاش</option>
-              <option value="IN">تقسيط</option>
-            </select>
-          </div> */}
           <div className="form-group">
             <label htmlFor="price">مدة التقسيط</label>
             <input
@@ -760,7 +746,6 @@ const AddNewUnit = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="form-group">

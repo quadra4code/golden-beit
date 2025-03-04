@@ -6,7 +6,7 @@ import axios from 'axios';
 import Loader from '../Components/Loader';
 import UnitsNotFound from './UnitsNotFound';
 import Popup from '../Components/Popup';
-
+import { IoClose } from "react-icons/io5";
 const Favorites = () => {
   const [favorites, setFavorites] = useState();
   const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ const Favorites = () => {
                       onClick={() => navigate(`/all-units/${unit.id}`)}
                     />
                     <button className="delete-button" onClick={() => handleDelete(unit.id)}>
-                      <FaTrashAlt />
+                      <IoClose />
                     </button>
                   </div>
                 ))}

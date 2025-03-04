@@ -25,18 +25,21 @@ $delete-button-bg-color: #ff4d4d;
     justify-content: center;
     .unit-card-wrapper {
       position: relative;
+      .unit-card {
+        height: 100%;
+      }
       .delete-button {
         position: absolute;
-        bottom: 10px;
+        top: 10px;
         left: 10px;
-        background-color: $delete-button-bg-color;
+        background-color: #0000005c;
         border: none;
         border-radius: 30%;
+        box-shadow: 0 0 12px 0 #00000061;
         color: white;
         padding: 10px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
-      
+        transition: background-color 0.3s ease;      
         &:hover {
           background-color: darken($delete-button-bg-color, 10%);
         }

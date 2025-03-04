@@ -94,10 +94,19 @@ main.add_unit {
     }
     form {
       overflow-y: auto;
-      height: 43rem;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .form-group-images{
+      width: 100%;
+      display: flex;
+      gap: 20px;
+      .image-upload-field{
+        width: 120px;
+      }
     }
     .form-group {
-      margin-bottom: 15px;
       .radio-cont {
         display: flex;
         justify-content: space-evenly;
