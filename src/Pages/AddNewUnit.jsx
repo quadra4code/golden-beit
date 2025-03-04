@@ -428,7 +428,9 @@ const AddNewUnit = () => {
     }
     const formDataToSubmit = new FormData();
     Object.keys(formData).forEach(key => {
-      formDataToSubmit.append(key, formData[key]);
+      if (formData[key] !== null && formData[key] !== undefined) {
+        formDataToSubmit.append(key, formData[key]);
+      }
     });
     // Append images as an array
     images.forEach((image) => {
