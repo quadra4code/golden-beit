@@ -80,12 +80,15 @@ section.why-us {
       font-size: 25px;
     }
     .cols-container {
-      height: auto;
-      flex-direction: column;
+      // height: auto;
+      // flex-direction: column;
+      padding: 2rem 0;
+      overflow-x: auto;
       .col {
-        width: 100%;
-        max-width: 600px;
-        margin-bottom: 20px;
+        min-width: 300px;
+        // width: 100%;
+        // max-width: 600px;
+        // margin-bottom: 20px;
         gap: 12px;
         h1 {
           font-size: 18px;
@@ -121,7 +124,6 @@ section.why-us {
     }
   }
   @media (max-width: 480px) {
-    
     padding: 5rem 2rem;
     h1 {
       font-size: 30px;

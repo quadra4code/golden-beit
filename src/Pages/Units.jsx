@@ -697,8 +697,8 @@ const Units = () => {
                 <div className="filter_unit">
                   <p className="filter_title">التصنيف حسب السعر</p>
                   <div className="price-range-slider">
-                    <input type="number" onClick={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
-                    <input type="number" onClick={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
+                    <input type="number" onChange={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
+                    <input type="number" onChange={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
                   </div>
                 </div>
                 <div className="filter_unit">
@@ -706,11 +706,11 @@ const Units = () => {
                   <div className="price-range-slider">
                     <input type="number"
                       max={filterData&& filterData.max_area}
-                      onClick={(e)=>setMin_area(e.target.value)}
+                      onChange={(e)=>setMin_area(e.target.value)}
                       placeholder='من'/>
                     <input type="number"
                       min={filterData&& filterData.min_area} 
-                      onClick={(e)=>setMax_area(e.target.value)}
+                      onChange={(e)=>setMax_area(e.target.value)}
                       placeholder='إلى'/>
                   </div>
                 </div>
@@ -747,7 +747,7 @@ const Units = () => {
                     <option value="CS">تقسيط</option>
                   </select>
                 </div> */}
-                <button className="filter_btn" onClick={() => { handleFilterClick(unitTypeId,selectedProject, selectedCity, min_price, max_price, min_area, max_area,selectedFloor,selectedFacade) }}>تصنيف</button>
+                <button className="filter_btn" onClick={() => { handleFilterClick(unitTypeId,selectedProject, selectedCity, +min_price, +max_price, min_area, max_area,selectedFloor,selectedFacade) }}>تصنيف</button>
               </section>
             </main>
           ) : (

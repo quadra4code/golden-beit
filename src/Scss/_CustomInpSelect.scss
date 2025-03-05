@@ -1,0 +1,32 @@
+// InputNumber.scss
+.custom-inp-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  .input {
+    flex: 1;
+    padding: 10px;
+    border: none !important;
+    outline: none;
+    font-size: 16px;
+  }
+  .select {
+    width: max-content !important;
+    padding: 10px;
+    border: none;
+    border-left: 1px solid #ccc;
+    outline: none;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    border-radius: 0 !important;
+    cursor: pointer;
+  }
+}
+.result {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #555;
+}

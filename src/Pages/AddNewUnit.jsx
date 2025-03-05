@@ -363,6 +363,7 @@ import AppContext from '../Context/AppContext';
 import axios from 'axios';
 import Popup from '../Components/Popup';
 import { FaTrashAlt } from 'react-icons/fa';
+import CustomInpSelect from '../Components/CustomInpSelect';
 const AddNewUnit = () => {
   // const [selectedProject, setSelectedProject] = useState('');
   // const [selectedType, setSelectedType] = useState(null);
@@ -379,18 +380,24 @@ const AddNewUnit = () => {
     unit_number: null,
     payment_method: null,
     paid_amount: null,
-    remaining_amount: null,
+    paid_amount_currency: null,
+    remaining_amount_currency: null,
     building_number: null,
-    installment_period: 0,
-    first_installment_value: 0,
+    installment_period: null,
+    first_installment_value: null,
+    first_installment_value_currency: null,
     phone_number: null,
     total_price: null,
+    total_price_currency: null,
     over_price: null,
+    over_price_currency: null,
     meter_price: null,
+    meter_price_currency: null,
     floor: null,
     title: null,
   });
   const [images, setImages] = useState([]);
+  const [error, setError] = useState();
   const [showImageFields, setShowImageFields] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -400,6 +407,12 @@ const AddNewUnit = () => {
     setFormData({
       ...formData,
       [name]: value
+    });
+  };
+  const handleCurrencyChange = (field, currency) => {
+    setFormData({
+      ...formData,
+      [field]: currency,
     });
   };
   const handleImageChange = (index, event) => {
@@ -424,6 +437,10 @@ const AddNewUnit = () => {
     console.log(formData);
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
       openNotificationWithIcon('error', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
+      return;
+    }
+    if (images.length === 0) {
+      setError('يجب إضافة صورة واحدة على الأقل');
       return;
     }
     const formDataToSubmit = new FormData();
@@ -650,23 +667,39 @@ const AddNewUnit = () => {
           </div>
           <div className="form-group">
             <label htmlFor="unitType">المدفوع </label>
-            <input
+            <CustomInpSelect
+              value={formData.paid_amount}
+              onChange={(value) => setFormData({ ...formData, paid_amount: value })}
+              currency={formData.paid_amount_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('paid_amount_currency',currency)
+              }
+            />
+            {/* <input
               type="text"
               id="area"
               name="paid_amount"
               value={formData.paid_amount}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="form-group">
             <label htmlFor="unitType"> المتبقي</label>
-            <input
+            <CustomInpSelect
+              value={formData.remaining_amount}
+              onChange={(value) => setFormData({ ...formData, remaining_amount: value })}
+              currency={formData.remaining_amount_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('remaining_amount_currency',currency)
+              }
+            />
+            {/* <input
               type="text"
               id="area"
               name="remaining_amount"
               value={formData.remaining_amount}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="form-group">
             <label htmlFor="price">مدة التقسيط</label>
@@ -680,13 +713,21 @@ const AddNewUnit = () => {
           </div>
           <div className="form-group">
             <label htmlFor="price">قيمة أول قسط</label>
-            <input
+            <CustomInpSelect
+              value={formData.first_installment_value}
+              onChange={(value) => setFormData({ ...formData, first_installment_value: value })}
+              currency={formData.first_installment_value_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('first_installment_value_currency',currency)
+              }
+            />
+            {/* <input
               type="number"
               id="price"
               name="first_installment_value"
               value={formData.first_installment_value}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="form-group">
             <label htmlFor="price">المساحة بالمتر</label>
@@ -701,33 +742,50 @@ const AddNewUnit = () => {
           </div>
           <div className="form-group">
             <label htmlFor="price">سعر المتر</label>
-            <input
+            <CustomInpSelect
+              value={formData.meter_price}
+              onChange={(value) => setFormData({ ...formData, meter_price: value })}
+              currency={formData.meter_price_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('meter_price_currency',currency)
+              }
+            />
+            {/* <input
               type="number"
               id="price"
               name="meter_price"
               value={formData.meter_price}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="form-group">
             <label htmlFor="price">قيمة الاوفر</label>
-            <input
-              type="number"
-              id="price"
-              name="over_price"
+            <CustomInpSelect
               value={formData.over_price}
-              onChange={handleChange}
+              onChange={(value) => setFormData({ ...formData, over_price: value })}
+              currency={formData.over_price_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('over_price_currency',currency)
+              }
             />
           </div>
           <div className="form-group">
             <label htmlFor="price">اجمالى السعر</label>
-            <input
+            <CustomInpSelect
+              value={formData.total_price}
+              onChange={(value) => setFormData({ ...formData, total_price: value })}
+              currency={formData.total_price_currency}
+              onCurrencyChange={(currency)=>
+                handleCurrencyChange('total_price_currency',currency)
+              }
+            />
+            {/* <input
               type="number"
               id="price"
               name="total_price"
               value={formData.total_price}
               onChange={handleChange}
-            />
+            /> */}
           </div>
           <div className="form-group">
             <label htmlFor="price">العنوان</label>
@@ -785,6 +843,7 @@ const AddNewUnit = () => {
             <button type="button" onClick={handleAddImageField} className="add-image-button">
               إضافة صورة 
             </button>
+            {images.length==0 && <p className="error-message">{error}</p>}
           </div>
           <button type="submit">أضف وحدتك</button>
         </form>

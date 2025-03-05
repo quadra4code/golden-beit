@@ -25,6 +25,7 @@ export const AppProvider = ({children}) => {
   const [isNormalPop, setIsNormalPop] = useState(false)
   const [isReview, setIsReview] = useState(false)
   const [ourReviewsData, setOurReviewsData] = useState(false)
+  const [currencies, setCurrencies] = useState(false)
   const [api, contextHolder] = notification.useNotification();
   const [rating, setRating] = useState(0);
   const [faqId, setFaqId] = useState(0);
@@ -54,6 +55,8 @@ export const AppProvider = ({children}) => {
     axios.get('https://goldenbeitapi.koyeb.app/core/get-form-data')
     .then(response => {
       setFilterData(response.data.data)
+      setCurrencies(response.data.data.currencies)
+      console.log(response.data.data);
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -127,15 +130,14 @@ export const AppProvider = ({children}) => {
         console.log(err);
       });
   };
-  //////////////post all units screen filter
-  const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
-    setLoading(true)
+  //////////////post all units screen filter 
+  const handleFilterClick = (unit_type_id,project_id, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
+    setLoading(true);
     axios.post(
       'https://goldenbeitapi.koyeb.app/core/filter-paginated-units',
       {
         unit_type_id,
         project_id,
-        payment_method,
         city_id,
         floor:selectedFloor,
         facade:selectedFacade,
@@ -251,7 +253,7 @@ export const AppProvider = ({children}) => {
       numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
-      changePassUi, setChangePassUi,
+      changePassUi, setChangePassUi,currencies, setCurrencies,
       }}>
       {children}
     </AppContext.Provider>

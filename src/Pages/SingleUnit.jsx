@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import { FaStar } from "react-icons/fa";
 import image2 from '../Images/form.png';
 import { useNavigate, useParams } from 'react-router-dom';
-import  Pagination  from '../Components/Pagination';
+// import  Pagination  from '../Components/Pagination';
 import AppContext from '../Context/AppContext';
 import { FaRegHeart } from "react-icons/fa";
 import Loader from '../Components/Loader';
@@ -11,7 +11,7 @@ import { Tabs } from 'antd';
 import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Pagination } from 'swiper/modules';
 const SingleUnit = () => {
   const {token, openNotificationWithIcon, singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
   const [value, setValue] = useState('1');
@@ -36,9 +36,9 @@ const SingleUnit = () => {
     setDataLoaded(false)
     axios.get(`https://goldenbeitapi.koyeb.app/core/unit-details/${params.id}`)
     .then(res => {
+      console.log(res.data.data);
       setSingleUnit(res.data.data.unit_details);
       setDiscoverMore(res.data.data.discover_more);
-      console.log(res.data.data);
     })
     .catch(err => {console.log(err);
     })
@@ -146,11 +146,9 @@ const SingleUnit = () => {
         {contextHolder}
         <section className='unit_info'>
           <div className="galleria-container">
-            <div className="main-image">
-              <img src={selectedImage.src} alt='unit image' />
-            </div>
+            {singleUnit&& singleUnit.images.length>0 && 
             <div className="thumbnail-carousel">
-              {singleUnit && singleUnit.images && singleUnit.images.map((image) => (
+              {singleUnit && singleUnit.images.length>0 && singleUnit.images.map((image) => (
                 <div
                   key={image.id}
                   className={`thumbnail ${image.id === selectedImage.id ? "active" : ""}`}
@@ -159,6 +157,10 @@ const SingleUnit = () => {
                   <img src={image.src} alt="unit image" />
                 </div>
               ))}
+            </div>
+            }
+            <div className="main-image">
+              <img src={selectedImage.src} alt='unit image' />
             </div>
           </div>
           <div className='unit_data'>
@@ -169,19 +171,19 @@ const SingleUnit = () => {
             <span className='holder'><h3> نظام السداد:</h3> <span>{singleUnit&& singleUnit.payment_method}</span></span>
             <span className='holder'><h3> اّخر تحديث :</h3> <span>{singleUnit&& singleUnit.latest_date}</span></span>
             {singleUnit&& singleUnit.paid_amount&&
-              <span className='holder'><h3>المدفوع :</h3> <span className='price'>{singleUnit&& singleUnit.paid_amount}</span> {singleUnit&& singleUnit.currency}</span>
+              <span className='holder'><h3>المدفوع :</h3> <span className='price'>{singleUnit&& singleUnit.paid_amount}</span> {singleUnit&& singleUnit.paid_amount_currency}</span>
             }
             {singleUnit&& singleUnit.remaining_amount&&
-              <span className='holder'><h3> الباقي:</h3> <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span> {singleUnit&& singleUnit.currency}</span>
+              <span className='holder'><h3> الباقي:</h3> <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span> {singleUnit&& singleUnit.remaining_amount_currency}</span>
             }
             {singleUnit&& singleUnit.meter_price&&
-              <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span> {singleUnit&& singleUnit.currency}</span>
+              <span className='holder'><h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span> {singleUnit&& singleUnit.meter_price_currency}</span>
             }
             {singleUnit&& singleUnit.total_price&&
-              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span> {singleUnit&& singleUnit.currency}</span>
+              <span className='holder'><h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span> {singleUnit&& singleUnit.total_price_currency}</span>
             }
             {singleUnit&& singleUnit.over_price&&
-              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span> {singleUnit&& singleUnit.currency}</span>
+              <span className='holder'><h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span> {singleUnit&& singleUnit.over_price_currency}</span>
             }
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
@@ -198,7 +200,7 @@ const SingleUnit = () => {
         <section className='more_units'>
           <h2>استكشف المزيد</h2>
           <div className="all_units">
-            {/* <div className="units_list">
+            <div className="units_list">
               {discoverMore&& discoverMore.length>0 &&  discoverMore.map((unit, index) =>
                 <UnitCard 
                 key={unit.id}
@@ -214,12 +216,7 @@ const SingleUnit = () => {
                 />
               )}
             </div>
-            <Pagination
-              totalItems={paginationData&& paginationData.total_pages}
-              paginate={paginate}
-              currentPage={currentPage}
-            /> */}
-            <Swiper
+            {/* <Swiper
                 slidesPerView={4}
                 spaceBetween={10}
                 pagination={{
@@ -230,19 +227,19 @@ const SingleUnit = () => {
               >
               {discoverMore&& discoverMore.length>0 && discoverMore.map((unit, index) => 
                 <SwiperSlide className='swiper-slide' key={index}>
-                  <UnitCard 
-                  key={unit.id}
-                  title={unit.title} 
-                  city={unit.city} 
-                  project={unit.project} 
-                  area={unit.area}
-                  mainImage={unit.main_image}
-                  price = {unit.price_obj}
-                  id = {unit.id}
-                  isSoldOut={unit.status.code==4 && true}
-                  onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
-                  />
-                  {/* <div className="slide-content">
+                    <UnitCard 
+                    key={unit.id}
+                    title={unit.title} 
+                    city={unit.city} 
+                    project={unit.project} 
+                    area={unit.area}
+                    mainImage={unit.main_image}
+                    price = {unit.price_obj}
+                    id = {unit.id}
+                    isSoldOut={unit.status.code==4 && true}
+                    onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
+                    />
+                  <div className="slide-content">
                     <img src={image1} alt="project"/>
                     <div className="content">
                       <h1>
@@ -259,10 +256,10 @@ const SingleUnit = () => {
                       </h1>
                       <button className='see_more' onClick={()=>{handleUnitClick(discoverMore.id)}}>التفاصيل</button>
                     </div>
-                  </div> */}
+                  </div>
                 </SwiperSlide>        
               )}
-            </Swiper>
+            </Swiper> */}
           </div>
         </section>
       </main>
