@@ -34,7 +34,7 @@ const SingleUnit = () => {
   useEffect(()=>{
     setLoading(true)
     setDataLoaded(false)
-    axios.get(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/unit-details/${params.id}`)
+    axios.get(`https://goldenbeitapi.koyeb.app/core/unit-details/${params.id}`)
     .then(res => {
       setSingleUnit(res.data.data.unit_details);
       setDiscoverMore(res.data.data.discover_more);
@@ -55,7 +55,7 @@ const SingleUnit = () => {
   }, [singleUnit]);
   // useEffect(()=>{
   //   setLoading(true)
-  //   axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-paginated-units',{})
+  //   axios.post('https://goldenbeitapi.koyeb.app/core/filter-paginated-units',{})
   //   .then(res => {
   //     setAllUnits(res.data.data.all);
   //     setPaginationData(res.data.data.pagination)
@@ -75,7 +75,7 @@ const SingleUnit = () => {
   // };
   const paginate = (pageNumber) => {
     setLoading(true);
-    axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-paginated-units',{
+    axios.post('https://goldenbeitapi.koyeb.app/core/filter-paginated-units',{
       page_number:pageNumber
     })
       .then(res => {
@@ -107,7 +107,7 @@ const SingleUnit = () => {
   // }
   // const handleSingleUnitDetails= (id) => {
   //   axios
-  //   .get(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/unit-details/${id}`)
+  //   .get(`https://goldenbeitapi.koyeb.app/core/unit-details/${id}`)
   //   .then((res)=>{
   //     console.log(res.data);
   //     setSingleUnit(res.data.data)
@@ -119,7 +119,7 @@ const SingleUnit = () => {
   // }
   const handelAddToFav = (id) => {
     axios
-    .post(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/add-favorite`,
+    .post(`https://goldenbeitapi.koyeb.app/core/add-favorite`,
     {
       unit:id
     },

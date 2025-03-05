@@ -39,7 +39,7 @@ const SearchBar = () => {
   };
   // const handleApplySearch = ()=> {
   //   axios.post(
-  //     'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-properties',
+  //     'https://goldenbeitapi.koyeb.app/core/filter-properties',
   //     {
   //       project_id: selectedProject.id,
   //       city_id: selectedCity.id,

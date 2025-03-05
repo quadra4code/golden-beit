@@ -6,7 +6,7 @@ const Leaderboard = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     setDataLoaded(false)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/accounts/leaderboard')
+    axios.get('https://goldenbeitapi.koyeb.app/accounts/leaderboard')
       .then(response => {
         setDonors(response.data.data);
         console.log(response.data.data);

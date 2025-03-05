@@ -48,7 +48,7 @@
 //       return;
 //     }
 //     axios
-//     .post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/propose-unit',
+//     .post('https://goldenbeitapi.koyeb.app/core/propose-unit',
 //       {
 //         unit_type_id:formData.project_type_id,
 //         project_id:formData.project_id,
@@ -439,7 +439,7 @@ const AddNewUnit = () => {
     });
     console.log(formDataToSubmit);
     axios
-      .post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/propose-unit', formDataToSubmit, {
+      .post('https://goldenbeitapi.koyeb.app/core/propose-unit', formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -472,7 +472,7 @@ const AddNewUnit = () => {
   //     formDataToSubmit.append(`images[${index}]`, image);
   //   });
   //   axios
-  //     .post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/propose-unit', formDataToSubmit, {
+  //     .post('https://goldenbeitapi.koyeb.app/core/propose-unit', formDataToSubmit, {
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
   //         'Content-Type': 'multipart/form-data',

@@ -51,7 +51,7 @@ export const AppProvider = ({children}) => {
   ///////////////// get filter data in all units screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/get-form-data')
+    axios.get('https://goldenbeitapi.koyeb.app/core/get-form-data')
     .then(response => {
       setFilterData(response.data.data)
     })
@@ -61,7 +61,7 @@ export const AppProvider = ({children}) => {
   /////////////// get articles in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/home-articles')
+    axios.get('https://goldenbeitapi.koyeb.app/core/home-articles')
     .then(response => {
       setArticlesData(response.data.data)
     })
@@ -71,7 +71,7 @@ export const AppProvider = ({children}) => {
   /////////////// get consultations in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/home-consultation-types')
+    axios.get('https://goldenbeitapi.koyeb.app/core/home-consultation-types')
     .then(response => {
       console.log(response.data);
       const responseData = response.data.data
@@ -84,7 +84,7 @@ export const AppProvider = ({children}) => {
   /////////////// get Our Reviews in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/home-reviews')
+    axios.get('https://goldenbeitapi.koyeb.app/core/home-reviews')
     .then(response => {
       setOurReviewsData(response.data.data)
     })
@@ -94,7 +94,7 @@ export const AppProvider = ({children}) => {
   /////////////// get home-featured-units screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/home-featured-units')
+    axios.get('https://goldenbeitapi.koyeb.app/core/home-featured-units')
     .then(response => {
       console.log(response.data.data);
       setFeaturedUnits(response.data.data)
@@ -106,7 +106,7 @@ export const AppProvider = ({children}) => {
   useEffect(()=>{
     if(token){
       setLoading(true)
-      axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/recent-units'
+      axios.get('https://goldenbeitapi.koyeb.app/core/recent-units'
       )
       .then(response => {
         console.log(response.data.data);
@@ -118,7 +118,7 @@ export const AppProvider = ({children}) => {
   },[])
   // ///////handleSingleUnitDetails//////
   const handleSingleUnitDetails = (id) => {
-    axios.get(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/unit-details/${id}`)
+    axios.get(`https://goldenbeitapi.koyeb.app/core/unit-details/${id}`)
       .then((res) => {
         setSingleUnit(res.data.data);
         navigate(`/all-units/${id}`);
@@ -131,7 +131,7 @@ export const AppProvider = ({children}) => {
   const handleFilterClick = (unit_type_id,project_id, payment_method, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true)
     axios.post(
-      'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-paginated-units',
+      'https://goldenbeitapi.koyeb.app/core/filter-paginated-units',
       {
         unit_type_id,
         project_id,
@@ -164,7 +164,7 @@ export const AppProvider = ({children}) => {
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
     axios.post(
-      'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-units',
+      'https://goldenbeitapi.koyeb.app/core/filter-units',
       {
         project_id,
         city_id ,
@@ -190,7 +190,7 @@ export const AppProvider = ({children}) => {
   const handleReqUnit = () => {
     if(token){
       axios.post(
-        'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/request-unit',
+        'https://goldenbeitapi.koyeb.app/core/request-unit',
         {
           unit_id:singleUnit.id
         },
@@ -216,7 +216,7 @@ export const AppProvider = ({children}) => {
   const handleAddReview = () => {
     if(token){
       axios.post(
-        'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/add-review',
+        'https://goldenbeitapi.koyeb.app/core/add-review',
         {
           rate:rating,
           review:reviewMessage

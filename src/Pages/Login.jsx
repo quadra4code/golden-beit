@@ -40,7 +40,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     if (isLogin) {
-      axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/accounts/login', {
+      axios.post('https://goldenbeitapi.koyeb.app/accounts/login', {
         username,
         password,
       })
@@ -59,7 +59,7 @@ const Login = () => {
         setLoading(false);
       });
     }else {
-      axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/accounts/register', {
+      axios.post('https://goldenbeitapi.koyeb.app/accounts/register', {
         first_name: firstName,
         last_name: lastName,
         username,

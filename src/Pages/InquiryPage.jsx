@@ -36,7 +36,7 @@ const InquiryPage = () => {
     }
     axios
       .post(
-        'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/draw-results',
+        'https://goldenbeitapi.koyeb.app/core/draw-results',
         { full_name: inputValue },
         // { headers: { Authorization: `Bearer ${token}` } }
       )

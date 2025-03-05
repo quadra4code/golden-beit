@@ -20,7 +20,7 @@ const Favorites = () => {
     if(token){
       setLoading(true)
       axios
-      .post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/list-paginated-favorites',
+      .post('https://goldenbeitapi.koyeb.app/core/list-paginated-favorites',
         {},
         {
           headers: {Authorization: `Bearer ${token}`,}
@@ -41,7 +41,7 @@ const Favorites = () => {
   },[])
   const handleDelete = (id) => {
     axios
-    .delete(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/delete-favorite/${id}`,
+    .delete(`https://goldenbeitapi.koyeb.app/core/delete-favorite/${id}`,
       {
         headers: {Authorization: `Bearer ${token}`,}
       }
