@@ -41,7 +41,7 @@ const EditUnit = () => {
   }, []);
   useEffect(() => {
     axios
-    .get(`https://golden-gate-three.vercel.app/core/get-update-unit/${param.id}`, {
+    .get(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/get-update-unit/${param.id}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -104,7 +104,7 @@ const EditUnit = () => {
     });
     console.log(formDataToSubmit);
     axios
-      .put('https://golden-gate-three.vercel.app/core/update-unit', formDataToSubmit, {
+      .put('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/update-unit', formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

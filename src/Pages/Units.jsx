@@ -241,7 +241,7 @@
 //   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 //   const handleSingleUnitDetails= (id) => {
 //     axios
-//     .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+//     .get(`https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/unit-details/${id}`)
 //     .then((res)=>{
 //       console.log(res.data);
 //       setSingleUnit(res.data.data)
@@ -253,7 +253,7 @@
 //   }
 //   useEffect(()=>{
 //     setLoading(true)
-//     axios.get('https://golden-gate-three.vercel.app/core/all-units')
+//     axios.get('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/all-units')
 //     .then(res => {
 //       setAllUnits(res.data.data.all)
 //       console.log(res.data);
@@ -536,7 +536,7 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-paginated-units',{
     })
       .then(res => {
         setAllUnits(res.data.data.all);
@@ -560,7 +560,7 @@ const Units = () => {
     : [];
   const paginate = (pageNumber) => {
     setLoading(true);
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    axios.post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/filter-paginated-units',{
       page_number:pageNumber
     })
       .then(res => {

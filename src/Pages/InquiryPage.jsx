@@ -36,7 +36,7 @@ const InquiryPage = () => {
     }
     axios
       .post(
-        'https://golden-gate-three.vercel.app/core/draw-results',
+        'https://amazing-juliann-golden-beit-167d3b34.koyeb.app/core/draw-results',
         { full_name: inputValue },
         // { headers: { Authorization: `Bearer ${token}` } }
       )

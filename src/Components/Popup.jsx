@@ -25,7 +25,7 @@ const Popup = () => {
   }
   const handleChangePassReq = () => {
     axios
-    .post('https://golden-gate-three.vercel.app/accounts/change-password',
+    .post('https://amazing-juliann-golden-beit-167d3b34.koyeb.app/accounts/change-password',
       {
         old_password: oldPass,
         new_password: newPass,
