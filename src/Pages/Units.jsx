@@ -241,7 +241,7 @@
 //   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 //   const handleSingleUnitDetails= (id) => {
 //     axios
-//     .get(`https://goldenbeitapi.koyeb.app/core/unit-details/${id}`)
+//     .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
 //     .then((res)=>{
 //       console.log(res.data);
 //       setSingleUnit(res.data.data)
@@ -253,7 +253,7 @@
 //   }
 //   useEffect(()=>{
 //     setLoading(true)
-//     axios.get('https://goldenbeitapi.koyeb.app/core/all-units')
+//     axios.get('https://golden-gate-three.vercel.app/core/all-units')
 //     .then(res => {
 //       setAllUnits(res.data.data.all)
 //       console.log(res.data);
@@ -505,7 +505,7 @@ import IsDesktop from '../Context/IsDesktop';
 import UnitsNotFound from './UnitsNotFound';
 
 const Units = () => {
-  const { allUnits, setAllUnits, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
+  const {handelAddToFav, allUnits, setAllUnits, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
@@ -536,7 +536,7 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    axios.post('https://goldenbeitapi.koyeb.app/core/filter-paginated-units',{
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
     })
       .then(res => {
         setAllUnits(res.data.data.all);
@@ -560,7 +560,7 @@ const Units = () => {
     : [];
   const paginate = (pageNumber) => {
     setLoading(true);
-    axios.post('https://goldenbeitapi.koyeb.app/core/filter-paginated-units',{
+    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
       page_number:pageNumber
     })
       .then(res => {
@@ -635,12 +635,15 @@ const Units = () => {
                         title={unit.title}
                         project={unit.project}
                         mainImage={unit.main_image}
+                        over_price_obj={unit.over_price_obj}
+                        total_price_obj={unit.total_price_obj}
                         city={unit.city}
                         area={unit.area}
                         price={unit.price_obj}
                         id={unit.id}
                         isSoldOut={unit.status.code==4 && true}
                         onClick={() => navigate(`/all-units/${unit.id}`)}
+                        addFav = {()=>{handelAddToFav(unit.id)}}
                       />
                     ))}
                   </div>

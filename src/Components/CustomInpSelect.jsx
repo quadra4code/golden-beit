@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../Context/AppContext';
-const CustomInpSelect = ({ value, onChange, currency, onCurrencyChange }) => {
+const CustomInpSelect = ({ value, onChange, currency, onCurrencyChange, isReq }) => {
   const {currencies} = useContext(AppContext);
   return (
     <div className="custom-inp-container">
@@ -10,11 +10,13 @@ const CustomInpSelect = ({ value, onChange, currency, onCurrencyChange }) => {
         onChange={(e) => onChange(e.target.value)}
         className="input"
         placeholder="ادخل القيمة"
+        required={isReq}
       />
       <select
         value={currency}
         onChange={(e) => onCurrencyChange(e.target.value)}
         className="select"
+        required={isReq}
       >
         <option value="اختر العملة" selected disabled hidden>اختر العملة</option>
         {currencies&&currencies.length>0&& currencies.map((curr,key) => (

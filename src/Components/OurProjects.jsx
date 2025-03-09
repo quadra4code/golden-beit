@@ -10,17 +10,18 @@ import IsDesktop from '../Context/IsDesktop';
 import { BsBuildings } from "react-icons/bs";
 import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import UnitCard from './UnitCard';
 const OurProjects = () => {
   const {isDesktop} = useContext(IsDesktop)
   const navigate = useNavigate()
-  const {featuredUnits, handleSingleUnitDetails} = useContext(AppContext)
+  const {featuredUnits, handelAddToFav} = useContext(AppContext)
   console.log(featuredUnits);
   return (
     <section className='our-projects'>
       <h1 className='title'>وحداتنا المتميزة</h1>
       <Swiper
-        slidesPerView={isDesktop?3:1}
-        spaceBetween={30}
+        slidesPerView={isDesktop?4:1}
+        spaceBetween={15}
         pagination={{
           clickable: true,
         }}
@@ -30,11 +31,26 @@ const OurProjects = () => {
         {featuredUnits&& featuredUnits.map((project, index) => 
           <SwiperSlide className='swiper-slide' key={index}>
             <div className="slide-content">
-              <img src={project.main_image&& project.main_image?project.main_image:image1} alt="project"/>
+            <UnitCard
+              key={project.id}
+              title={project.title}
+              project={project.project}
+              mainImage={project.main_image}
+              over_price_obj={project.over_price_obj}
+              total_price_obj={project.total_price_obj}
+              city={project.city}
+              area={project.area}
+              price={project.price_obj}
+              id={project.id}
+              isSoldOut={project.status.code==4 && true}
+              onClick={() => navigate(`/all-units/${project.id}`)}
+              addFav = {()=>{handelAddToFav(project.id)}}
+            />
+              {/* <img src={project.main_image&& project.main_image?project.main_image:image1} alt="project"/>
               <div className="content">
                 <div className="top">
                   <h1 className='title'>
-                    {/* <FaLocationDot/> */}
+                    <FaLocationDot/>
                     {project.title}
                   </h1>
                   <h1>
@@ -49,12 +65,11 @@ const OurProjects = () => {
                     <TbRulerMeasure2/>
                     {project.area} متر مربع
                   </h1>
+                  <span className='price'>{project.over_price_obj.price_value} {project.over_price_obj.currency} </span>
+                  <span className='price'>{project.over_price_obj.price_value} {project.over_price_obj.currency} </span>
                 </div>
-                <p>
-                  <span className='price'>{project.price_obj.price_value} {project.price_obj.currency} </span>
-                  <button onClick={()=>{navigate(`/all-units/${project.id}`)}}>التفاصيل</button>
-                </p>
-              </div>
+                <button onClick={()=>{navigate(`/all-units/${project.id}`)}}>التفاصيل</button>
+              </div> */}
             </div>
           </SwiperSlide>        
         )}

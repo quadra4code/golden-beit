@@ -18,7 +18,7 @@ const FAQ = () => {
   }, []);
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://goldenbeitapi.koyeb.app/core/consultations/${params.id}`)
+    axios.get(`https://golden-gate-three.vercel.app/core/consultations/${params.id}`)
     .then(response => {
       console.log(response.data.data);
       setConsultationFaq(response.data.data)

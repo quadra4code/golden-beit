@@ -26,6 +26,9 @@ module.exports = {
     lineHeight:{
       'xxl':'3rem'
     },
+    fontWeight:{
+      'active':'700'
+    },
     borderRadius: {
       'half':'50%',
       'none': '0',

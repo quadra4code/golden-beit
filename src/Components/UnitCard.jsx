@@ -2,10 +2,10 @@ import React from 'react'
 import image1 from '../Images/form.png';
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { BsBuildings } from "react-icons/bs";
-import { BiRename } from "react-icons/bi";
+import { FaRegHeart } from "react-icons/fa";
 import image2 from '../Images/form.png';
 import { IoLocationOutline } from "react-icons/io5";
-const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,isSoldOut}) => {
+const UnitCard = ({title, area, over_price_obj, total_price_obj, city, project, onClick, addFav, key, mainImage,isSoldOut}) => {
   return (
     <div className="unit-card" key={key}>
       {isSoldOut && <span className='sold_out'>تم البيع</span>}
@@ -27,11 +27,19 @@ const UnitCard = ({title, area, price, city, project, onClick, key, mainImage,is
           {area} متر مربع
         </h1>
         <h1 className='price'>
-          <span className='price-type'>{price.price_type} :</span>
-          {price.price_value}
-          <span className='label'>{price.currency}</span>
+          <span className='price-type'>{over_price_obj.price_type} :</span>
+          {over_price_obj.price_value}
+          <span className='label'>{over_price_obj.currency}</span>
         </h1>
-        <button className='see_more' onClick={onClick}>التفاصيل</button>
+        <h1 className='price'>
+          <span className='price-type'>{total_price_obj.price_type} :</span>
+          {total_price_obj.price_value}
+          <span className='label'>{total_price_obj.currency}</span>
+        </h1>
+        <div className="btns">
+          <button className='see_more' onClick={onClick}>التفاصيل</button>
+          <button className='see_more' onClick={addFav}><FaRegHeart/></button>
+        </div>
       </div>
     </div>
   )

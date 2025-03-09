@@ -3,6 +3,11 @@
 }
 .links-nav, .user-span {
   position: relative;
+  // a{
+  //   &.active{
+  //     font-weight: 700 !important;
+  //   }
+  // }
   &:hover {
     .nav-menu {
       opacity: 1;

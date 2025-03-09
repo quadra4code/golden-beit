@@ -9,10 +9,8 @@ import { MdAlternateEmail } from "react-icons/md";
 import { MdManageAccounts } from "react-icons/md";
 import { MdLocationCity } from "react-icons/md";
 const Login = () => {
-  const navigate= useNavigate()
   const params = useParams()
-  console.log(params);
-  const { openNotificationWithIcon, contextHolder, loading, setLoading} = useContext(AppContext);
+  const { openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
   const [password, setPassword] = useState("");
@@ -40,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     if (isLogin) {
-      axios.post('https://goldenbeitapi.koyeb.app/accounts/login', {
+      axios.post('https://golden-gate-three.vercel.app/accounts/login', {
         username,
         password,
       })
@@ -59,7 +57,7 @@ const Login = () => {
         setLoading(false);
       });
     }else {
-      axios.post('https://goldenbeitapi.koyeb.app/accounts/register', {
+      axios.post('https://golden-gate-three.vercel.app/accounts/register', {
         first_name: firstName,
         last_name: lastName,
         username,
@@ -148,8 +146,8 @@ const Login = () => {
                 <MdLocationCity />
                 <select onChange={(e)=>setInterestedCity(e.target.value)} name="" id="">
                   <option selected disabled hidden value="أكثر مدينة مهتم بها ">أكثر مدينة مهتم بها (اختيارى)</option>
-                {interestedCities.map((index, key)=>
-                <option key={key} value={index}>{index}</option>
+                {filterData&& filterData.cities.length>0&& filterData.cities.map((city)=>
+                <option key={city.id} value={city.id}>{city.name}</option>
                 )}
                 </select>
               </div>

@@ -229,80 +229,83 @@ main.home {
             display: flex;
             flex-direction: column;
             height: 100% ;
-            img{
-              width: 100%;
-              // height: 100%;
-              object-fit: cover;
-              border-top-right-radius:14px;
-              border-top-left-radius:14px;
+            .unit-card{
+              height: 100%;
             }
-            .content{
-              height: 60%;
-              padding: 1rem;
-              background-color: var(--primary-color);
-              display: flex;
-              flex-direction: column;
-              justify-content: space-around;
-              border-bottom-right-radius:14px;
-              border-bottom-left-radius:14px;
-              gap:18px;
-              .top{
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-                .title {
-                  color: #fff;
-                }
-                h1{
-                  display: flex;
-                  gap: 10px;
-                  font-size: 21px;
-                  color: var(--dark-primary-color);
-                  svg{
-                    font-size: 30px;
-                    color: #4e3426;
-                    background-color: #fff;
-                    padding: 5px;
-                    border-radius: 5px;
-                  }
-                }  
-              }
-              p{
-                display: flex;
-                gap: 60px;
-                align-items: center;
-                .price{
-                  font-size: 25px;
-                }
-                span{
-                  font-size: 20px;
-                  font-weight: 600;
-                  color: #4e3426;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  svg{
-                    font-size: 30px;
-                    color: #4e3426;
-                    background-color: #fff;
-                    padding: 5px;
-                    border-radius: 5px;
-                  }
-                }
-                button {
-                  margin-right: auto;
-                  background-color: var(--dark-primary-color);
-                  color: #fff;
-                  font-size: 20px;
-                  border-radius: 8px;
-                  padding: 5px 10px;
-                  outline: none;
-                  border: none;
-                  cursor: pointer;
-                }
-              }
-            }
+            // img{
+            //   width: 100%;
+            //   height: 35%;
+            //   object-fit: cover;
+            //   border-top-right-radius:14px;
+            //   border-top-left-radius:14px;
+            // }
+            // .content{
+            //   height: 65%;
+            //   padding: 1rem;
+            //   background-color: var(--primary-color);
+            //   display: flex;
+            //   flex-direction: column;
+            //   justify-content: space-around;
+            //   border-bottom-right-radius:14px;
+            //   border-bottom-left-radius:14px;
+            //   gap:18px;
+            //   .top{
+            //     display: flex;
+            //     flex-direction: column;
+            //     gap: 15px;
+            //     width: 100%;
+            //     .title {
+            //       color: #fff;
+            //     }
+            //     h1{
+            //       display: flex;
+            //       gap: 10px;
+            //       font-size: 18px;
+            //       color: var(--dark-primary-color);
+            //       svg{
+            //         font-size: 30px;
+            //         color: #4e3426;
+            //         background-color: #fff;
+            //         padding: 5px;
+            //         border-radius: 5px;
+            //       }
+            //     }  
+            //   }
+            //   p{
+            //     display: flex;
+            //     gap: 60px;
+            //     align-items: center;
+            //   }
+            //   .price{
+            //     font-size: 25px;
+            //   }
+            //   span{
+            //     font-size: 20px;
+            //     font-weight: 600;
+            //     color: #4e3426;
+            //     display: flex;
+            //     align-items: center;
+            //     gap: 10px;
+            //     svg{
+            //       font-size: 30px;
+            //       color: #4e3426;
+            //       background-color: #fff;
+            //       padding: 5px;
+            //       border-radius: 5px;
+            //     }
+            //   }
+            //   button {
+            //     align-self: center;
+            //     background-color: var(--dark-primary-color);
+            //     color: #fff;
+            //     font-size: 20px;
+            //     border-radius: 8px;
+            //     padding: 5px 10px;
+            //     outline: none;
+            //     border: none;
+            //     cursor: pointer;
+            //   }
+            // }
           }
         }
       }

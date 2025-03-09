@@ -36,7 +36,7 @@ const InquiryPage = () => {
     }
     axios
       .post(
-        'https://goldenbeitapi.koyeb.app/core/draw-results',
+        'https://golden-gate-three.vercel.app/core/draw-results',
         { full_name: inputValue },
         // { headers: { Authorization: `Bearer ${token}` } }
       )

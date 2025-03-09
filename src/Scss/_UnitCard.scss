@@ -5,9 +5,10 @@
   gap: 10px;
   background-color: #fff;
   border-radius: 22px;
-  width: 310px;
+  min-width: 280px;
   padding: 10px;
   position: relative;
+  box-shadow: 0 0 12px 0 #00000047;
   .sold_out{
     position: absolute;
     top: 0;
@@ -19,15 +20,16 @@
   }
   img{
     width: 100%;
+    height: 35%;
     object-fit: cover;
     border-radius: 16px;
     box-shadow:  0 3px 4px #0000000d;
   }
   .content{
+    height: 65%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
     gap: 10px;
     width: 100%;
   }
@@ -35,7 +37,7 @@
     display: flex;
     gap: 5px;
     align-items: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-color);
     .label {
@@ -47,24 +49,28 @@
     color: var(--primary-color);
     font-size: 24px;
     .price-type{
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-color);
     }
   }
-  button.see_more {
-    border-radius: 16px;
-    width: fit-content;
-    align-self:center ;
-    background-color: transparent;
-    border: 1px solid #333;
-    font-size: 18px;
-    padding: 5px 20px;
-    color: #333;
-    cursor: pointer;
-    &:hover {
-      background-color: var(--dark-primary-color);
-      color: #ccc;
-    }        
+  .btns {
+    display: flex;
+    justify-content: space-around;
+    button.see_more {
+      border-radius: 16px;
+      width: fit-content;
+      align-self:center ;
+      background-color: transparent;
+      border: 1px solid #333;
+      font-size: 18px;
+      padding: 5px 20px;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--dark-primary-color);
+        color: #ccc;
+      }        
+    }
   }
 }
 @media(max-width: 1350px){

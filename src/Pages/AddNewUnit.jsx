@@ -48,7 +48,7 @@
 //       return;
 //     }
 //     axios
-//     .post('https://goldenbeitapi.koyeb.app/core/propose-unit',
+//     .post('https://golden-gate-three.vercel.app/core/propose-unit',
 //       {
 //         unit_type_id:formData.project_type_id,
 //         project_id:formData.project_id,
@@ -456,7 +456,7 @@ const AddNewUnit = () => {
     });
     console.log(formDataToSubmit);
     axios
-      .post('https://goldenbeitapi.koyeb.app/core/propose-unit', formDataToSubmit, {
+      .post('https://golden-gate-three.vercel.app/core/propose-unit', formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -489,7 +489,7 @@ const AddNewUnit = () => {
   //     formDataToSubmit.append(`images[${index}]`, image);
   //   });
   //   axios
-  //     .post('https://goldenbeitapi.koyeb.app/core/propose-unit', formDataToSubmit, {
+  //     .post('https://golden-gate-three.vercel.app/core/propose-unit', formDataToSubmit, {
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
   //         'Content-Type': 'multipart/form-data',
@@ -762,6 +762,7 @@ const AddNewUnit = () => {
             <label htmlFor="price">قيمة الاوفر</label>
             <CustomInpSelect
               value={formData.over_price}
+              isReq={true}
               onChange={(value) => setFormData({ ...formData, over_price: value })}
               currency={formData.over_price_currency}
               onCurrencyChange={(currency)=>
@@ -773,6 +774,7 @@ const AddNewUnit = () => {
             <label htmlFor="price">اجمالى السعر</label>
             <CustomInpSelect
               value={formData.total_price}
+              isReq={true}
               onChange={(value) => setFormData({ ...formData, total_price: value })}
               currency={formData.total_price_currency}
               onCurrencyChange={(currency)=>

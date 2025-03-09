@@ -20,7 +20,7 @@ const Favorites = () => {
     if(token){
       setLoading(true)
       axios
-      .post('https://goldenbeitapi.koyeb.app/core/list-paginated-favorites',
+      .post('https://golden-gate-three.vercel.app/core/list-paginated-favorites',
         {},
         {
           headers: {Authorization: `Bearer ${token}`,}
@@ -41,7 +41,7 @@ const Favorites = () => {
   },[])
   const handleDelete = (id) => {
     axios
-    .delete(`https://goldenbeitapi.koyeb.app/core/delete-favorite/${id}`,
+    .delete(`https://golden-gate-three.vercel.app/core/delete-favorite/${id}`,
       {
         headers: {Authorization: `Bearer ${token}`,}
       }
@@ -74,6 +74,8 @@ const Favorites = () => {
                       title={unit.title}
                       area={unit.area}
                       price={unit.price_obj}
+                      over_price_obj={unit.over_price_obj}
+                      total_price_obj={unit.total_price_obj}
                       city={unit.city}
                       project={unit.project}
                       mainImage={unit.mainImage}

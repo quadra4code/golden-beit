@@ -49,7 +49,7 @@ const EditUnit = () => {
   }, []);
   useEffect(() => {
     axios
-    .get(`https://goldenbeitapi.koyeb.app/core/get-update-unit/${param.id}`, {
+    .get(`https://golden-gate-three.vercel.app/core/get-update-unit/${param.id}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -122,7 +122,7 @@ const EditUnit = () => {
     });
     console.log(formDataToSubmit);
     axios
-      .put('https://goldenbeitapi.koyeb.app/core/update-unit', formDataToSubmit, {
+      .put('https://golden-gate-three.vercel.app/core/update-unit', formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -388,6 +388,7 @@ const EditUnit = () => {
             <label htmlFor="price">قيمة الاوفر</label>
             <CustomInpSelect
               value={formData.over_price}
+              isReq={true}
               onChange={(value) => setFormData({ ...formData, over_price: value })}
               currency={formData.over_price_currency}
               onCurrencyChange={(currency)=>
@@ -406,6 +407,7 @@ const EditUnit = () => {
             <label htmlFor="price">اجمالى السعر</label>
             <CustomInpSelect
               value={formData.total_price}
+              isReq={true}
               onChange={(value) => setFormData({ ...formData, total_price: value })}
               currency={formData.total_price_currency}
               onCurrencyChange={(currency)=>

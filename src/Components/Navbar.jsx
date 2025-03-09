@@ -14,8 +14,10 @@ import { MdLogout } from "react-icons/md";
 import { useContext } from 'react';
 import AppContext from '../Context/AppContext';
 const Navbar = () => {
-  const referral_code = localStorage.getItem('referral_code')
-  const navigate = useNavigate()
+  const referral_code = localStorage.getItem('referral_code');
+  const pathname = window.location.pathname
+  console.log(window.location.pathname);
+  const navigate = useNavigate();
   const { token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
   const handleAddUnitRoute = (type)=> {
@@ -25,7 +27,7 @@ const Navbar = () => {
         setChangePassUi(false)
         setIsNormalPop(true)
         setIsOpen(true);
-        setPopupHeader('قم بنسخ لينك الدعوة')
+        setPopupHeader('قم بنسخ لينك الدعوة');
         setPopupContent(`https://goldenbeit.com/register/${referral_code}`)    
       }else if(type==='add-review'){
         setIsNormalPop(true)
@@ -79,7 +81,7 @@ const Navbar = () => {
             const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
           }}
-          smooth to='/#landing' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+          smooth to='/#landing' className={`${pathname === '/' ? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>
             الرئيسية
           </HashLink>
           <div className="links-nav font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
@@ -95,7 +97,7 @@ const Navbar = () => {
               <Link className='list-unit' to="/leader-board">لوحة المتصدرين</Link>
             </div>
           </div>
-          <Link to= "/all-units" className="font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+          <Link to= "/all-units" className={`${pathname.startsWith('/all-units')? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>
             الوحدات
           </Link>
           <HashLink
@@ -104,10 +106,10 @@ const Navbar = () => {
               const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
               window.scrollTo({ top: y, behavior: 'smooth' });
               }}
-              smooth to="/#why-us" className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+              smooth to="/#why-us" className={`${pathname.startsWith('/faq') ? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>
             الاستشارات
           </HashLink>
-          <Link to='/contact-us' className=" font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
+          <Link to='/contact-us' className={`${pathname === '/contact-us' ? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>
             اتصل بنا
           </Link>
         </PopoverGroup>
