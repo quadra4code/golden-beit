@@ -345,12 +345,11 @@ main.single_unit_page {
   flex-direction: column;
   gap: 10px;
   padding: 1rem 10rem;
-  margin-top: 5.5rem;
+  margin-top: 5.4rem;
   background-color: #f8f9fa;
 }
 main.single_unit_page section.unit_info {
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
   display: flex;
   padding: 1rem;
   gap: 40px;
