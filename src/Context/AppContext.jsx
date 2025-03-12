@@ -223,13 +223,13 @@ export const AppProvider = ({children}) => {
       .then(res => {
         openNotificationWithIcon('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
       })
-      .catch(err => {
+      .catch((err) => {
         if(err.status===401){
           handleUnAuth()
         }
-        console.log(err.status);
+        console.log(err);
+        openNotificationWithIcon('error','حدث خطأ برجاء المحاولة مرة اخرى')
       })
-      openNotificationWithIcon('error','حدث خطأ برجاء المحاولة مرة اخرى')
     }else{
       openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')
     }
