@@ -154,6 +154,7 @@ main.single_unit_page {
       width: 100%;
       .units_list {
         display: flex;
+        align-items: center;
         overflow-x: auto;
         width: 100%;
         padding: .5rem;
