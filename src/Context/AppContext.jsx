@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { notification } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaHandshake } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdDesignServices } from "react-icons/md";
@@ -32,6 +32,8 @@ export const AppProvider = ({children}) => {
   const [changePassUi, setChangePassUi] = useState(false);
   const [reviewMessage, setReviewMessage] = useState('');
   const token = localStorage.getItem('token');
+  const unitId = window.location.pathname
+  console.log(singleUnit);
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message,
@@ -228,7 +230,7 @@ export const AppProvider = ({children}) => {
           handleUnAuth()
         }
         console.log(err);
-        openNotificationWithIcon('error','حدث خطأ برجاء المحاولة مرة اخرى')
+        openNotificationWithIcon('error',err.response.data.msg)
       })
     }else{
       openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')

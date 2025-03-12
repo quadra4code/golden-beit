@@ -154,11 +154,15 @@ main.single_unit_page {
       width: 100%;
       .units_list {
         display: flex;
-        align-items: center;
         overflow-x: auto;
+        scroll-snap-type: x mandatory;
         width: 100%;
         padding: .5rem;
         gap: 15px;
+        .unit-card{
+          flex: 0 0 auto;
+          scroll-snap-align: start;
+        }
       }
     }
     .mySwiper{

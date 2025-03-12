@@ -430,6 +430,7 @@ main.single_unit_page section.unit_info .unit_data .data-holder .label-holder .p
 }
 main.single_unit_page section.unit_info .unit_data .data-holder .label-holder .price-currency, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder .price-currency {
   color: #333;
+  margin-right: 5px;
   font-size: 20px;
 }
 main.single_unit_page section.tab_view {
@@ -474,9 +475,14 @@ main.single_unit_page section.more_units .all_units {
 main.single_unit_page section.more_units .all_units .units_list {
   display: flex;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
   width: 100%;
   padding: 0.5rem;
   gap: 15px;
+}
+main.single_unit_page section.more_units .all_units .units_list .unit-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
 }
 main.single_unit_page section.more_units .mySwiper {
   width: 100%;
@@ -2170,7 +2176,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
   gap: 10px;
   background-color: #fff;
   border-radius: 22px;
-  min-width: 280px;
+  max-width: 280px;
   padding: 10px;
   position: relative;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2784313725);
@@ -2214,7 +2220,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
 }
 .unit-card .price {
   color: var(--primary-color);
-  font-size: 24px;
+  font-size: 20px;
 }
 .unit-card .price .price-type {
   font-size: 15px;
@@ -2243,7 +2249,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
 
 @media (max-width: 1350px) {
   .unit-card {
-    min-width: 265px;
+    max-width: 265px;
   }
   .unit-card h1 {
     font-size: 16px;
