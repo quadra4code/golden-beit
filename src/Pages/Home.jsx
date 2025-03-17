@@ -8,6 +8,7 @@ import OurReviews from '../Components/OurReviews';
 import Popup from '../Components/Popup';
 import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
+import TopShow from '../Components/TopShow';
 const Home = () => {
   const {loading, contextHolder} = useContext(AppContext);
   return (
@@ -17,12 +18,13 @@ const Home = () => {
       <Loader/>
       :    
       <>
-        <Popup/>
         <main className='home'>
+          <Popup/>
           {contextHolder}
           <Landing/>
           <WhyUs/>
           <OurProjects/>
+          <TopShow/>
           {/* <AboutUs/> */}
           <OurReviews/>
           <Articles/>

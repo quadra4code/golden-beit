@@ -1151,26 +1151,42 @@ footer.footer section.footer-links .logo-slogan span {
 }
 
 section.landing {
+  height: 100lvh;
+  width: 100%;
+  position: relative;
+  /* Search Bar */
+  /* Media Queries for Responsiveness */
+}
+section.landing .holder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+section.landing .holder .video-cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+section.landing .holder .video-cont video {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section.landing .holder .opacity {
   background-image: url("./Images/landing.png");
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
-  height: 100lvh;
-  width: 100%;
-  position: relative;
-  /* Hero Section */
-  /* Search Bar */
-  /* Media Queries for Responsiveness */
-}
-section.landing .opacity {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3098039216);
+  /* Hero Section */
 }
-section.landing .hero {
+section.landing .holder .opacity .hero {
   background-color: rgba(255, 255, 255, 0.631);
   border-radius: 80px 0 80px 0;
   display: flex;
@@ -1178,19 +1194,18 @@ section.landing .hero {
   padding: 2rem;
   align-items: center;
   justify-content: center;
-  width: 60rem;
   text-align: center; /* Center text for smaller screens */
 }
-section.landing .hero h1 {
+section.landing .holder .opacity .hero h1 {
   font-size: 70px;
   color: #000;
 }
-section.landing .hero h4 {
+section.landing .holder .opacity .hero h4 {
   width: 43rem;
   font-size: 25px;
   margin: 1rem 0; /* Add margin for better spacing */
 }
-section.landing .hero a {
+section.landing .holder .opacity .hero a {
   text-decoration: none;
   background-color: var(--primary-color);
   color: #ffffff;

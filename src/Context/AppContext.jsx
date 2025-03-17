@@ -19,6 +19,7 @@ export const AppProvider = ({children}) => {
   const [winnersData, setWinnersData] = useState();
   const [allUnits, setAllUnits] = useState();
   const [featuredUnits, setFeaturedUnits] = useState();
+  const [mostViewedUnits, setMostViewedUnits] = useState();
   const [newArrivalUnits, setNewArrivalUnits] = useState();
   const [loading, setLoading] = useState(false);
   const [numberInpValue, setNumberInpValue] = useState()
@@ -103,6 +104,17 @@ export const AppProvider = ({children}) => {
     .then(response => {
       console.log(response.data.data);
       setFeaturedUnits(response.data.data)
+    })
+    .catch(error => console.error(error))
+    .finally(()=>{setLoading(false)})
+  },[])
+  /////////////// get most-viewed-units section
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('https://golden-gate-three.vercel.app/core/home-most-viewed-units')
+    .then(response => {
+      console.log(response.data.data);
+      setMostViewedUnits(response.data.data)
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -275,7 +287,8 @@ export const AppProvider = ({children}) => {
       numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
-      changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav
+      changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
+      mostViewedUnits, setMostViewedUnits,
       }}>
       {children}
     </AppContext.Provider>
