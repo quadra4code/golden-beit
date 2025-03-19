@@ -16,7 +16,6 @@ import AppContext from '../Context/AppContext';
 const Navbar = () => {
   const referral_code = localStorage.getItem('referral_code');
   const pathname = window.location.pathname
-  console.log(window.location.pathname);
   const navigate = useNavigate();
   const { token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)

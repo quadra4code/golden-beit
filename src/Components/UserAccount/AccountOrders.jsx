@@ -31,6 +31,7 @@ const AccountOrders = () => {
   return (
     <div className="orders-table">
       <h2 className="orders-title">طلباتي</h2>
+      {data && data.length>0 ?
       <div className="table-wrapper">
         <table>
           <thead>
@@ -71,6 +72,11 @@ const AccountOrders = () => {
           </tbody>
         </table>
       </div>
+      :
+      <div className="no-units">
+        <h2>لايوجد وحدات</h2>
+      </div>
+      }
     </div>
   );
 };

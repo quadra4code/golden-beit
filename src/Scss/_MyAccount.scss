@@ -45,12 +45,48 @@ main.my-account {
       display: flex;
       flex-direction: column;
       padding: 8px;
+      gap: 2rem;
       .user-data {
         display: flex;
         flex-wrap: wrap;
         margin-top: 12px;
-        gap: 12px;
-        input {
+        gap: 1rem;
+        .floating-label {
+          position: relative;
+        }
+        .floating-label input {
+          width: 100%;
+          padding: 12px 10px;
+          font-size: 16px;
+          border: 2px solid #aaa;
+          border-radius: 5px;
+          outline: none;
+          background: transparent;
+          transition: 0.3s ease-in-out;
+        }
+        .floating-label label {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          font-size: 16px;
+          color: #aaa;
+          transition: 0.3s ease-in-out;
+          pointer-events: none;
+          background: white;
+          padding: 0 5px;
+        }
+        .floating-label input:focus,
+        .floating-label input:not(:placeholder-shown) {
+          border-color: var(--primary-color);
+        }
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+          top: 0;
+          font-size: 12px;
+          color: var(--primary-color);
+        }
+        input,select {
           outline: none;
           padding: 8px;
           border-radius: 5px;
@@ -69,7 +105,7 @@ main.my-account {
         border: 1px solid #ddd;
         img{
           width: 100%;
-          border-radius: 12px;
+          // border-radius: 12px;
         }
         .change-user-image {
           position: relative;
@@ -81,6 +117,7 @@ main.my-account {
           background-color: var(--primary-color);
           padding: 4px 8px;
           color: #fff;
+          margin-top: 1rem;
           &::after {
             position: absolute;
             content : 'تغير الصورة'

@@ -34,7 +34,6 @@ export const AppProvider = ({children}) => {
   const [reviewMessage, setReviewMessage] = useState('');
   const token = localStorage.getItem('token');
   const unitId = window.location.pathname
-  console.log(singleUnit);
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message,
@@ -59,7 +58,6 @@ export const AppProvider = ({children}) => {
     .then(response => {
       setFilterData(response.data.data)
       setCurrencies(response.data.data.currencies)
-      console.log(response.data.data);
     })
     .catch(error => console.error(error))
     .finally(()=>{setLoading(false)})
@@ -79,7 +77,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-consultation-types')
     .then(response => {
-      console.log(response.data);
       const responseData = response.data.data
       responseData.map((ele,key)=>{ele['iconKey']=icons[key]})
       setConsultationsData(responseData)
@@ -102,7 +99,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-featured-units')
     .then(response => {
-      console.log(response.data.data);
       setFeaturedUnits(response.data.data)
     })
     .catch(error => console.error(error))
@@ -113,7 +109,6 @@ export const AppProvider = ({children}) => {
     setLoading(true)
     axios.get('https://golden-gate-three.vercel.app/core/home-most-viewed-units')
     .then(response => {
-      console.log(response.data.data);
       setMostViewedUnits(response.data.data)
     })
     .catch(error => console.error(error))
@@ -126,7 +121,6 @@ export const AppProvider = ({children}) => {
       axios.get('https://golden-gate-three.vercel.app/core/recent-units'
       )
       .then(response => {
-        console.log(response.data.data);
         setNewArrivalUnits(response.data.data)
       })
       .catch(error => {console.error(error);setLoading(false)})
@@ -169,7 +163,6 @@ export const AppProvider = ({children}) => {
         openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }
-      console.log(res);
       setAllUnits(res.data.data.all);
     })
     .catch(err => {
@@ -190,7 +183,6 @@ export const AppProvider = ({children}) => {
     )
     .then((res)=>{
       openNotificationWithIcon('success','تم إضافة الوحدة بنجاح')
-      console.log(res.data);
     })
     .catch((err)=>{
       openNotificationWithIcon('error','حدث خطأ برجاء المحاولة لاحقا')

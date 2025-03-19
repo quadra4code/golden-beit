@@ -2783,14 +2783,58 @@ main.my-account section.content .account-details {
   display: flex;
   flex-direction: column;
   padding: 8px;
+  gap: 2rem;
 }
 main.my-account section.content .account-details .user-data {
   display: flex;
   flex-wrap: wrap;
   margin-top: 12px;
-  gap: 12px;
+  gap: 1rem;
 }
-main.my-account section.content .account-details .user-data input {
+main.my-account section.content .account-details .user-data .floating-label {
+  position: relative;
+}
+main.my-account section.content .account-details .user-data .floating-label input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  outline: none;
+  background: transparent;
+  transition: 0.3s ease-in-out;
+}
+main.my-account section.content .account-details .user-data .floating-label label {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+  background: white;
+  padding: 0 5px;
+}
+main.my-account section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) {
+  border-color: var(--primary-color);
+}
+main.my-account section.content .account-details .user-data .floating-label input:focus,
+main.my-account section.content .account-details .user-data .floating-label input:not(:placeholder-shown) {
+  border-color: var(--primary-color);
+}
+main.my-account section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) + label {
+  top: 0;
+  font-size: 12px;
+  color: var(--primary-color);
+}
+main.my-account section.content .account-details .user-data .floating-label input:focus + label,
+main.my-account section.content .account-details .user-data .floating-label input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 12px;
+  color: var(--primary-color);
+}
+main.my-account section.content .account-details .user-data input, main.my-account section.content .account-details .user-data select {
   outline: none;
   padding: 8px;
   border-radius: 5px;
@@ -2809,7 +2853,6 @@ main.my-account section.content .account-details .image-container {
 }
 main.my-account section.content .account-details .image-container img {
   width: 100%;
-  border-radius: 12px;
 }
 main.my-account section.content .account-details .image-container .change-user-image {
   position: relative;
@@ -2821,6 +2864,7 @@ main.my-account section.content .account-details .image-container .change-user-i
   background-color: var(--primary-color);
   padding: 4px 8px;
   color: #fff;
+  margin-top: 1rem;
 }
 main.my-account section.content .account-details .image-container .change-user-image::after {
   position: absolute;
