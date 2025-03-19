@@ -73,6 +73,8 @@ import ContactUs from './Pages/ContactUs';
 import Leaderboard from './Pages/LeaderBoard';
 import Favorites from './Pages/Favorites';
 import EditUnit from './Pages/EditUnit';
+import MyAccount from './Pages/MyAccount';
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 const App = () => {
   useScrollToTop()
   const location = useLocation();
@@ -102,11 +104,14 @@ const App = () => {
 }
 
 const MainApp = () => {
+  const queryClient = new QueryClient();
   return (
     <BrowserRouter>
       <AppProvider>
         <DesktopProvider>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </DesktopProvider>
       </AppProvider>
     </BrowserRouter>

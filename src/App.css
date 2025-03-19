@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 .data-notFound {
   width: 100%;
@@ -2731,6 +2732,191 @@ main.popup .popup_inner .wrapper span {
   margin-top: 20px;
   font-size: 18px;
   color: #555;
+}
+
+main.my-account {
+  margin-top: 5.5rem;
+  padding: 2rem 6rem;
+  display: flex;
+  gap: 1rem;
+  max-height: 32rem;
+  width: 100%;
+}
+main.my-account section.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 12px;
+  width: 250px;
+}
+main.my-account section.side-nav h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+main.my-account section.side-nav .choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 9px;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1098039216);
+  color: rgba(51, 51, 51, 0.7098039216);
+  font-size: 15px;
+}
+main.my-account section.side-nav .choice.active {
+  font-weight: bold;
+  color: #333;
+}
+main.my-account section.content {
+  max-width: 65rem;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+}
+main.my-account section.content .account-details {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+main.my-account section.content .account-details .user-data {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  gap: 12px;
+}
+main.my-account section.content .account-details .user-data input {
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+main.my-account section.content .account-details .user-data .btn {
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  color: #fff;
+}
+main.my-account section.content .account-details .image-container {
+  width: 250px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+main.my-account section.content .account-details .image-container img {
+  width: 100%;
+  border-radius: 12px;
+}
+main.my-account section.content .account-details .image-container .change-user-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  color: #fff;
+}
+main.my-account section.content .account-details .image-container .change-user-image::after {
+  position: absolute;
+  content: "تغير الصورة";
+}
+main.my-account section.content .account-details .image-container .change-user-image input {
+  opacity: 0;
+  width: 100%;
+  z-index: 2;
+}
+main.my-account section.account-safety form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+main.my-account section.account-safety input {
+  min-width: 200px;
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+main.my-account section.account-safety .pass-btn {
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+
+.orders-table {
+  border-radius: 8px;
+  height: 100%;
+}
+.orders-table .orders-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.orders-table .table-wrapper {
+  overflow-x: auto;
+  height: calc(100% - 40px);
+}
+.orders-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.orders-table table th, .orders-table table td {
+  padding: 12px;
+  min-width: 120px;
+}
+.orders-table table th {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 2px solid #eaeaea;
+}
+.orders-table table td {
+  font-size: 14px;
+  color: #444;
+  border-bottom: 1px solid #eaeaea;
+}
+.orders-table table .order-link {
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.orders-table table .order-link:hover {
+  text-decoration: underline;
+}
+.orders-table table .view-button {
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.orders-table table .view-button:hover {
+  background: #222;
+}
+.orders-table .no-units {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.orders-table .no-units h2 {
+  color: #333;
+  font-weight: bold;
+  font-size: 35px;
 }
 
 * {
