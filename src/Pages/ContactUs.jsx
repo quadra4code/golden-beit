@@ -29,7 +29,7 @@ const ContactUs = () => {
     .post('https://golden-gate-three.vercel.app/core/add-contact-us-msg',{
       name:formData.name,
       email:formData.email,
-      phone:formData.phone,
+      phone_number:formData.phone,
       message:formData.message
     })
     .then((res)=>{
