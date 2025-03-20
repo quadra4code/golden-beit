@@ -43,7 +43,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleLogout =()=> {
     localStorage.removeItem('name');
-    localStorage.removeItem('token');
+    localStorage.removeItem('golden-beit-website-token');
     localStorage.removeItem('referral_code');
     localStorage.setItem('oneTimeInquiry','true');
     window.location.reload();
@@ -90,10 +90,10 @@ const Navbar = () => {
             <div className="nav-menu">
               <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك
               </span>
-              <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
+              {/* <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span> */}
               <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
-              <Link className='list-unit' to="/leader-board">لوحة المتصدرين</Link>
+              {/* <Link className='list-unit' to="/leader-board">لوحة المتصدرين</Link> */}
             </div>
           </div>
           <Link to= "/all-units" className={`${pathname.startsWith('/all-units')? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>

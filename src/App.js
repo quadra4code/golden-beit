@@ -75,6 +75,7 @@ import Favorites from './Pages/Favorites';
 import EditUnit from './Pages/EditUnit';
 import MyAccount from './Pages/MyAccount';
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import ProtectedRoute from './Components/ProtectedRoute';
 const App = () => {
   useScrollToTop()
   const location = useLocation();
@@ -83,7 +84,7 @@ const App = () => {
     { path: "/register/:params", element: <Login /> },
     { path: "/register", element: <Login /> },
     { path: "/all-units", element: <Units /> },
-    { path: "/favorites", element: <Favorites /> },
+    { path: "/favorites", element: <ProtectedRoute><Favorites /></ProtectedRoute> },
     { path: "/add-new-unit", element: <AddNewUnit /> },
     { path: "/inquiry-page", element: <InquiryPage /> },
     { path: "/contact-us", element: <ContactUs /> },

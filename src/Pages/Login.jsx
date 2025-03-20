@@ -44,7 +44,7 @@ const Login = () => {
       })
       .then((res) => {
         localStorage.setItem('referral_code', res.data.data.user.referral_code);
-        localStorage.setItem('token', res.data.data.access_token);
+        localStorage.setItem('golden-beit-website-token', res.data.data.access_token);
         localStorage.setItem('name', res.data.data.user.full_name);
         localStorage.setItem('oneTimeInquiry','false');
         window.location.href = `/`
@@ -71,7 +71,7 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem('referral_code', res.data.data.referral_code);
         localStorage.setItem('name', res.data.data.first_name);
-        localStorage.setItem('token', res.data.data.access_token);
+        localStorage.setItem('golden-beit-website-token', res.data.data.access_token);
         localStorage.setItem('oneTimeInquiry','false');
         window.location.href = `/`
       })

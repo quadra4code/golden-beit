@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import UnitCard from '../Components/UnitCard';
 import { useNavigate } from 'react-router-dom';
@@ -7,11 +7,12 @@ import Loader from '../Components/Loader';
 import UnitsNotFound from './UnitsNotFound';
 import Popup from '../Components/Popup';
 import { IoClose } from "react-icons/io5";
+import AppContext from '../Context/AppContext';
 const Favorites = () => {
   const [favorites, setFavorites] = useState();
   const [loading, setLoading] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const token = localStorage.getItem('token');
+  const {openNotificationWithIcon, token} = useContext(AppContext)
   const navigate = useNavigate();
   const handleSeeMore = (id) => {
     console.log('See more details for unit:', id);
@@ -31,6 +32,10 @@ const Favorites = () => {
         setFavorites(res.data.data.all);
       })
       .catch((err) => {
+        if(err.status===401){
+          openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+          return
+        }  
         console.log(err);
       })
       .finally(() => {

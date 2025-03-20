@@ -8,7 +8,7 @@ import axios from 'axios';
 import AppContext from '../Context/AppContext';
 const SearchBar = () => {
   const navigate = useNavigate()
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('golden-beit-website-token');
   const {handleApplySearch, openNotificationWithIcon, setLoading, setFilterData, filterData, setAllUnits}= useContext(AppContext)
   const [typeSelected, setTypeSelected] = useState(false);
   const [locationSelected, setLocationSelected] = useState(false);

@@ -592,7 +592,7 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  bottom: -269px;
+  bottom: -179px;
   right: -5px;
   padding: 8px;
   width: -moz-max-content;

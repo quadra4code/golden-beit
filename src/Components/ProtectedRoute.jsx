@@ -5,12 +5,13 @@ import AppContext from "../Context/AppContext";
 const ProtectedRoute = ({ children }) => {
   const { openNotificationWithIcon } = useContext(AppContext)
   const navigate = useNavigate();
-  const token =  localStorage.getItem('token');
+  const token =  localStorage.getItem('golden-beit-website-token');
   useEffect(() => {
     if (!token) {
-      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك')
+      navigate('/', {replace: true});
+      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول ')
     }
   }, [token, navigate]);
-  return token ? children : openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول لاضافة وحدتك') // Render children if token exists, otherwise render nothing
+  return token ? children : openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول') // Render children if token exists, otherwise render nothing
 };
 export default ProtectedRoute;

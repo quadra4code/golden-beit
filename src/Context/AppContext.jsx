@@ -32,7 +32,7 @@ export const AppProvider = ({children}) => {
   const [faqId, setFaqId] = useState(0);
   const [changePassUi, setChangePassUi] = useState(false);
   const [reviewMessage, setReviewMessage] = useState('');
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('golden-beit-website-token');
   const unitId = window.location.pathname
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
@@ -43,7 +43,7 @@ export const AppProvider = ({children}) => {
   const icons = [<FaHandshake/>,<GiTakeMyMoney/>,<MdDesignServices/>,<MdOutlineInventory/>]
   //////////////// unAuth handle//////////
   const handleUnAuth = async() => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('golden-beit-website-token')
     localStorage.removeItem('referral_code')
     localStorage.removeItem('name')
     await setTimeout(()=>{
@@ -185,6 +185,10 @@ export const AppProvider = ({children}) => {
       openNotificationWithIcon('success','تم إضافة الوحدة بنجاح')
     })
     .catch((err)=>{
+      if(err.status===401){
+        openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+        return
+      }
       openNotificationWithIcon('error','حدث خطأ برجاء المحاولة لاحقا')
       console.log(err);
     })
