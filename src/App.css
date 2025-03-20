@@ -2588,6 +2588,10 @@ main.popup .popup_inner .wrapper span {
   gap: 15px;
   font-size: 18px;
 }
+.contact-us-container .cols-container .social .our-contact-ways .address {
+  width: 200px;
+  font-size: 14px;
+}
 .contact-us-container .cols-container .social .our-contact-ways svg {
   color: #8a725d;
   font-size: 22px;

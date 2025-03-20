@@ -35,6 +35,10 @@ $font-family: 'Arial', sans-serif;
         align-items: center;
         gap: 15px;
         font-size: 18px;
+        .address{
+          width: 200px;
+          font-size: 14px;
+        }
         svg{
           color: #8a725d;
           font-size: 22px;

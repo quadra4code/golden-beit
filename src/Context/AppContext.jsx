@@ -235,7 +235,8 @@ export const AppProvider = ({children}) => {
       })
       .catch((err) => {
         if(err.status===401){
-          handleUnAuth()
+          openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+          return
         }
         console.log(err);
         openNotificationWithIcon('error',err.response.data.msg)

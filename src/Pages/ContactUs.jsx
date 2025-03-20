@@ -102,7 +102,12 @@ const ContactUs = () => {
           </a>
           <span className='our-contact-ways'>
             <IoLocationOutline/>
-            العنوان هنا يتم كتابته
+            <p className='address'>
+              6 اكتوبر المنطقة العمرانية الثانية 
+              امام مسجد عبد الله بن داود 
+              عمارة مكتب المستشار عبد المعز الطهطاوي 
+              الدور الارضي
+            </p>
           </span>
           <div className='social-links'>
             <a href="https://www.instagram.com/golden_beit/"><FaInstagram/></a>
