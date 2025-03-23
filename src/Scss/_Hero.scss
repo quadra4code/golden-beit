@@ -42,12 +42,13 @@ section.landing {
         // width: 60rem;
         text-align: center; /* Center text for smaller screens */
         h1 {
-          font-size: 70px;
+          font-size: 40px;
+          font-weight: bold;
           color: #000;
         }
         h4 {
           width: 43rem;
-          font-size: 25px;
+          font-size: 18px;
           margin: 1rem 0; /* Add margin for better spacing */
         }
         a {
@@ -55,9 +56,9 @@ section.landing {
           background-color: var(--primary-color);
           color: #ffffff;
           padding: 10px 20px;
-          font-size: 30px;
+          font-size: 18px;
           border-radius: 6px;
-          margin-top: 50px;
+          margin-top: 10px;
         }
       }
     }
@@ -187,51 +188,52 @@ section.landing {
     }
   }
   /* Media Queries for Responsiveness */
-  @media (max-width: 1200px) {
-    .hero {
-      margin-top: -10%;
-      width: 80%; /* Adjust width for smaller screens */
-      h1 {
-        font-size: 50px; /* Reduce font size for smaller screens */
-      }
-      h4 {
-        width: 80%; /* Adjust width for smaller screens */
-        font-size: 20px; /* Reduce font size for smaller screens */
-      }
-      a {
-        margin-top: 0px;
-        font-size: 24px; /* Reduce font size for smaller screens */
-      }
-    }
-  }
+  // @media (max-width: 1200px) {
+  //   .hero {
+  //     margin-top: -10%  !important;
+  //     width: 80%  !important; /* Adjust width for smaller screens */
+  //     h1 {
+  //       font-size: 50px  !important; /* Reduce font size for smaller screens */
+  //     }
+  //     h4 {
+  //       width: 80%  !important; /* Adjust width for smaller screens */
+  //       font-size: 20px  !important; /* Reduce font size for smaller screens */
+  //     }
+  //     a {
+  //       margin-top: 0px  !important;
+  //       font-size: 24px  !important; /* Reduce font size for smaller screens */
+  //     }
+  //   }
+  // }
   @media (max-width: 768px) {
     .hero {
-      margin-top: -30%;
-      width: 90%; /* Adjust width for mobile */
-      padding: 1rem; /* Reduce padding for mobile */
+      margin-top: -30%  !important;
+      width: 90%  !important; 
+      padding: 1rem  !important; 
       h1 {
-        font-size: 40px; /* Further reduce font size for mobile */
+        font-size: 25px  !important;
+        font-weight: bold  !important; 
       }
       h4 {
-        width: 90%; /* Adjust width for mobile */
-        font-size: 18px; /* Further reduce font size for mobile */
+        width: 90%  !important; 
+        font-size: 14px  !important; 
       }
       a {
-        margin-top: 0px;
-        font-size: 20px; /* Further reduce font size for mobile */
-        padding: 8px 16px; /* Adjust padding for mobile */
+        margin-top: 0px  !important;
+        font-size: 20px  !important; 
+        padding: 8px 16px  !important; 
       }
     }
     .search-bar {
-      flex-direction: column; /* Stack search bar items vertically */
+      flex-direction: column; 
       gap: 10px;
-      bottom: -28%; /* Adjust position for mobile */
-      padding: 15px; /* Reduce padding for mobile */
+      bottom: -28%; 
+      padding: 15px; 
       .custom-select {
-        width: 100%; /* Full width for smaller screens */
+        width: 100%; 
       }
       button {
-        width: 100%; /* Full width for smaller screens */
+        width: 100%; 
       }
       .custom-select h2 {
         font-size: 20px;
@@ -243,20 +245,20 @@ section.landing {
   }
   @media (max-width: 480px) {
     .hero {
-      margin-top: -30%;
+      margin-top: -30%  !important;
       h1 {
-        font-size: 30px; /* Further reduce font size for very small screens */
+        font-size: 25px  !important; /* Further reduce font size for very small screens */
       }
       h4 {
-        font-size: 16px; /* Further reduce font size for very small screens */
+        font-size: 14px  !important; /* Further reduce font size for very small screens */
       }
       a {
-        margin-top: 0px;
-        font-size: 18px; /* Further reduce font size for very small screens */
+        margin-top: 0px  !important;
+        font-size: 18px  !important; /* Further reduce font size for very small screens */
       }
     }
     .search-bar {
-      bottom: -28%; /* Adjust position for very small screens */
+      bottom: -28%  !important; /* Adjust position for very small screens */
     }
   }
 }

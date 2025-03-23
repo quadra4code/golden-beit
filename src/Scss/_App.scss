@@ -204,12 +204,36 @@ main.home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 6rem 0;
+    margin: 4rem 0;
     border-top: 40px solid var(--primary-color);
     &>.title{
-      font-size: 60px;
+      position: relative;
+      font-size: 40px;
       padding: 3rem 0;
+      font-weight: bold;
       color: var(--dark-primary-color);
+      &::before{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        top: 50%;
+        right: -40px;
+        transform: translateX(-50%);
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        top: 50%;
+        left: -35px;
+        transform: translateX(-50%);
+      }
     }
     .mySwiper{
       width: 100%;
@@ -225,7 +249,7 @@ main.home {
         padding: 2rem 0 4rem 0;
         .swiper-slide {
           border-radius: 14px;
-          width: 450px;
+          max-width: max-content;
           height: auto ;
           .slide-content{
             display: flex;
@@ -310,6 +334,15 @@ main.home {
             // }
           }
         }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    section.our-projects {
+      .title{
+        font-size: 35px;
+        padding: 2rem 0;
+        color: var(--dark-primary-color);
       }
     }
   }

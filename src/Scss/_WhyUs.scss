@@ -7,9 +7,34 @@ section.why-us {
   width: 100%;
   padding: 3rem;
   margin-top: 2rem;
-  h1 {
-    font-size: 45px;
+  .title {
+    position: relative;
+    font-size: 40px;
+    margin-top: 1rem;
+    font-weight: bold;
     color: var(--dark-primary-color);
+    &::before{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      top: 50%;
+      right: -40px;
+      transform: translateX(-50%);
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      top: 50%;
+      left: -35px;
+      transform: translateX(-50%);
+    }
   }
   h3 {
     font-size: 25px;
@@ -104,8 +129,9 @@ section.why-us {
   }
   @media (max-width: 768px) {
     padding: 5rem 2rem;
-    h1 {
-      font-size: 40px;
+    gap: 0;
+    .title {
+      font-size: 35px;
     }
     h3 {
       font-size: 20px;
@@ -125,9 +151,6 @@ section.why-us {
   }
   @media (max-width: 480px) {
     padding: 5rem 2rem;
-    h1 {
-      font-size: 30px;
-    }
     h3 {
       font-size: 18px;
     }
