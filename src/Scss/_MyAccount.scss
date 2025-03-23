@@ -1,131 +1,134 @@
 main.my-account {
-  margin-top: 5.5rem;
-  padding: 2rem 6rem;
-  display: flex;
-  gap: 1rem;
-  max-height: 32rem;
+  margin-top: 7rem;
   width: 100%;
-  section.side-nav{
+  display: flex;
+  justify-content: center;
+  .container{
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 12px;
-    width: 250px;
-    h1{
-      font-size: 22px;
-      font-weight: 600;
-      color: #333;
-    }
-    .choice {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 9px;
-      border-bottom:1px solid #3333331c;
-      color: #333333b5;
-      font-size: 15px;
-      &.active{
-        font-weight: bold;
-        color: #333;
-      }
-    }
-  }
-  section.content {
-    max-width:65rem;
+    gap: 1rem;
     width: 100%;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    .account-details {
+    padding: 0 1rem;
+    section.side-nav{
       display: flex;
       flex-direction: column;
-      padding: 8px;
-      gap: 2rem;
-      .user-data {
+      gap: 12px;
+      align-items: flex-start;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 12px;
+      min-width: max-content;
+      h1{
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+      }
+      .choice {
+        width: 100%;
         display: flex;
-        flex-wrap: wrap;
-        margin-top: 12px;
-        gap: 1rem;
-        .floating-label {
-          position: relative;
-        }
-        .floating-label input {
-          width: 100%;
-          padding: 12px 10px;
-          font-size: 16px;
-          border: 2px solid #aaa;
-          border-radius: 5px;
-          outline: none;
-          background: transparent;
-          transition: 0.3s ease-in-out;
-        }
-        .floating-label label {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translateY(-50%);
-          font-size: 16px;
-          color: #aaa;
-          transition: 0.3s ease-in-out;
-          pointer-events: none;
-          background: white;
-          padding: 0 5px;
-        }
-        .floating-label input:focus,
-        .floating-label input:not(:placeholder-shown) {
-          border-color: var(--primary-color);
-        }
-        .floating-label input:focus + label,
-        .floating-label input:not(:placeholder-shown) + label {
-          top: 0;
-          font-size: 12px;
-          color: var(--primary-color);
-        }
-        input,select {
-          outline: none;
-          padding: 8px;
-          border-radius: 5px;
-          border: 1px solid #ddd;
-        }
-        .btn{
-          border-radius: 5px;
-          background-color: var(--primary-color);
-          padding: 4px 8px;
-          color: #fff;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        padding: 9px;
+        border-bottom:1px solid #3333331c;
+        color: #333333b5;
+        font-size: 15px;
+        &.active{
+          font-weight: bold;
+          color: #333;
         }
       }
-      .image-container {
-        width: 250px;
-        border-radius: 12px;
-        border: 1px solid #ddd;
-        img{
-          width: 100%;
-          // border-radius: 12px;
-        }
-        .change-user-image {
-          position: relative;
+    }
+    section.content {
+      max-width:80%;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      .account-details {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        gap: 2rem;
+        .user-data {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          border-radius: 5px;
-          background-color: var(--primary-color);
-          padding: 4px 8px;
-          color: #fff;
-          margin-top: 1rem;
-          &::after {
-            position: absolute;
-            content : 'تغير الصورة'
+          flex-wrap: wrap;
+          margin-top: 12px;
+          gap: 1rem;
+          .floating-label {
+            position: relative;
           }
-          input{
-            opacity: 0;
+          .floating-label input {
             width: 100%;
-            z-index: 2;
+            padding: 12px 10px;
+            font-size: 16px;
+            border: 2px solid #aaa;
+            border-radius: 5px;
+            outline: none;
+            background: transparent;
+            transition: 0.3s ease-in-out;
+          }
+          .floating-label label {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #aaa;
+            transition: 0.3s ease-in-out;
+            pointer-events: none;
+            background: white;
+            padding: 0 5px;
+          }
+          .floating-label input:focus,
+          .floating-label input:not(:placeholder-shown) {
+            border-color: var(--primary-color);
+          }
+          .floating-label input:focus + label,
+          .floating-label input:not(:placeholder-shown) + label {
+            top: 0;
+            font-size: 12px;
+            color: var(--primary-color);
+          }
+          input,select {
+            outline: none;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+          }
+          .btn{
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            padding: 4px 8px;
+            color: #fff;
+          }
+        }
+        .image-container {
+          width: 250px;
+          border-radius: 12px;
+          border: 1px solid #ddd;
+          img{
+            width: 100%;
+            border-radius: 12px;
+          }
+          .change-user-image {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            padding: 4px 8px;
+            color: #fff;
+            margin-top: 1rem;
+            &::after {
+              position: absolute;
+              content : 'تغير الصورة'
+            }
+            input{
+              opacity: 0;
+              width: 100%;
+              z-index: 2;
+            }
           }
         }
       }
@@ -152,6 +155,15 @@ main.my-account {
       color: #fff;
       width: fit-content;
       align-self: center;
+    }
+  }
+  @media(max-width:768px) {
+    .container{
+      flex-direction: column;
+      padding: 1rem;
+      section.content {
+        max-width: 100% !important;
+      }
     }
   }
 }

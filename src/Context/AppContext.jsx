@@ -246,6 +246,13 @@ export const AppProvider = ({children}) => {
     }
     
   }
+  const handleLogout =()=> {
+    localStorage.removeItem('name');
+    localStorage.removeItem('golden-beit-website-token');
+    localStorage.removeItem('referral_code');
+    localStorage.setItem('oneTimeInquiry','true');
+    window.location.reload();
+  }
   const handleAddReview = () => {
     if(token){
       axios.post(
@@ -285,7 +292,7 @@ export const AppProvider = ({children}) => {
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
-      mostViewedUnits, setMostViewedUnits,
+      mostViewedUnits, setMostViewedUnits,handleLogout,
       }}>
       {children}
     </AppContext.Provider>

@@ -618,8 +618,13 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   color: #fff;
   background-color: var(--text-color);
 }
+.links-nav .nav-menu-mobile, .user-span .nav-menu-mobile {
+  bottom: -100px !important;
+  right: 15px;
+}
 .links-nav .nav-menu-logout, .user-span .nav-menu-logout {
-  bottom: -172px !important;
+  bottom: -115px !important;
+  right: 15px;
 }
 .links-nav .nav-menu-logout .list-unit, .user-span .nav-menu-logout .list-unit {
   display: flex;
@@ -632,16 +637,28 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   padding: 8px 15px;
   border-radius: 10px;
   display: flex;
-  gap: 5px;
+  gap: 8px;
   align-items: center;
   font-size: 16px;
   font-weight: bold;
-  color: #fff;
+  color: #000000;
   cursor: pointer;
-  background-color: var(--primary-color);
 }
 .user-span svg {
   font-size: 18px;
+}
+.user-span .user-image {
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #8a725d;
+}
+.user-span .user-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 .user-span .nav-menu {
   bottom: -150px;
@@ -2739,14 +2756,18 @@ main.popup .popup_inner .wrapper span {
 }
 
 main.my-account {
-  margin-top: 5.5rem;
-  padding: 2rem 6rem;
+  margin-top: 7rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+main.my-account .container {
   display: flex;
   gap: 1rem;
-  max-height: 32rem;
   width: 100%;
+  padding: 0 1rem;
 }
-main.my-account section.side-nav {
+main.my-account .container section.side-nav {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -2754,14 +2775,15 @@ main.my-account section.side-nav {
   background-color: #fff;
   border-radius: 5px;
   padding: 12px;
-  width: 250px;
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
-main.my-account section.side-nav h1 {
+main.my-account .container section.side-nav h1 {
   font-size: 22px;
   font-weight: 600;
   color: #333;
 }
-main.my-account section.side-nav .choice {
+main.my-account .container section.side-nav .choice {
   width: 100%;
   display: flex;
   align-items: center;
@@ -2772,33 +2794,32 @@ main.my-account section.side-nav .choice {
   color: rgba(51, 51, 51, 0.7098039216);
   font-size: 15px;
 }
-main.my-account section.side-nav .choice.active {
+main.my-account .container section.side-nav .choice.active {
   font-weight: bold;
   color: #333;
 }
-main.my-account section.content {
-  max-width: 65rem;
-  width: 100%;
+main.my-account .container section.content {
+  max-width: 80%;
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
 }
-main.my-account section.content .account-details {
+main.my-account .container section.content .account-details {
   display: flex;
   flex-direction: column;
   padding: 8px;
   gap: 2rem;
 }
-main.my-account section.content .account-details .user-data {
+main.my-account .container section.content .account-details .user-data {
   display: flex;
   flex-wrap: wrap;
   margin-top: 12px;
   gap: 1rem;
 }
-main.my-account section.content .account-details .user-data .floating-label {
+main.my-account .container section.content .account-details .user-data .floating-label {
   position: relative;
 }
-main.my-account section.content .account-details .user-data .floating-label input {
+main.my-account .container section.content .account-details .user-data .floating-label input {
   width: 100%;
   padding: 12px 10px;
   font-size: 16px;
@@ -2808,7 +2829,7 @@ main.my-account section.content .account-details .user-data .floating-label inpu
   background: transparent;
   transition: 0.3s ease-in-out;
 }
-main.my-account section.content .account-details .user-data .floating-label label {
+main.my-account .container section.content .account-details .user-data .floating-label label {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -2820,45 +2841,46 @@ main.my-account section.content .account-details .user-data .floating-label labe
   background: white;
   padding: 0 5px;
 }
-main.my-account section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) {
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) {
   border-color: var(--primary-color);
 }
-main.my-account section.content .account-details .user-data .floating-label input:focus,
-main.my-account section.content .account-details .user-data .floating-label input:not(:placeholder-shown) {
+main.my-account .container section.content .account-details .user-data .floating-label input:focus,
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:placeholder-shown) {
   border-color: var(--primary-color);
 }
-main.my-account section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) + label {
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) + label {
   top: 0;
   font-size: 12px;
   color: var(--primary-color);
 }
-main.my-account section.content .account-details .user-data .floating-label input:focus + label,
-main.my-account section.content .account-details .user-data .floating-label input:not(:placeholder-shown) + label {
+main.my-account .container section.content .account-details .user-data .floating-label input:focus + label,
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:placeholder-shown) + label {
   top: 0;
   font-size: 12px;
   color: var(--primary-color);
 }
-main.my-account section.content .account-details .user-data input, main.my-account section.content .account-details .user-data select {
+main.my-account .container section.content .account-details .user-data input, main.my-account .container section.content .account-details .user-data select {
   outline: none;
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ddd;
 }
-main.my-account section.content .account-details .user-data .btn {
+main.my-account .container section.content .account-details .user-data .btn {
   border-radius: 5px;
   background-color: var(--primary-color);
   padding: 4px 8px;
   color: #fff;
 }
-main.my-account section.content .account-details .image-container {
+main.my-account .container section.content .account-details .image-container {
   width: 250px;
   border-radius: 12px;
   border: 1px solid #ddd;
 }
-main.my-account section.content .account-details .image-container img {
+main.my-account .container section.content .account-details .image-container img {
   width: 100%;
+  border-radius: 12px;
 }
-main.my-account section.content .account-details .image-container .change-user-image {
+main.my-account .container section.content .account-details .image-container .change-user-image {
   position: relative;
   display: flex;
   align-items: center;
@@ -2870,11 +2892,11 @@ main.my-account section.content .account-details .image-container .change-user-i
   color: #fff;
   margin-top: 1rem;
 }
-main.my-account section.content .account-details .image-container .change-user-image::after {
+main.my-account .container section.content .account-details .image-container .change-user-image::after {
   position: absolute;
   content: "تغير الصورة";
 }
-main.my-account section.content .account-details .image-container .change-user-image input {
+main.my-account .container section.content .account-details .image-container .change-user-image input {
   opacity: 0;
   width: 100%;
   z-index: 2;
@@ -2901,6 +2923,15 @@ main.my-account section.account-safety .pass-btn {
   width: fit-content;
   align-self: center;
 }
+@media (max-width: 768px) {
+  main.my-account .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  main.my-account .container section.content {
+    max-width: 100% !important;
+  }
+}
 
 .orders-table {
   border-radius: 8px;
@@ -2913,7 +2944,7 @@ main.my-account section.account-safety .pass-btn {
 }
 .orders-table .table-wrapper {
   overflow-x: auto;
-  height: calc(100% - 40px);
+  max-height: 28rem;
 }
 .orders-table table {
   width: 100%;
@@ -2959,7 +2990,6 @@ main.my-account section.account-safety .pass-btn {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
 }
 .orders-table .no-units h2 {
   color: #333;

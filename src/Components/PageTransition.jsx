@@ -7,6 +7,7 @@ import AccountOrders from './UserAccount/AccountOrders';
 import AccountUnits from './UserAccount/AccountUnits';
 import AccountSafety from './UserAccount/AccountSafety';
 import UsagePolicy from './UserAccount/UsagePolicy';
+import ProtectedRoute from './ProtectedRoute';
 const PageTransition = ({ routes }) => {
   const location = useLocation();
   return (
@@ -17,7 +18,7 @@ const PageTransition = ({ routes }) => {
         timeout={300}
       >
         <Routes location={location}>
-          <Route path="/my-account" element={<MyAccount />}>
+          <Route path="/my-account" element={<ProtectedRoute><MyAccount /></ProtectedRoute>}>
             <Route path='account-details' element={<AccountDetails />}/>
             <Route path='account-orders' element={<AccountOrders />}/>
             <Route path='account-units' element={<AccountUnits />}/>

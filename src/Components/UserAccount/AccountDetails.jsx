@@ -301,6 +301,7 @@ const AccountDetails = () => {
       })
       .then((response) => {
         console.log('Update successful:', response);
+        localStorage.setItem('user_image_url', response.data.data.image);
         setOriginalUserData(userData);
         setHasChanges(false);
       })

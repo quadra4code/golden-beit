@@ -25,7 +25,7 @@ const AccountOrders = () => {
     queryFn: fetchAccOrders,  
     staleTime: 10000, // Data remains fresh for 10 seconds
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>جاري تحميل البيانات</p>;
   if (error) return <ErrorPage />;
   console.log(data);
   return (
@@ -65,7 +65,7 @@ const AccountOrders = () => {
                 <td>{order.total_price_obj.price_value}</td>
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
-                  <button className="view-button">View</button>
+                  <button className="view-button">عرض</button>
                 </td>
               </tr>
             ))}

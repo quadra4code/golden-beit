@@ -9,6 +9,7 @@ import Popup from '../Components/Popup';
 import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
 import TopShow from '../Components/TopShow';
+import Services from '../Components/Services';
 const Home = () => {
   const {loading, contextHolder} = useContext(AppContext);
   return (

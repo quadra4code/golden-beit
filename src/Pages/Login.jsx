@@ -43,6 +43,7 @@ const Login = () => {
         password,
       })
       .then((res) => {
+        localStorage.setItem('user_image_url', res.data.data.user.image_url);
         localStorage.setItem('referral_code', res.data.data.user.referral_code);
         localStorage.setItem('golden-beit-website-token', res.data.data.access_token);
         localStorage.setItem('name', res.data.data.user.full_name);

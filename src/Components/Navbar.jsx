@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Logo from '../Images/LOGO (2).png';
 import { FaUserAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +13,19 @@ import {Bars3Icon,XMarkIcon,} from '@heroicons/react/24/outline';
 import { MdLogout } from "react-icons/md";
 import { useContext } from 'react';
 import AppContext from '../Context/AppContext';
+import defaultImage from '../Images/user-image.webp';
 const Navbar = () => {
+  const userImage = localStorage.getItem('user_image_url');
+  console.log(userImage);
+  useEffect(()=>{
+    if(userImage){
+      localStorage.setItem('user_image_url', userImage);
+    }
+  },[userImage])
   const referral_code = localStorage.getItem('referral_code');
   const pathname = window.location.pathname
   const navigate = useNavigate();
-  const { token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
+  const { handleLogout,token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
   const handleAddUnitRoute = (type)=> {
     setMobileMenuOpen(false)
@@ -41,13 +49,6 @@ const Navbar = () => {
   }
   const name = localStorage.getItem('name')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const handleLogout =()=> {
-    localStorage.removeItem('name');
-    localStorage.removeItem('golden-beit-website-token');
-    localStorage.removeItem('referral_code');
-    localStorage.setItem('oneTimeInquiry','true');
-    window.location.reload();
-  }
   const handleChangePass = () => {
     setChangePassUi(true);
     setIsOpen(true);
@@ -115,17 +116,25 @@ const Navbar = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {name&&token?
           <span className='user-span'>
-            <span>مرحبا {name}</span>
+            <span className='user-image'>
+              <img src={userImage=='undefined'? defaultImage:userImage} alt="userImage" />
+            </span>
+            <span> {name}</span>
             <IoIosArrowDown/>
             <div className="nav-menu nav-menu-logout">
-              <span className='list-unit' onClick={handleChangePass}> 
+              <span className='list-unit'>
+                <Link to="my-account/account-details">
+                  حسابي
+                </Link>
+              </span>
+              {/* <span className='list-unit' onClick={handleChangePass}> 
                 تغيير كلمة المرور
                 <RiLockPasswordLine />
               </span>
               <span className='list-unit' onClick={()=>navigate('/favorites')}> 
                 المفضلة
                 <FaRegHeart />
-              </span>
+              </span> */}
               <span className='list-unit' onClick={handleLogout}> 
                 تسجيل الخروج
                 <MdLogout />
@@ -233,17 +242,25 @@ const Navbar = () => {
               <div className="py-6">
                 {name&&token?
                 <span className='user-span w-max'>
-                  <span>مرحبا {name}</span>
+                  <span className='user-image'>
+                    <img src={userImage&& userImage===undefined? defaultImage:userImage} alt="userImage" />
+                  </span>
+                  <span> {name}</span>
                   <IoIosArrowDown/>
-                  <div className="nav-menu">
-                    <span className='list-unit' onClick={handleChangePass}> 
+                  <div className="nav-menu nav-menu-mobile">
+                    <span className='list-unit'>
+                      <Link to="my-account/account-details">
+                        حسابي
+                      </Link>
+                    </span>
+                    {/* <span className='list-unit' onClick={handleChangePass}> 
                       تغيير كلمة المرور
                       <RiLockPasswordLine />
                     </span>
                     <span className='list-unit' onClick={()=>navigate('/favorites')}> 
                       المفضلة
                       <FaRegHeart />
-                    </span>
+                    </span> */}
                     <span className='list-unit' onClick={handleLogout}> 
                       تسجيل الخروج
                       <MdLogout />

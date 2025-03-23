@@ -24,7 +24,7 @@ const AccountUnits = () => {
     queryFn: fetchAccUnits,  
     staleTime: 10000, // Data remains fresh for 10 seconds
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>جاري تحميل البيانات</p>;
   if (error) return <ErrorPage />;
   console.log(data);
   return (
