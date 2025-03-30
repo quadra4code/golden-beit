@@ -233,6 +233,7 @@ import defaultImage from '../../Images/user-image.webp';
 import axios from 'axios';
 import AppContext from '../../Context/AppContext';
 import Loader from '../Loader';
+import { useNavigate } from 'react-router-dom';
 
 const AccountDetails = () => {
   const [userData, setUserData] = useState(null);
@@ -241,7 +242,8 @@ const AccountDetails = () => {
   const [hasChanges, setHasChanges] = useState(false);
   const [loading, setLoading] = useState(false);
   const [phoneNumbersUpdated, setPhoneNumbersUpdated] = useState(false);
-  const { token, filterData } = useContext(AppContext);
+  const { token, filterData, openNotificationWithIcon, handleLogout } = useContext(AppContext);
+  const navigate = useNavigate();
   useEffect(() => {
     if (token) {
       setLoading(true);
@@ -255,7 +257,12 @@ const AccountDetails = () => {
           setOriginalUserData(data);
           console.log(data);
         })
-        .catch((err) => console.error('Error fetching user data:', err))
+        .catch((err) =>{
+          if(err.status===401){
+            handleLogout()
+          }      
+          console.error('Error fetching user data:', err)
+        })
         .finally(() => setLoading(false));
     }
   }, [token]);

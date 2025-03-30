@@ -63,6 +63,8 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
   width: 450px;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content {
+  position: relative;
+  height: 100%;
   border-radius: 14px;
   background-color: #fff;
   padding: 5px;
@@ -79,6 +81,8 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
   border-radius: 11px;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content .content {
+  top: 0;
+  right: 0;
   border-radius: 14px;
   width: 100%;
   transition: 0.3s;
@@ -119,7 +123,33 @@ main.units_page .units_content .all_units {
   flex-direction: column;
   gap: 10px;
 }
-main.units_page .units_content .all_units h2 {
+main.units_page .units_content .all_units .all-units-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+main.units_page .units_content .all_units .all-units-header .ant-select {
+  width: 190px !important;
+}
+main.units_page .units_content .all_units .all-units-header .sort-price-btn {
+  display: flex;
+  padding: 4px 12px;
+  color: #fff;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+main.units_page .units_content .all_units .all-units-header .sort-price-btn:hover {
+  background-color: var(--dark-primary-color);
+}
+main.units_page .units_content .all_units .all-units-header h2 {
+  width: -moz-fit-content;
+  width: fit-content;
   font-size: 30px;
   color: #333;
 }
@@ -588,6 +618,11 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   visibility: visible;
   transform: translateY(0);
 }
+.links-nav .our-services, .user-span .our-services {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
 .links-nav .nav-menu, .user-span .nav-menu {
   opacity: 0;
   visibility: hidden;
@@ -651,8 +686,8 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   background-color: #fff;
   padding: 2px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: 1px solid #8a725d;
 }
 .user-span .user-image img {
@@ -1420,6 +1455,7 @@ section.why-us {
   gap: 40px;
   width: 100%;
   padding: 3rem;
+  padding-bottom: 5rem;
   margin-top: 2rem;
 }
 section.why-us .title {
@@ -1629,25 +1665,24 @@ section.reviews .mySwiper .swiper-pagination-bullet {
 section.reviews .mySwiper .swiper-pagination-bullet-active {
   background: var(--dark-primary-color);
 }
+section.reviews .mySwiper .swiper-slide {
+  height: auto !important;
+}
 section.reviews .mySwiper .slide-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   padding: 1rem;
-}
-section.reviews .mySwiper .slide-content img {
-  width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 15px;
 }
 section.reviews .mySwiper .slide-content .content {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  border: 1px solid var(--primary-color);
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 section.reviews .mySwiper .slide-content .content section.user-info {
   display: flex;
@@ -1656,10 +1691,16 @@ section.reviews .mySwiper .slide-content .content section.user-info {
 }
 section.reviews .mySwiper .slide-content .content section.user-info .user {
   display: flex;
-  flex-direction: column;
   gap: 5px;
   align-items: center;
   color: #000;
+}
+section.reviews .mySwiper .slide-content .content section.user-info .user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 section.reviews .mySwiper .slide-content .content section.user-info .user h3 {
   font-weight: bold;
@@ -1668,7 +1709,7 @@ section.reviews .mySwiper .slide-content .content section.user-info .rate {
   display: flex;
   gap: 5px;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--primary-color);
   border-radius: 8px;
   padding: 1px 20px;
 }
@@ -1678,7 +1719,7 @@ section.reviews .mySwiper .slide-content .content section.user-info .rate svg {
 }
 section.reviews .mySwiper .slide-content .content section.user-info .rate span {
   font-size: 20px;
-  color: #000;
+  color: #ffffff;
   font-weight: bold;
 }
 section.reviews .mySwiper .slide-content .content .review {
@@ -3005,6 +3046,261 @@ main.my-account section.account-safety .pass-btn {
   font-size: 35px;
 }
 
+/* Global reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-page {
+  direction: ltr;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+  /* Background */
+  /* Content Layout */
+}
+.carousel-page .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.carousel-page .background .bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.carousel-page .background .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.carousel-page .background .gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%; /* Covers bottom half of screen */
+  background: linear-gradient(to top, #edebe7 0%, #edebe7 50%, rgba(237, 235, 231, 0) 100%);
+  z-index: 2;
+}
+.carousel-page .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Sections: Left and Image Carousel aligned at the bottom */
+  /* Pagination Balls */
+}
+.carousel-page .content .sections {
+  direction: ltr;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  /* Image Carousel */
+}
+.carousel-page .content .sections .left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: bold;
+  width: 35.7%;
+  padding-right: 20px;
+  padding-left: 45px;
+  padding-bottom: 9px; /* bottom padding */
+  direction: rtl;
+  /* Keyframe Animations for Text */
+}
+.carousel-page .content .sections .left-section .text-content {
+  width: 100%;
+}
+.carousel-page .content .sections .left-section .text-content .title {
+  font-size: 4rem;
+  color: #000000;
+}
+.carousel-page .content .sections .left-section .text-content .subtitle {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.carousel-page .content .sections .left-section .text-content .paragraph {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.carousel-page .content .sections .left-section .text-content .list-items {
+  margin-top: 10px;
+  margin-right: 35px;
+}
+.carousel-page .content .sections .left-section .text-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+.carousel-page .content .sections .left-section .text-content.slide-out {
+  animation: slideUpOut 0.5s forwards;
+}
+.carousel-page .content .sections .left-section .text-content.slide-in {
+  animation: slideUpIn 0.5s forwards;
+}
+.carousel-page .content .sections .left-section .details-button {
+  font-weight: bold;
+  display: block;
+  margin: 20px 0;
+  min-width: 40%;
+  background-color: #877361;
+  color: #0d0807;
+  border: none;
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 22px;
+  border-radius: 11px;
+}
+.carousel-page .content .sections .left-section .details-button:hover {
+  background-color: #695a4c;
+}
+@keyframes slideUpOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+@keyframes slideUpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.carousel-page .content .sections .image-carousel {
+  direction: ltr;
+  width: 64.2%;
+  padding-bottom: 20px; /* bottom padding */
+  overflow-x: clip;
+  position: relative;
+}
+.carousel-page .content .sections .image-carousel .carousel-track {
+  direction: ltr;
+  width: 2600px;
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.carousel-page .content .sections .image-carousel .carousel-track.no-transition {
+  transition: none; /* Disable transitions */
+}
+.carousel-page .content .sections .image-carousel .carousel-item {
+  width: 250px;
+  height: 300px;
+  margin: 0 50px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.5s ease;
+  border-radius: 12px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+  transform-origin: bottom;
+  border: 0px solid #fdfcff;
+}
+.carousel-page .content .sections .image-carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+.carousel-page .content .sections .image-carousel .carousel-item.chosen {
+  transform-origin: bottom;
+  transform: scaleY(1.19) scaleX(1.1);
+  box-shadow: 0 0 0 4px #fdfcff;
+  border-radius: 12px;
+}
+.carousel-page .content .sections .image-carousel .carousel-item.scaling {
+  transform: scaleY(1.19) scaleX(1.1);
+  z-index: 2; /* Ensure it stays on top during transition */
+  border: 4px solid #fdfcff;
+}
+.carousel-page .content .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7px;
+}
+.carousel-page .content .pagination .ball {
+  width: 15px;
+  height: 15px;
+  background-color: #b9ada4;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.carousel-page .content .pagination .ball.active {
+  background-color: #8b7065;
+}
+
+/* Media query for screen width > 1600px */
+@media screen and (min-width: 1600px) {
+  .carousel-page .content .sections .image-carousel {
+    width: 1021px; /* Fixed width */
+  }
+}
+/* Media query for screen width 1280px */
+@media screen and (max-width: 1280px) {
+  .carousel-page .content .sections .image-carousel .carousel-item {
+    margin: 0 35px; /* Adjusted margin */
+  }
+}
+/* Media query for screen width 1170px */
+@media screen and (max-width: 1170px) {
+  .carousel-page .content .sections .image-carousel .carousel-item {
+    margin: 0 18px; /* Adjusted margin */
+  }
+}
+/* Media query for screen width 1010px */
+@media screen and (max-width: 1010px) {
+  .carousel-page .content .sections .image-carousel .carousel-item {
+    width: 220px; /* Adjusted item width */
+  }
+}
+/* Media query for screen width 900px */
+@media screen and (max-width: 900px) {
+  .image-carousel {
+    display: none;
+  }
+  .sections {
+    justify-content: center;
+  }
+  .carousel-page .content .sections .left-section {
+    width: 70%;
+    align-items: center;
+    padding-left: 20px;
+  }
+  .carousel-page .content .pagination .ball {
+    width: 20px;
+    height: 20px;
+    margin: 0 8px;
+  }
+}
 * {
   margin: 0;
   padding: 0;

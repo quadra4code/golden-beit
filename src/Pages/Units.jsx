@@ -503,9 +503,11 @@ import Popup from '../Components/Popup';
 import axios from 'axios';
 import IsDesktop from '../Context/IsDesktop';
 import UnitsNotFound from './UnitsNotFound';
-
+import { Select } from 'antd';
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 const Units = () => {
   const {handelAddToFav, allUnits, setAllUnits, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
+  const [sortBy, setSortBy] = useState();
   const [max_price, setMax_price] = useState();
   const [min_price, setMin_price] = useState();
   const [max_area, setMax_area] = useState();
@@ -516,7 +518,9 @@ const Units = () => {
   const [selectedFloor, setSelectedFloor] = useState();
   const [selectedFacade, setSelectedFacade] = useState();
   const [selectedProject, setSelectedProject] = useState();
+  const [isAscending, setIsAscending] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortLoading, setSortLoading] = useState(false);
   // const [unitsPerPage] = useState(12);
   // const [paymentMethod, setPaymentMethod] = useState();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -578,6 +582,65 @@ const Units = () => {
       );
     setCurrentPage(pageNumber)
   };
+  const handleSort = () => {
+    setIsAscending(!isAscending);
+    console.log(isAscending);
+    console.log(sortBy);
+    setSortLoading(true);
+    axios.post(
+      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      {
+        sort_by: sortBy,
+        asc : !isAscending
+      },
+    )
+    .then(res => {
+      console.log(res); 
+      setAllUnits(res.data.data.all);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => setSortLoading(false));
+  };
+  const sortOptions=[
+    {
+      value: 'price',
+      label: 'الترتيب حسب السعر',
+    },
+    {
+      value: 'area',
+      label: 'الترتيب حسب المساحة',
+    },
+    {
+      value: 'date',
+      label: 'الترتيب حسب تاريخ الاضافة',
+    },
+    {
+      value: 'most_viewed',
+      label: 'الترتيب حسب الاكثر مشاهدة',
+    },
+  ]
+  const handleSortChange = (value)=> {
+    setSortBy(value)
+    console.log(sortBy);
+    setSortLoading(true);
+    axios.post(
+      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      {
+        sort_by: value,
+        asc : isAscending
+      },
+    )
+    .then(res => {
+      console.log(res); 
+      setAllUnits(res.data.data.all);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => setSortLoading(false));
+  }
   return (
     <>
       {loading ? (
@@ -627,25 +690,50 @@ const Units = () => {
                   </div>
                 )}
                 <div className="all_units">
-                  <h2 className="units_title">جميع الوحدات</h2>
+                  <header className='all-units-header'>
+                    <h2 className="units_title">جميع الوحدات</h2>
+                    <Select
+                      defaultValue="الترتيب حسب"
+                      style={{
+                        width: 120,
+                      }}
+                      allowClear
+                      onChange={handleSortChange}
+                      options={sortOptions}
+                      placeholder="الترتيب حسب"
+                    />
+                    <button 
+                      onClick={handleSort} 
+                      className="sort-price-btn"
+                    >
+                      {/* {isAscending ? 'تصاعدي' : 'تنازلي'} */}
+                      {isAscending ? <FaArrowUp /> : <FaArrowDown />}
+                    </button>
+                  </header>
                   <div className="units_list">
-                    {allUnits && allUnits.map((unit) => (
-                      <UnitCard
-                        key={unit.id}
-                        title={unit.title}
-                        project={unit.project}
-                        mainImage={unit.main_image}
-                        over_price_obj={unit.over_price_obj}
-                        total_price_obj={unit.total_price_obj}
-                        city={unit.city}
-                        area={unit.area}
-                        price={unit.price_obj}
-                        id={unit.id}
-                        isSoldOut={unit.status.code==4 && true}
-                        onClick={() => navigate(`/all-units/${unit.id}`)}
-                        addFav = {()=>{handelAddToFav(unit.id)}}
-                      />
-                    ))}
+                    {sortLoading? 
+                    <p> جاري تحميل البيانات...</p>
+                    :
+                    <>
+                      {allUnits && allUnits.map((unit) => (
+                        <UnitCard
+                          key={unit.id}
+                          title={unit.title}
+                          project={unit.project}
+                          mainImage={unit.main_image}
+                          over_price_obj={unit.over_price_obj}
+                          total_price_obj={unit.total_price_obj}
+                          city={unit.city}
+                          area={unit.area}
+                          price={unit.price_obj}
+                          id={unit.id}
+                          isSoldOut={unit.status.code==4 && true}
+                          onClick={() => navigate(`/all-units/${unit.id}`)}
+                          addFav = {()=>{handelAddToFav(unit.id)}}
+                        />
+                      ))}
+                    </>
+                    }
                   </div>
                   <PaginationComponent
                     totalItems={paginationData&& paginationData.total_pages}

@@ -44,7 +44,7 @@ const Navbar = () => {
       }
       else{navigate('/add-new-unit')}
     }else{
-      openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
+      return openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
     }
   }
   const name = localStorage.getItem('name')
@@ -85,12 +85,12 @@ const Navbar = () => {
             الرئيسية
           </HashLink>
           <div className="links-nav font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
-            <span >
+            <span className={` our-services ${pathname=== '/add-new-unit' || pathname=== '/inquiry-page' ? 'font-active' : 'font-semibold'}`}>
               خدماتنا
+              <IoIosArrowDown/>
             </span>
             <div className="nav-menu">
-              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك
-              </span>
+              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
               {/* <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span> */}
               <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
@@ -122,11 +122,9 @@ const Navbar = () => {
             <span> {name}</span>
             <IoIosArrowDown/>
             <div className="nav-menu nav-menu-logout">
-              <span className='list-unit'>
-                <Link to="my-account/account-details">
-                  حسابي
-                </Link>
-              </span>
+              <Link className='list-unit' to="my-account/account-details">
+                حسابي
+              </Link>
               {/* <span className='list-unit' onClick={handleChangePass}> 
                 تغيير كلمة المرور
                 <RiLockPasswordLine />
@@ -181,12 +179,14 @@ const Navbar = () => {
                   }}
                   to='/#landing'
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
+                  className={`${pathname === '/' ? 'font-active' : 'font-semibold'} cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base leading-7 text-navbar-blue `}
                 >
                   الرئيسية
                 </HashLink>
                 <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="font-bold group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-navbar-blue hover:bg-gray-50">
+                  <DisclosureButton
+                  className={`${pathname=== '/add-new-unit' || pathname=== '/inquiry-page' ? 'font-active' : 'font-semibold'} group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 text-navbar-blue `}
+                  >
                     خدماتنا 
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
@@ -194,14 +194,14 @@ const Navbar = () => {
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
-                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
-                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/leader-board">لوحة المتصدرين</Link>
+                    {/* <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
+                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/leader-board">لوحة المتصدرين</Link> */}
                   </DisclosurePanel>
                 </Disclosure>
                 <Link
                   to='/all-units'
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
+                  className={`${pathname === '/all-units' ? 'font-active' : 'font-semibold'} cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base leading-7 text-navbar-blue `}
                 >
                   الوحدات
                 </Link>
@@ -214,11 +214,11 @@ const Navbar = () => {
                   }}
                   smooth
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
+                  className={`${pathname.startsWith('/faq') ? 'font-active' : 'font-semibold'} cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base leading-7 text-navbar-blue `}
                 >
                   الاستشارات
                 </HashLink>
-                <HashLink
+                {/* <HashLink
                   scroll={(el) => {
                     const yOffset = -60; // Adjust this value to match the height of your navbar
                     const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -227,14 +227,15 @@ const Navbar = () => {
                   to='/#about-us'
                   smooth
                   onClick={() => setMobileMenuOpen(false)}
-                  className=" font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
+                  className={`${pathname === '/contact-us' ? 'font-active' : 'font-semibold'} cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base leading-7 text-navbar-blue `}
+                  // className=" font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
                 >
                   من نحن
-                </HashLink>
+                </HashLink> */}
                 <Link 
                   to='/contact-us'
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-bold cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base font-semibold leading-7 text-navbar-blue hover:bg-gray-50"
+                  className={`${pathname === '/contact-us' ? 'font-active' : 'font-semibold'} cursor-pointer -mx-3 tracking-wider block font-cairo rounded-lg px-3 py-2 text-base leading-7 text-navbar-blue `}
                 >
                   اتصل بنا
                 </Link>

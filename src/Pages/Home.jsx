@@ -10,6 +10,7 @@ import AppContext from '../Context/AppContext';
 import Loader from '../Components/Loader';
 import TopShow from '../Components/TopShow';
 import Services from '../Components/Services';
+import UserTypesCarouselPage from '../Components/UserTypesCarouselPage';
 const Home = () => {
   const {loading, contextHolder} = useContext(AppContext);
   return (
@@ -24,6 +25,7 @@ const Home = () => {
           {contextHolder}
           <Landing/>
           <WhyUs/>
+          <UserTypesCarouselPage/>
           <OurProjects/>
           <TopShow/>
           {/* <AboutUs/> */}

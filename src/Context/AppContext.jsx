@@ -22,6 +22,8 @@ export const AppProvider = ({children}) => {
   const [mostViewedUnits, setMostViewedUnits] = useState();
   const [newArrivalUnits, setNewArrivalUnits] = useState();
   const [loading, setLoading] = useState(false);
+  const [userType, setUserType] = useState("5");
+  const [isLogin, setIsLogin] = useState(true);
   const [numberInpValue, setNumberInpValue] = useState()
   const [isNormalPop, setIsNormalPop] = useState(false)
   const [isReview, setIsReview] = useState(false)
@@ -154,9 +156,6 @@ export const AppProvider = ({children}) => {
         min_area,
         max_area,
       },
-      {
-        headers: { 'Authorization': `Bearer ${token}` },
-      }
     )
     .then(res => {
       if(res.data.data.length<1){
@@ -196,16 +195,13 @@ export const AppProvider = ({children}) => {
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-units',
+      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
       {
         project_id,
         city_id ,
         min_price,
         max_price,
       },
-      {
-        headers: { 'Authorization': `Bearer ${token}` },
-      }
     )
     .then(res => {
       if(res.data.data.length<1){
@@ -292,7 +288,8 @@ export const AppProvider = ({children}) => {
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
-      mostViewedUnits, setMostViewedUnits,handleLogout,
+      mostViewedUnits, setMostViewedUnits,handleLogout,userType, setUserType,
+      isLogin, setIsLogin
       }}>
       {children}
     </AppContext.Provider>

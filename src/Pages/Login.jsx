@@ -10,17 +10,18 @@ import { MdManageAccounts } from "react-icons/md";
 import { MdLocationCity } from "react-icons/md";
 const Login = () => {
   const params = useParams()
-  const { openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
+  const { isLogin, setIsLogin, userType, setUserType, openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState(null);
-  const [userType, setUserType] = useState("5");
+  // const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState(null);
-  const [isLogin, setIsLogin] = useState(true);
+  // const [isLogin, setIsLogin] = useState(true);
   const [referral_code, setReferral_code] = useState(true);
+  console.log(userType);
   const interestedCities =[
     'القاهرة الجديدة (سكن - جنة)','بدر (إسكان متميز -متوسط)','⁠الشروق (سكن - أكثر تميز)',
     'العاشر (دار - مميز)','حدائق أكتوبر (سكن - دار - متوسط)','اكتوبر (سكن - جنة - أكثر تميز)',
@@ -136,7 +137,7 @@ const Login = () => {
               </div>
               <div className="input-box">
                 <MdManageAccounts />
-                <select required onChange={(e)=>setUserType(e.target.value)} name="" id="">
+                <select value={userType} required onChange={(e)=>setUserType(e.target.value)} name="" id="">
                   <option style={{color:'#ddd'}} value="نوع الحساب" disabled hidden selected>نوع الحساب</option>
                   <option value="5">مشتري</option>
                   <option value="6">بائع</option>

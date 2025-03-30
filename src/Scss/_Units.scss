@@ -293,6 +293,8 @@ main.units_page {
           .swiper-slide {
             width: 450px;
             .slide-content {
+              position: relative;
+              height: 100%;
               border-radius: 14px;
               background-color: #fff;
               padding: 5px;
@@ -309,6 +311,8 @@ main.units_page {
                 border-radius: 11px;
               }
               .content {
+                top: 0;
+                right: 0;
                 border-radius: 14px;
                 width: 100%;
                 transition: 0.3s;
@@ -351,17 +355,39 @@ main.units_page {
         }
       }
     }
-
     .all_units {
       display: flex;
       flex-direction: column;
       gap: 10px;
-
-      h2 {
-        font-size: 30px;
-        color: #333;
+      .all-units-header{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        .ant-select {
+          width: 190px !important;
+        }
+        .sort-price-btn {
+          display: flex;
+          padding:4px 12px ;
+          color: #fff;
+          background-color: var(--primary-color);
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          border-radius: 8px;
+          transition: all 0.3s;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--dark-primary-color);
+          }
+        }
+        h2 {
+          width: fit-content;
+          font-size: 30px;
+          color: #333;
+        }
       }
-
       .units_list {
         display: flex;
         flex-wrap: wrap;
