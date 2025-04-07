@@ -56,7 +56,7 @@ export const AppProvider = ({children}) => {
   ///////////////// get filter data in all units screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/get-form-data')
+    axios.get('https://api.goldenbeit.com/core/get-form-data')
     .then(response => {
       setFilterData(response.data.data)
       setCurrencies(response.data.data.currencies)
@@ -67,7 +67,7 @@ export const AppProvider = ({children}) => {
   /////////////// get articles in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-articles')
+    axios.get('https://api.goldenbeit.com/core/home-articles')
     .then(response => {
       setArticlesData(response.data.data)
     })
@@ -77,7 +77,7 @@ export const AppProvider = ({children}) => {
   /////////////// get consultations in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-consultation-types')
+    axios.get('https://api.goldenbeit.com/core/home-consultation-types')
     .then(response => {
       const responseData = response.data.data
       responseData.map((ele,key)=>{ele['iconKey']=icons[key]})
@@ -89,7 +89,7 @@ export const AppProvider = ({children}) => {
   /////////////// get Our Reviews in home screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-reviews')
+    axios.get('https://api.goldenbeit.com/core/home-reviews')
     .then(response => {
       setOurReviewsData(response.data.data)
     })
@@ -99,7 +99,7 @@ export const AppProvider = ({children}) => {
   /////////////// get home-featured-units screen
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-featured-units')
+    axios.get('https://api.goldenbeit.com/core/home-featured-units')
     .then(response => {
       setFeaturedUnits(response.data.data)
     })
@@ -109,7 +109,7 @@ export const AppProvider = ({children}) => {
   /////////////// get most-viewed-units section
   useEffect(()=>{
     setLoading(true)
-    axios.get('https://golden-gate-three.vercel.app/core/home-most-viewed-units')
+    axios.get('https://api.goldenbeit.com/core/home-most-viewed-units')
     .then(response => {
       setMostViewedUnits(response.data.data)
     })
@@ -120,7 +120,7 @@ export const AppProvider = ({children}) => {
   useEffect(()=>{
     if(token){
       setLoading(true)
-      axios.get('https://golden-gate-three.vercel.app/core/recent-units'
+      axios.get('https://api.goldenbeit.com/core/recent-units'
       )
       .then(response => {
         setNewArrivalUnits(response.data.data)
@@ -131,7 +131,7 @@ export const AppProvider = ({children}) => {
   },[])
   // ///////handleSingleUnitDetails//////
   const handleSingleUnitDetails = (id) => {
-    axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+    axios.get(`https://api.goldenbeit.com/core/unit-details/${id}`)
       .then((res) => {
         setSingleUnit(res.data.data);
         navigate(`/all-units/${id}`);
@@ -144,7 +144,7 @@ export const AppProvider = ({children}) => {
   const handleFilterClick = (unit_type_id,project_id, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true);
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      'https://api.goldenbeit.com/core/filter-paginated-units',
       {
         unit_type_id,
         project_id,
@@ -172,7 +172,7 @@ export const AppProvider = ({children}) => {
   ////// handle add to favourite 
   const handelAddToFav = (id) => {
     axios
-    .post(`https://golden-gate-three.vercel.app/core/add-favorite`,
+    .post(`https://api.goldenbeit.com/core/add-favorite`,
     {
       unit:id
     },
@@ -195,7 +195,7 @@ export const AppProvider = ({children}) => {
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      'https://api.goldenbeit.com/core/filter-paginated-units',
       {
         project_id,
         city_id ,
@@ -218,7 +218,7 @@ export const AppProvider = ({children}) => {
   const handleReqUnit = () => {
     if(token){
       axios.post(
-        'https://golden-gate-three.vercel.app/core/request-unit',
+        'https://api.goldenbeit.com/core/request-unit',
         {
           unit_id:singleUnit.id
         },
@@ -252,7 +252,7 @@ export const AppProvider = ({children}) => {
   const handleAddReview = () => {
     if(token){
       axios.post(
-        'https://golden-gate-three.vercel.app/core/add-review',
+        'https://api.goldenbeit.com/core/add-review',
         {
           rate:rating,
           review:reviewMessage

@@ -8,7 +8,7 @@ const AccountUnits = () => {
   const fetchAccUnits = async () => {
     try {
       const response = await axios.post(
-        "https://golden-gate-three.vercel.app/core/paginated-client-units",
+        "https://api.goldenbeit.com/core/paginated-client-units",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -36,7 +36,7 @@ const SingleUnit = () => {
   useEffect(()=>{
     setLoading(true)
     setDataLoaded(false)
-    axios.get(`https://golden-gate-three.vercel.app/core/unit-details/${params.id}`)
+    axios.get(`https://api.goldenbeit.com/core/unit-details/${params.id}`)
     .then(res => {
       console.log(res.data.data);
       setSingleUnit(res.data.data.unit_details);
@@ -57,7 +57,7 @@ const SingleUnit = () => {
   }, [singleUnit]);
   // useEffect(()=>{
   //   setLoading(true)
-  //   axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{})
+  //   axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{})
   //   .then(res => {
   //     setAllUnits(res.data.data.all);
   //     setPaginationData(res.data.data.pagination)
@@ -77,7 +77,7 @@ const SingleUnit = () => {
   // };
   const paginate = (pageNumber) => {
     setLoading(true);
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
       page_number:pageNumber
     })
       .then(res => {
@@ -109,7 +109,7 @@ const SingleUnit = () => {
   // }
   // const handleSingleUnitDetails= (id) => {
   //   axios
-  //   .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+  //   .get(`https://api.goldenbeit.com/core/unit-details/${id}`)
   //   .then((res)=>{
   //     console.log(res.data);
   //     setSingleUnit(res.data.data)
@@ -121,7 +121,7 @@ const SingleUnit = () => {
   // }
   // const handelAddToFav = (id) => {
   //   axios
-  //   .post(`https://golden-gate-three.vercel.app/core/add-favorite`,
+  //   .post(`https://api.goldenbeit.com/core/add-favorite`,
   //   {
   //     unit:id
   //   },

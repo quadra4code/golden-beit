@@ -12,7 +12,7 @@
 //   useEffect(()=>{
 //     if(token){
 //       axios
-//       .get('https://golden-gate-three.vercel.app/accounts/account-view',
+//       .get('https://api.goldenbeit.com/accounts/account-view',
 //         {
 //           headers:{'Authorization':`Bearer ${token}`}
 //         }
@@ -98,7 +98,7 @@
 //     if (token) {
 //       setLoading(true)
 //       axios
-//         .get('https://golden-gate-three.vercel.app/accounts/account-view', {
+//         .get('https://api.goldenbeit.com/accounts/account-view', {
 //           headers: { Authorization: `Bearer ${token}` },
 //         })
 //         .then((response) => {
@@ -135,7 +135,7 @@
 //     if (!hasChanges) return;
 //     console.log('Sending updated data:');
 //     axios
-//     .put('https://golden-gate-three.vercel.app/accounts/update-account',
+//     .put('https://api.goldenbeit.com/accounts/update-account',
 //       {
 //         first_name: userData.first_name,
 //         last_name: userData.last_name,
@@ -248,7 +248,7 @@ const AccountDetails = () => {
     if (token) {
       setLoading(true);
       axios
-        .get('https://golden-gate-three.vercel.app/accounts/account-view', {
+        .get('https://api.goldenbeit.com/accounts/account-view', {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -300,7 +300,7 @@ const AccountDetails = () => {
     }
     setLoading(true);
     axios
-      .put('https://golden-gate-three.vercel.app/accounts/update-account', formData, {
+      .put('https://api.goldenbeit.com/accounts/update-account', formData, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data' // Important for file uploads

@@ -8,7 +8,7 @@ const AccountSafety = () => {
   const { token, openNotificationWithIcon, handleUnAuth } = useContext(AppContext)
   const handleChangePassReq = () => {
     axios
-    .post('https://golden-gate-three.vercel.app/accounts/change-password',
+    .post('https://api.goldenbeit.com/accounts/change-password',
       {
         old_password: oldPass,
         new_password: newPass,
