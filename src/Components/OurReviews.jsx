@@ -2,12 +2,14 @@ import React, {useContext} from 'react';
 import { FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import userImage from '../Images/user-image.webp';
+import defaultImage from '../Images/user-image.webp';
 import IsDesktop from '../Context/IsDesktop'
 import AppContext from '../Context/AppContext';
 const OurReviews = () => {
   const {isDesktop} = useContext(IsDesktop)
   const {ourReviewsData} = useContext(AppContext)
+  console.log(ourReviewsData);
+  
   return (
     <section className='reviews'>
       <header className='title'>
@@ -42,7 +44,7 @@ const OurReviews = () => {
               <div className="content">
                 <section className='user-info'>
                   <div className='user'>
-                    <img src={userImage} alt="user" />
+                    <img src={ourReviewsData? review.image_url : defaultImage} alt="user" />
                     <h3>{review.client_name}</h3>
                     {/* <h4>{review.city}</h4> */}
                   </div>
