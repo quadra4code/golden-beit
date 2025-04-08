@@ -48,7 +48,7 @@
 //       return;
 //     }
 //     axios
-//     .post('https://golden-gate-three.vercel.app/core/propose-unit',
+//     .post('https://api.goldenbeit.com/core/propose-unit',
 //       {
 //         unit_type_id:formData.project_type_id,
 //         project_id:formData.project_id,
@@ -456,7 +456,7 @@ const AddNewUnit = () => {
     });
     console.log(formDataToSubmit);
     axios
-      .post('https://golden-gate-three.vercel.app/core/propose-unit', formDataToSubmit, {
+      .post('https://api.goldenbeit.com/core/propose-unit', formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -489,7 +489,7 @@ const AddNewUnit = () => {
   //     formDataToSubmit.append(`images[${index}]`, image);
   //   });
   //   axios
-  //     .post('https://golden-gate-three.vercel.app/core/propose-unit', formDataToSubmit, {
+  //     .post('https://api.goldenbeit.com/core/propose-unit', formDataToSubmit, {
   //       headers: {
   //         'Authorization': `Bearer ${token}`,
   //         'Content-Type': 'multipart/form-data',

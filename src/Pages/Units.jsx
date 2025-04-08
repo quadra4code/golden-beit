@@ -241,7 +241,7 @@
 //   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 //   const handleSingleUnitDetails= (id) => {
 //     axios
-//     .get(`https://golden-gate-three.vercel.app/core/unit-details/${id}`)
+//     .get(`https://api.goldenbeit.com/core/unit-details/${id}`)
 //     .then((res)=>{
 //       console.log(res.data);
 //       setSingleUnit(res.data.data)
@@ -253,7 +253,7 @@
 //   }
 //   useEffect(()=>{
 //     setLoading(true)
-//     axios.get('https://golden-gate-three.vercel.app/core/all-units')
+//     axios.get('https://api.goldenbeit.com/core/all-units')
 //     .then(res => {
 //       setAllUnits(res.data.data.all)
 //       console.log(res.data);
@@ -540,7 +540,7 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
     })
       .then(res => {
         setAllUnits(res.data.data.all);
@@ -564,7 +564,7 @@ const Units = () => {
     : [];
   const paginate = (pageNumber) => {
     setLoading(true);
-    axios.post('https://golden-gate-three.vercel.app/core/filter-paginated-units',{
+    axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
       page_number:pageNumber
     })
       .then(res => {
@@ -588,7 +588,7 @@ const Units = () => {
     console.log(sortBy);
     setSortLoading(true);
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      'https://api.goldenbeit.com/core/filter-paginated-units',
       {
         sort_by: sortBy,
         asc : !isAscending
@@ -626,7 +626,7 @@ const Units = () => {
     console.log(sortBy);
     setSortLoading(true);
     axios.post(
-      'https://golden-gate-three.vercel.app/core/filter-paginated-units',
+      'https://api.goldenbeit.com/core/filter-paginated-units',
       {
         sort_by: value,
         asc : isAscending

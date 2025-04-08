@@ -39,7 +39,7 @@ const SearchBar = () => {
   };
   // const handleApplySearch = ()=> {
   //   axios.post(
-  //     'https://golden-gate-three.vercel.app/core/filter-properties',
+  //     'https://api.goldenbeit.com/core/filter-properties',
   //     {
   //       project_id: selectedProject.id,
   //       city_id: selectedCity.id,

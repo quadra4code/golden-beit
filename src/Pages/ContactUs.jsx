@@ -26,7 +26,7 @@ const ContactUs = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     axios
-    .post('https://golden-gate-three.vercel.app/core/add-contact-us-msg',{
+    .post('https://api.goldenbeit.com/core/add-contact-us-msg',{
       name:formData.name,
       email:formData.email,
       phone_number:formData.phone,

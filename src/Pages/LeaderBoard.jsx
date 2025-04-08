@@ -6,7 +6,7 @@ const Leaderboard = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     setDataLoaded(false)
-    axios.get('https://golden-gate-three.vercel.app/accounts/leaderboard')
+    axios.get('https://api.goldenbeit.com/accounts/leaderboard')
       .then(response => {
         setDonors(response.data.data);
         console.log(response.data.data);

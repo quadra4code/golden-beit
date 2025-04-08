@@ -21,7 +21,7 @@ const Favorites = () => {
     if(token){
       setLoading(true)
       axios
-      .post('https://golden-gate-three.vercel.app/core/list-paginated-favorites',
+      .post('https://api.goldenbeit.com/core/list-paginated-favorites',
         {},
         {
           headers: {Authorization: `Bearer ${token}`,}
@@ -46,7 +46,7 @@ const Favorites = () => {
   },[])
   const handleDelete = (id) => {
     axios
-    .delete(`https://golden-gate-three.vercel.app/core/delete-favorite/${id}`,
+    .delete(`https://api.goldenbeit.com/core/delete-favorite/${id}`,
       {
         headers: {Authorization: `Bearer ${token}`,}
       }
