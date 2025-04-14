@@ -253,7 +253,7 @@ const Navbar = () => {
                       <Link to="my-account/account-details">
                         حسابي
                       </Link>
-                    </span>
+                    </span> 
                     {/* <span className='list-unit' onClick={handleChangePass}> 
                       تغيير كلمة المرور
                       <RiLockPasswordLine />
