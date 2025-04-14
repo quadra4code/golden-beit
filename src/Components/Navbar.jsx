@@ -16,12 +16,12 @@ import AppContext from '../Context/AppContext';
 import defaultImage from '../Images/user-image.webp';
 const Navbar = () => {
   const userImage = localStorage.getItem('user_image_url');
-  console.log(userImage);
-  useEffect(()=>{
-    if(userImage){
-      localStorage.setItem('user_image_url', userImage);
+  console.log(userImage.typeof);
+  useEffect(() => {
+    if(!localStorage.getItem('user_image_url')) {
+      localStorage.setItem('user_image_url', defaultImage);
     }
-  },[userImage])
+  }, [])
   const referral_code = localStorage.getItem('referral_code');
   const pathname = window.location.pathname
   const navigate = useNavigate();
@@ -117,7 +117,7 @@ const Navbar = () => {
           {name&&token?
           <span className='user-span'>
             <span className='user-image'>
-              <img src={userImage=='undefined'? defaultImage:userImage} alt="userImage" />
+              <img src={userImage ? userImage : defaultImage} alt="userImage" />
             </span>
             <span> {name}</span>
             <IoIosArrowDown/>
@@ -244,7 +244,7 @@ const Navbar = () => {
                 {name&&token?
                 <span className='user-span w-max'>
                   <span className='user-image'>
-                    <img src={userImage&& userImage===undefined? defaultImage:userImage} alt="userImage" />
+                    <img src={userImage ? userImage : defaultImage} alt="userImage" />
                   </span>
                   <span> {name}</span>
                   <IoIosArrowDown/>

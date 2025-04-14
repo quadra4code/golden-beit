@@ -48,7 +48,7 @@ const MyAccount = () => {
             <span>وحداتي</span>
           </div>
           <div 
-            onClick={()=>navigate('favorites')}
+            onClick={()=>navigate('/favorites')}
             className={`${pathname==='/my-account/account-favorite'? 'active' : ''} choice`}
           >
             <FaRegHeart />

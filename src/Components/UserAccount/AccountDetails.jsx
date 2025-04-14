@@ -243,7 +243,12 @@ const AccountDetails = () => {
   const [loading, setLoading] = useState(false);
   const [phoneNumbersUpdated, setPhoneNumbersUpdated] = useState(false);
   const { token, filterData, openNotificationWithIcon, handleLogout } = useContext(AppContext);
-  const navigate = useNavigate();
+  const getImageUrl = () => {
+    if (userImage) {
+      return URL.createObjectURL(userImage); // Show newly selected image immediately
+    }
+    return userData?.image_url || defaultImage; // Fallback to existing or default
+  };
   useEffect(() => {
     if (token) {
       setLoading(true);
@@ -256,6 +261,7 @@ const AccountDetails = () => {
           setUserData(data);
           setOriginalUserData(data);
           console.log(data);
+          localStorage.setItem('user_image_url', response.image_url);
         })
         .catch((err) =>{
           if(err.status===401){
@@ -282,10 +288,12 @@ const AccountDetails = () => {
     setUserData((prevData) => ({ ...prevData, phone_numbers: newPhoneNumbers }));
   };
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setUserImage(file);
-    setHasChanges(true);
-  };
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      setUserImage(file);
+      setHasChanges(true);
+    }
+  }
   const handleUpdateUserData = () => {
     if (!hasChanges) return;
     const formData = new FormData();
@@ -322,7 +330,14 @@ const AccountDetails = () => {
       ) : (
         <div className='account-details'>
           <div className='image-container'>
-            <img src={userData?.image_url ? userData.image_url : defaultImage} alt="User" />
+            <img 
+              src={getImageUrl()} 
+              alt="User" 
+              onError={(e) => {
+                e.target.src = defaultImage; // Fallback if image fails to load
+              }}
+            />
+            {/* <img src={userData?.image_url ? userData.image_url : defaultImage} alt="User" /> */}
             <span className="change-user-image">
               <input type="file" accept="image/*" onChange={handleImageChange} />
             </span>

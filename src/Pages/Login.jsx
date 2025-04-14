@@ -12,7 +12,7 @@ const Login = () => {
   const params = useParams()
   const { isLogin, setIsLogin, userType, setUserType, openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
-  const [interestedCity, setInterestedCity] = useState('القاهرة الجديدة (سكن - جنة)');
+  const [interestedCity, setInterestedCity] = useState();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState(null);
@@ -49,6 +49,7 @@ const Login = () => {
         localStorage.setItem('golden-beit-website-token', res.data.data.access_token);
         localStorage.setItem('name', res.data.data.user.full_name);
         localStorage.setItem('oneTimeInquiry','false');
+        console.log(res);
         window.location.href = `/`
       })
       .catch((err) => {
@@ -71,6 +72,7 @@ const Login = () => {
         referral_code
       })
       .then((res) => {
+        localStorage.setItem('user_image_url', res.data.data.image_url);
         localStorage.setItem('referral_code', res.data.data.referral_code);
         localStorage.setItem('name', res.data.data.first_name);
         localStorage.setItem('golden-beit-website-token', res.data.data.access_token);
@@ -79,7 +81,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        openNotificationWithIcon('error', 'عملية خاطئه', err.message);
+        openNotificationWithIcon('error', 'عملية خاطئه', err.response.data.msg);
       })
       .finally(() => {
         setLoading(false);
