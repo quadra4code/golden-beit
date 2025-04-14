@@ -16,7 +16,7 @@ import AppContext from '../Context/AppContext';
 import defaultImage from '../Images/user-image.webp';
 const Navbar = () => {
   const userImage = localStorage.getItem('user_image_url');
-  console.log(userImage.typeof);
+  console.log(userImage);
   useEffect(() => {
     if(!localStorage.getItem('user_image_url')) {
       localStorage.setItem('user_image_url', defaultImage);
