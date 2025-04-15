@@ -292,6 +292,7 @@ main.units_page {
         .swiper-wrapper {
           .swiper-slide {
             width: 450px;
+            height: auto;
             .slide-content {
               position: relative;
               height: 100%;
@@ -391,6 +392,7 @@ main.units_page {
       .units_list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         padding: 0.5rem;
         gap: 15px;
         .unit {
@@ -402,7 +404,6 @@ main.units_page {
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
           }
-
           .unit_info {
             display: flex;
             flex-direction: column;
@@ -411,7 +412,6 @@ main.units_page {
             background-color: #fff;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
-
             h3 {
               display: flex;
               font-size: 19px;
@@ -613,10 +613,20 @@ main.units_page {
 @media (max-width: 780px) {
   main.units_page {
     flex-direction: column;
+    .all-units-header {
+      h2 {
+        font-size: 18px !important;
+      }
+    }
     .units_content {
       width: 100%;
       .unit-card{
         width: 100%;
+      }
+      .new_arrive {
+        h2 {
+          font-size: 22px ;
+        }
       }
     }
   }

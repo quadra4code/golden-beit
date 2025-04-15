@@ -61,6 +61,7 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-pagination-bullet-a
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide {
   width: 450px;
+  height: auto;
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content {
   position: relative;
@@ -156,6 +157,7 @@ main.units_page .units_content .all_units .all-units-header h2 {
 main.units_page .units_content .all_units .units_list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding: 0.5rem;
   gap: 15px;
 }
@@ -364,11 +366,17 @@ main.units_page .price-range-slider .slider-container .rc-slider-handle:active {
   main.units_page {
     flex-direction: column;
   }
+  main.units_page .all-units-header h2 {
+    font-size: 18px !important;
+  }
   main.units_page .units_content {
     width: 100%;
   }
   main.units_page .units_content .unit-card {
     width: 100%;
+  }
+  main.units_page .units_content .new_arrive h2 {
+    font-size: 22px;
   }
 }
 main.single_unit_page {
