@@ -378,6 +378,12 @@ main.units_page .price-range-slider .slider-container .rc-slider-handle:active {
   main.units_page .units_content .new_arrive h2 {
     font-size: 22px;
   }
+  main.units_page .filter_toggle {
+    bottom: 2rem;
+    background-color: #000;
+    color: #fff;
+    top: unset;
+  }
 }
 main.single_unit_page {
   display: flex;

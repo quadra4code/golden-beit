@@ -491,7 +491,7 @@ import PaginationComponent from '../Components/Pagination';
 import { Pagination } from 'swiper/modules';
 // import Slider from 'rc-slider';
 import unitImage from '../Images/form.png';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -744,7 +744,7 @@ const Units = () => {
               </section>
               <button className="filter_toggle" onClick={() => setIsFilterOpen(!isFilterOpen)}>
                 <span>تصنيف</span>
-                <IoIosArrowDown />
+                <IoIosArrowUp />
               </button>
               <section className={`filter ${isFilterOpen ? 'open' : ''}`}>
                 <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>

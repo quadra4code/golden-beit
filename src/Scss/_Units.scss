@@ -629,5 +629,11 @@ main.units_page {
         }
       }
     }
+    .filter_toggle {
+      bottom: 2rem;
+      background-color: #000;
+      color: #fff;
+      top: unset;
+    }
   }
 }
