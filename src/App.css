@@ -367,7 +367,7 @@ main.units_page .price-range-slider .slider-container .rc-slider-handle:active {
     flex-direction: column;
   }
   main.units_page .all-units-header h2 {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
   main.units_page .units_content {
     width: 100%;
