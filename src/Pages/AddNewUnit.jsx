@@ -634,7 +634,7 @@ const AddNewUnit = () => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled hidden>أختر الطابق</option>
+                  <option value="" disabled hidden selected>أختر الطابق</option>
                   {filterData && filterData.floors.map((floor) =>
                     <option key={floor.id} value={floor.id}>{floor.name}</option>
                   )}
@@ -782,7 +782,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">اجمالى السعر</label>
+              <label htmlFor="price"> الإجمالى بدون الأوڤر </label>
               <CustomInpSelect
                 value={formData.total_price}
                 isReq={true}
