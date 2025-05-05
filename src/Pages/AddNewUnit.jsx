@@ -558,7 +558,7 @@ const AddNewUnit = () => {
           <div className="form-group">
             <label htmlFor="unitName">اسم المشروع </label>
             <select value={formData.project_id} name="project_id" id="unit" onChange={handleChange}>
-              <option value="" disabled hidden>
+              <option value="" disabled hidden selected>
                 اختر مشروع
               </option>
               {filteredProjects.map((project) => (
