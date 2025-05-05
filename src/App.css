@@ -3371,9 +3371,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.368627451);
   background-position: center;
   background-size: contain;
+  cursor: none;
+}
+.opacity-div .container {
+  width: 200px;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.8470588235);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .opacity-div img {
   width: 100%;
