@@ -14,7 +14,7 @@ const AccountUnits = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data.data;
+      return response.data.data.all;
     } catch (error) {
       throw new Error("Failed to fetch account orders");
     }
@@ -38,11 +38,9 @@ const AccountUnits = () => {
               <th>المسلسل</th>
               <th>العنوان</th>
               <th>المشروع</th>
-              <th>النوع</th>
+              <th>الحالة</th>
               <th>المدينة</th>
               <th>المنطقة</th>
-              <th>حالة الطلب</th>
-              <th>تاريخ الطلب</th>
               <th>الاجمالي</th>
               <th>الاوفر</th>
               <th>خيارات</th>
@@ -54,13 +52,11 @@ const AccountUnits = () => {
                 <td>
                   <a href={`/all-units/${order.id}`} className="order-link">#{order.id}</a>
                 </td>
-                <td>{order.unit_title}</td>
-                <td>{order.unit_project}</td>
-                <td>{order.unit_proposal}</td>
-                <td>{order.unit_city}</td>
-                <td>{order.unit_area}</td>
-                <td>{order.created_at}</td>
-                <td>{order.request_status_obj.name}</td>
+                <td>{order.title}</td>
+                <td>{order.project}</td>
+                <td>{order.status.name}</td>
+                <td>{order.city}</td>
+                <td>{order.area}</td>
                 <td>{order.total_price_obj.price_value}</td>
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
