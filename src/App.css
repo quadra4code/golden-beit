@@ -3027,6 +3027,7 @@ main.my-account section.account-safety .pass-btn {
   font-size: 14px;
   color: #444;
   border-bottom: 1px solid #eaeaea;
+  text-align: center;
 }
 .orders-table table .order-link {
   color: #007bff;
