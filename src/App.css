@@ -3037,6 +3037,12 @@ main.my-account section.account-safety .pass-btn {
 .orders-table table .order-link:hover {
   text-decoration: underline;
 }
+.orders-table table .order-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .orders-table table .view-button {
   background: #000;
   color: #fff;

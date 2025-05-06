@@ -60,7 +60,11 @@ const AccountUnits = () => {
                 <td>{order.total_price_obj.price_value}</td>
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
-                  <button className="view-button">View</button>
+                  <span className="order-options">
+                    <a href={`/edit-unit/${order.id}`} className="view-button">تعديل</a>
+                    <a href={`/all-units/${order.id}`} className="view-button">مشاهدة</a>
+                  </span>
+                  {/* <button className="view-button">View</button> */}
                 </td>
               </tr>
             ))}

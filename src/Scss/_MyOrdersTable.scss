@@ -37,6 +37,12 @@
         text-decoration: underline;
       }
     }
+    .order-options{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
     .view-button {
       background: #000;
       color: #fff;
