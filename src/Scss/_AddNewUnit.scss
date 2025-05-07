@@ -118,7 +118,8 @@ main.add_unit {
         font-weight: 600;
       }
       input,
-      select {
+      select,
+      textarea {
         width: 100%;
         padding: 10px;
         border: 1px solid $border-color;

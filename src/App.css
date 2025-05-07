@@ -858,7 +858,8 @@ main.add_unit .add-build-unit .form-group label {
   font-weight: 600;
 }
 main.add_unit .add-build-unit .form-group input,
-main.add_unit .add-build-unit .form-group select {
+main.add_unit .add-build-unit .form-group select,
+main.add_unit .add-build-unit .form-group textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;

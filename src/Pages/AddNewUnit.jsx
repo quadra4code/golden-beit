@@ -538,7 +538,13 @@ const AddNewUnit = () => {
         <Popup />
         <div className="add-build-unit">
           <h2>اضافة وحدة جديدة</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} 
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+              }
+            }}
+          >
             <div className="form-group">
               <label htmlFor="unitNumber">نوع المشروع</label>
               <div className='radio-cont'>
@@ -748,6 +754,7 @@ const AddNewUnit = () => {
                 name="area"
                 value={formData.area}
                 onChange={handleChange}
+                onWheel={(e) => e.preventDefault()}
                 required
               />
             </div>
@@ -813,7 +820,7 @@ const AddNewUnit = () => {
             </div>
             <div className="form-group">
               <label htmlFor="price">الوصف</label>
-              <input
+              <textarea
                 type="text"
                 id="price"
                 name="description"
