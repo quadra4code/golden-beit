@@ -16,6 +16,9 @@
     th, td {
       padding: 12px;
       min-width: 120px;
+      display: table-cell;
+      white-space: nowrap;
+      width: auto;
     }
     th {
       font-size: 14px;

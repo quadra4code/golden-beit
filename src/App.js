@@ -73,7 +73,6 @@ import ContactUs from './Pages/ContactUs';
 import Leaderboard from './Pages/LeaderBoard';
 import Favorites from './Pages/Favorites';
 import EditUnit from './Pages/EditUnit';
-import MyAccount from './Pages/MyAccount';
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import ProtectedRoute from './Components/ProtectedRoute';
 const App = () => {

@@ -12,7 +12,7 @@ import TopShow from '../Components/TopShow';
 import Services from '../Components/Services';
 import UserTypesCarouselPage from '../Components/UserTypesCarouselPage';
 const Home = () => {
-  const {loading, contextHolder} = useContext(AppContext);
+  const {loading, contextHolder, featuredUnits, mostViewedUnits} = useContext(AppContext);
   return (
     <>
     {loading
@@ -24,10 +24,11 @@ const Home = () => {
           <Popup/>
           {contextHolder}
           <Landing/>
+          {featuredUnits && featuredUnits.length > 0 && <OurProjects/>}
           <WhyUs/>
           <UserTypesCarouselPage/>
-          <OurProjects/>
-          <TopShow/>
+          {mostViewedUnits && mostViewedUnits.length > 0 && <TopShow/>}
+          
           {/* <AboutUs/> */}
           <OurReviews/>
           <Articles/>

@@ -679,7 +679,7 @@ const Units = () => {
                               </h1>
                               <h1>
                                 <MdOutlineAttachMoney />
-                                السعر : {newArrivalUnit.area}
+                                السعر : {newArrivalUnit.total_price_obj.price_value}
                               </h1>
                               <button className="see_more" onClick={() => navigate(`/all-units/${newArrivalUnit.id}`)}>التفاصيل</button>
                             </div>

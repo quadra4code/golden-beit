@@ -17,7 +17,7 @@ import defaultImage from '../Images/user-image.webp';
 const Navbar = () => {
   const userImage = localStorage.getItem('user_image_url');
   useEffect(() => {
-    if(!localStorage.getItem('user_image_url')) {
+    if(localStorage.getItem('user_image_url') === undefined || localStorage.getItem('user_image_url') === null){
       localStorage.setItem('user_image_url', defaultImage);
     }
   }, [])
@@ -26,7 +26,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { handleLogout,token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
-  const handleAddUnitRoute = (type)=> {
+  const handleOurServicesRoutes = (type)=> {
     setMobileMenuOpen(false)
     if(token){
       if(type==='invite'){
@@ -42,6 +42,14 @@ const Navbar = () => {
         setPopupHeader('')
       }
       else{navigate('/add-new-unit')}
+    }else{
+      return openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
+    }
+  }
+  const handleAddUnitRoute = (type)=> {
+    setMobileMenuOpen(false)
+    if(token){
+      navigate('/add-new-unit')
     }else{
       return openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
     }
@@ -89,9 +97,9 @@ const Navbar = () => {
               <IoIosArrowDown/>
             </span>
             <div className="nav-menu">
-              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
+              {/* <span className='list-unit' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span> */}
               {/* <span className='list-unit' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span> */}
-              <span className='list-unit' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
+              <span className='list-unit' onClick={()=>handleOurServicesRoutes('add-review')}>اضف تقييمك</span>
               <Link className='list-unit' to="/inquiry-page">استعلام عن الفائزين</Link>
               {/* <Link className='list-unit' to="/leader-board">لوحة المتصدرين</Link> */}
             </div>
@@ -99,6 +107,7 @@ const Navbar = () => {
           <Link to= "/all-units" className={`${pathname.startsWith('/all-units')? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`}>
             الوحدات
           </Link>
+          <span onClick={()=>handleAddUnitRoute('add-unit')} to=  "/add-new-unit" className={`${pathname=== '/add-new-unit' ? 'font-active' : 'font-semibold'} cursor-pointer tracking-wider text-lg font-cairo leading-6 text-navbar-blue`} >اضف وحدتك</span>
           <HashLink
             scroll={(el) => {
               const yOffset = -60; // Adjust this value to match the height of your navbar
@@ -191,10 +200,10 @@ const Navbar = () => {
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
                     <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-unit')}>اضف وحدتك</span>
-                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span>
-                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('add-review')}>اضف تقييمك</span>
-                    {/* <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
-                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/leader-board">لوحة المتصدرين</Link> */}
+                    {/* <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleAddUnitRoute('invite')}>دعوة صديق</span> */}
+                    <span className='cursor-pointer font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' onClick={()=>handleOurServicesRoutes('add-review')}>اضف تقييمك</span>
+                    <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/inquiry-page">استعلام عن الفائزين</Link>
+                    {/* <Link onClick={() => setMobileMenuOpen(false)} className='font-bold block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-navbar-blue hover:bg-gray-50' to="/leader-board">لوحة المتصدرين</Link> */}
                   </DisclosurePanel>
                 </Disclosure>
                 <Link

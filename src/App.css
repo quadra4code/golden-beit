@@ -641,7 +641,7 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  bottom: -179px;
+  bottom: -134px;
   right: -5px;
   padding: 8px;
   width: -moz-max-content;
@@ -856,6 +856,11 @@ main.add_unit .add-build-unit .form-group label {
   margin-bottom: 5px;
   color: #333;
   font-weight: 600;
+}
+main.add_unit .add-build-unit .form-group label .req {
+  color: rgb(212, 3, 3);
+  font-size: 12px;
+  margin-right: 5px;
 }
 main.add_unit .add-build-unit .form-group input,
 main.add_unit .add-build-unit .form-group select,
@@ -1285,6 +1290,7 @@ section.landing .holder .opacity .hero a {
 }
 section.landing .search-bar {
   position: absolute;
+  z-index: 2;
   bottom: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1328,7 +1334,8 @@ section.landing .search-bar .custom-select {
   gap: 10px;
   border-radius: 8px;
   font-size: 20px;
-  width: 250px;
+  white-space: nowrap;
+  min-width: 250px;
   background-color: #fff;
   padding: 10px;
   cursor: pointer;
@@ -1377,7 +1384,7 @@ section.landing .search-bar .custom-select .choices .apply-price {
 }
 section.landing .search-bar .custom-select .choices input {
   width: 100%;
-  font-size: 25px;
+  font-size: 18px;
   border: none;
   outline: none;
   padding: 10px;
@@ -1388,7 +1395,7 @@ section.landing .search-bar .custom-select .choices .option {
   padding: 10px;
   background-color: #fff;
   color: var(--primary-color);
-  font-size: 20px;
+  font-size: 18px;
   transition: background-color 0.3s;
 }
 section.landing .search-bar .custom-select .choices .option:hover {
@@ -3017,6 +3024,9 @@ main.my-account section.account-safety .pass-btn {
 .orders-table table th, .orders-table table td {
   padding: 12px;
   min-width: 120px;
+  display: table-cell;
+  white-space: nowrap;
+  width: auto;
 }
 .orders-table table th {
   font-size: 14px;
@@ -3340,8 +3350,8 @@ main.my-account section.account-safety .pass-btn {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 7px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -3559,8 +3569,7 @@ main.home section.our-projects > .title::after {
   transform: translateX(-50%);
 }
 main.home section.our-projects .mySwiper {
-  width: 100%;
-  padding: 0 1rem;
+  width: 96%;
 }
 main.home section.our-projects .mySwiper .swiper-pagination-bullet {
   width: 15px;

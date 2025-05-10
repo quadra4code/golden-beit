@@ -14,7 +14,7 @@ import UnitCard from './UnitCard';
 const OurProjects = () => {
   const {isDesktop} = useContext(IsDesktop)
   const navigate = useNavigate()
-  const {featuredUnits, handelAddToFav} = useContext(AppContext)
+  const { handelAddToFav, featuredUnits} = useContext(AppContext)
   console.log(featuredUnits);
   return (
     <section className='our-projects'>

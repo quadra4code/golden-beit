@@ -116,6 +116,11 @@ main.add_unit {
         margin-bottom: 5px;
         color: $text-color;
         font-weight: 600;
+        .req {
+          color: rgb(212, 3, 3);
+          font-size: 12px;
+          margin-right: 5px;
+        }
       }
       input,
       select,

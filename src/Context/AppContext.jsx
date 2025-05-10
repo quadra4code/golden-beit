@@ -100,10 +100,11 @@ export const AppProvider = ({children}) => {
   useEffect(()=>{
     setLoading(true)
     axios.get('https://api.goldenbeit.com/core/home-featured-units')
-    .then(response => {
+    .then((response) => {
+      console.log(response.data.data);
       setFeaturedUnits(response.data.data)
     })
-    .catch(error => console.error(error))
+    .catch((error) => console.error(error))
     .finally(()=>{setLoading(false)})
   },[])
   /////////////// get most-viewed-units section
@@ -143,6 +144,7 @@ export const AppProvider = ({children}) => {
   //////////////post all units screen filter 
   const handleFilterClick = (unit_type_id,project_id, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true);
+    console.log(project_id, city_id, );
     axios.post(
       'https://api.goldenbeit.com/core/filter-paginated-units',
       {
@@ -194,17 +196,21 @@ export const AppProvider = ({children}) => {
   }
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
+    const projectIdStr = String(project_id);
+    const cityIdStr = String(city_id);
+    console.log(projectIdStr, cityIdStr, min_price, max_price);
     axios.post(
       'https://api.goldenbeit.com/core/filter-paginated-units',
       {
-        project_id,
-        city_id ,
+        project_id :projectIdStr,
+        city_id: cityIdStr ,
         min_price,
         max_price,
       },
     )
     .then(res => {
-      if(res.data.data.length<1){
+      console.log(res.data.data);
+      if(res.data.data.all.length<1){
         openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }

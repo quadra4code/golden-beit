@@ -261,7 +261,7 @@ const AccountDetails = () => {
           setUserData(data);
           setOriginalUserData(data);
           console.log(data);
-          localStorage.setItem('user_image_url', response.image_url);
+          localStorage.setItem('user_image_url', data.image_url);
         })
         .catch((err) =>{
           if(err.status===401){
@@ -316,7 +316,7 @@ const AccountDetails = () => {
       })
       .then((response) => {
         console.log('Update successful:', response);
-        localStorage.setItem('user_image_url', response.data.data.image);
+        localStorage.setItem('user_image_url', response.data.data.image_url);
         setOriginalUserData(userData);
         setHasChanges(false);
       })

@@ -573,8 +573,8 @@ const AddNewUnit = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="unitName">اسم المشروع </label>
-              <select value={formData.project_id} name="project_id" id="unit" onChange={handleChange}>
+              <label htmlFor="unitName">اسم المشروع <span className='req'>(مطلوب)</span></label>
+              <select required value={formData.project_id} name="project_id" id="unit" onChange={handleChange}>
                 <option value="" disabled hidden selected>
                   اختر مشروع
                 </option>
@@ -586,7 +586,7 @@ const AddNewUnit = () => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="floorNumber">الطرح</label>
+              <label htmlFor="floorNumber">الطرح <span className='req'>(مطلوب)</span></label>
               <select
                 id="unitType"
                 name="proposal_id"
@@ -601,7 +601,7 @@ const AddNewUnit = () => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="floorNumber">الموقع</label>
+              <label htmlFor="floorNumber">الموقع <span className='req'>(مطلوب)</span></label>
               <select
                 id="unitType"
                 name="city_id"
@@ -622,7 +622,6 @@ const AddNewUnit = () => {
                 name="facade"
                 value={formData.facade}
                 onChange={handleChange}
-                
               >
                 <option value="" disabled hidden selected>أختر الواجهة</option>
                 {filterData && filterData.facades.map((facade) =>
@@ -632,7 +631,7 @@ const AddNewUnit = () => {
             </div>
             {formData.unit_type_id === '2' &&
               <div className="form-group">
-                <label htmlFor="floorNumber">الطابق</label>
+                <label htmlFor="floorNumber">الطابق <span className='req'>(مطلوب)</span></label>
                 <select
                   id="unitType"
                   name="floor"
@@ -648,7 +647,7 @@ const AddNewUnit = () => {
               </div>
             }
             <div className="form-group">
-              <label htmlFor="area">رقم الوحدة / القطعة</label>
+              <label htmlFor="area">رقم الوحدة / القطعة <span className='req'>(مطلوب)</span></label>
               <input
                 type="number"
                 id="area"
@@ -660,7 +659,7 @@ const AddNewUnit = () => {
             </div>
             {formData.unit_type_id === '2' &&
               <div className="form-group">
-                <label htmlFor="unitType">رقم العمارة</label>
+                <label htmlFor="unitType">رقم العمارة <span className='req'>(مطلوب)</span></label>
                 <input
                   type="text"
                   id="area"
@@ -672,7 +671,7 @@ const AddNewUnit = () => {
               </div>
             }
             <div className="form-group">
-              <label htmlFor="unitType">نظام السداد</label>
+              <label htmlFor="unitType">نظام السداد <span className='req'>(مطلوب)</span></label>
               <input
                 type="text"
                 id="area"
@@ -683,7 +682,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="unitType">المدفوع </label>
+              <label htmlFor="unitType">المدفوع <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.paid_amount}
                 onChange={(value) => setFormData({ ...formData, paid_amount: value })}
@@ -701,7 +700,7 @@ const AddNewUnit = () => {
               /> */}
             </div>
             <div className="form-group">
-              <label htmlFor="unitType"> المتبقي</label>
+              <label htmlFor="unitType"> المتبقي <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.remaining_amount}
                 onChange={(value) => setFormData({ ...formData, remaining_amount: value })}
@@ -719,7 +718,7 @@ const AddNewUnit = () => {
               /> */}
             </div>
             <div className="form-group">
-              <label htmlFor="price">مدة التقسيط</label>
+              <label htmlFor="price">مدة التقسيط </label>
               <input
                 type="number"
                 id="price"
@@ -729,7 +728,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">قيمة أول قسط</label>
+              <label htmlFor="price">قيمة أول قسط <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.first_installment_value}
                 onChange={(value) => setFormData({ ...formData, first_installment_value: value })}
@@ -747,7 +746,7 @@ const AddNewUnit = () => {
               /> */}
             </div>
             <div className="form-group">
-              <label htmlFor="price">المساحة بالمتر</label>
+              <label htmlFor="price">المساحة بالمتر <span className='req'>(مطلوب)</span></label>
               <input
                 type="number"
                 id="price"
@@ -759,7 +758,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">سعر المتر</label>
+              <label htmlFor="price">سعر المتر <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.meter_price}
                 onChange={(value) => setFormData({ ...formData, meter_price: value })}
@@ -777,7 +776,7 @@ const AddNewUnit = () => {
               /> */}
             </div>
             <div className="form-group">
-              <label htmlFor="price">قيمة الاوفر</label>
+              <label htmlFor="price">قيمة الاوفر <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.over_price}
                 isReq={true}
@@ -789,7 +788,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price"> الإجمالى بدون الأوڤر </label>
+              <label htmlFor="price"> الإجمالى بدون الأوڤر <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.total_price}
                 isReq={true}
@@ -808,7 +807,7 @@ const AddNewUnit = () => {
               /> */}
             </div>
             <div className="form-group">
-              <label htmlFor="price">العنوان</label>
+              <label htmlFor="price">العنوان <span className='req'>(مطلوب)</span></label>
               <input
                 type="text"
                 id="price"
@@ -829,7 +828,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">رقم الهاتف للتواصل</label>
+              <label htmlFor="price">رقم الهاتف للتواصل <span className='req'>(مطلوب)</span></label>
               <input
                 type="number"
                 id="price"

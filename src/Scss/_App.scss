@@ -40,8 +40,8 @@
   background-color: #8a725d;
 }
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 7px;
+  height: 6px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #8a725d;
@@ -253,8 +253,8 @@ main.home {
       }
     }
     .mySwiper{
-      width: 100%;
-      padding:0 1rem ;
+      width: 96%;
+      // padding:0 1rem ;
       .swiper-pagination-bullet{
         width: 15px;
         height: 15px;

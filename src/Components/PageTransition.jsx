@@ -8,6 +8,8 @@ import AccountUnits from './UserAccount/AccountUnits';
 import AccountSafety from './UserAccount/AccountSafety';
 import UsagePolicy from './UserAccount/UsagePolicy';
 import ProtectedRoute from './ProtectedRoute';
+import AddNewUnit from '../Pages/AddNewUnit';
+
 const PageTransition = ({ routes }) => {
   const location = useLocation();
   return (

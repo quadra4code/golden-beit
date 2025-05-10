@@ -5,11 +5,11 @@ import { FiShoppingBag } from "react-icons/fi";
 import { BsBuildings, BsInfoCircle  } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import axios from 'axios';
-import Loader from '../Components/Loader';
-import ErrorPage from './ErrorPage';
+// import axios from 'axios';
+// import Loader from '../Components/Loader';
+// import ErrorPage from './ErrorPage';
 import AppContext from '../Context/AppContext';
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 const MyAccount = () => {
   const pathname = window.location.pathname;
   const { handleLogout } = useContext(AppContext)

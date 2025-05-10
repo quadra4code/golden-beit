@@ -14,4 +14,22 @@ const ProtectedRoute = ({ children }) => {
   }, [token, navigate]);
   return token ? children : openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول') // Render children if token exists, otherwise render nothing
 };
+// const isAuthenticated = () => {
+//   return localStorage.getItem('golden-beit-website-token') !== null;
+// };
+// const ProtectedRoute = ({ component: Component, ...rest }) => {
+//   const { openNotificationWithIcon } = useContext(AppContext)
+//   return (
+//     <Route
+//       {...rest}
+//       render={props =>
+//         isAuthenticated() ? (
+//           <Component {...props} />
+//         ) : (
+//           openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول ') 
+//         )
+//       }
+//     />
+//   );
+// }
 export default ProtectedRoute;
