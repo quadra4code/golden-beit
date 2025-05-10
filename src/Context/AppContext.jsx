@@ -195,17 +195,19 @@ export const AppProvider = ({children}) => {
     })
   }
   ////// post Home screen search
-  const handleApplySearch = (project_id, city_id, min_price, max_price)=> {
+  const handleApplySearch = (project_id, city_id, unit_type_id,  min_price, max_price)=> {
     const projectIdStr = String(project_id);
     const cityIdStr = String(city_id);
-    console.log(projectIdStr, cityIdStr, min_price, max_price);
+    const unitTypeStr = String(unit_type_id);
+    console.log(project_id, city_id, unit_type_id);
     axios.post(
       'https://api.goldenbeit.com/core/filter-paginated-units',
       {
         project_id :projectIdStr,
         city_id: cityIdStr ,
-        min_price,
-        max_price,
+        unit_type_id: unitTypeStr ,
+        // min_price,
+        // max_price,
       },
     )
     .then(res => {

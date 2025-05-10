@@ -7,28 +7,21 @@ import { TbHomeFilled } from "react-icons/tb";
 import axios from 'axios';
 import AppContext from '../Context/AppContext';
 const SearchBar = () => {
-  const navigate = useNavigate()
-  const token = localStorage.getItem('golden-beit-website-token');
   const {handleApplySearch, openNotificationWithIcon, setLoading, setFilterData, filterData, setAllUnits}= useContext(AppContext)
   const [typeSelected, setTypeSelected] = useState(false);
+  const [projectSelected, setProjectSelected] = useState(false);
   const [locationSelected, setLocationSelected] = useState(false);
   const [priceSelected, setPriceSelected] = useState(false);
+  const [selectedUnit, setSelectedUnit] = useState(false);
   const [selectedProject, setSelectedProject] = useState(false);
   const [selectedCity, setSelectedCity] = useState(false);
-  const [typeLabel, setTypeLabel] = useState('المشروع');
-  const [locationLabel, setLocationLabel] = useState('المدينة');
   const [priceLabel, setPriceLabel] = useState('السعر');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [types,setTypes]=useState(
-    ['شقة', 'فيلا', 'مكتب', 'محل', 'أرض']
-  ); 
-  const [locations,setLocations]=useState(
-    ['شقة', 'فيلا', 'مكتب', 'محل', 'أرض']
-  ); 
   const handleInputClick = (e) => {
     e.stopPropagation();
   };
+  console.log(filterData);
   const handleApplyPrice = () => {
     if (minPrice && maxPrice) {
       setPriceLabel(`${minPrice} - ${maxPrice}`);
@@ -68,9 +61,24 @@ const SearchBar = () => {
       <section className='search-bar'>
         <IoIosSearch />
         <div className='custom-select'onClick={()=>setTypeSelected(!typeSelected)}>
-          <h2>{selectedProject.name || `المشروع`}</h2>
+          <h2>{selectedUnit.name || `نوع الوحدة`}</h2>
           <TbHomeFilled/>
           <div className={`choices ${typeSelected? 'active' : null}`} >
+            {filterData &&
+              filterData.unit_types.map((unitType, index) => (
+                <div key={unitType.id} label={unitType.name}>
+                  <span onClick={()=>setSelectedUnit(unitType)} className="option" key={unitType.id} value={unitType.name}>
+                    {unitType.name} 
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div className='custom-select'onClick={()=>setProjectSelected(!projectSelected)}>
+          <h2>{selectedProject.name || `المشروع`}</h2>
+          <TbHomeFilled/>
+          <div className={`choices ${projectSelected? 'active' : null}`} >
             {filterData &&
               filterData.unit_types.map((projectType, index) => (
                 <div key={projectType.id} label={projectType.name}>
@@ -93,7 +101,7 @@ const SearchBar = () => {
             )}
           </div>
         </div>
-        <div className='custom-select'onClick={()=>setPriceSelected(!priceSelected)}>
+        {/* <div className='custom-select'onClick={()=>setPriceSelected(!priceSelected)}>
           <h2>{priceLabel}</h2>
           <RiMoneyDollarCircleFill/>
           <div className={`choices ${priceSelected? 'active' : null}`} >
@@ -113,8 +121,8 @@ const SearchBar = () => {
             />
             <button className='apply-price' onClick={handleApplyPrice}>Apply</button>
           </div>
-        </div>
-        <button onClick={()=>handleApplySearch(selectedProject.id, selectedCity.id, minPrice, maxPrice)}>بحث</button>
+        </div> */}
+        <button onClick={()=>handleApplySearch(selectedProject.id, selectedCity.id, selectedUnit.id)}>بحث</button>
       </section>
     </>
   )
