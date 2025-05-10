@@ -66,53 +66,52 @@ main.single_unit_page {
           color:#f1c40f ;
         }
       }
-      .data-holder {
-        display: flex;
-        gap: 20px;
-        .label-holder, .value-holder{
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 1rem;
-          .cont{
-            font-size: 18px;
-            margin-top: 8px;
-          }
-          h3{
-            font-size: 18px;
-            font-weight: 700;
-          }
-          .price-value{
-            color: var(--primary-color);
-            font-size: 26px;
-            font-weight: bold;
-          }
-          .price-currency{
-            color: #333;
-            margin-right: 5px;
-            font-size: 20px;
-          }
-        }
-      }
-      // .holder {
+      // .data-holder {
       //   display: flex;
-      //   align-items: center;
-      //   // width: 16rem;
-      //   gap: 1rem;
-      //   // justify-content: space-between;
-      //   h3{
-      //     font-size: 18px;
-      //     font-weight: 600;
-      //   }
-      //   span{
-      //     font-weight: bold;
-      //     color: #858585;
-      //   }
-      //   .price{
-      //     color: var(--primary-color);
-      //     font-size: 26px;
+      //   gap: 20px;
+      //   .label-holder, .value-holder{
+      //     display: flex;
+      //     flex-direction: column;
+      //     justify-content: space-between;
+      //     gap: 1rem;
+      //     .cont{
+      //       font-size: 18px;
+      //       margin-top: 8px;
+      //     }
+      //     h3{
+      //       font-size: 18px;
+      //       font-weight: 700;
+      //     }
+      //     .price-value{
+      //       color: var(--primary-color);
+      //       font-size: 26px;
+      //       font-weight: bold;
+      //     }
+      //     .price-currency{
+      //       color: #333;
+      //       margin-right: 5px;
+      //       font-size: 20px;
+      //     }
       //   }
       // }
+      .holder {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        h3{
+          font-size: 18px;
+          font-weight: 600;
+          min-width: 122px;
+        }
+        span{
+          font-weight: bold;
+          color: #858585;
+        }
+        .price{
+          color: var(--primary-color);
+          font-size: 26px;
+        }
+      }
     }
   }
   section.tab_view{

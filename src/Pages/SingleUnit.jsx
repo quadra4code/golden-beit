@@ -98,7 +98,7 @@ const SingleUnit = () => {
   const items = [
     {
       key: '1',
-      label: 'الوصف',
+      label: 'المميزات',
       children: singleUnit&& singleUnit.description,
     },
   ];
@@ -189,7 +189,7 @@ const SingleUnit = () => {
             </div>
             }
           </div> */}
-          <div className='unit_data'>
+          {/* <div className='unit_data'>
             <h2>{singleUnit&& singleUnit.title}</h2>
             <div className="data-holder">
               <span className='label-holder'>
@@ -252,48 +252,6 @@ const SingleUnit = () => {
                 }
               </span>
             </div>
-            {/* {singleUnit&& singleUnit.paid_amount&&
-              <span className='holder'>
-                <h3>المدفوع :</h3>
-              </span>
-            }
-            {singleUnit&& singleUnit.remaining_amount&&
-              <span className='holder'>
-                <h3> الباقي:</h3>
-                <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span>
-                {singleUnit&& singleUnit.remaining_amount_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.meter_price&&
-              <span className='holder'>
-                <h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span>
-                {singleUnit&& singleUnit.meter_price_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.total_price&&
-              <span className='holder'>
-                <h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span>
-                {singleUnit&& singleUnit.total_price_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.over_price&&
-              <span className='holder'>
-                <h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span>
-                {singleUnit&& singleUnit.over_price_currency}
-              </span>
-            }
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.city}</span>
-            </span> */}
-            {/* <span className='holder'>
-              <span>{singleUnit&& singleUnit.area} متر مربع</span>
-            </span>
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.payment_method}</span>
-            </span>
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.latest_date}</span>
-            </span> */}
             <div className='btns'>
               <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
               <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
@@ -301,8 +259,8 @@ const SingleUnit = () => {
                 <FaRegHeart/>
               </button>
             </div>
-          </div>
-          {/* <div className='unit_data'>
+          </div> */}
+          <div className='unit_data'>
             <h2>{singleUnit&& singleUnit.title}</h2>
             <span className='holder'>
               <h3>المشروع:</h3>
@@ -328,32 +286,33 @@ const SingleUnit = () => {
               <span className='holder'>
                 <h3>المدفوع :</h3>
                 <span className='price'>{singleUnit&& singleUnit.paid_amount}</span>
-                {singleUnit&& singleUnit.paid_amount_currency}
+                <span>{singleUnit&& singleUnit.paid_amount_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.remaining_amount&&
               <span className='holder'>
                 <h3> الباقي:</h3>
                 <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span>
-                {singleUnit&& singleUnit.remaining_amount_currency}
+                <span>{singleUnit&& singleUnit.remaining_amount_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.meter_price&&
               <span className='holder'>
                 <h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span>
-                {singleUnit&& singleUnit.meter_price_currency}
+                <span>{singleUnit&& singleUnit.meter_price_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.total_price&&
               <span className='holder'>
                 <h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span>
-                {singleUnit&& singleUnit.total_price_currency}
+                <span>{singleUnit&& singleUnit.total_price_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.over_price&&
               <span className='holder'>
-                <h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span>
-                {singleUnit&& singleUnit.over_price_currency}
+                <h3>سعر الاوفر:</h3> 
+                <span className='price'>{singleUnit&& singleUnit.over_price}</span>
+                <span>{singleUnit&& singleUnit.over_price_currency}</span>
               </span>
             }
             <div className='btns'>
@@ -363,7 +322,7 @@ const SingleUnit = () => {
                 <FaRegHeart/>
               </button>
             </div>
-          </div> */}
+          </div>
         </section>
         <section className='tab_view'>
           <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
@@ -443,3 +402,45 @@ const SingleUnit = () => {
 }
 
 export default SingleUnit
+            {/* {singleUnit&& singleUnit.paid_amount&&
+              <span className='holder'>
+                <h3>المدفوع :</h3>
+              </span>
+            }
+            {singleUnit&& singleUnit.remaining_amount&&
+              <span className='holder'>
+                <h3> الباقي:</h3>
+                <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span>
+                {singleUnit&& singleUnit.remaining_amount_currency}
+              </span>
+            }
+            {singleUnit&& singleUnit.meter_price&&
+              <span className='holder'>
+                <h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span>
+                {singleUnit&& singleUnit.meter_price_currency}
+              </span>
+            }
+            {singleUnit&& singleUnit.total_price&&
+              <span className='holder'>
+                <h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span>
+                {singleUnit&& singleUnit.total_price_currency}
+              </span>
+            }
+            {singleUnit&& singleUnit.over_price&&
+              <span className='holder'>
+                <h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span>
+                {singleUnit&& singleUnit.over_price_currency}
+              </span>
+            }
+            <span className='holder'>
+              <span>{singleUnit&& singleUnit.city}</span>
+            </span> */}
+            {/* <span className='holder'>
+              <span>{singleUnit&& singleUnit.area} متر مربع</span>
+            </span>
+            <span className='holder'>
+              <span>{singleUnit&& singleUnit.payment_method}</span>
+            </span>
+            <span className='holder'>
+              <span>{singleUnit&& singleUnit.latest_date}</span>
+            </span> */}

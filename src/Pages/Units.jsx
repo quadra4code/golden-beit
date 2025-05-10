@@ -727,7 +727,7 @@ const Units = () => {
                           area={unit.area}
                           price={unit.price_obj}
                           id={unit.id}
-                          isSoldOut={unit.status.code==4 && true}
+                          isSoldOut={unit.status.code==3 && true}
                           onClick={() => navigate(`/all-units/${unit.id}`)}
                           addFav = {()=>{handelAddToFav(unit.id)}}
                         />
@@ -750,7 +750,19 @@ const Units = () => {
                 <button className="close_filter" onClick={() => setIsFilterOpen(false)}>اغلاق</button>
                 <div className="filter_unit">
                   <p className="filter_title">اختر نوع الوحدة</p>
-                  <div className="radio-container">
+                  <div className="select-container">
+                    <select
+                      id="unit_type_id"
+                      name="unit_type_id"
+                      value={unitTypeId}
+                      onChange={(e) => setUnitTypeId(e.target.value)}
+                    >
+                      <option hidden value="اختر نوع الوحدة" selected disabled>اختر نوع الوحدة</option>
+                      <option value="1">أرض</option>
+                      <option value="2">شقة</option>
+                    </select>
+                  </div>
+                  {/* <div className="radio-container">
                     <div className='radio'>
                       <input
                         type="radio" 
@@ -773,7 +785,7 @@ const Units = () => {
                       />
                       <label for="flat">شقة</label>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="filter_unit">
                   <select name="unit" id="unit" onChange={(e) => setSelectedProject(e.target.value)}>

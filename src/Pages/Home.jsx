@@ -25,10 +25,9 @@ const Home = () => {
           {contextHolder}
           <Landing/>
           {featuredUnits && featuredUnits.length > 0 && <OurProjects/>}
+          {mostViewedUnits && mostViewedUnits.length > 0 && <TopShow/>}
           <WhyUs/>
           <UserTypesCarouselPage/>
-          {mostViewedUnits && mostViewedUnits.length > 0 && <TopShow/>}
-          
           {/* <AboutUs/> */}
           <OurReviews/>
           <Articles/>

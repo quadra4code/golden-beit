@@ -450,33 +450,23 @@ main.single_unit_page section.unit_info .unit_data .stars svg {
   font-size: 25px;
   color: #f1c40f;
 }
-main.single_unit_page section.unit_info .unit_data .data-holder {
+main.single_unit_page section.unit_info .unit_data .holder {
   display: flex;
-  gap: 20px;
-}
-main.single_unit_page section.unit_info .unit_data .data-holder .label-holder, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
 }
-main.single_unit_page section.unit_info .unit_data .data-holder .label-holder .cont, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder .cont {
+main.single_unit_page section.unit_info .unit_data .holder h3 {
   font-size: 18px;
-  margin-top: 8px;
+  font-weight: 600;
+  min-width: 122px;
 }
-main.single_unit_page section.unit_info .unit_data .data-holder .label-holder h3, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder h3 {
-  font-size: 18px;
-  font-weight: 700;
+main.single_unit_page section.unit_info .unit_data .holder span {
+  font-weight: bold;
+  color: #858585;
 }
-main.single_unit_page section.unit_info .unit_data .data-holder .label-holder .price-value, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder .price-value {
+main.single_unit_page section.unit_info .unit_data .holder .price {
   color: var(--primary-color);
   font-size: 26px;
-  font-weight: bold;
-}
-main.single_unit_page section.unit_info .unit_data .data-holder .label-holder .price-currency, main.single_unit_page section.unit_info .unit_data .data-holder .value-holder .price-currency {
-  color: #333;
-  margin-right: 5px;
-  font-size: 20px;
 }
 main.single_unit_page section.tab_view {
   background-color: #fff;
@@ -1255,11 +1245,13 @@ section.landing .holder .opacity {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   background-color: rgba(0, 0, 0, 0.3098039216);
   /* Hero Section */
 }
 section.landing .holder .opacity .hero {
+  margin-top: 8rem;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: rgba(255, 255, 255, 0.631);
   border-radius: 80px 0 80px 0;
   display: flex;
@@ -1291,7 +1283,7 @@ section.landing .holder .opacity .hero a {
 section.landing .search-bar {
   position: absolute;
   z-index: 2;
-  bottom: -10%;
+  bottom: 14%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--second-color);
@@ -1414,8 +1406,11 @@ section.landing .search-bar button {
   color: #fff;
 }
 @media (max-width: 768px) {
+  section.landing .opacity {
+    align-items: center;
+  }
   section.landing .hero {
-    margin-top: -30% !important;
+    margin-top: -20% !important;
     width: 90% !important;
     padding: 1rem !important;
   }
@@ -1452,8 +1447,11 @@ section.landing .search-bar button {
   }
 }
 @media (max-width: 480px) {
+  section.landing .opacity {
+    align-items: center;
+  }
   section.landing .hero {
-    margin-top: -30% !important;
+    margin-top: -60% !important;
   }
   section.landing .hero h1 {
     font-size: 25px !important; /* Further reduce font size for very small screens */
@@ -1466,7 +1464,7 @@ section.landing .search-bar button {
     font-size: 18px !important; /* Further reduce font size for very small screens */
   }
   section.landing .search-bar {
-    bottom: -28% !important; /* Adjust position for very small screens */
+    bottom: -18% !important; /* Adjust position for very small screens */
   }
 }
 
@@ -2889,6 +2887,7 @@ main.my-account .container section.content .account-details .user-data {
 }
 main.my-account .container section.content .account-details .user-data .floating-label {
   position: relative;
+  width: 100%;
 }
 main.my-account .container section.content .account-details .user-data .floating-label input {
   width: 100%;
