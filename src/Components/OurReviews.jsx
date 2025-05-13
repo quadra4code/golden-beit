@@ -8,8 +8,7 @@ import AppContext from '../Context/AppContext';
 const OurReviews = () => {
   const {isDesktop} = useContext(IsDesktop)
   const {ourReviewsData} = useContext(AppContext)
-  console.log(ourReviewsData);
-  
+  // console.log(ourReviewsData);
   return (
     <section className='reviews'>
       <header className='title'>

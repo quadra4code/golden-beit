@@ -196,30 +196,28 @@ export const AppProvider = ({children}) => {
   }
   ////// post Home screen search
   const handleApplySearch = (project_id, city_id, unit_type_id,  min_price, max_price)=> {
-    const projectIdStr = String(project_id);
-    const cityIdStr = String(city_id);
-    const unitTypeStr = String(unit_type_id);
-    console.log(project_id, city_id, unit_type_id);
+    console.log(typeof project_id, typeof city_id, typeof unit_type_id);
     axios.post(
       'https://api.goldenbeit.com/core/filter-paginated-units',
       {
-        project_id :projectIdStr,
-        city_id: cityIdStr ,
-        unit_type_id: unitTypeStr ,
+        project_id :project_id,
+        city_id: city_id ,
+        unit_type_id: unit_type_id ,
         // min_price,
         // max_price,
       },
     )
-    .then(res => {
-      console.log(res.data.data);
+    .then((res) => {
       if(res.data.data.all.length<1){
+        console.log(res.data.data.all);
         openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
         return
       }
+      console.log(res.data.data.all);
+      setAllUnits(res.data.data.all);
       navigate("/all-units")
-      setAllUnits(res.data.data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     })
   }

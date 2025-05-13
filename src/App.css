@@ -389,7 +389,7 @@ main.single_unit_page {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 1rem 10rem;
+  padding: 1rem 5rem;
   margin-top: 5.4rem;
   background-color: #f8f9fa;
 }
@@ -2017,6 +2017,32 @@ main.login-page .opacity .login-form-box form .input-box {
   align-items: center;
   border: 1px solid #ddd;
   gap: 10px;
+}
+main.login-page .opacity .login-form-box form .input-box .form-control {
+  font-size: 14px !important;
+  direction: ltr !important;
+  border: none !important;
+  width: 100% !important;
+  padding-left: 58px !important;
+  border-radius: 0 !important;
+  border-right: 1px solid #ddd !important;
+}
+main.login-page .opacity .login-form-box form .input-box .form-control::-moz-placeholder {
+  font-size: 14px !important;
+  right: 0 !important;
+  font-family: "cairo", serif;
+}
+main.login-page .opacity .login-form-box form .input-box .form-control::placeholder {
+  font-size: 14px !important;
+  right: 0 !important;
+  font-family: "cairo", serif;
+}
+main.login-page .opacity .login-form-box form .input-box .flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+}
+main.login-page .opacity .login-form-box form .input-box .flag-dropdown .selected-flag .flag {
+  left: 0 !important;
 }
 main.login-page .opacity .login-form-box form .input-box input,
 main.login-page .opacity .login-form-box form .input-box select {

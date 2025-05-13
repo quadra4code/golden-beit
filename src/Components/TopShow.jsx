@@ -9,7 +9,7 @@ const TopShow = () => {
   const {isDesktop} = useContext(IsDesktop)
   const navigate = useNavigate()
   const {mostViewedUnits, handelAddToFav} = useContext(AppContext)
-  console.log(mostViewedUnits);
+  // console.log(mostViewedUnits);
   return (
     <section className='our-projects'>
       <h1 className='title'>الأكثر مشاهدةً</h1>

@@ -540,6 +540,11 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
+    if(allUnits&& allUnits.length>1 || allUnits.length==1){
+      setDataLoaded(true)
+      setLoading(false)
+      return
+    }
     axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
     })
       .then(res => {
@@ -556,9 +561,9 @@ const Units = () => {
         setDataLoaded(true);
       });
   }, []);
-  // const handleSelectUnitType = (e) => {
-  //   setUnitTypeId(e.target.value);
-  // };
+  const handleSelectUnitType = (e) => {
+    setUnitTypeId(e.target.value);
+  };
   const filteredProjects = unitTypeId
     ? filterData && filterData.unit_types.find((type) => type.id.toString() === unitTypeId)?.projects || []
     : [];
@@ -647,7 +652,7 @@ const Units = () => {
         <Loader />
       ) : (
         <>
-          {dataLoaded &&  allUnits&& allUnits.length > 0 ? (
+          {allUnits&& allUnits.length > 0 ? (
             <main className="units_page">
               <Popup />
               {contextHolder}

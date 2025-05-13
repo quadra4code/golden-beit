@@ -8,6 +8,8 @@ import AppContext from '../Context/AppContext';
 import { MdAlternateEmail } from "react-icons/md";
 import { MdManageAccounts } from "react-icons/md";
 import { MdLocationCity } from "react-icons/md";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 const Login = () => {
   const params = useParams()
   const { isLogin, setIsLogin, userType, setUserType, openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
@@ -18,7 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState(null);
   // const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState(null);
+  const [lastName, setLastName] = useState("");
   // const [isLogin, setIsLogin] = useState(true);
   const [referral_code, setReferral_code] = useState(true);
   console.log(userType);
@@ -30,6 +32,10 @@ const Login = () => {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     setLoading(true);
+    if (!isLogin && password !== confirmPassword) {
+      openNotificationWithIcon('error', 'خطأ', 'كلمتا المرور غير متطابقتين');
+      return;
+    }
     if (isLogin) {
       axios.post('https://api.goldenbeit.com/accounts/login', {
         username,
@@ -109,26 +115,55 @@ const Login = () => {
                 <FaUser />
                 <input onChange={(e)=>setFirstName(e.target.value)} type="text" required placeholder="الاسم الأول" />
               </div>
+              {firstName.length > 0 && firstName.length < 3 && (
+                <p style={{ color: 'red', fontSize:'13px' }}>يجب أن يكون الإدخال 3 أحرف على الأقل</p>
+              )}
               <div className="input-box">
                 <FaUser />
                 <input onChange={(e)=>setLastName(e.target.value)} type="text" placeholder=" الاسم الاخير (اختيارى)" />
               </div>
+              {lastName.length > 0 && lastName.length < 3 && (
+                <p style={{ color: 'red', fontSize:'13px' }}>يجب أن يكون الإدخال 3 أحرف على الأقل</p>
+              )}
               <div className="input-box">
                 <MdAlternateEmail />
                 <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder=" البريد الالكترونى (اختيارى)" />
               </div>
               <div className="input-box">
                 <RiPhoneFill />
-                <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" />
+                <PhoneInput
+                  country={'eg'} // Default country (Egypt)
+                  onlyCountries={['eg', 'sa', 'ae', 'qa', 'bh', 'kw']}
+                  value={username}
+                  onChange={(phone) => setUsername(phone)}
+                  inputProps={{
+                    required: true,
+                    name: 'phone',
+                    placeholder: 'رقم الهاتف',
+                  }}
+                  containerStyle={{ direction: 'ltr',  }}
+                  // inputStyle={{ width: '100%', paddingLeft: '48px', direction: 'ltr' }}
+                  buttonStyle={{ direction: 'ltr' }}
+                />
+                {/* <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" /> */}
               </div>
+              {username.length > 0 && username.length < 6 && (
+                <p style={{ color: 'red', fontSize:'13px' }}>يجب أن يكون الإدخال 6 أحرف على الأقل</p>
+              )}
               <div className="input-box">
                 <RiLockPasswordFill />
                 <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />
               </div>
+              {password.length > 0 && password.length < 6 && (
+                <p style={{ color: 'red', fontSize:'13px' }}>يجب أن يكون الإدخال 6 أحرف على الأقل</p>
+              )}
               <div className="input-box">
                 <RiLockPasswordFill />
                 <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" required placeholder="تأكيد كلمة المرور " />
               </div>
+              {confirmPassword && password !== confirmPassword && (
+                <p style={{ color: 'red', fontSize:'13px' }}>كلمتا المرور غير متطابقتين</p>
+              )}
               <div className="input-box">
                 <MdManageAccounts />
                 <select value={userType} required onChange={(e)=>setUserType(e.target.value)} name="" id="">

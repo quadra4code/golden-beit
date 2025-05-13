@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
@@ -6,10 +6,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { TbHomeFilled } from "react-icons/tb";
 import axios from 'axios';
 import AppContext from '../Context/AppContext';
+import { use } from 'react';
 const SearchBar = () => {
   const {handleApplySearch, openNotificationWithIcon, setLoading, setFilterData, filterData, setAllUnits}= useContext(AppContext)
   const [typeSelected, setTypeSelected] = useState(false);
   const [projectSelected, setProjectSelected] = useState(false);
+  const [projects, setProjects] = useState(false);
   const [locationSelected, setLocationSelected] = useState(false);
   const [priceSelected, setPriceSelected] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState(false);
@@ -21,7 +23,7 @@ const SearchBar = () => {
   const handleInputClick = (e) => {
     e.stopPropagation();
   };
-  console.log(filterData);
+  // console.log(filterData);
   const handleApplyPrice = () => {
     if (minPrice && maxPrice) {
       setPriceLabel(`${minPrice} - ${maxPrice}`);
@@ -56,6 +58,17 @@ const SearchBar = () => {
   //     console.log(err);
   //   })
   // }
+  useEffect(() => {
+    console.log(selectedUnit, selectedProject)
+    console.log(projects);
+    console.log(filterData);
+  },[selectedUnit, selectedProject])
+  const handleUnitProjects = (unitType) => {
+    setSelectedUnit(unitType);
+    setProjects(unitType.projects || []);
+    setSelectedProject({}); // Reset selected project
+    setProjectSelected(false);
+  }
   return (
     <>
       <section className='search-bar'>
@@ -65,9 +78,9 @@ const SearchBar = () => {
           <TbHomeFilled/>
           <div className={`choices ${typeSelected? 'active' : null}`} >
             {filterData &&
-              filterData.unit_types.map((unitType, index) => (
-                <div key={unitType.id} label={unitType.name}>
-                  <span onClick={()=>setSelectedUnit(unitType)} className="option" key={unitType.id} value={unitType.name}>
+              filterData?.unit_types.map((unitType, index) => (
+                <div key={index} label={unitType.name}>
+                  <span onClick={()=>handleUnitProjects(unitType)} className="option" key={unitType.id} value={unitType.name}>
                     {unitType.name} 
                   </span>
                 </div>
@@ -79,24 +92,35 @@ const SearchBar = () => {
           <h2>{selectedProject.name || `المشروع`}</h2>
           <TbHomeFilled/>
           <div className={`choices ${projectSelected? 'active' : null}`} >
+            {projects &&
+                projects.map((project, index) => (
+                  <div key={index} label={project.name}>
+                    <span onClick={()=>setSelectedProject(project)} className="option" key={project.id} value={project.name}>
+                      {project.name} 
+                    </span>
+                  </div>
+                ))
+              }
+          </div>
+          {/* <div className={`choices ${projectSelected? 'active' : null}`} >
             {filterData &&
-              filterData.unit_types.map((projectType, index) => (
-                <div key={projectType.id} label={projectType.name}>
-                  {projectType.projects.map((project) => (
-                    <span onClick={()=>setSelectedProject(project)} className="option" key={project.id} value={project.id}>
+              filterData?.unit_types.map((projectType, index) => (
+                <div key={`type-${projectType.id}`} label={projectType.name}>
+                  {projectType.selectedUnit?.projects?.map((project) => (
+                    <span onClick={()=>setSelectedProject(project)} className="option" key={`${projectType.id}-${project.id}-${index}`} value={project.id}>
                       {projectType.name} {project.name}
                     </span>
                   ))}
                 </div>
               ))
             }
-          </div>
+          </div> */}
         </div>
         <div className='custom-select'onClick={()=>setLocationSelected(!locationSelected)}>
           <h2>{selectedCity.name || `المدينة`}</h2>
           <FaLocationDot/>
           <div className={`choices ${locationSelected? 'active' : null}`} >
-            {filterData&& filterData.cities.map((city, index) => 
+            {filterData&& filterData?.cities.map((city, index) => 
               <span onClick={()=>{setSelectedCity(city)}} className="option"key={index} value={city.name}>{city.name}</span>          
             )}
           </div>
