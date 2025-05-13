@@ -92,7 +92,7 @@ const Navbar = () => {
             الرئيسية
           </HashLink>
           <div className="links-nav font-bold cursor-pointer tracking-wider text-lg font-cairo font-semibold leading-6 text-navbar-blue">
-            <span className={` our-services ${pathname=== '/add-new-unit' || pathname=== '/inquiry-page' ? 'font-active' : 'font-semibold'}`}>
+            <span className={` our-services ${pathname=== '/inquiry-page' ? 'font-active' : 'font-semibold'}`}>
               خدماتنا
               <IoIosArrowDown/>
             </span>

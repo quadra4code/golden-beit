@@ -435,7 +435,6 @@ const AddNewUnit = () => {
     setImages(updatedImages);
   };
   const handleSubmit = (e) => {
-    // setIsLoading(true);
     e.preventDefault();
     console.log(formData);
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
@@ -656,6 +655,8 @@ const AddNewUnit = () => {
                 value={formData.unit_number}
                 onChange={handleChange}
                 required
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
               />
             </div>
             {formData.unit_type_id === '2' &&
@@ -687,6 +688,8 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.paid_amount}
                 isReq={true}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, paid_amount: value })}
                 currency={formData.paid_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -706,6 +709,8 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.remaining_amount}
                 isReq={true}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, remaining_amount: value })}
                 currency={formData.remaining_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -725,6 +730,8 @@ const AddNewUnit = () => {
               <input
                 type="number"
                 id="price"
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 name="installment_period"
                 value={formData.installment_period}
                 onChange={handleChange}
@@ -734,6 +741,8 @@ const AddNewUnit = () => {
               <label htmlFor="price">قيمة أول قسط <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 isReq={true}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 value={formData.first_installment_value}
                 onChange={(value) => setFormData({ ...formData, first_installment_value: value })}
                 currency={formData.first_installment_value_currency}
@@ -753,11 +762,12 @@ const AddNewUnit = () => {
               <label htmlFor="price">المساحة بالمتر <span className='req'>(مطلوب)</span></label>
               <input
                 type="number"
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 id="price"
                 name="area"
                 value={formData.area}
                 onChange={handleChange}
-                onWheel={(e) => e.preventDefault()}
                 required
               />
             </div>
@@ -765,6 +775,8 @@ const AddNewUnit = () => {
               <label htmlFor="price">سعر المتر </label>
               <CustomInpSelect
                 value={formData.meter_price}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, meter_price: value })}
                 currency={formData.meter_price_currency}
                 onCurrencyChange={(currency)=>
@@ -784,6 +796,8 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.over_price}
                 isReq={true}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, over_price: value })}
                 currency={formData.over_price_currency}
                 onCurrencyChange={(currency)=>
@@ -796,6 +810,8 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.total_price}
                 isReq={true}
+                onWheel={(e) => e.target.blur()} 
+                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, total_price: value })}
                 currency={formData.total_price_currency}
                 onCurrencyChange={(currency)=>
