@@ -258,7 +258,9 @@ const Navbar = () => {
                   <IoIosArrowDown/>
                   <div className="nav-menu nav-menu-mobile">
                     <span className='list-unit'>
-                      <Link to="my-account/account-details">
+                      <Link
+                      onClick={() => setMobileMenuOpen(false)}
+                      to="my-account/account-details">
                         حسابي
                       </Link>
                     </span> 

@@ -435,7 +435,7 @@ const AddNewUnit = () => {
     setImages(updatedImages);
   };
   const handleSubmit = (e) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     e.preventDefault();
     console.log(formData);
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
@@ -458,6 +458,7 @@ const AddNewUnit = () => {
       console.log(formDataToSubmit);
     });
     console.log(formDataToSubmit);
+    setIsLoading(true)
     axios
       .post('https://api.goldenbeit.com/core/propose-unit', formDataToSubmit, {
         headers: {
@@ -546,7 +547,7 @@ const AddNewUnit = () => {
             }}
           >
             <div className="form-group">
-              <label htmlFor="unitNumber">نوع المشروع</label>
+              <label htmlFor="unitNumber">نوع المشروع <span className='req'>(مطلوب)</span></label>
               <div className='radio-cont'>
                 <div className='radio'>
                   <input
@@ -685,6 +686,7 @@ const AddNewUnit = () => {
               <label htmlFor="unitType">المدفوع <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.paid_amount}
+                isReq={true}
                 onChange={(value) => setFormData({ ...formData, paid_amount: value })}
                 currency={formData.paid_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -703,6 +705,7 @@ const AddNewUnit = () => {
               <label htmlFor="unitType"> المتبقي <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
                 value={formData.remaining_amount}
+                isReq={true}
                 onChange={(value) => setFormData({ ...formData, remaining_amount: value })}
                 currency={formData.remaining_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -730,6 +733,7 @@ const AddNewUnit = () => {
             <div className="form-group">
               <label htmlFor="price">قيمة أول قسط <span className='req'>(مطلوب)</span></label>
               <CustomInpSelect
+                isReq={true}
                 value={formData.first_installment_value}
                 onChange={(value) => setFormData({ ...formData, first_installment_value: value })}
                 currency={formData.first_installment_value_currency}
@@ -758,7 +762,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">سعر المتر <span className='req'>(مطلوب)</span></label>
+              <label htmlFor="price">سعر المتر </label>
               <CustomInpSelect
                 value={formData.meter_price}
                 onChange={(value) => setFormData({ ...formData, meter_price: value })}
@@ -818,7 +822,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">الوصف</label>
+              <label htmlFor="price">المميزات</label>
               <textarea
                 type="text"
                 id="price"
@@ -845,6 +849,7 @@ const AddNewUnit = () => {
                   <input
                     type="file"
                     accept="image/*"
+                    
                     onChange={(e) => handleImageChange(index, e)}
                   />
                   {images[index] && (

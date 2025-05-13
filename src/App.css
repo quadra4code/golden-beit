@@ -1698,7 +1698,7 @@ section.reviews .mySwiper .slide-content .content {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 5px;
   height: 100%;
   background-color: #fff;
   border-radius: 15px;

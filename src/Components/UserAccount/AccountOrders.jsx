@@ -60,8 +60,8 @@ const AccountOrders = () => {
                 <td>{order.unit_proposal}</td>
                 <td>{order.unit_city}</td>
                 <td>{order.unit_area}</td>
-                <td>{order.created_at}</td>
                 <td>{order.request_status_obj.name}</td>
+                <td>{order.created_at}</td>
                 <td>{order.total_price_obj.price_value}</td>
                 <td>{order.over_price_obj.price_value}</td>
                 <td>

@@ -1,6 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { MdOutlineMergeType } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { TbHomeFilled } from "react-icons/tb";
@@ -20,6 +21,9 @@ const SearchBar = () => {
   const [priceLabel, setPriceLabel] = useState('السعر');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const typeRef = useRef(null);
+  const projectRef = useRef(null);
+  const locationRef = useRef(null);
   const handleInputClick = (e) => {
     e.stopPropagation();
   };
@@ -59,13 +63,36 @@ const SearchBar = () => {
   //   })
   // }
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (typeRef.current && !typeRef.current.contains(event.target)) {
+        setTypeSelected(false);
+      }
+      if (projectRef.current && !projectRef.current.contains(event.target)) {
+        setProjectSelected(false);
+      }
+      if (locationRef.current && !locationRef.current.contains(event.target)) {
+        setLocationSelected(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);  useEffect(() => {
     console.log(selectedUnit, selectedProject)
     console.log(projects);
     console.log(filterData);
-  },[selectedUnit, selectedProject])
+    setProjects(projects==false?filterData?.unit_types.map((unitType) => unitType.projects).flat():projects);
+    // setProjects(selectedUnit?.projects || filterData?.unit_types.map((unitType) => unitType.projects).flat() || []);
+  },[projects,selectedUnit, selectedProject])
   const handleUnitProjects = (unitType) => {
     setSelectedUnit(unitType);
     setProjects(unitType.projects || []);
+    setSelectedProject({}); // Reset selected project
+    setProjectSelected(false);
+  }
+  const handleFreeProjectsSearch = (e) => {
+    setProjects(false)
     setSelectedProject({}); // Reset selected project
     setProjectSelected(false);
   }
@@ -73,34 +100,32 @@ const SearchBar = () => {
     <>
       <section className='search-bar'>
         <IoIosSearch />
-        <div className='custom-select'onClick={()=>setTypeSelected(!typeSelected)}>
+        <div ref={typeRef} className='custom-select'onClick={()=>setTypeSelected(!typeSelected)}>
           <h2>{selectedUnit.name || `نوع الوحدة`}</h2>
-          <TbHomeFilled/>
+          <MdOutlineMergeType/>
           <div className={`choices ${typeSelected? 'active' : null}`} >
             {filterData &&
               filterData?.unit_types.map((unitType, index) => (
-                <div key={index} label={unitType.name}>
-                  <span onClick={()=>handleUnitProjects(unitType)} className="option" key={unitType.id} value={unitType.name}>
-                    {unitType.name} 
-                  </span>
-                </div>
+                <span onClick={()=>handleUnitProjects(unitType)} className="option" key={unitType.id} value={unitType.name}>
+                  {unitType.name} 
+                </span>
               ))
             }
+            <span style={{textAlign: 'center'}} onClick={()=>{setSelectedUnit(false)}} className="option">إلغاء</span>
           </div>
         </div>
-        <div className='custom-select'onClick={()=>setProjectSelected(!projectSelected)}>
+        <div ref={projectRef} className='custom-select'onClick={()=>setProjectSelected(!projectSelected)}>
           <h2>{selectedProject.name || `المشروع`}</h2>
           <TbHomeFilled/>
           <div className={`choices ${projectSelected? 'active' : null}`} >
             {projects &&
-                projects.map((project, index) => (
-                  <div key={index} label={project.name}>
-                    <span onClick={()=>setSelectedProject(project)} className="option" key={project.id} value={project.name}>
-                      {project.name} 
-                    </span>
-                  </div>
-                ))
-              }
+              projects.map((project, index) => (
+                <span onClick={()=>setSelectedProject(project)} className="option" key={project.id} value={project.name}>
+                  {project.name} 
+                </span>
+              ))
+            }
+            <span style={{textAlign: 'center'}} onClick={handleFreeProjectsSearch} className="option">إلغاء</span>
           </div>
           {/* <div className={`choices ${projectSelected? 'active' : null}`} >
             {filterData &&
@@ -116,13 +141,14 @@ const SearchBar = () => {
             }
           </div> */}
         </div>
-        <div className='custom-select'onClick={()=>setLocationSelected(!locationSelected)}>
+        <div ref={locationRef} className='custom-select'onClick={()=>setLocationSelected(!locationSelected)}>
           <h2>{selectedCity.name || `المدينة`}</h2>
           <FaLocationDot/>
           <div className={`choices ${locationSelected? 'active' : null}`} >
             {filterData&& filterData?.cities.map((city, index) => 
               <span onClick={()=>{setSelectedCity(city)}} className="option"key={index} value={city.name}>{city.name}</span>          
             )}
+            <span style={{textAlign: 'center'}} onClick={()=>{setSelectedCity(false)}} className="option">إلغاء</span> 
           </div>
         </div>
         {/* <div className='custom-select'onClick={()=>setPriceSelected(!priceSelected)}>
