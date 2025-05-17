@@ -540,11 +540,11 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    if(allUnits&& allUnits.length>1 || allUnits.length==1){
-      setDataLoaded(true)
-      setLoading(false)
-      return
-    }
+    // if(allUnits&& allUnits.length>1 || allUnits.length==1){
+    //   setDataLoaded(true)
+    //   setLoading(false)
+    //   return
+    // }
     axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
     })
       .then(res => {
