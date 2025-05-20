@@ -234,7 +234,7 @@ import axios from 'axios';
 import AppContext from '../../Context/AppContext';
 import Loader from '../Loader';
 import { useNavigate } from 'react-router-dom';
-
+import { FaPlus, FaTrash } from "react-icons/fa";
 const AccountDetails = () => {
   const [userData, setUserData] = useState(null);
   const [originalUserData, setOriginalUserData] = useState(null);
@@ -242,7 +242,7 @@ const AccountDetails = () => {
   const [hasChanges, setHasChanges] = useState(false);
   const [loading, setLoading] = useState(false);
   const [phoneNumbersUpdated, setPhoneNumbersUpdated] = useState(false);
-  const { token, filterData, openNotificationWithIcon, handleLogout } = useContext(AppContext);
+  const { token, filterData, notificationRef, handleLogout } = useContext(AppContext);
   const getImageUrl = () => {
     if (userImage) {
       return URL.createObjectURL(userImage); // Show newly selected image immediately
@@ -294,15 +294,18 @@ const AccountDetails = () => {
       setHasChanges(true);
     }
   }
-  const handleUpdateUserData = () => {
+  const handleUpdateUserData = (e) => {
+    e.preventDefault();
     if (!hasChanges) return;
+    const phoneNumbers = userData.phone_numbers.map(p => p.number)
     const formData = new FormData();
     formData.append('first_name', userData.first_name);
     formData.append('last_name', userData.last_name);
     formData.append('email', userData.email);
     formData.append('interested_city', userData.interested_city?.id || '');
     formData.append('phone_numbers_updated', phoneNumbersUpdated);
-    formData.append('phone_numbers', JSON.stringify(userData.phone_numbers));
+    formData.append('phone_numbers', JSON.stringify(phoneNumbers))
+    // formData.append('phone_numbers', JSON.stringify(userData.phone_numbers));
     if (userImage) {
       formData.append('image', userImage);
     }
@@ -315,14 +318,38 @@ const AccountDetails = () => {
         },
       })
       .then((response) => {
+        notificationRef.current.show('success','تم حفظ التعديلات بنجاح')
         console.log('Update successful:', response);
         localStorage.setItem('user_image_url', response.data.data.image_url);
         setOriginalUserData(userData);
         setHasChanges(false);
       })
-      .catch((err) => console.error('Error updating user data:', err))
+      .catch((err) =>{
+        console.error('Error updating user data:', err)
+        console.log(err)
+        notificationRef.current.show('error',err.response.data.msg)
+      } )
       .finally(() => setLoading(false));
   };
+  const handleAddPhone = () => {
+    setUserData(prevData => ({
+      ...prevData,
+      phone_numbers: [...prevData.phone_numbers, { pn_id: null, number: '' }]
+      // phone_numbers: [...prevData.phone_numbers, { pn_id: null, number: '' }]
+    }));
+    setPhoneNumbersUpdated(true);
+  };
+  
+  const handleRemovePhone = (index) => {
+    const updatedPhones = [...userData.phone_numbers];
+    updatedPhones.splice(index, 1);
+    setUserData(prevData => ({
+      ...prevData,
+      phone_numbers: updatedPhones.length > 0 ? updatedPhones : [{ pn_id: null, number: '' }]
+    }));
+    setPhoneNumbersUpdated(true);
+  };
+  
   return (
     <>
       {loading ? (
@@ -343,6 +370,8 @@ const AccountDetails = () => {
             </span>
           </div>
           <div className='user-data'>
+            <button className='add-new-number' onClick={handleAddPhone} >
+            <FaPlus />إضافة رقم هاتف</button>
             <div className="floating-label">
               <input
                 type="text"
@@ -364,6 +393,29 @@ const AccountDetails = () => {
               <label>الاسم الاخير</label>
             </div>
             {userData?.phone_numbers?.map((phone, index) => (
+              <div className="phone-field" key={phone.pn_id || index} style={{width:'100%', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="floating-label" style={{ flex: 1 }}>
+                  <input
+                    type="text"
+                    value={phone.number}
+                    onChange={(e) => handleInputChange(e, index)}
+                    placeholder="رقم الهاتف"
+                  />
+                  <label>رقم الهاتف</label>
+                </div>
+                {userData.phone_numbers.length > 0 && (
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => handleRemovePhone(index)}
+                    title="حذف الرقم"
+                  >
+                    <FaTrash style={{color:'red'}}/>
+                  </button>
+                )}
+              </div>
+            ))}
+            {/* {userData?.phone_numbers?.map((phone, index) => (
               <div className="floating-label">
                 <input
                   type="text"
@@ -374,8 +426,8 @@ const AccountDetails = () => {
                 />
                 <label>رقم الهاتف</label>
               </div>
-            ))}
-            <div className="floating-label">
+            ))} */}
+            <div className="floating-label" style={{ minWidth: '1rem' }}>
               <input
                 type="email"
                 name="email"
@@ -410,4 +462,5 @@ const AccountDetails = () => {
 };
 
 export default AccountDetails;
+
 
