@@ -5,7 +5,8 @@ import { FaHandshake } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdDesignServices } from "react-icons/md";
 import { MdOutlineInventory } from "react-icons/md";
-import React, {createContext, useState, useEffect} from 'react';
+import Notification from '../Components/Notification';
+import {createContext, useState, useEffect, useRef} from 'react';
 const AppContext = createContext();
 export const AppProvider = ({children}) => {
   const navigate = useNavigate()
@@ -42,6 +43,7 @@ export const AppProvider = ({children}) => {
       description
     });
   };
+  const notificationRef = useRef();
   const icons = [<FaHandshake/>,<GiTakeMyMoney/>,<MdDesignServices/>,<MdOutlineInventory/>]
   //////////////// unAuth handle//////////
   const handleUnAuth = async() => {
@@ -49,7 +51,7 @@ export const AppProvider = ({children}) => {
     localStorage.removeItem('referral_code')
     localStorage.removeItem('name')
     await setTimeout(()=>{
-      openNotificationWithIcon('error','قم يتسجيل الدخول من جديد ');
+      notificationRef.current.show('error','قم بتسجيل الدخول من جديد')
     },3000)
     window.location.href='/'
   }
@@ -161,7 +163,7 @@ export const AppProvider = ({children}) => {
     )
     .then(res => {
       if(res.data.data.length<1){
-        openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
+        notificationRef.current.show('error','لا يوجد مطابقة لبحثك')
         return
       }
       setAllUnits(res.data.data.all);
@@ -183,14 +185,14 @@ export const AppProvider = ({children}) => {
     }
     )
     .then((res)=>{
-      openNotificationWithIcon('success','تم إضافة الوحدة بنجاح')
+      notificationRef.current.show('success','تم إضافة الوحدة للمفضلة بنجاح')
     })
     .catch((err)=>{
       if(err.status===401){
-        openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+        notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
         return
       }
-      openNotificationWithIcon('error','حدث خطأ برجاء المحاولة لاحقا')
+      notificationRef.current.show('error','حدث خطأ برجاء المحاولة لاحقا')
       console.log(err);
     })
   }
@@ -210,7 +212,7 @@ export const AppProvider = ({children}) => {
     .then((res) => {
       if(res.data.data.all.length<1){
         console.log(res.data.data.all);
-        openNotificationWithIcon('error','لا يوجد مطابقة لبحثك')
+        notificationRef.current.show('error','لا يوجد مطابقة لبحثك')
         return
       }
       console.log(res.data.data.all);
@@ -233,18 +235,18 @@ export const AppProvider = ({children}) => {
         }
       )
       .then(res => {
-        openNotificationWithIcon('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
+        notificationRef.current.show('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
       })
       .catch((err) => {
         if(err.status===401){
-          openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+          notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
           return
         }
         console.log(err);
-        openNotificationWithIcon('error',err.response.data.msg)
+        notificationRef.current.show('error','حدث خطأ برجاء المحاولة لاحقا')
       })
     }else{
-      openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة وحدتك')
+      notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
     }
     
   }
@@ -270,7 +272,7 @@ export const AppProvider = ({children}) => {
       .then(res => {
         setReviewMessage('')
         setRating(0)
-        openNotificationWithIcon('success','شكرا لتقييمك')
+        notificationRef.current.show('success','شكرا لتقييمك')
       })
       .catch(err => {
         if(err.status===401){
@@ -279,7 +281,7 @@ export const AppProvider = ({children}) => {
         console.log(err);
       })
     }else{
-      openNotificationWithIcon('info','برجاء تسجيل الدخول لاضافة تقييمك')
+      notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
     }
     
   }
@@ -295,8 +297,9 @@ export const AppProvider = ({children}) => {
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
       mostViewedUnits, setMostViewedUnits,handleLogout,userType, setUserType,
-      isLogin, setIsLogin
+      isLogin, setIsLogin ,notificationRef 
       }}>
+      <Notification ref={notificationRef} />
       {children}
     </AppContext.Provider>
   )

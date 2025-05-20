@@ -506,18 +506,18 @@ import UnitsNotFound from './UnitsNotFound';
 import { Select } from 'antd';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 const Units = () => {
-  const {handelAddToFav, allUnits, setAllUnits, handleFilterClick, contextHolder, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
+  const {handelAddToFav, allUnits, setAllUnits, handleFilterClick, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [sortBy, setSortBy] = useState();
-  const [max_price, setMax_price] = useState();
-  const [min_price, setMin_price] = useState();
-  const [max_area, setMax_area] = useState();
-  const [min_area, setMin_area] = useState();
-  const [unitTypeId, setUnitTypeId] = useState();
+  const [max_price, setMax_price] = useState(null);
+  const [min_price, setMin_price] = useState(null);
+  const [max_area, setMax_area] = useState(null);
+  const [min_area, setMin_area] = useState(null);
+  const [unitTypeId, setUnitTypeId] = useState(null);
   // const [allUnits, setAllUnits] = useState();
-  const [selectedCity, setSelectedCity] = useState();
-  const [selectedFloor, setSelectedFloor] = useState();
-  const [selectedFacade, setSelectedFacade] = useState();
-  const [selectedProject, setSelectedProject] = useState();
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedFloor, setSelectedFloor] = useState(null);
+  const [selectedFacade, setSelectedFacade] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [isAscending, setIsAscending] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortLoading, setSortLoading] = useState(false);
@@ -540,11 +540,11 @@ const Units = () => {
   }, [allUnits]);
   useEffect(() => {
     setLoading(true);
-    // if(allUnits&& allUnits.length>1 || allUnits.length==1){
-    //   setDataLoaded(true)
-    //   setLoading(false)
-    //   return
-    // }
+    if(allUnits&& allUnits.length>0 ){
+      setDataLoaded(true)
+      setLoading(false)
+      return
+    }
     axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
     })
       .then(res => {
@@ -646,6 +646,33 @@ const Units = () => {
     })
     .finally(() => setSortLoading(false));
   }
+  const handleResetFilter = () => {
+    setUnitTypeId(null);
+    setSelectedCity(null);
+    setSelectedFloor(null);
+    setSelectedFacade(null);
+    setSelectedProject(null);
+    setMax_price(null);
+    setMin_price(null);
+    setMax_area(null);
+    setMin_area(null);
+    setIsFilterOpen(false);
+    axios.post('https://api.goldenbeit.com/core/filter-paginated-units',{
+    })
+      .then(res => {
+        setAllUnits(res.data.data.all);
+        setPaginationData(res.data.data.pagination)
+        console.log(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+        setDataLoaded(true);
+      })
+      .finally(() => {
+        setLoading(false)
+        setDataLoaded(true);
+      });
+  }
   return (
     <>
       {loading ? (
@@ -655,7 +682,6 @@ const Units = () => {
           {allUnits&& allUnits.length > 0 ? (
             <main className="units_page">
               <Popup />
-              {contextHolder}
               <section className="units_content">
                 {newArrivalUnits && newArrivalUnits.length > 0 && (
                   <div className="new_arrive">
@@ -759,10 +785,10 @@ const Units = () => {
                     <select
                       id="unit_type_id"
                       name="unit_type_id"
-                      value={unitTypeId}
+                      value={unitTypeId || ""}
                       onChange={(e) => setUnitTypeId(e.target.value)}
                     >
-                      <option hidden value="اختر نوع الوحدة" selected disabled>اختر نوع الوحدة</option>
+                      <option hidden value="" selected disabled>اختر نوع الوحدة</option>
                       <option value="1">أرض</option>
                       <option value="2">شقة</option>
                     </select>
@@ -793,8 +819,8 @@ const Units = () => {
                   </div> */}
                 </div>
                 <div className="filter_unit">
-                  <select name="unit" id="unit" onChange={(e) => setSelectedProject(e.target.value)}>
-                    <option hidden value="اختر اسم المشروع" selected disabled>اختر اسم المشروع</option>
+                  <select name="unit" id="unit" value={selectedProject || ""} onChange={(e) => setSelectedProject(e.target.value)}>
+                    <option hidden value="" selected disabled>اختر اسم المشروع</option>
                     {filteredProjects.map((project) => (
                       <option key={project.id}  value={project.id}>
                         {project.name}
@@ -805,26 +831,28 @@ const Units = () => {
                 <div className="filter_unit">
                   <p className="filter_title">التصنيف حسب السعر</p>
                   <div className="price-range-slider">
-                    <input type="number" onChange={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
-                    <input type="number" onChange={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
+                    <input type="number" value={min_price || ""} onChange={(e)=>setMin_price(e.target.value)}  min={filterData&& filterData.min_price} placeholder='من'/>
+                    <input type="number" value={max_price || ""} onChange={(e)=>setMax_price(e.target.value)} max={filterData&& filterData.max_price}  placeholder='إلى'/>
                   </div>
                 </div>
                 <div className="filter_unit">
                   <p className="filter_title">المساحة بالمتر</p>
                   <div className="price-range-slider">
                     <input type="number"
+                      value={max_area || ""}
                       max={filterData&& filterData.max_area}
                       onChange={(e)=>setMin_area(e.target.value)}
                       placeholder='من'/>
                     <input type="number"
+                      value={min_area || ""}
                       min={filterData&& filterData.min_area} 
                       onChange={(e)=>setMax_area(e.target.value)}
                       placeholder='إلى'/>
                   </div>
                 </div>
                 <div className="filter_unit">
-                  <select name="" id="" onChange={(e) => setSelectedCity(e.target.value)}>
-                    <option value="اختر المدينة"hidden disabled selected>اختر المدينة</option>
+                  <select value={selectedCity || ""} name="" id=""  onChange={(e) => setSelectedCity(e.target.value)}>
+                    <option value=""hidden disabled selected>اختر المدينة</option>
                     {filterData && filterData.cities.map((index, key) =>
                       <option key={key} value={index.id}>{index.name}</option>
                     )}
@@ -832,8 +860,8 @@ const Units = () => {
                 </div>
                 {unitTypeId=== '2'&&
                   <div className="filter_unit">
-                    <select name="" id="" onChange={(e) => setSelectedFloor(e.target.value)}>
-                      <option value="اختر الطابق"hidden disabled selected>اختر الطابق</option>
+                    <select value={selectedFloor || ""} name="" id="" onChange={(e) => setSelectedFloor(e.target.value)}>
+                      <option value=""hidden disabled selected>اختر الطابق</option>
                       {filterData && filterData.floors.map((index, key) =>
                         <option key={key} value={index.id}>{index.name}</option>
                       )}
@@ -841,8 +869,8 @@ const Units = () => {
                   </div>            
                 }
                 <div className="filter_unit">
-                  <select name="" id="" onChange={(e) => setSelectedFacade(e.target.value)}>
-                    <option value="اختر الواجهة"hidden disabled selected>اختر الواجهة</option>
+                  <select value={selectedFacade || ""} name="" id="" onChange={(e) => setSelectedFacade(e.target.value)}>
+                    <option value=""hidden disabled selected>اختر الواجهة</option>
                     {filterData && filterData.facades.map((index, key) =>
                       <option key={key} value={index.id}>{index.name}</option>
                     )}
@@ -855,7 +883,10 @@ const Units = () => {
                     <option value="CS">تقسيط</option>
                   </select>
                 </div> */}
-                <button className="filter_btn" onClick={() => { handleFilterClick(unitTypeId,selectedProject, selectedCity, +min_price, +max_price, min_area, max_area,selectedFloor,selectedFacade) }}>تصنيف</button>
+                <div className='filter-btns'>
+                  <button className="reset_btn" onClick={handleResetFilter}>اعادة تعيين</button>
+                  <button className="filter_btn" onClick={() => { handleFilterClick(unitTypeId,selectedProject, selectedCity, +min_price, +max_price, min_area, max_area,selectedFloor,selectedFacade) }}>تصنيف</button>
+                </div>
               </section>
             </main>
           ) : (

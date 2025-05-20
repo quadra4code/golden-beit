@@ -265,16 +265,26 @@ main.units_page section.filter .filter_unit .radio-container .radio {
   gap: 5px;
   align-items: center;
 }
-main.units_page section.filter button.filter_btn {
-  width: 100%;
+main.units_page section.filter .filter-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 1px solid #d7d7d7;
+}
+main.units_page section.filter .filter-btns button.filter_btn,
+main.units_page section.filter .filter-btns button.reset_btn {
   background-color: transparent;
   border: 1px solid #333;
   font-size: 18px;
   padding: 5px 20px;
   color: #333;
   cursor: pointer;
+  width: 100%;
 }
-main.units_page section.filter button.filter_btn:hover {
+main.units_page section.filter .filter-btns button.filter_btn:hover,
+main.units_page section.filter .filter-btns button.reset_btn:hover {
   background-color: #333;
   color: #ccc;
 }
@@ -2901,7 +2911,6 @@ main.my-account .container section.content {
 }
 main.my-account .container section.content .account-details {
   display: flex;
-  flex-direction: column;
   padding: 8px;
   gap: 2rem;
 }
@@ -2910,6 +2919,16 @@ main.my-account .container section.content .account-details .user-data {
   flex-wrap: wrap;
   margin-top: 12px;
   gap: 1rem;
+}
+main.my-account .container section.content .account-details .user-data .add-new-number {
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  color: #fff;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 main.my-account .container section.content .account-details .user-data .floating-label {
   position: relative;
@@ -2969,11 +2988,10 @@ main.my-account .container section.content .account-details .user-data .btn {
 }
 main.my-account .container section.content .account-details .image-container {
   width: 250px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
 }
 main.my-account .container section.content .account-details .image-container img {
   width: 100%;
+  max-height: 200px;
   border-radius: 12px;
 }
 main.my-account .container section.content .account-details .image-container .change-user-image {
@@ -3026,6 +3044,12 @@ main.my-account section.account-safety .pass-btn {
   }
   main.my-account .container section.content {
     max-width: 100% !important;
+  }
+  main.my-account .container section.content .account-details {
+    flex-direction: column;
+  }
+  main.my-account .container section.content .account-details .image-container {
+    width: 100%;
   }
 }
 
@@ -3358,6 +3382,76 @@ main.my-account section.account-safety .pass-btn {
     margin: 0 8px;
   }
 }
+/* toast.css - only minimal styles needed */
+.my-toast .p-toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+.my-toast .p-toast-message {
+  background: #fff;
+  border-left: 4px solid #007ad9;
+  padding: 12px;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.my-toast .p-toast-message .p-toast-message-content {
+  display: flex;
+  gap: 16px;
+}
+.my-toast .p-toast-message .p-toast-message-content svg {
+  width: 21px;
+  height: 21px;
+}
+.my-toast .p-toast-message .p-toast-message-content .p-toast-summary {
+  font-weight: 700;
+}
+.my-toast .p-toast-message .p-toast-message-content .p-toast-summary {
+  font-weight: 700;
+}
+.my-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+  font-size: 15px;
+}
+
+.my-toast .p-toast-message-success {
+  background: rgba(228, 248, 240, 0.7);
+  border: solid #1ea97c;
+  border-width: 0 0 0 6px;
+  color: #1ea97c;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.my-toast .p-toast-message-error {
+  background: rgba(255, 231, 230, 0.7);
+  border: solid #ff5757;
+  border-width: 0 0 0 6px;
+  color: #ff5757;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.my-toast .p-toast-message-warn {
+  background: rgba(255, 242, 226, 0.7);
+  border: solid #cc8925;
+  border-width: 0 0 0 6px;
+  color: #cc8925;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.my-toast .p-toast-message-info {
+  background: rgba(219, 234, 254, 0.7);
+  border: solid #3b82f6;
+  border-width: 0 0 0 6px;
+  color: #3b82f6;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
 * {
   margin: 0;
   padding: 0;

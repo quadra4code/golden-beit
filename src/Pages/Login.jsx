@@ -12,7 +12,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 const Login = () => {
   const params = useParams()
-  const { isLogin, setIsLogin, userType, setUserType, openNotificationWithIcon, contextHolder, loading, setLoading, filterData} = useContext(AppContext);
+  const { isLogin, setIsLogin, userType, setUserType, notificationRef, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState();
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     if (!isLogin && password !== confirmPassword) {
-      openNotificationWithIcon('error', 'خطأ', 'كلمتا المرور غير متطابقتين');
+      notificationRef.current.show('error', 'خطأ', 'كلمتا المرور غير متطابقتين');
       return;
     }
     if (isLogin) {
@@ -52,7 +52,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        openNotificationWithIcon('error', 'عملية خاطئه', err.message);
+        notificationRef.current.show('error', 'عملية خاطئه',err.response.data.msg);
       })
       .finally(() => {
         setLoading(false);
@@ -79,7 +79,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        openNotificationWithIcon('error', 'عملية خاطئه', err.response.data.msg);
+        notificationRef.current.show('error', 'عملية خاطئه', err.response.data.msg);
       })
       .finally(() => {
         setLoading(false);
@@ -88,7 +88,6 @@ const Login = () => {
   };
   return (
     <main className='login-page'>
-      {contextHolder}
       <img src={Image} alt="login-background" />
       <div className='opacity'>
         <div className="login-form-box">

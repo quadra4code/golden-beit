@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { FaInstagram } from "react-icons/fa";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { RiTiktokFill, RiYoutubeFill } from "react-icons/ri";
@@ -8,7 +8,7 @@ import { MdOutlineMail } from "react-icons/md";
 import axios from 'axios';
 import AppContext from '../Context/AppContext';
 const ContactUs = () => {
-  const {openNotificationWithIcon, contextHolder} = useContext(AppContext)
+  const {notificationRef} = useContext(AppContext)
   const [formData, setFormData] = useState({
     name:'',
     email: '',
@@ -34,16 +34,15 @@ const ContactUs = () => {
     })
     .then((res)=>{
       console.log(res);
-      openNotificationWithIcon('success','سيتم التواصل معكم عن طريق احد ممثلي خدمة العملاء')
+      notificationRef.current.show('success', 'تم الإرسال', 'سيتم التواصل معكم عن طريق احد ممثلي خدمة العملاء')
     })
     .catch((err)=>{
-      openNotificationWithIcon('error','من فضلك قم بالتواصل معنا في وقت لاحق')
+      notificationRef.current.show('error', 'خطأ', 'من فضلك قم بالتواصل معنا في وقت لاحق')
       console.log(err);
     })
   };
   return (
     <>
-      {contextHolder} 
       <div className="contact-us-container">
         <h1 className="contact-us-title">تواصل معنا</h1>
         <div className="cols-container">

@@ -15,7 +15,7 @@ import Popup from '../Components/Popup';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 const SingleUnit = () => {
-  const {handelAddToFav, singleUnit, setSingleUnit, handleReqUnit, contextHolder} = useContext(AppContext)
+  const {handelAddToFav, singleUnit, setSingleUnit, handleReqUnit} = useContext(AppContext)
   const [value, setValue] = useState('1');
   const [discoverMore, setDiscoverMore] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
@@ -165,7 +165,6 @@ const SingleUnit = () => {
       :
       <main className='single_unit_page'>
         <Popup/>
-        {contextHolder}
         <section className='unit_info'>
           <div className="card" style={{direction:'ltr'}}>
               <Galleria value={singleUnit&& singleUnit.images} responsiveOptions={responsiveOptions} numVisible={5} style={{ maxWidth: '640px' }} 

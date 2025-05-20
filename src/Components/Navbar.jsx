@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect, useState, useRef } from 'react';
 import Logo from '../Images/LOGO (2).png';
 import { FaUserAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const Navbar = () => {
   const referral_code = localStorage.getItem('referral_code');
   const pathname = window.location.pathname
   const navigate = useNavigate();
-  const { handleLogout,token, openNotificationWithIcon, setIsNormalPop,changePassUi, setChangePassUi,
+  const {notificationRef, handleLogout,token, setIsNormalPop,changePassUi, setChangePassUi,
         setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
   const handleOurServicesRoutes = (type)=> {
     setMobileMenuOpen(false)
@@ -41,9 +41,8 @@ const Navbar = () => {
         setIsReview(true)
         setPopupHeader('')
       }
-      else{navigate('/add-new-unit')}
     }else{
-      return openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
+      return notificationRef.current.show('info',  'برجاء تسجيل الدخول')
     }
   }
   const handleAddUnitRoute = (type)=> {
@@ -51,7 +50,7 @@ const Navbar = () => {
     if(token){
       navigate('/add-new-unit')
     }else{
-      return openNotificationWithIcon('info', '', 'برجاء تسجيل الدخول')
+      return notificationRef.current.show('info',  'برجاء تسجيل الدخول')
     }
   }
   const name = localStorage.getItem('name')

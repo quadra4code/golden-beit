@@ -8,7 +8,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [consultationFaq, setConsultationFaq] = useState(null);
-  const {contextHolder , setLoading} =useContext(AppContext)
+  const { setLoading} =useContext(AppContext)
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -37,7 +37,6 @@ const FAQ = () => {
         ? 
         <main className='faq-main'>
           <Popup/>
-          {contextHolder}
           <div className="faq-page">
             <div className='faq-header'>
               <span> 

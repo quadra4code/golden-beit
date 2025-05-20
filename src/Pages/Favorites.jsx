@@ -12,7 +12,7 @@ const Favorites = () => {
   const [favorites, setFavorites] = useState();
   const [loading, setLoading] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const {openNotificationWithIcon, token} = useContext(AppContext)
+  const {notificationRef, token} = useContext(AppContext)
   const navigate = useNavigate();
   const handleSeeMore = (id) => {
     console.log('See more details for unit:', id);
@@ -33,7 +33,7 @@ const Favorites = () => {
       })
       .catch((err) => {
         if(err.status===401){
-          openNotificationWithIcon('info','برجاء تسجيل الدخول اولا')
+          notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
           return
         }  
         console.log(err);

@@ -172,7 +172,7 @@ const SearchBar = () => {
             <button className='apply-price' onClick={handleApplyPrice}>Apply</button>
           </div>
         </div> */}
-        <button onClick={()=>handleApplySearch(selectedProject.id, selectedCity.id, selectedUnit.id)}>بحث</button>
+        <button disabled={selectedProject || selectedCity || selectedUnit ?false : true} onClick={()=>handleApplySearch(selectedProject.id, selectedCity.id, selectedUnit.id)}>بحث</button>
       </section>
     </>
   )

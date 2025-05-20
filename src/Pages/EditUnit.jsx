@@ -12,7 +12,7 @@ const EditUnit = () => {
   const [error, setError] = useState();
   const [unitImages, setUnitImages] = useState([]);
   const [showImageFields, setShowImageFields] = useState([]);
-  const { handleUnAuth, filterData, token, openNotificationWithIcon, contextHolder } = useContext(AppContext);
+  const { handleUnAuth, filterData, token, notificationRef } = useContext(AppContext);
   const [formData, setFormData] = useState({
     id: param.id,
     unit_type_id: null,
@@ -98,7 +98,7 @@ const EditUnit = () => {
     e.preventDefault();
     console.log(formData);
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
-      openNotificationWithIcon('error', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
+      notificationRef.current.show('error','خطأ', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
       return;
     }
     if (images.length === 0 && unitImages.length === 0) {
@@ -130,14 +130,14 @@ const EditUnit = () => {
       })
       .then((res) => {
         console.log(res);
-        openNotificationWithIcon('success', 'عملية ناجحة ', 'تم اضافة وحدتك بنجاح');
+        notificationRef.current.show('success','عملية ناجحة', 'تم تعديل وحدتك بنجاح');
       })
       .catch((err) => {
         if (err.status === 401) {
           handleUnAuth();
         }
         console.log(err);
-        openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg);
+        notificationRef.current.show('error','عملية خاطئه', err.response.data.msg);
       });
   };
   const filteredProjects = formData.unit_type_id
@@ -149,7 +149,6 @@ const EditUnit = () => {
   };
   return (
     <main className='add_unit'>
-      {contextHolder}
       <Popup />
       <div className="add-build-unit">
         <h2>تعديل الوحدة</h2>

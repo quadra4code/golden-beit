@@ -505,18 +505,26 @@ main.units_page {
         }
       }
     }
-    button.filter_btn {
-      width: 100%;
-      background-color: transparent;
-      border: 1px solid #333;
-      font-size: 18px;
-      padding: 5px 20px;
-      color: #333;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #333;
-        color: #ccc;
+    .filter-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 0;
+      border-bottom: 1px solid #d7d7d7;
+      button.filter_btn,
+      button.reset_btn {
+        background-color: transparent;
+        border: 1px solid #333;
+        font-size: 18px;
+        padding: 5px 20px;
+        color: #333;
+        cursor: pointer;
+        width: 100%;
+        &:hover {
+          background-color: #333;
+          color: #ccc;
+        }
       }
     }
   }

@@ -9,7 +9,7 @@ const InquiryPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
   const [hasInquired, setHasInquired] = useState(false);
-  const { token, openNotificationWithIcon, contextHolder, handleUnAuth } = useContext(AppContext);
+  const { token, notificationRef, handleUnAuth } = useContext(AppContext);
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -31,7 +31,7 @@ const InquiryPage = () => {
     setShowPopup(false);
     e.preventDefault();
     if (!token && hasInquired) {
-      openNotificationWithIcon('info', 'يجب تسجيل الدخول', 'لقد قمت بالاستعلام مرة واحدة بالفعل. يرجى تسجيل الدخول للاستعلام مرة أخرى.');
+      notificationRef.current.show('info', 'يجب تسجيل الدخول', 'لقد قمت بالاستعلام مرة واحدة بالفعل. يرجى تسجيل الدخول للاستعلام مرة أخرى.');
       return;
     }
     axios
@@ -43,7 +43,7 @@ const InquiryPage = () => {
       .then((res) => {
         const response = res.data.data;
         if (response.length < 1) {
-          openNotificationWithIcon('error', 'عملية خاطئه ', 'لا يوجد مطابقة لبحثك');
+          notificationRef.current.show('info', 'عملية خاطئه ', 'لا يوجد مطابقة لبحثك');
           return;
         }
         const message = winnerData(response);
@@ -58,7 +58,7 @@ const InquiryPage = () => {
         if(err.status===401){
           handleUnAuth()
         }  
-        openNotificationWithIcon('error', 'عملية خاطئه ', err.response.data.msg);
+        notificationRef.current.show('error', 'عملية خاطئه ', err.response.data.msg);
       });
   };
   return (
@@ -66,7 +66,6 @@ const InquiryPage = () => {
       {showPopup && <SuccessPopup message={popupMessage} />}
       <Popup/>
       <div className="input-page">
-        {contextHolder}
         <div className="container">
           <h1>استعلام عن الفائزين</h1>
           <form onSubmit={handleSubmit}>

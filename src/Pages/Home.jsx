@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import Landing from '../Components/Landing';
 import AboutUs from '../Components/AboutUs';
 import WhyUs from '../Components/WhyUs';
@@ -12,7 +12,7 @@ import TopShow from '../Components/TopShow';
 import Services from '../Components/Services';
 import UserTypesCarouselPage from '../Components/UserTypesCarouselPage';
 const Home = () => {
-  const {loading, contextHolder, featuredUnits, mostViewedUnits} = useContext(AppContext);
+  const {loading, featuredUnits, mostViewedUnits} = useContext(AppContext);
   return (
     <>
     {loading
@@ -22,7 +22,6 @@ const Home = () => {
       <>
         <main className='home'>
           <Popup/>
-          {contextHolder}
           <Landing/>
           {featuredUnits && featuredUnits.length > 0 && <OurProjects/>}
           {/* {mostViewedUnits && mostViewedUnits.length > 0 && <TopShow/>} */}

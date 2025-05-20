@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext, useRef} from 'react'
 import AppContext from '../Context/AppContext'
 import StarRating from './StarRating';
 import axios from 'axios';
@@ -7,11 +7,11 @@ const Popup = () => {
   const [newPass, setNewPass] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
   const {isNormalPop, isOpen, setIsOpen, popupHeader, isReview, token, handleUnAuth,
-        popupContent, openNotificationWithIcon, setIsNormalPop,reviewMessage,setPopupHeader,
+        popupContent, notificationRef, setIsNormalPop,reviewMessage,setPopupHeader,
         handleAddReview,setIsReview, setReviewMessage,setRating,changePassUi, setChangePassUi} = useContext(AppContext);
   const handleCopy = () => {
     navigator.clipboard.writeText(popupContent).then(() => {
-      openNotificationWithIcon('success','تم نسخ اللينك بنجاح',)
+      notificationRef.current.show('success','تم نسخ اللينك بنجاح')
     }).catch(err => {
       console.error('Failed to copy text: ', err);
     });
@@ -38,7 +38,7 @@ const Popup = () => {
       setChangePassUi(false);
       setIsOpen(false)
       setPopupHeader('')  
-      openNotificationWithIcon('success','تم تغيير كلمة المرور بنجاح')
+      notificationRef.current.show('success','تم تغيير كلمة المرور بنجاح')
     })
     .catch((err) => {
       if(err.status===401){
