@@ -15,10 +15,10 @@ const Login = () => {
   const { isLogin, setIsLogin, userType, setUserType, notificationRef, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState();
-  const [defCountry, setDefCountry] = useState('eg');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState(null);
+  const [defCountry, setDefCountry] = useState('eg');
   const [isValid, setIsValid] = useState(false);
   // const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
@@ -33,11 +33,27 @@ const Login = () => {
   })
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (!isLogin && password !== confirmPassword) {
       notificationRef.current.show('error', 'خطأ', 'كلمتا المرور غير متطابقتين');
       return;
     }
+    if (!isLogin && username.length < 6) {
+      notificationRef.current.show('error', 'خطأ', 'رقم الهاتف غير صحيح');
+      return;
+    }
+    if (!isLogin && password.length < 6) {
+      notificationRef.current.show('error', 'خطأ', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+      return;
+    }
+    if (!isLogin && firstName.length < 3) {
+      notificationRef.current.show('error', 'خطأ', 'الاسم الأول يجب أن يكون 3 أحرف على الأقل');
+      return;
+    }
+    if (!isLogin && !isValid) {
+      notificationRef.current.show('error', 'خطأ', 'رقم الهاتف غير صحيح');
+      return;
+    }
+    setLoading(true);
     if (isLogin) {
       axios.post('https://api.goldenbeit.com/accounts/login', {
         username,
