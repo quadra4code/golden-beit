@@ -15,7 +15,7 @@ const TopShow = () => {
       <h1 className='title'>الأكثر مشاهدةً</h1>
       <Swiper
         slidesPerView={isDesktop?4:1}
-        spaceBetween={15}
+        spaceBetween={20}
         pagination={{
           clickable: true,
         }}

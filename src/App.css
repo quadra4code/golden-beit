@@ -38,6 +38,20 @@ main.units_page .units_content .new_arrive {
   gap: 10px;
   width: 100%;
 }
+main.units_page .units_content .new_arrive header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+main.units_page .units_content .new_arrive header .add-new-unit-btn {
+  max-width: 200px;
+}
+main.units_page .units_content .new_arrive header .add-new-unit-btn .btn {
+  width: 150px;
+}
+main.units_page .units_content .new_arrive header .add-new-unit-btn svg {
+  font-size: 22px;
+}
 main.units_page .units_content .new_arrive h2 {
   font-size: 35px;
   color: #333;
@@ -76,7 +90,7 @@ main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-sli
 }
 main.units_page .units_content .new_arrive .mySwiper .swiper-wrapper .swiper-slide .slide-content img {
   width: 100%;
-  height: 100%;
+  max-height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 11px;
@@ -377,7 +391,7 @@ main.units_page .price-range-slider .slider-container .rc-slider-handle:active {
     flex-direction: column;
   }
   main.units_page .all-units-header h2 {
-    font-size: 16px !important;
+    font-size: 20px !important;
   }
   main.units_page .units_content {
     width: 100%;
@@ -386,7 +400,7 @@ main.units_page .price-range-slider .slider-container .rc-slider-handle:active {
     width: 100%;
   }
   main.units_page .units_content .new_arrive h2 {
-    font-size: 22px;
+    font-size: 25px;
   }
   main.units_page .filter_toggle {
     bottom: 2rem;
@@ -1603,7 +1617,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 768px) {
   section.why-us {
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
     gap: 0;
   }
   section.why-us .title {
@@ -1627,7 +1641,7 @@ section.why-us .cols-container .col .arrow {
 }
 @media (max-width: 480px) {
   section.why-us {
-    padding: 5rem 2rem;
+    padding: 3rem 2rem;
   }
   section.why-us h3 {
     font-size: 18px;
@@ -3100,10 +3114,19 @@ main.my-account section.account-safety .pass-btn {
 .orders-table table .order-options {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
 }
-.orders-table table .view-button {
+.orders-table table .order-options .del-button {
+  background-color: transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.orders-table table .order-options .del-button svg {
+  font-size: 20px;
+  color: #bd0000;
+}
+.orders-table table .order-options .view-button {
   background: #000;
   color: #fff;
   padding: 8px 16px;
@@ -3112,7 +3135,7 @@ main.my-account section.account-safety .pass-btn {
   cursor: pointer;
   transition: background 0.3s;
 }
-.orders-table table .view-button:hover {
+.orders-table table .order-options .view-button:hover {
   background: #222;
 }
 .orders-table .no-units {
@@ -3452,6 +3475,36 @@ main.my-account section.account-safety .pass-btn {
           backdrop-filter: blur(10px);
 }
 
+.add-new-unit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  width: 100%;
+}
+.add-new-unit-btn .btn {
+  border-radius: 5px;
+  padding: 4px;
+  width: 250px;
+  color: #8a725d;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8a725d;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-new-unit-btn .btn:hover {
+  color: rgba(255, 255, 255, 0.8745098039);
+  background-color: #6c5948;
+}
+.add-new-unit-btn svg {
+  font-size: 28px;
+  color: #8a725d;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -3688,7 +3741,7 @@ main.home section.our-projects > .title::after {
   transform: translateX(-50%);
 }
 main.home section.our-projects .mySwiper {
-  width: 96%;
+  width: 85%;
 }
 main.home section.our-projects .mySwiper .swiper-pagination-bullet {
   width: 15px;

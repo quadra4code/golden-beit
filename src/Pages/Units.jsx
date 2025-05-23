@@ -505,6 +505,7 @@ import IsDesktop from '../Context/IsDesktop';
 import UnitsNotFound from './UnitsNotFound';
 import { Select } from 'antd';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import AddUnitBtn from '../Components/AddUnitBtn';
 const Units = () => {
   const {handelAddToFav, allUnits, setAllUnits, handleFilterClick, setSingleUnit, filterData, newArrivalUnits, setNewArrivalUnits } = useContext(AppContext);
   const [sortBy, setSortBy] = useState();
@@ -685,7 +686,10 @@ const Units = () => {
               <section className="units_content">
                 {newArrivalUnits && newArrivalUnits.length > 0 && (
                   <div className="new_arrive">
-                    <h2>المعروض حديثا</h2>
+                    <header>
+                      <h2>المعروض حديثا</h2>
+                      {!isDesktop && <AddUnitBtn/>}
+                    </header>
                     <Swiper
                       slidesPerView={isDesktop ? 3 : 1}
                       spaceBetween={10}

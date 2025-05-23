@@ -43,19 +43,28 @@
     .order-options{
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 10px;
-    }
-    .view-button {
-      background: #000;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s;
-      &:hover {
-        background: #222;
+      .del-button{
+        background-color: transparent;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        svg {
+          font-size: 20px;
+          color: #bd0000;
+        }
+      }
+      .view-button {
+        background: #000;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s;
+        &:hover {
+          background: #222;
+        }
       }
     }
   }

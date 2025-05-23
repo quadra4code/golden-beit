@@ -1,0 +1,29 @@
+.add-new-unit-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  width: 100%;
+  .btn{
+    border-radius: 5px;
+    padding: 4px ;
+    width: 250px;
+    color: $primary-color;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    border: 1px  solid $primary-color;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      color: #ffffffdf;
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  svg{
+    font-size: 28px;
+    color: $primary-color;
+  }
+}

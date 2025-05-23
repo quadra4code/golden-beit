@@ -1,32 +1,43 @@
-import React,{useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import ErrorPage from "../../Pages/ErrorPage";
 import AppContext from "../../Context/AppContext";
-import { useQuery } from "@tanstack/react-query";
+import { FaRegTrashCan } from "react-icons/fa6";
 const AccountUnits = () => {
-  const { token } = useContext(AppContext);
-  const fetchAccUnits = async () => {
-    try {
-      const response = await axios.post(
-        "https://api.goldenbeit.com/core/paginated-client-units",
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      return response.data.data.all;
-    } catch (error) {
-      throw new Error("Failed to fetch account orders");
-    }
-  };
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["AccUnits"], 
-    queryFn: fetchAccUnits,  
-    staleTime: 10000, // Data remains fresh for 10 seconds
-  });
-  if (isLoading) return <p>جاري تحميل البيانات</p>;
-  if (error) return <ErrorPage />;
+  const { token, notificationRef } = useContext(AppContext);
+  const [data, setData] = useState();
+  useEffect(() => {
+    axios.post('https://api.goldenbeit.com/core/paginated-client-units',
+      {}, 
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then((response) => {
+        setData(response.data.data.all);
+        console.log(response);
+      })
+      .catch((error) => {
+        notificationRef.current.show('error', error.response.data.msg);
+        console.error("Error deleting unit:", error);
+      });
+  }, []);
   console.log(data);
+  const handleDeleteUnit = (id) => {
+    axios.delete(`https://api.goldenbeit.com/core/delete-unit/${id}`, 
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        notificationRef.current.show('success', 'تم  حذف الوحدة بنجاح بنجاح');
+        data = data.filter((unit) => unit.id !== id); 
+      })
+      .catch((error) => {
+        notificationRef.current.show('error', error.response.data.msg);
+        console.error("Error deleting unit:", error);
+      });
+  }
   return (
     <div className="orders-table">
       <h2 className="orders-title">وحداتي</h2>
@@ -63,6 +74,7 @@ const AccountUnits = () => {
                   <span className="order-options">
                     <a href={`/edit-unit/${order.id}`} className="view-button">تعديل</a>
                     <a href={`/all-units/${order.id}`} className="view-button">مشاهدة</a>
+                    <button onClick={()=>handleDeleteUnit(order.id)} className="del-button"><FaRegTrashCan/></button>
                   </span>
                   {/* <button className="view-button">View</button> */}
                 </td>

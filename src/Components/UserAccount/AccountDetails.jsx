@@ -297,6 +297,7 @@ const AccountDetails = () => {
   const handleUpdateUserData = (e) => {
     e.preventDefault();
     if (!hasChanges) return;
+    console.log(userData.interested_city);
     
     const formData = new FormData();
     
@@ -318,7 +319,7 @@ const AccountDetails = () => {
     formData.append('first_name', userData.first_name);
     formData.append('last_name', userData.last_name);
     formData.append('email', userData.email);
-    formData.append('interested_city', userData.interested_city?.id || '');
+    formData.append('interested_city', userData.interested_city? typeof userData.interested_city === 'object' ? userData.interested_city.id : userData.interested_city : '');
     formData.append('phone_numbers_updated', phoneNumbersUpdated);
     
     // Correct way to send phone numbers as array
@@ -327,7 +328,7 @@ const AccountDetails = () => {
     // });
     
     // Alternative if backend expects JSON string
-    formData.append('phone_numbers', JSON.stringify(userData.phone_numbers.map(p => p.number)));
+    formData.append('phone_numbers', JSON.stringify(userData.phone_numbers.filter(p => p.number !== '').map(p => p.number)));
     
     if (userImage) {
       formData.append('image', userImage);
@@ -469,7 +470,7 @@ const AccountDetails = () => {
                   />
                   <label>رقم الهاتف</label>
                 </div>
-                {userData.phone_numbers.length > 0 && (
+                {userData.phone_numbers.length > 1 && index!== 0 && (
                   <button
                     type="button"
                     className="delete-btn"
@@ -507,7 +508,7 @@ const AccountDetails = () => {
               {userData?.interested_city ? (
                 <option value={userData.interested_city.id}>{userData.interested_city.name}</option>
               ) : (
-                <option disabled hidden value="">
+                <option disabled hidden value="" selected>
                   أكثر مدينة مهتم بها (اختياري)
                 </option>
               )}
