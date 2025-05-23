@@ -844,7 +844,7 @@ main.add_unit .add-build-unit .form-group-images {
   display: flex;
   gap: 20px;
 }
-main.add_unit .add-build-unit .form-group-images .image-upload-field {
+main.add_unit .add-build-unit .form-group-images .image-upload-field img {
   width: 120px;
 }
 main.add_unit .add-build-unit .form-group .radio-cont {
@@ -3508,7 +3508,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.368627451);
+  background-color: #ffffff;
   background-position: center;
   background-size: contain;
   cursor: none;

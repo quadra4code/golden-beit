@@ -297,45 +297,111 @@ const AccountDetails = () => {
   const handleUpdateUserData = (e) => {
     e.preventDefault();
     if (!hasChanges) return;
-    const phoneNumbers = userData.phone_numbers.map(p => p.number)
+    
     const formData = new FormData();
+    
+    // Only append fields that have values
+    // if (userData.first_name) {
+    //   formData.append('first_name', userData.first_name);
+    // }
+    // if (userData.last_name) {
+    //   formData.append('last_name', userData.last_name);
+    // }
+    // if (userData.email) {
+    //   formData.append('email', userData.email);
+    // }
+    
+    // Get just the numbers from phone_numbers array
+    const phoneNumbers = userData.phone_numbers.map(p => p.number);
+    
+    // Append other fields
     formData.append('first_name', userData.first_name);
     formData.append('last_name', userData.last_name);
     formData.append('email', userData.email);
     formData.append('interested_city', userData.interested_city?.id || '');
     formData.append('phone_numbers_updated', phoneNumbersUpdated);
-    formData.append('phone_numbers', JSON.stringify(phoneNumbers))
-    // formData.append('phone_numbers', JSON.stringify(userData.phone_numbers));
+    
+    // Correct way to send phone numbers as array
+    phoneNumbers.forEach((number, index) => {
+      formData.append(`phone_numbers[${index}]`, number);
+    });
+    
+    // Alternative if backend expects JSON string
+    // formData.append('phone_numbers', JSON.stringify(phoneNumbers));
+    
     if (userImage) {
       formData.append('image', userImage);
     }
+    
     setLoading(true);
     axios
       .put('https://api.goldenbeit.com/accounts/update-account', formData, {
         headers: { 
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data' // Important for file uploads
+          'Content-Type': 'multipart/form-data'
         },
       })
       .then((response) => {
-        notificationRef.current.show('success','تم حفظ التعديلات بنجاح')
-        console.log('Update successful:', response);
+        notificationRef.current.show('success', 'تم حفظ التعديلات بنجاح');
         localStorage.setItem('user_image_url', response.data.data.image_url);
         setOriginalUserData(userData);
         setHasChanges(false);
+        console.log('Update successful:', response);
       })
-      .catch((err) =>{
-        console.error('Error updating user data:', err)
-        console.log(err)
-        notificationRef.current.show('error',err.response.data.msg)
-      } )
+      .catch((err) => {
+        console.error('Error updating user data:', err);
+        notificationRef.current.show('error', err.response?.data?.msg || 'حدث خطأ أثناء التحديث');
+      })
       .finally(() => setLoading(false));
   };
+  // const handleUpdateUserData = (e) => {
+  //   e.preventDefault();
+  //   if (!hasChanges) return;
+  //   const phoneNumbers = userData.phone_numbers.map(p => p.number)
+  //   const formData = new FormData();
+  //   if (userData.last_name !== null && userData.last_name !== undefined) {
+  //     formData.append('first_name', userData.first_name);
+  //   }
+  //   if (userData.last_name !== null && userData.last_name !== undefined) {
+  //     formData.append('last_name', userData.last_name);
+  //   }
+  //   if (userData.last_name !== null && userData.last_name !== undefined) {
+  //     formData.append('email', userData.email);
+  //   }
+  //   formData.append('interested_city', userData.interested_city?.id || '');
+  //   formData.append('phone_numbers_updated', phoneNumbersUpdated);
+  //   formData.append('phone_numbers', [phoneNumbers].push(p => p.number));
+  //   // formData.append('phone_numbers', JSON.stringify(phoneNumbers))
+  //   // formData.append('phone_numbers', JSON.stringify(userData.phone_numbers));
+  //   if (userImage) {
+  //     formData.append('image', userImage);
+  //   }
+  //   setLoading(true);
+  //   axios
+  //     .put('https://api.goldenbeit.com/accounts/update-account', formData, {
+  //       headers: { 
+  //         Authorization: `Bearer ${token}`,
+  //         'Content-Type': 'multipart/form-data' // Important for file uploads
+  //       },
+  //     })
+  //     .then((response) => {
+  //       notificationRef.current.show('success','تم حفظ التعديلات بنجاح')
+  //       console.log('Update successful:', response);
+  //       localStorage.setItem('user_image_url', response.data.data.image_url);
+  //       setOriginalUserData(userData);
+  //       setHasChanges(false);
+  //     })
+  //     .catch((err) =>{
+  //       console.error('Error updating user data:', err)
+  //       console.log(err)
+  //       notificationRef.current.show('error',err.response.data.msg)
+  //     } )
+  //     .finally(() => setLoading(false));
+  // };
   const handleAddPhone = () => {
     setUserData(prevData => ({
       ...prevData,
       phone_numbers: [...prevData.phone_numbers, { pn_id: null, number: '' }]
-      // phone_numbers: [...prevData.phone_numbers, { pn_id: null, number: '' }]
     }));
     setPhoneNumbersUpdated(true);
   };

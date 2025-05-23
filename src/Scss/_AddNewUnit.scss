@@ -103,7 +103,9 @@ main.add_unit {
       display: flex;
       gap: 20px;
       .image-upload-field{
-        width: 120px;
+        img{
+          width: 120px;
+        }
       }
     }
     .form-group {

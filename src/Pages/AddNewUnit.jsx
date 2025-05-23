@@ -600,7 +600,7 @@ const AddNewUnit = () => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="floorNumber">الموقع <span className='req'>(مطلوب)</span></label>
+              <label htmlFor="floorNumber">المدينة <span className='req'>(مطلوب)</span></label>
               <select
                 id="unitType"
                 name="city_id"
@@ -608,7 +608,7 @@ const AddNewUnit = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="" selected disabled hidden>أختر الموقع</option>
+                <option value="" selected disabled hidden>أختر المدينة</option>
                 {filterData && filterData.cities.map((city) =>
                   <option key={city.id} value={city.id}>{city.name}</option>
                 )}
@@ -687,8 +687,6 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.paid_amount}
                 isReq={true}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, paid_amount: value })}
                 currency={formData.paid_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -708,8 +706,6 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.remaining_amount}
                 isReq={true}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, remaining_amount: value })}
                 currency={formData.remaining_amount_currency}
                 onCurrencyChange={(currency)=>
@@ -737,11 +733,9 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">قيمة أول قسط <span className='req'>(مطلوب)</span></label>
+              <label htmlFor="price">قيمة أول قسط </label>
               <CustomInpSelect
-                isReq={true}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
+                isReq={false}
                 value={formData.first_installment_value}
                 onChange={(value) => setFormData({ ...formData, first_installment_value: value })}
                 currency={formData.first_installment_value_currency}
@@ -774,8 +768,6 @@ const AddNewUnit = () => {
               <label htmlFor="price">سعر المتر </label>
               <CustomInpSelect
                 value={formData.meter_price}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, meter_price: value })}
                 currency={formData.meter_price_currency}
                 onCurrencyChange={(currency)=>
@@ -795,8 +787,6 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.over_price}
                 isReq={true}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, over_price: value })}
                 currency={formData.over_price_currency}
                 onCurrencyChange={(currency)=>
@@ -809,8 +799,6 @@ const AddNewUnit = () => {
               <CustomInpSelect
                 value={formData.total_price}
                 isReq={true}
-                onWheel={(e) => e.target.blur()} 
-                onFocus={(e) => e.target.select()}
                 onChange={(value) => setFormData({ ...formData, total_price: value })}
                 currency={formData.total_price_currency}
                 onCurrencyChange={(currency)=>
@@ -858,7 +846,7 @@ const AddNewUnit = () => {
               />
             </div>
             <div className="form-group">
-              <label>صور الوحدة</label>
+              <label>صور الوحدة <span className='req'>(مطلوب)</span></label>
               {showImageFields.map((_, index) => (
                 <div key={index} className="image-upload-field">
                   <input

@@ -6,7 +6,8 @@ const AccountSafety = () => {
   const [newPass, setNewPass] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
   const { token, notificationRef, handleUnAuth } = useContext(AppContext)
-  const handleChangePassReq = () => {
+  const handleChangePassReq = (e) => {
+    e.preventDefault()
     axios
     .post('https://api.goldenbeit.com/accounts/change-password',
       {
@@ -17,14 +18,15 @@ const AccountSafety = () => {
       {headers: { 'Authorization': `Bearer ${token}` },}
     )
     .then((res) => {
-      console.log(res.data);
+      console.log(res);
       notificationRef.current.show('success','تم تغيير كلمة المرور بنجاح')
     })
     .catch((err) => {
       if(err.status===401){
         handleUnAuth()
       }
-      console.log(err.status);
+      notificationRef.current.show('error',err.response.data.msg)
+      console.log(err);
     });
   }
   return (

@@ -767,7 +767,7 @@ const Units = () => {
                     }
                   </div>
                   <PaginationComponent
-                    totalItems={paginationData&& paginationData.total_pages}
+                    totalPages={paginationData&& paginationData.total_pages}
                     paginate={paginate}
                     currentPage={currentPage}
                   />

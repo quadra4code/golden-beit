@@ -15,15 +15,17 @@ const Login = () => {
   const { isLogin, setIsLogin, userType, setUserType, notificationRef, loading, setLoading, filterData} = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [interestedCity, setInterestedCity] = useState();
+  const [defCountry, setDefCountry] = useState('eg');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState(null);
+  const [isValid, setIsValid] = useState(false);
   // const [userType, setUserType] = useState("5");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   // const [isLogin, setIsLogin] = useState(true);
   const [referral_code, setReferral_code] = useState(true);
-  console.log(userType);
+  // console.log(userType);
   useEffect(()=>{
     params.params?.length>0 ?
     setReferral_code(params.params)
@@ -86,6 +88,41 @@ const Login = () => {
       });
     }
   };
+  // const countryLengths = {
+  //   eg: 12,
+  //   sa: 12,
+  //   ae: 12,
+  //   qa: 10,
+  //   bh: 11,
+  //   kw: 11,
+  // };
+  const countryLengths = {
+    eg: 10,
+    sa: 9,
+    ae: 9,
+    qa: 7,
+    bh: 8,
+    kw: 8,
+  };
+  const handlePhoneChange = (value, countryData) => {
+    const countryCode = countryData?.countryCode;
+    const dialCode = countryData?.dialCode;
+    // Better phone number processing
+    // let phoneWithoutDialCode = value;
+    //  Remove country code if present (more robust handling)
+    // if (dialCode && value.startsWith(`+${dialCode}`)) {
+    //   phoneWithoutDialCode = value.slice(dialCode.length ); // +1 for the '+' sign
+    // }
+    // console.log('Processed number:', phoneWithoutDialCode);
+    setDefCountry(countryCode);
+    const maxLength = countryLengths[countryCode] || 0;
+    const isValidLength = value.slice(dialCode.length).length === maxLength;
+    setIsValid(isValidLength);
+    // Only update if number is valid length or empty
+    if (value.slice(dialCode.length).length <= maxLength) {
+      setUsername(value);
+    }
+  };
   return (
     <main className='login-page'>
       <img src={Image} alt="login-background" />
@@ -131,10 +168,10 @@ const Login = () => {
               <div className="input-box">
                 <RiPhoneFill />
                 <PhoneInput
-                  country={'eg'} // Default country (Egypt)
+                  country={defCountry} // Default country (Egypt)
                   onlyCountries={['eg', 'sa', 'ae', 'qa', 'bh', 'kw']}
                   value={username}
-                  onChange={(phone) => setUsername(phone)}
+                  onChange={handlePhoneChange }
                   inputProps={{
                     required: true,
                     name: 'phone',
@@ -146,9 +183,19 @@ const Login = () => {
                 />
                 {/* <input onChange={(e)=>setUsername(e.target.value)} type="text" required placeholder="رقم الهاتف" /> */}
               </div>
-              {username.length > 0 && username.length < 6 && (
+                <span
+                style={{
+                  fontSize: '13px',
+                  color:  'red',
+                }}
+              >
+                {!isValid
+                  ? `رقم هاتف غير صحيح`
+                  : ''}
+              </span>
+              {/* {username.length > 0 && username.length < 6 && (
                 <p style={{ color: 'red', fontSize:'13px' }}>يجب أن يكون الإدخال 6 أحرف على الأقل</p>
-              )}
+              )} */}
               <div className="input-box">
                 <RiLockPasswordFill />
                 <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder="كلمة المرور" />

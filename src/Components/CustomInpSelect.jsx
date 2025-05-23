@@ -11,7 +11,9 @@ const CustomInpSelect = ({ value, onChange, currency, onCurrencyChange, isReq })
         className="input"
         placeholder="ادخل القيمة"
         required={isReq}
-        onWheel={(e) => e.preventDefault()}
+        onWheel={(e) => e.target.blur()} 
+        onFocus={(e) => e.target.select()}
+        // onWheel={(e) => e.preventDefault()}
       />
       <select
         value={currency}
