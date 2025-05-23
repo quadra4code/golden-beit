@@ -312,7 +312,7 @@ const AccountDetails = () => {
     // }
     
     // Get just the numbers from phone_numbers array
-    const phoneNumbers = userData.phone_numbers.map(p => p.number);
+    // const phoneNumbers = userData.phone_numbers.map(p => p.number);
     
     // Append other fields
     formData.append('first_name', userData.first_name);
@@ -322,12 +322,12 @@ const AccountDetails = () => {
     formData.append('phone_numbers_updated', phoneNumbersUpdated);
     
     // Correct way to send phone numbers as array
-    phoneNumbers.forEach((number, index) => {
-      formData.append(`phone_numbers[${index}]`, number);
-    });
+    // phoneNumbers.forEach((number, index) => {
+    //   formData.append(`phone_numbers[${index}]`, number);
+    // });
     
     // Alternative if backend expects JSON string
-    // formData.append('phone_numbers', JSON.stringify(phoneNumbers));
+    formData.append('phone_numbers', JSON.stringify(userData.phone_numbers.map(p => p.number)));
     
     if (userImage) {
       formData.append('image', userImage);
