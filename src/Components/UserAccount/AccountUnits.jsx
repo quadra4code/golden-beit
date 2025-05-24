@@ -51,8 +51,8 @@ const AccountUnits = () => {
               <th>المشروع</th>
               <th>الحالة</th>
               <th>المدينة</th>
-              <th>المنطقة</th>
-              <th>الاجمالي</th>
+              {/* <th>المنطقة</th>
+              <th>الاجمالي</th> */}
               <th>الاوفر</th>
               <th>خيارات</th>
             </tr>
@@ -67,8 +67,8 @@ const AccountUnits = () => {
                 <td>{order.project}</td>
                 <td>{order.status.name}</td>
                 <td>{order.city}</td>
-                <td>{order.area}</td>
-                <td>{order.total_price_obj.price_value}</td>
+                {/* <td>{order.area}</td>
+                <td>{order.total_price_obj.price_value}</td> */}
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
                   <span className="order-options">

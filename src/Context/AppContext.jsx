@@ -255,7 +255,7 @@ export const AppProvider = ({children}) => {
     localStorage.removeItem('golden-beit-website-token');
     localStorage.removeItem('referral_code');
     localStorage.setItem('oneTimeInquiry','true');
-    window.location.reload();
+    window.location.href='/'
   }
   const handleAddReview = () => {
     if(token){

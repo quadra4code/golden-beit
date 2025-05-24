@@ -76,10 +76,10 @@ const AccountOrders = () => {
               <th>المشروع</th>
               <th>النوع</th>
               <th>المدينة</th>
-              <th>المنطقة</th>
+              {/* <th>المنطقة</th> */}
               <th>حالة الطلب</th>
               <th>تاريخ الطلب</th>
-              <th>الاجمالي</th>
+              {/* <th>الاجمالي</th> */}
               <th>الاوفر</th>
               <th>خيارات</th>
             </tr>
@@ -92,12 +92,12 @@ const AccountOrders = () => {
                 </td>
                 <td>{order.unit_title}</td>
                 <td>{order.unit_project}</td>
-                <td>{order.unit_proposal}</td>
+                <td>{order.unit_type}</td>
                 <td>{order.unit_city}</td>
-                <td>{order.unit_area}</td>
+                {/* <td>{order.unit_area}</td> */}
                 <td>{order.request_status_obj.name}</td>
                 <td>{order.created_at}</td>
-                <td>{order.total_price_obj.price_value}</td>
+                {/* <td>{order.total_price_obj.price_value}</td> */}
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
                   <span className="order-options">
