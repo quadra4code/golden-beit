@@ -3475,7 +3475,13 @@ main.my-account section.account-safety .pass-btn {
           backdrop-filter: blur(10px);
 }
 
-.add-new-unit-btn {
+.add-new-unit-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.add-new-unit-btn-wrapper .add-new-unit-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3483,7 +3489,7 @@ main.my-account section.account-safety .pass-btn {
   font-size: 18px;
   width: 100%;
 }
-.add-new-unit-btn .btn {
+.add-new-unit-btn-wrapper .add-new-unit-btn .btn {
   border-radius: 5px;
   padding: 4px;
   width: 250px;
@@ -3496,11 +3502,11 @@ main.my-account section.account-safety .pass-btn {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.add-new-unit-btn .btn:hover {
+.add-new-unit-btn-wrapper .add-new-unit-btn .btn:hover {
   color: rgba(255, 255, 255, 0.8745098039);
   background-color: #6c5948;
 }
-.add-new-unit-btn svg {
+.add-new-unit-btn-wrapper .add-new-unit-btn svg {
   font-size: 28px;
   color: #8a725d;
 }
