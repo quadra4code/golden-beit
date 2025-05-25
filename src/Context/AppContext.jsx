@@ -27,7 +27,7 @@ export const AppProvider = ({children}) => {
   const [isLogin, setIsLogin] = useState(true);
   const [numberInpValue, setNumberInpValue] = useState()
   const [isNormalPop, setIsNormalPop] = useState(false)
-  const [isReview, setIsReview] = useState(false)
+  const [isReview, setIsReview] = useState()
   const [ourReviewsData, setOurReviewsData] = useState(false)
   const [currencies, setCurrencies] = useState(false)
   const [api, contextHolder] = notification.useNotification();
@@ -258,8 +258,13 @@ export const AppProvider = ({children}) => {
     window.location.href='/'
   }
   const handleAddReview = () => {
+    if (!reviewMessage) {
+      notificationRef.current.show('info', 'يرجى تعبئة التقييم أولًا');
+      return;
+    }
     if(token){
-      axios.post(
+      axios
+      .post(
         'https://api.goldenbeit.com/core/add-review',
         {
           rate:rating,
@@ -269,9 +274,12 @@ export const AppProvider = ({children}) => {
           headers: { 'Authorization': `Bearer ${token}` },
         }
       )
-      .then(res => {
+      .then((response) => {
         setReviewMessage('')
         setRating(0)
+        setIsOpen(false)
+        setIsNormalPop(false)
+        setIsReview(false)
         notificationRef.current.show('success','شكرا لتقييمك')
       })
       .catch(err => {
@@ -279,11 +287,11 @@ export const AppProvider = ({children}) => {
           handleUnAuth()
         }
         console.log(err);
+        notificationRef.current.show('success',err.response.data.data.msg);
       })
     }else{
       notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
     }
-    
   }
   return (
     <AppContext.Provider 

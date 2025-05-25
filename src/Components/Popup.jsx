@@ -57,6 +57,7 @@ const Popup = () => {
           <textarea 
           cols='35' rows='6'
           value={reviewMessage}
+          required
           placeholder='اكتب تقييمك'
           onChange={(e)=>setReviewMessage(e.target.value)}
           />
@@ -75,9 +76,9 @@ const Popup = () => {
         <div className='popup_inner'>
           <h2>{popupHeader}</h2>
           <form className='change-pass' onSubmit={handleChangePassReq}>
-            <input type='password' onChange={(e)=>setOldPass(e.target.value)} placeholder='كلمة المرور الحالية'/>
-            <input type='password' onChange={(e)=>setNewPass(e.target.value)} placeholder='كلمة المرور الجديدة'/>
-            <input type='password' onChange={(e)=>setConfirmPass(e.target.value)} placeholder='تأكيد كلمة المرور الجديدة'/>
+            <input type='password' required onChange={(e)=>setOldPass(e.target.value)} placeholder='كلمة المرور الحالية'/>
+            <input type='password' required onChange={(e)=>setNewPass(e.target.value)} placeholder='كلمة المرور الجديدة'/>
+            <input type='password' required onChange={(e)=>setConfirmPass(e.target.value)} placeholder='تأكيد كلمة المرور الجديدة'/>
           </form>
           <div className="btns">
             <button onClick={handleChangePassReq} className='rate-btn'>تغيير كلمة المرور</button>
