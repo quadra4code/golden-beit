@@ -30,7 +30,7 @@ const AccountUnits = () => {
     )
       .then((response) => {
         console.log(response);
-        notificationRef.current.show('success', 'تم  حذف الوحدة بنجاح بنجاح');
+        notificationRef.current.show('success', 'تم حذف الوحدة بنجاح');
         setData(data.filter((unit) => unit.id !== id)); 
       })
       .catch((error) => {
