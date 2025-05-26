@@ -95,6 +95,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="flex lg:hidden items-center gap-2">
+          {name&&token?
           <span ref={isOpenNotificationRef} className='notification-ic' >
             <div className='ic-holder' onClick={handleNotifications} >
               <FaBell />
@@ -121,6 +122,8 @@ const Navbar = () => {
               }
             </div>
           </span>
+          :
+          null}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
