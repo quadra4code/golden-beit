@@ -70,11 +70,11 @@ export const AppProvider = ({children}) => {
   /////////////// get articles in home screen
   useEffect(()=>{
     handleGetNotifications();
+    if(token){
       setInterval(() => {
-        if(token) {
-          handleGetNotifications();
-        }
+        handleGetNotifications();
       }, 300000);
+    }
   },[])
   useEffect(()=>{
     setLoading(true)
