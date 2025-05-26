@@ -257,7 +257,7 @@ main.home {
       }
     }
     .mySwiper{
-      width: 85%;
+      width: 95%;
       // padding:0 1rem ;
       .swiper-pagination-bullet{
         width: 15px;
@@ -269,8 +269,9 @@ main.home {
       .swiper-wrapper{
         padding: 2rem 0 4rem 0;
         .swiper-slide {
+          // min-width: 270px !important;
           border-radius: 14px;
-          max-width: max-content;
+          max-width: 270px;
           height: auto ;
           .slide-content{
             display: flex;
@@ -499,4 +500,9 @@ main.home {
       font-size: 10vw;
     }
   }
+  main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide {
+    border-radius: 14px;
+    max-width: 100%; 
+    height: auto;
+}
 }

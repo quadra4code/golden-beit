@@ -14,7 +14,7 @@ import UserTypesCarouselPage from '../Components/UserTypesCarouselPage';
 import AddUnitBtn from '../Components/AddUnitBtn';
 import IsDesktop from '../Context/IsDesktop';
 const Home = () => {
-  const {isDesktop} = useContext(IsDesktop)
+  const {isLaptop} = useContext(IsDesktop)
   const {loading, featuredUnits, mostViewedUnits} = useContext(AppContext);
   return (
     <>
@@ -28,7 +28,7 @@ const Home = () => {
           <Landing/>
           {featuredUnits && featuredUnits.length > 0 && <OurProjects/>}
           {mostViewedUnits && mostViewedUnits.length > 0 && <TopShow/>}
-          {!isDesktop&& <AddUnitBtn/>}
+          {!isLaptop&& <AddUnitBtn/>}
           <WhyUs/>
           <UserTypesCarouselPage/>
           {/* <AboutUs/> */}

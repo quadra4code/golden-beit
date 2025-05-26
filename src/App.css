@@ -2328,7 +2328,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
   gap: 10px;
   background-color: #fff;
   border-radius: 22px;
-  max-width: 280px;
+  min-width: 270px;
   padding: 10px;
   position: relative;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2784313725);
@@ -2401,7 +2401,23 @@ main.login-page .opacity .login-form-box form .input-box svg {
 
 @media (max-width: 1350px) {
   .unit-card {
-    max-width: 265px;
+    max-width: 100%;
+  }
+  .unit-card h1 {
+    font-size: 16px;
+  }
+  .unit-card h1 .label {
+    font-size: 14px;
+  }
+  .unit-card button.see_more {
+    font-size: 14px;
+    padding: 2px 15px;
+    border-radius: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .unit-card {
+    max-width: 100%;
   }
   .unit-card h1 {
     font-size: 16px;
@@ -3840,7 +3856,7 @@ main.home section.our-projects > .title::after {
   transform: translateX(-50%);
 }
 main.home section.our-projects .mySwiper {
-  width: 85%;
+  width: 95%;
 }
 main.home section.our-projects .mySwiper .swiper-pagination-bullet {
   width: 15px;
@@ -3854,8 +3870,7 @@ main.home section.our-projects .mySwiper .swiper-wrapper {
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide {
   border-radius: 14px;
-  max-width: -moz-max-content;
-  max-width: max-content;
+  max-width: 270px;
   height: auto;
 }
 main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-content {
@@ -3994,6 +4009,11 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
 @media (max-width: 480px) {
   .loader-wrapper svg text {
     font-size: 10vw;
+  }
+  main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide {
+    border-radius: 14px;
+    max-width: 100%;
+    height: auto;
   }
 }
 @tailwind base;

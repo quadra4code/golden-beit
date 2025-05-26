@@ -12,15 +12,16 @@ import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import UnitCard from './UnitCard';
 const OurProjects = () => {
-  const {isDesktop} = useContext(IsDesktop)
+  const {isDesktop, isLaptop, isTablet} = useContext(IsDesktop)
   const navigate = useNavigate()
   const { handelAddToFav, featuredUnits} = useContext(AppContext)
   console.log(featuredUnits);
+  const slidesToShow = isDesktop ? 4 : isLaptop ? 3 : isTablet ? 2 : 1; 
   return (
     <section className='our-projects'>
       <h1 className='title'>وحداتنا المتميزة</h1>
       <Swiper
-        slidesPerView={isDesktop?4:1}
+        slidesPerView={slidesToShow}
         spaceBetween={15}
         pagination={{
           clickable: true,

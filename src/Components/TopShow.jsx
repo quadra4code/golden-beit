@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useState} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import IsDesktop from '../Context/IsDesktop';
@@ -6,15 +6,16 @@ import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import UnitCard from './UnitCard';
 const TopShow = () => {
-  const {isDesktop} = useContext(IsDesktop)
+  const {isDesktop, isLaptop, isTablet} = useContext(IsDesktop)
   const navigate = useNavigate()
   const {mostViewedUnits, handelAddToFav} = useContext(AppContext)
   // console.log(mostViewedUnits);
+  const slidesToShow = isDesktop ? 4 : isLaptop ? 3 : isTablet ? 2 : 1;  
   return (
     <section className='our-projects'>
       <h1 className='title'>الأكثر مشاهدةً</h1>
       <Swiper
-        slidesPerView={isDesktop?4:1}
+        slidesPerView={slidesToShow}
         spaceBetween={20}
         pagination={{
           clickable: true,
