@@ -2401,7 +2401,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
 
 @media (max-width: 1350px) {
   .unit-card {
-    max-width: 100%;
+    max-width: 270px;
   }
   .unit-card h1 {
     font-size: 16px;
