@@ -14,18 +14,38 @@ import { MdLogout } from "react-icons/md";
 import { useContext } from 'react';
 import AppContext from '../Context/AppContext';
 import defaultImage from '../Images/user-image.webp';
+import { FaBell } from "react-icons/fa";
+import { notification } from 'antd';
+import { ImCancelCircle } from "react-icons/im";
+import { BsTrash } from "react-icons/bs";
 const Navbar = () => {
+  const isOpenNotificationRef = useRef(null);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const userImage = localStorage.getItem('user_image_url');
   useEffect(() => {
     if(localStorage.getItem('user_image_url') === undefined || localStorage.getItem('user_image_url') === null){
       localStorage.setItem('user_image_url', defaultImage);
     }
   }, [])
+  useEffect(() => {
+    const handleClickOutsideNotification = (event) => {
+      if (isOpenNotificationRef.current && 
+        !isOpenNotificationRef.current.contains(event.target)
+        ) {
+        setIsNotificationOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutsideNotification);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideNotification);
+    };
+  }, []); 
   const referral_code = localStorage.getItem('referral_code');
   const pathname = window.location.pathname
   const navigate = useNavigate();
   const {notificationRef, handleLogout,token, setIsNormalPop,changePassUi, setChangePassUi,
-        setIsOpen, setPopupHeader, setPopupContent, setIsReview } = useContext(AppContext)
+        setIsOpen, setPopupHeader, setPopupContent, setIsReview ,
+      notifications, handleDeleteAllNotifications, handleGetNotifications,handleDeleteNotification} = useContext(AppContext)
   const handleOurServicesRoutes = (type)=> {
     setMobileMenuOpen(false)
     if(token){
@@ -44,6 +64,10 @@ const Navbar = () => {
     }else{
       return notificationRef.current.show('info',  'برجاء تسجيل الدخول')
     }
+  }
+  const handleNotifications = () => {
+    handleGetNotifications();
+    setIsNotificationOpen(!isNotificationOpen);
   }
   const handleAddUnitRoute = (type)=> {
     setMobileMenuOpen(false)
@@ -70,7 +94,33 @@ const Navbar = () => {
             <img alt='logo image' src={Logo} style={{height:"5rem"}} className="h-16 w-auto" />
           </a>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden items-center gap-2">
+          <span ref={isOpenNotificationRef} className='notification-ic' >
+            <div className='ic-holder' onClick={handleNotifications} >
+              <FaBell />
+              <span className='notification-count'>{notifications && notifications.length}</span>
+            </div>
+            <div className={`notifications-center ${isNotificationOpen ? 'open' : ''}`}>
+                {notifications && notifications.length > 0 && 
+                  <header>
+                    <h2 className='notification-header'>الإشعارات</h2>
+                    <button className='notification-close' onClick={handleDeleteAllNotifications}>
+                      <BsTrash/>
+                    </button>
+                  </header>
+                }
+              {notifications && notifications.length > 0 ?
+              notifications.map((notification, index) => (
+                <div key={index} className='notification-item' >
+                  <button onClick={()=>handleDeleteNotification(notification.id)}><ImCancelCircle/></button>
+                  <p className='notification-text'>{notification.message}</p>
+                </div>
+              ))
+              :
+              <p className='notification-text null'>لا توجد إشعارات</p>
+              }
+            </div>
+          </span>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -120,32 +170,61 @@ const Navbar = () => {
             اتصل بنا
           </Link>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
           {name&&token?
-          <span className='user-span'>
-            <span className='user-image'>
-              <img src={userImage ? userImage : defaultImage} alt="userImage" />
+          <>
+            <span className='user-span'>
+              <span className='user-image'>
+                <img src={userImage ? userImage : defaultImage} alt="userImage" />
+              </span>
+              <span> {name}</span>
+              <IoIosArrowDown/>
+              <div className="nav-menu nav-menu-logout">
+                <Link className='list-unit' to="my-account/account-details">
+                  حسابي
+                </Link>
+                {/* <span className='list-unit' onClick={handleChangePass}> 
+                  تغيير كلمة المرور
+                  <RiLockPasswordLine />
+                </span>
+                <span className='list-unit' onClick={()=>navigate('/favorites')}> 
+                  المفضلة
+                  <FaRegHeart />
+                </span> */}
+                <span className='list-unit' onClick={handleLogout}> 
+                  تسجيل الخروج
+                  <MdLogout />
+                </span>
+              </div>
             </span>
-            <span> {name}</span>
-            <IoIosArrowDown/>
-            <div className="nav-menu nav-menu-logout">
-              <Link className='list-unit' to="my-account/account-details">
-                حسابي
-              </Link>
-              {/* <span className='list-unit' onClick={handleChangePass}> 
-                تغيير كلمة المرور
-                <RiLockPasswordLine />
-              </span>
-              <span className='list-unit' onClick={()=>navigate('/favorites')}> 
-                المفضلة
-                <FaRegHeart />
-              </span> */}
-              <span className='list-unit' onClick={handleLogout}> 
-                تسجيل الخروج
-                <MdLogout />
-              </span>
-            </div>
-          </span>
+            <span ref={isOpenNotificationRef} className='notification-ic' >
+              <div className='ic-holder' onClick={handleNotifications} >
+                <FaBell />
+                <span className='notification-count'>{notifications && notifications.length}</span>
+              </div>
+              <div className={`notifications-center ${isNotificationOpen ? 'open' : ''}`}>
+                  {notifications && notifications.length > 0 && 
+                    <header>
+                      <h2 className='notification-header'>الإشعارات</h2>
+                      <button className='notification-close' onClick={handleDeleteAllNotifications}>
+                        <BsTrash/>
+                      </button>
+                    </header>
+                  }
+                {notifications && notifications.length > 0 ?
+                notifications.map((notification, index) => (
+                  <div key={index} className='notification-item' >
+                    <button onClick={()=>handleDeleteNotification(notification.id)}><ImCancelCircle/></button>
+                    <p className='notification-text'>{notification.message}</p>
+                  </div>
+                ))
+                :
+                <p className='notification-text null'>لا توجد إشعارات</p>
+                }
+              </div>
+            </span>
+          </>
+          
           :
           <Link to="/register" className="font-bold py-3  flex gap-2 items-center text-lg leading-6 rounded-2xl text-navbar-blue">
             <FaUserAlt className='text-xl '/> 

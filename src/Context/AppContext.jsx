@@ -11,6 +11,7 @@ const AppContext = createContext();
 export const AppProvider = ({children}) => {
   const navigate = useNavigate()
   const [popupContent, setPopupContent] = useState('');
+  const [notifications, setNotifications] = useState();
   const [popupHeader, setPopupHeader] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const [singleUnit, setSingleUnit] = useState();
@@ -68,6 +69,14 @@ export const AppProvider = ({children}) => {
   },[])
   /////////////// get articles in home screen
   useEffect(()=>{
+    handleGetNotifications();
+      setInterval(() => {
+        if(token) {
+          handleGetNotifications();
+        }
+      }, 300000);
+  },[])
+  useEffect(()=>{
     setLoading(true)
     axios.get('https://api.goldenbeit.com/core/home-articles')
     .then(response => {
@@ -121,16 +130,14 @@ export const AppProvider = ({children}) => {
   },[])
   ///////////// get all winners
   useEffect(()=>{
-    if(token){
-      setLoading(true)
-      axios.get('https://api.goldenbeit.com/core/recent-units'
-      )
-      .then(response => {
-        setNewArrivalUnits(response.data.data)
-      })
-      .catch(error => {console.error(error);setLoading(false)})
-      .finally(()=>{setLoading(false)})
-    }
+    setLoading(true)
+    axios.get('https://api.goldenbeit.com/core/recent-units'
+    )
+    .then(response => {
+      setNewArrivalUnits(response.data.data)
+    })
+    .catch(error => {console.error(error)})
+    .finally(()=>{setLoading(false)})
   },[])
   // ///////handleSingleUnitDetails//////
   const handleSingleUnitDetails = (id) => {
@@ -293,6 +300,63 @@ export const AppProvider = ({children}) => {
       notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
     }
   }
+  const handleGetNotifications = () => {
+    axios 
+    .get('https://api.goldenbeit.com/engagement/all-notifications',
+      {
+        headers: { 'Authorization': `Bearer ${token}` },
+      }
+    )
+    .then((response) => {
+      console.log(response);
+      setNotifications(response.data.data);
+    })
+    .catch((error) => {
+      console.error(error);
+      if(error.status===401){
+        handleUnAuth()
+      }
+    })
+  }
+  const handleDeleteNotification = (id) => {
+    console.log('sfsf');
+    console.log(id);
+    if(!id) return
+    axios 
+    .delete(`https://api.goldenbeit.com/engagement/delete/${id}`,
+      {
+        headers: { 'Authorization': `Bearer ${token}` },
+      }
+    )
+    .then((response) => {
+      console.log(response);
+      setNotifications(notifications.filter((item) => item.id !== id));
+    })
+    .catch((error) => {
+      console.error(error);
+      if(error.status===401){
+        handleUnAuth()
+      }
+    })
+  }
+  const handleDeleteAllNotifications = (id) => {
+    axios 
+    .delete(`https://api.goldenbeit.com/engagement/delete/all`,
+      {
+        headers: { 'Authorization': `Bearer ${token}` },
+      }
+    )
+    .then((response) => {
+      console.log(response);
+      setNotifications(response.data.data);
+    })
+    .catch((error) => {
+      console.error(error);
+      if(error.status===401){
+        handleUnAuth()
+      }
+    })
+  }
   return (
     <AppContext.Provider 
       value={{isOpen, setIsOpen, popupContent,newArrivalUnits,setNewArrivalUnits,
@@ -305,7 +369,8 @@ export const AppProvider = ({children}) => {
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
       mostViewedUnits, setMostViewedUnits,handleLogout,userType, setUserType,
-      isLogin, setIsLogin ,notificationRef 
+      isLogin, setIsLogin ,notificationRef ,handleGetNotifications, notifications,
+      setNotifications,handleDeleteAllNotifications, handleDeleteNotification
       }}>
       <Notification ref={notificationRef} />
       {children}

@@ -78,7 +78,8 @@ const SearchBar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);  useEffect(() => {
+  }, []); 
+  useEffect(() => {
     console.log(selectedUnit, selectedProject)
     console.log(projects);
     console.log(filterData);
