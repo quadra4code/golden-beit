@@ -247,6 +247,7 @@ export const AppProvider = ({children}) => {
       .catch((err) => {
         if(err.status===401){
           notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
+          handleUnAuth()
           return
         }
         console.log(err);

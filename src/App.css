@@ -2328,7 +2328,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
   gap: 10px;
   background-color: #fff;
   border-radius: 22px;
-  min-width: 270px;
+  max-width: 270px;
   padding: 10px;
   position: relative;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2784313725);
@@ -2415,7 +2415,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
     border-radius: 8px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .unit-card {
     max-width: 100%;
   }
@@ -4016,6 +4016,73 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
     height: auto;
   }
 }
+/* Custom styles for the carousel */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  padding: 10px;
+  touch-action: pan-y;
+}
+
+.carousel-item {
+  flex: 1 0 auto;
+  min-width: 200px;
+  max-width: 100%;
+}
+.carousel-item .unit-card {
+  height: 100%;
+}
+
+.carousel-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px 14px;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  margin-right: 10px;
+}
+
+.carousel-btn.next {
+  margin-left: 10px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #aaa;
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #000;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;/*# sourceMappingURL=App.css.map */

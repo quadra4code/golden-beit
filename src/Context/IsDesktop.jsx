@@ -7,8 +7,8 @@ export const DesktopProvider = ({ children }) => {
   useEffect(() => {
     const updateMedia = () => {
       setIsDesktop(window.innerWidth >= 1056);
-      setIsLaptop(window.innerWidth <= 786);
-      setIsTablet(window.innerWidth <= 520);
+      setIsLaptop(window.innerWidth >= 786);
+      setIsTablet(window.innerWidth >= 520);
     };
     window.addEventListener('resize', updateMedia);
     return () => {
