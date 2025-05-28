@@ -233,15 +233,20 @@ import defaultImage from '../../Images/user-image.webp';
 import axios from 'axios';
 import AppContext from '../../Context/AppContext';
 import Loader from '../Loader';
-import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaTrash } from "react-icons/fa";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
 const AccountDetails = () => {
   const [userData, setUserData] = useState(null);
   const [originalUserData, setOriginalUserData] = useState(null);
   const [userImage, setUserImage] = useState(null);
   const [hasChanges, setHasChanges] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [defCountry, setDefCountry] = useState('eg');
+  const [phoneValidity, setPhoneValidity] = useState([]);
   const [phoneNumbersUpdated, setPhoneNumbersUpdated] = useState(false);
+  const [showValidation, setShowValidation] = useState(false);
   const { token, filterData, notificationRef, handleLogout } = useContext(AppContext);
   const getImageUrl = () => {
     if (userImage) {
@@ -277,15 +282,37 @@ const AccountDetails = () => {
       setHasChanges(JSON.stringify(userData) !== JSON.stringify(originalUserData));
     }
   }, [userData, originalUserData]);
+  const countryLengths = {
+    eg: 10,
+    sa: 9,
+    ae: 9,
+    qa: 7,
+    bh: 8,
+    kw: 8,
+  };
+  const validatePhoneNumber = (value, countryCode, dialCode) => {
+    const numberWithoutDialCode = value.slice(dialCode.length);
+    const maxLength = countryLengths[countryCode] || 0;
+    return numberWithoutDialCode.length === maxLength;
+  };
   const handleChangeUserData = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleInputChange = (event, index) => {
-    setPhoneNumbersUpdated(true);
-    const newPhoneNumbers = [...userData.phone_numbers];
-    newPhoneNumbers[index] = { ...newPhoneNumbers[index], number: event.target.value };
-    setUserData((prevData) => ({ ...prevData, phone_numbers: newPhoneNumbers }));
+  const handleInputChange = (value, countryData, index) => {
+    const countryCode = countryData?.countryCode;
+    const dialCode = countryData?.dialCode;
+    setDefCountry(countryCode);
+    const isValidNumber = validatePhoneNumber(value, countryCode, dialCode);
+    const newPhoneValidity = [...phoneValidity];
+    newPhoneValidity[index] = isValidNumber;
+    setPhoneValidity(newPhoneValidity);
+    if (value.slice(dialCode.length).length <= countryLengths[countryCode]) {
+      const newPhoneNumbers = [...userData.phone_numbers];
+      newPhoneNumbers[index] = { ...newPhoneNumbers[index], number: value };
+      setUserData(prevData => ({ ...prevData, phone_numbers: newPhoneNumbers }));
+      setPhoneNumbersUpdated(true);
+    }
   };
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -293,12 +320,20 @@ const AccountDetails = () => {
       setUserImage(file);
       setHasChanges(true);
     }
-  }
+  }  
   const handleUpdateUserData = (e) => {
     e.preventDefault();
     if (!hasChanges) return;
-    console.log(userData.interested_city);
+
+    // Check if any phone number is invalid
+    const hasInvalidNumbers = userData.phone_numbers.some((phone, index) => !phoneValidity[index] && phone.number);
+    if (hasInvalidNumbers) {
+      setShowValidation(true);
+      notificationRef.current.show('error', 'يرجى التحقق من صحة أرقام الهواتف');
+      return;
+    }
     
+    console.log(userData.interested_city);
     const formData = new FormData();
     
     // Only append fields that have values
@@ -355,50 +390,6 @@ const AccountDetails = () => {
       })
       .finally(() => setLoading(false));
   };
-  // const handleUpdateUserData = (e) => {
-  //   e.preventDefault();
-  //   if (!hasChanges) return;
-  //   const phoneNumbers = userData.phone_numbers.map(p => p.number)
-  //   const formData = new FormData();
-  //   if (userData.last_name !== null && userData.last_name !== undefined) {
-  //     formData.append('first_name', userData.first_name);
-  //   }
-  //   if (userData.last_name !== null && userData.last_name !== undefined) {
-  //     formData.append('last_name', userData.last_name);
-  //   }
-  //   if (userData.last_name !== null && userData.last_name !== undefined) {
-  //     formData.append('email', userData.email);
-  //   }
-  //   formData.append('interested_city', userData.interested_city?.id || '');
-  //   formData.append('phone_numbers_updated', phoneNumbersUpdated);
-  //   formData.append('phone_numbers', [phoneNumbers].push(p => p.number));
-  //   // formData.append('phone_numbers', JSON.stringify(phoneNumbers))
-  //   // formData.append('phone_numbers', JSON.stringify(userData.phone_numbers));
-  //   if (userImage) {
-  //     formData.append('image', userImage);
-  //   }
-  //   setLoading(true);
-  //   axios
-  //     .put('https://api.goldenbeit.com/accounts/update-account', formData, {
-  //       headers: { 
-  //         Authorization: `Bearer ${token}`,
-  //         'Content-Type': 'multipart/form-data' // Important for file uploads
-  //       },
-  //     })
-  //     .then((response) => {
-  //       notificationRef.current.show('success','تم حفظ التعديلات بنجاح')
-  //       console.log('Update successful:', response);
-  //       localStorage.setItem('user_image_url', response.data.data.image_url);
-  //       setOriginalUserData(userData);
-  //       setHasChanges(false);
-  //     })
-  //     .catch((err) =>{
-  //       console.error('Error updating user data:', err)
-  //       console.log(err)
-  //       notificationRef.current.show('error',err.response.data.msg)
-  //     } )
-  //     .finally(() => setLoading(false));
-  // };
   const handleAddPhone = () => {
     setUserData(prevData => ({
       ...prevData,
@@ -406,7 +397,6 @@ const AccountDetails = () => {
     }));
     setPhoneNumbersUpdated(true);
   };
-  
   const handleRemovePhone = (index) => {
     const updatedPhones = [...userData.phone_numbers];
     updatedPhones.splice(index, 1);
@@ -459,18 +449,30 @@ const AccountDetails = () => {
               />
               <label>الاسم الاخير</label>
             </div>
+            
             {userData?.phone_numbers?.map((phone, index) => (
               <div className="phone-field" key={phone.pn_id || index} style={{width:'100%', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div className="floating-label" style={{ flex: 1 }}>
-                  <input
-                    type="text"
+                  <PhoneInput
+                    country={defCountry}
+                    onlyCountries={['eg', 'sa', 'ae', 'qa', 'bh', 'kw']}
                     value={phone.number}
-                    onChange={(e) => handleInputChange(e, index)}
-                    placeholder="رقم الهاتف"
+                    onChange={(value, countryData) => handleInputChange(value, countryData, index)}
+                    inputProps={{
+                      required: true,
+                      name: 'phone',
+                      placeholder: 'رقم الهاتف',
+                    }}
+                    containerStyle={{ direction: 'ltr' }}
+                    buttonStyle={{ direction: 'ltr' }}
                   />
-                  <label>رقم الهاتف</label>
+                  {!phoneValidity[index] && phone.number && showValidation && (
+                    <span style={{ fontSize: '13px', color: 'red' }}>
+                      رقم هاتف غير صحيح
+                    </span>
+                  )}
                 </div>
-                {userData.phone_numbers.length > 1 && index!== 0 && (
+                {userData.phone_numbers.length > 1 && index !== 0 && (
                   <button
                     type="button"
                     className="delete-btn"

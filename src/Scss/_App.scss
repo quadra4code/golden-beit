@@ -578,7 +578,7 @@ main.home {
 
 .carousel-item {
   flex: 1 0 auto;
-  min-width: 200px;
+  min-width: 270px;
   max-width: 100%;
     .unit-card {
     height: 100%;
@@ -622,6 +622,20 @@ main.home {
 .dot.active {
   background-color: #000;
 }
+.flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+  .selected-flag{
+    .flag{
+      left: 5px !important;
+    }
+  }
+}
+.react-tel-input .form-control {
+  padding-left: 4rem !important;
+  direction: ltr !important;
+}
+
 // .carousel-container {
 //   position: relative;
 //   display: flex;

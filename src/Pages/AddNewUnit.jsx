@@ -365,10 +365,14 @@ import Popup from '../Components/Popup';
 import { FaTrashAlt } from 'react-icons/fa';
 import CustomInpSelect from '../Components/CustomInpSelect';
 import MiniLoader from '../Components/Miniloader';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 const AddNewUnit = () => {
   // const [selectedProject, setSelectedProject] = useState('');
   // const [selectedType, setSelectedType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);  
+  const [defCountry, setDefCountry] = useState('eg');
+  const [isValid, setIsValid] = useState(false);
   const { handleUnAuth, filterData, token, notificationRef } = useContext(AppContext);
   const [formData, setFormData] = useState({
     unit_type_id: null,
@@ -439,6 +443,10 @@ const AddNewUnit = () => {
     console.log(formData);
     if (!formData.meter_price && !formData.over_price && !formData.total_price) {
       notificationRef.current.show('error','خطأ', 'يجب إدخال سعر الأوفر أو إجمالى السعر أو سعر المتر على الأقل');
+      return;
+    }
+    if(!isValid ){
+      notificationRef.current.show('error','خطأ', 'رقم الهاتف غير صحيح');
       return;
     }
     if (images.length === 0) {
@@ -528,6 +536,37 @@ const AddNewUnit = () => {
   //     payment_method: e,
   //   }));
   // };
+  const countryLengths = {
+    eg: 10,
+    sa: 9,
+    ae: 9,
+    qa: 7,
+    bh: 8,
+    kw: 8,
+  };
+  const handlePhoneChange = (value, countryData) => {
+    const countryCode = countryData?.countryCode;
+    const dialCode = countryData?.dialCode;
+    // Better phone number processing
+    // let phoneWithoutDialCode = value;
+    //  Remove country code if present (more robust handling)
+    // if (dialCode && value.startsWith(`+${dialCode}`)) {
+    //   phoneWithoutDialCode = value.slice(dialCode.length ); // +1 for the '+' sign
+    // }
+    // console.log('Processed number:', phoneWithoutDialCode);
+    setDefCountry(countryCode);
+    const maxLength = countryLengths[countryCode] || 0;
+    const isValidLength = value.slice(dialCode.length).length === maxLength;
+    setIsValid(isValidLength);
+    // Only update if number is valid length or empty
+    if (value.slice(dialCode.length).length <= maxLength) {
+      console.log('e.name');
+      setFormData({
+      ...formData,
+      phone_number: value
+      });
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -836,14 +875,28 @@ const AddNewUnit = () => {
             </div>
             <div className="form-group">
               <label htmlFor="price">رقم الهاتف للتواصل <span className='req'>(مطلوب)</span></label>
-              <input
+              <PhoneInput
+                country={defCountry} // Default country (Egypt)
+                onlyCountries={['eg', 'sa', 'ae', 'qa', 'bh', 'kw']}
+                value={formData.phone_number}
+                onChange={handlePhoneChange }
+                inputProps={{
+                  required: true,
+                  name: 'phone_number',
+                  placeholder: 'رقم الهاتف',
+                }}
+                containerStyle={{ direction: 'ltr',  }}
+                // inputStyle={{ width: '100%', paddingLeft: '48px', direction: 'ltr' }}
+                buttonStyle={{ direction: 'ltr' }}
+              />
+              {/* <input
                 type="number"
                 id="price"
                 name="phone_number"
                 value={formData.phone_number}
                 onChange={handleChange}
                 required
-              />
+              /> */}
             </div>
             <div className="form-group">
               <label>صور الوحدة <span className='req'>(مطلوب)</span></label>

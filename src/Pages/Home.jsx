@@ -13,6 +13,7 @@ import Services from '../Components/Services';
 import UserTypesCarouselPage from '../Components/UserTypesCarouselPage';
 import AddUnitBtn from '../Components/AddUnitBtn';
 import IsDesktop from '../Context/IsDesktop';
+import OpacityNotification from '../Components/OpacityNotification';
 const Home = () => {
   const {isLaptop} = useContext(IsDesktop)
   const {loading, featuredUnits, mostViewedUnits} = useContext(AppContext);
@@ -24,6 +25,7 @@ const Home = () => {
       :    
       <>
         <main className='home'>
+          <OpacityNotification/>
           <Popup/>
           <Landing/>
           {featuredUnits && featuredUnits.length > 0 && <OurProjects/>}

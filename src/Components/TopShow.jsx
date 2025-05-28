@@ -79,17 +79,44 @@ const TopShow = () => {
     if (currentIndex < totalSlides - 1) setCurrentIndex(currentIndex + 1);
   };
 
+  // Touch events for mobile
   const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
+    if (e.touches) {
+      touchStartX.current = e.touches[0].clientX;
+    }
   };
 
   const handleTouchMove = (e) => {
-    touchEndX.current = e.touches[0].clientX;
+    if (e.touches) {
+      touchEndX.current = e.touches[0].clientX;
+    }
   };
 
   const handleTouchEnd = () => {
-    if (touchStartX.current && touchEndX.current) {
-      const distance = touchStartX.current - touchEndX.current;
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const distance = touchEndX.current - touchStartX.current;
+      if (distance > 50) handleNext();
+      else if (distance < -50) handlePrev();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
+  // Mouse events for desktop
+  const mouseDown = useRef(false);
+  const handleMouseDown = (e) => {
+    mouseDown.current = true;
+    touchStartX.current = e.clientX;
+  };
+  const handleMouseMove = (e) => {
+    if (!mouseDown.current) return;
+    touchEndX.current = e.clientX;
+  };
+  const handleMouseUp = () => {
+    if (!mouseDown.current) return;
+    mouseDown.current = false;
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const distance = touchEndX.current - touchStartX.current;
       if (distance > 50) handleNext();
       else if (distance < -50) handlePrev();
     }
@@ -106,15 +133,24 @@ const TopShow = () => {
   return (
     <section className="our-projects">
       <h1 className="title">الأكثر مشاهدةً</h1>
-
       <div className="carousel-container">
-        <button className="carousel-btn prev" onClick={handlePrev} disabled={currentIndex === 0}>‹</button>
-
         <div
           className="carousel-track"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          // style={{
+          //   userSelect: 'none',
+          //   cursor: 'grab',
+          //   display: 'flex',
+          //   transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
+          //   transform: `translateX(${currentIndex * 100}%)`
+          // }}
+          style={{ userSelect: 'none', cursor: 'grab' }}
         >
           {getVisibleUnits().map((project) => (
             <div
@@ -139,9 +175,7 @@ const TopShow = () => {
             </div>
           ))}
         </div>
-        <button className="carousel-btn next" onClick={handleNext} disabled={currentIndex >= totalSlides - 1}>›</button>
       </div>
-
       <div className="carousel-dots">
         {Array.from({ length: totalSlides }, (_, i) => (
           <span

@@ -2061,13 +2061,6 @@ main.login-page .opacity .login-form-box form .input-box .form-control::placehol
   right: 0 !important;
   font-family: "cairo", serif;
 }
-main.login-page .opacity .login-form-box form .input-box .flag-dropdown {
-  background-color: transparent !important;
-  border: none !important;
-}
-main.login-page .opacity .login-form-box form .input-box .flag-dropdown .selected-flag .flag {
-  left: 0 !important;
-}
 main.login-page .opacity .login-form-box form .input-box input,
 main.login-page .opacity .login-form-box form .input-box select {
   font-size: 14px;
@@ -2415,7 +2408,7 @@ main.login-page .opacity .login-form-box form .input-box svg {
     border-radius: 8px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 528px) {
   .unit-card {
     max-width: 100%;
   }
@@ -4038,7 +4031,7 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
 
 .carousel-item {
   flex: 1 0 auto;
-  min-width: 200px;
+  min-width: 270px;
   max-width: 100%;
 }
 .carousel-item .unit-card {
@@ -4081,6 +4074,19 @@ main.home section.our-projects .mySwiper .swiper-wrapper .swiper-slide .slide-co
 
 .dot.active {
   background-color: #000;
+}
+
+.flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+}
+.flag-dropdown .selected-flag .flag {
+  left: 5px !important;
+}
+
+.react-tel-input .form-control {
+  padding-left: 4rem !important;
+  direction: ltr !important;
 }
 
 @tailwind base;

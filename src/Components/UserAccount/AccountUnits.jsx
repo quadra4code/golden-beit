@@ -41,6 +41,7 @@ const AccountUnits = () => {
   return (
     <div className="orders-table">
       <h2 className="orders-title">وحداتي</h2>
+      <span>{`${<h1>hello</h1>}`}</span>
       {data && data.length>0 ?
       <div className="table-wrapper">
         <table>
@@ -65,7 +66,14 @@ const AccountUnits = () => {
                 </td>
                 <td>{order.title}</td>
                 <td>{order.project}</td>
-                <td>{order.status.name}</td>
+                <td>
+                  {order.is_approved ?(order.status.name)  :
+                  (
+                    <>
+                      <b>مرفوضة بسبب </b> : {order.approver_message}
+                    </>
+                  )}
+                </td>
                 <td>{order.city}</td>
                 <td>{order.unit_number}</td>
                 <td>{order.building_number ? order.building_number : "----"}</td>

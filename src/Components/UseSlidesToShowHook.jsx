@@ -7,8 +7,8 @@ const useSlidesToShow = () => {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width >= 1200) setSlidesToShow(4);
-      else if (width >= 992) setSlidesToShow(3);
-      else if (width >= 768) setSlidesToShow(2);
+      else if (width >= 800) setSlidesToShow(3);
+      else if (width >= 568) setSlidesToShow(2);
       else setSlidesToShow(1);
     };
 
