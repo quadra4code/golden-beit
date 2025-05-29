@@ -4,9 +4,23 @@ import ErrorPage from "../../Pages/ErrorPage";
 import AppContext from "../../Context/AppContext";
 import { useQuery } from "@tanstack/react-query";
 import { ImCancelCircle } from "react-icons/im";
+import { Modal } from 'antd';
 const AccountOrders = () => {
   const { token, notificationRef } = useContext(AppContext);
   const [orders, setOrders] = useState()
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = (id) => {
+    setSelectedOrderId(id);
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    handleCancelReq(selectedOrderId);
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
     useEffect(() => {
       axios.post('https://api.goldenbeit.com/core/paginated-client-requests',
         {}, 
@@ -31,6 +45,7 @@ const AccountOrders = () => {
         }
       )
         .then((response) => {
+          setIsModalOpen(false);
           console.log(response);
           notificationRef.current.show('success', 'تم إلغاء الطلب بنجاح');
           setOrders(orders.filter((unit) => unit.id !== id)); 
@@ -65,6 +80,23 @@ const AccountOrders = () => {
   console.log(orders);
   return (
     <div className="orders-table">
+      <Modal
+        title="إلغاء الطلب"
+        closable={{ 'aria-label': 'Custom Close Button' }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="نعم"
+        cancelText="إغلاق"
+      >
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "1.4rem",
+            color: "#f00",
+          }}
+        >هل انت متأكد من إلغاء الطلب</p>
+      </Modal>
       <h2 className="orders-title">طلباتي</h2>
       {orders && orders.length>0 ?
       <div className="table-wrapper">
@@ -102,7 +134,7 @@ const AccountOrders = () => {
                 <td>{order.over_price_obj.price_value}</td>
                 <td>
                   <span className="order-options">
-                    <button onClick={()=>handleCancelReq(order.id)} className="view-button">إلغاء الطلب</button>
+                    <button onClick={()=>showModal(order.id)} className="view-button">إلغاء الطلب</button>
                   </span>
                 </td>
               </tr>

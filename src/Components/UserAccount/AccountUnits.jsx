@@ -2,9 +2,23 @@ import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import AppContext from "../../Context/AppContext";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { Modal } from 'antd';
 const AccountUnits = () => {
   const { token, notificationRef } = useContext(AppContext);
+  const [selectedUnitId, setSelectedUnitId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState();
+  const showModal = (id) => {
+    setSelectedUnitId(id);
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    handleDeleteUnit(selectedUnitId);
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     axios.post('https://api.goldenbeit.com/core/paginated-client-units',
       {}, 
@@ -40,6 +54,23 @@ const AccountUnits = () => {
   }
   return (
     <div className="orders-table">
+      <Modal
+        title="حذف الوحدة"
+        closable={{ 'aria-label': 'Custom Close Button' }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="نعم"
+        cancelText="إغلاق"
+      >
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "1.4rem",
+            color: "#f00",
+          }}
+        >هل انت متأكد من حذف هذه الوحدة</p>
+      </Modal>
       <h2 className="orders-title">وحداتي</h2>
       <span>{`${<h1>hello</h1>}`}</span>
       {data && data.length>0 ?
@@ -82,7 +113,7 @@ const AccountUnits = () => {
                   <span className="order-options">
                     <a href={`/edit-unit/${order.id}`} className="view-button">تعديل</a>
                     <a href={`/all-units/${order.id}`} className="view-button">مشاهدة</a>
-                    <button onClick={()=>handleDeleteUnit(order.id)} className="del-button"><FaRegTrashCan/></button>
+                    <button onClick={()=>showModal(order.id)} className="del-button"><FaRegTrashCan/></button>
                   </span>
                   {/* <button className="view-button">View</button> */}
                 </td>
