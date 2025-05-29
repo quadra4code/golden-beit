@@ -203,7 +203,7 @@ const SingleUnit = () => {
       :
       <main className='single_unit_page'>
         <Modal
-        title="إشعار تأكيد الإضافة"
+        title="إشعار تأكيد الطلب"
         closable={{ 'aria-label': 'Custom Close Button' }}
         open={isModalOpen}
         okText="تم"

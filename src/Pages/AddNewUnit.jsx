@@ -601,7 +601,7 @@ const AddNewUnit = () => {
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}
-          >تم طلب الوحدة بنجاح <IoMdDoneAll /></p>
+          >تم إضافة الوحدة بنجاح في انتظار مراجعة طلبكم<IoMdDoneAll /></p>
         </Modal>
         <Popup />
         <div className="add-build-unit">
