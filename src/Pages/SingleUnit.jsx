@@ -14,10 +14,13 @@ import UnitCard from '../Components/UnitCard';
 import Popup from '../Components/Popup';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import { Modal } from 'antd';
+import { IoMdDoneAll } from "react-icons/io";
 const SingleUnit = () => {
-  const {handelAddToFav, singleUnit, setSingleUnit, handleReqUnit} = useContext(AppContext)
+  const {handelAddToFav, singleUnit, setSingleUnit, token, notificationRef, handleUnAuth} = useContext(AppContext)
   const [value, setValue] = useState('1');
   const [discoverMore, setDiscoverMore] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [paginationData, setPaginationData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -72,6 +75,12 @@ const SingleUnit = () => {
   const onChange = (key) => {
     console.log(key);
   }
+    const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   // const handleChange = (event, newValue) => {
   //   setValue(newValue);
   // };
@@ -158,12 +167,61 @@ const SingleUnit = () => {
   const thumbnailTemplate = (item) => {
       return <img src={item.src} alt='unit-image' style={{ width: '80px' }}/>
   }
+  const handleReqUnit = () => {
+    if(token){
+      axios.post(
+        'https://api.goldenbeit.com/core/request-unit',
+        {
+          unit_id:singleUnit.id
+        },
+        {
+          headers: { 'Authorization': `Bearer ${token}` },
+        }
+      )
+      .then(res => {
+        setIsModalOpen(true);
+        // notificationRef.current.show('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
+      })
+      .catch((err) => {
+        if(err.status===401){
+          notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
+          handleUnAuth()
+          return
+        }
+        console.log(err);
+        notificationRef.current.show('error',err.response.data.msg || 'حدث خطأ برجاء المحاولة لاحقا')
+      })
+    }else{
+      notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
+    }
+    
+  }
   return (
     <>
       {loading&& !dataLoaded?
       <Loader/>
       :
       <main className='single_unit_page'>
+        <Modal
+        title="إشعار تأكيد الإضافة"
+        closable={{ 'aria-label': 'Custom Close Button' }}
+        open={isModalOpen}
+        okText="تم"
+        cancelButtonProps={{ style: { display: 'none' } }}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        >
+          <p
+          style={{fontSize: '1.5rem',
+                  textAlign: 'center',
+                  color: '#4CAF50',
+                  display: 'flex',
+                  gap:'8px',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+          >تم طلب الوحدة بنجاح <IoMdDoneAll /></p>
+        </Modal>
         <Popup/>
         <section className='unit_info'>
           <div className="card" style={{direction:'ltr'}}>

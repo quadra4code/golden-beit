@@ -368,6 +368,7 @@ import MiniLoader from '../Components/Miniloader';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css';
 import { Modal } from 'antd';
+import { IoMdDoneAll } from 'react-icons/io';
 const AddNewUnit = () => {
   // const [selectedProject, setSelectedProject] = useState('');
   // const [selectedType, setSelectedType] = useState(null);
@@ -410,9 +411,6 @@ const AddNewUnit = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-    const showModal = () => {
-    setIsModalOpen(true);
-  };
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -595,8 +593,15 @@ const AddNewUnit = () => {
         onCancel={handleCancel}
         >
           <p
-          style={{fontSize: '1.5rem', textAlign: 'center', color: '#4CAF50'}}
-          >تم إضافة الوحدة بنجاح!</p>
+          style={{fontSize: '1.5rem',
+                  textAlign: 'center',
+                  color: '#4CAF50',
+                  display: 'flex',
+                  gap:'8px',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+          >تم طلب الوحدة بنجاح <IoMdDoneAll /></p>
         </Modal>
         <Popup />
         <div className="add-build-unit">

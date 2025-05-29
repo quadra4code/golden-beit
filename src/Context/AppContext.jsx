@@ -230,34 +230,6 @@ export const AppProvider = ({children}) => {
       console.log(err);
     })
   }
-  const handleReqUnit = () => {
-    if(token){
-      axios.post(
-        'https://api.goldenbeit.com/core/request-unit',
-        {
-          unit_id:singleUnit.id
-        },
-        {
-          headers: { 'Authorization': `Bearer ${token}` },
-        }
-      )
-      .then(res => {
-        notificationRef.current.show('success','سيتم التواصل معك من خلال أحد ممثلي خدمة العملاء')
-      })
-      .catch((err) => {
-        if(err.status===401){
-          notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
-          handleUnAuth()
-          return
-        }
-        console.log(err);
-        notificationRef.current.show('error','حدث خطأ برجاء المحاولة لاحقا')
-      })
-    }else{
-      notificationRef.current.show('info','برجاء تسجيل الدخول اولا')
-    }
-    
-  }
   const handleLogout =()=> {
     localStorage.removeItem('name');
     localStorage.removeItem('golden-beit-website-token');
@@ -365,7 +337,7 @@ export const AppProvider = ({children}) => {
       filterData, setFilterData, loading, setLoading,articlesData, allUnits,
       contextHolder, openNotificationWithIcon, setAllUnits,isReview, setIsReview,
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
-      numberInpValue, setNumberInpValue, handleReqUnit, isNormalPop, setIsNormalPop,
+      numberInpValue, setNumberInpValue, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
       faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
