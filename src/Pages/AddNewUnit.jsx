@@ -366,7 +366,8 @@ import { FaTrashAlt } from 'react-icons/fa';
 import CustomInpSelect from '../Components/CustomInpSelect';
 import MiniLoader from '../Components/Miniloader';
 import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+import 'react-phone-input-2/lib/style.css';
+import { Modal } from 'antd';
 const AddNewUnit = () => {
   // const [selectedProject, setSelectedProject] = useState('');
   // const [selectedType, setSelectedType] = useState(null);
@@ -404,10 +405,20 @@ const AddNewUnit = () => {
   });
   const [images, setImages] = useState([]);
   const [error, setError] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showImageFields, setShowImageFields] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+    const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -475,7 +486,8 @@ const AddNewUnit = () => {
       })
       .then((res) => {
         console.log(res);
-        notificationRef.current.show('success','عملية ناجحة ', 'تم اضافة وحدتك بنجاح');
+        setIsModalOpen(true);
+        // notificationRef.current.show('success','عملية ناجحة ', 'تم اضافة وحدتك بنجاح');
       })
       .catch((err) => {
         if (err.status === 401) {
@@ -573,6 +585,19 @@ const AddNewUnit = () => {
         <MiniLoader />
       ) : (
       <main className='add_unit'>
+        <Modal
+        title="إشعار تأكيد الإضافة"
+        closable={{ 'aria-label': 'Custom Close Button' }}
+        open={isModalOpen}
+        okText="تم"
+        cancelButtonProps={{ style: { display: 'none' } }}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        >
+          <p
+          style={{fontSize: '1.5rem', textAlign: 'center', color: '#4CAF50'}}
+          >تم إضافة الوحدة بنجاح!</p>
+        </Modal>
         <Popup />
         <div className="add-build-unit">
           <h2>اضافة وحدة جديدة</h2>
