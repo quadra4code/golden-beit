@@ -98,7 +98,8 @@ const AccountUnits = () => {
                 <td>{order.title}</td>
                 <td>{order.project}</td>
                 <td>
-                  {order.is_approved ?(order.status.name)  :
+                  {order.is_approved ? (order.status.name)  :
+                  order.is_approved === null ? order.approver_message :
                   (
                     <>
                       <b>مرفوضة بسبب </b> : {order.approver_message}
