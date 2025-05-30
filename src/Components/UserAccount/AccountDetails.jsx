@@ -282,6 +282,14 @@ const AccountDetails = () => {
       setHasChanges(JSON.stringify(userData) !== JSON.stringify(originalUserData));
     }
   }, [userData, originalUserData]);
+  useEffect(() => {
+    if (userData?.phone_numbers) {
+      const initialValidity = userData.phone_numbers.map(phone => 
+        validatePhoneNumber(phone.number, 'eg', '+20') // Default validation
+      );
+      setPhoneValidity(initialValidity);
+    }
+  }, [userData?.phone_numbers]);
   const countryLengths = {
     eg: 10,
     sa: 9,
@@ -291,7 +299,9 @@ const AccountDetails = () => {
     kw: 8,
   };
   const validatePhoneNumber = (value, countryCode, dialCode) => {
-    const numberWithoutDialCode = value.slice(dialCode.length);
+    console.log(`Validating ${value} for ${countryCode} with dial code ${dialCode}`);
+    if (!value) return false; // Empty is invalid
+    const numberWithoutDialCode = value.slice(dialCode.length - 1);
     const maxLength = countryLengths[countryCode] || 0;
     return numberWithoutDialCode.length === maxLength;
   };
@@ -324,7 +334,6 @@ const AccountDetails = () => {
   const handleUpdateUserData = (e) => {
     e.preventDefault();
     if (!hasChanges) return;
-
     // Check if any phone number is invalid
     const hasInvalidNumbers = userData.phone_numbers.some((phone, index) => !phoneValidity[index] && phone.number);
     if (hasInvalidNumbers) {
@@ -332,7 +341,6 @@ const AccountDetails = () => {
       notificationRef.current.show('error', 'يرجى التحقق من صحة أرقام الهواتف');
       return;
     }
-    
     console.log(userData.interested_city);
     const formData = new FormData();
     
