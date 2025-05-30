@@ -609,7 +609,7 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
 
 @media (max-width: 768px) {
   main.single_unit_page {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
   main.single_unit_page section.unit_info {
     gap: 20px;
@@ -620,6 +620,16 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   }
   main.single_unit_page section.unit_info .unit_data {
     gap: 20px;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder .price {
+    font-size: 24px;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder .curr {
+    font-size: 16px;
   }
 }
 @media (max-width: 480px) {
@@ -632,6 +642,16 @@ main.single_unit_page section.more_units .mySwiper .swiper-wrapper {
   }
   main.single_unit_page section.unit_info .unit_data {
     gap: 20px;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder .price {
+    font-size: 20px;
+  }
+  main.single_unit_page section.unit_info .unit_data .holder .curr {
+    font-size: 12px;
   }
 }
 .navbar {

@@ -343,33 +343,33 @@ const SingleUnit = () => {
               <span className='holder'>
                 <h3>المدفوع :</h3>
                 <span className='price'>{singleUnit&& singleUnit.paid_amount}</span>
-                <span>{singleUnit&& singleUnit.paid_amount_currency}</span>
+                <span className='curr'>{singleUnit&& singleUnit.paid_amount_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.remaining_amount&&
               <span className='holder'>
                 <h3> الباقي:</h3>
                 <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span>
-                <span>{singleUnit&& singleUnit.remaining_amount_currency}</span>
+                <span className='curr'>{singleUnit&& singleUnit.remaining_amount_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.meter_price&&
               <span className='holder'>
                 <h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span>
-                <span>{singleUnit&& singleUnit.meter_price_currency}</span>
+                <span className='curr'>{singleUnit&& singleUnit.meter_price_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.total_price&&
               <span className='holder'>
                 <h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span>
-                <span>{singleUnit&& singleUnit.total_price_currency}</span>
+                <span className='curr'>{singleUnit&& singleUnit.total_price_currency}</span>
               </span>
             }
             {singleUnit&& singleUnit.over_price&&
               <span className='holder'>
                 <h3>سعر الاوفر:</h3> 
                 <span className='price'>{singleUnit&& singleUnit.over_price}</span>
-                <span>{singleUnit&& singleUnit.over_price_currency}</span>
+                <span className='curr'>{singleUnit&& singleUnit.over_price_currency}</span>
               </span>
             }
             <div className='btns'>

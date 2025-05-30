@@ -299,7 +299,7 @@ main.single_unit_page {
 // }
 @media (max-width: 768px) {
   main.single_unit_page {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
   main.single_unit_page section.unit_info{
     gap: 20px;
@@ -309,6 +309,18 @@ main.single_unit_page {
     }
     .unit_data{
       gap: 20px;
+      .holder {
+        h3{
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .price{
+          font-size: 24px;
+        }
+        .curr{
+          font-size: 16px;
+        }
+      }
     }
   }
 }
@@ -321,6 +333,18 @@ main.single_unit_page {
     }
     .unit_data{
       gap: 20px;
+      .holder {
+        h3{
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .price{
+          font-size: 20px;
+        }
+        .curr{
+          font-size: 12px;
+        }
+      }
     }
   }
 }
