@@ -3869,7 +3869,7 @@ main.home section.our-projects > .title::after {
   transform: translateX(-50%);
 }
 main.home section.our-projects .mySwiper {
-  width: 95%;
+  width: 85%;
 }
 main.home section.our-projects .mySwiper .swiper-pagination-bullet {
   width: 15px;
