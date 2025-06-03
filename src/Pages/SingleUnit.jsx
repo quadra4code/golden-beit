@@ -220,7 +220,7 @@ const SingleUnit = () => {
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}
-          >تم طلب الوحدة بنجاح <IoMdDoneAll /></p>
+          >تم استلام طلبكم بنجاح وسيتم التواصل معكم فى أسرع وقت <IoMdDoneAll /></p>
         </Modal>
         <Popup/>
         <section className='unit_info'>
