@@ -496,6 +496,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { Gi3dStairs } from "react-icons/gi";
+import { BsBuildings } from "react-icons/bs";
 import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader';
@@ -707,7 +708,11 @@ const Units = () => {
                             <div className="content">
                               <h1>
                                 <FaLocationDot />
-                                {newArrivalUnit.title}
+                                {newArrivalUnit.city}
+                              </h1>
+                              <h1>
+                                <BsBuildings />
+                                {newArrivalUnit.project}
                               </h1>
                               {newArrivalUnit&& newArrivalUnit.floor&&
                                 <h1>

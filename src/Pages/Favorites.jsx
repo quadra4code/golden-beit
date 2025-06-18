@@ -86,7 +86,7 @@ const Favorites = () => {
                       city={unit.city}
                       project={unit.project}
                       mainImage={unit.mainImage}
-                      isSoldOut={unit.status.code==4 && true}
+                      isSoldOut={unit.status.code==3 && true}
                       onClick={() => navigate(`/all-units/${unit.id}`)}
                     />
                     <button className="delete-button" onClick={() => handleDelete(unit.id)}>

@@ -40,7 +40,7 @@ const TopShow = () => {
                 area={project.area}
                 price={project.price_obj}
                 id={project.id}
-                isSoldOut={project.status.code==4 && true}
+                isSoldOut={project.status.code==3 && true}
                 onClick={() => navigate(`/all-units/${project.id}`)}
                 addFav = {()=>{handelAddToFav(project.id)}}
               />

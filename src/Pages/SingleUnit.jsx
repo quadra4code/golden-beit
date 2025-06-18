@@ -385,7 +385,7 @@ const SingleUnit = () => {
               </span>
             }
             <div className='btns'>
-              <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
+              <button className='add_fav' {disabled=singleUnit.status.code==3?true:false} onClick={handleReqUnit}>طلب الوحدة</button>
               <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
                 ({singleUnit&& singleUnit.favorite_count})
                 <FaRegHeart/>
@@ -414,7 +414,7 @@ const SingleUnit = () => {
                 total_price_obj={unit.total_price_obj}
                 price = {unit.price_obj}
                 id = {unit.id}
-                isSoldOut={unit.status.code==4 && true}
+                isSoldOut={unit.status.code==3 && true}
                 onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
                 addFav = {()=>{handelAddToFav(unit.id)}}
                 />
