@@ -403,7 +403,9 @@ const SingleUnit = () => {
               {discoverMore&& discoverMore.length>0 &&  discoverMore.map((unit, index) =>
                 <UnitCard 
                 key={unit.id}
-                title={unit.title} 
+                title={unit.title}
+                proposal={unit.proposal_str}
+                floor={unit.floor}
                 city={unit.city} 
                 project={unit.project} 
                 area={unit.area}

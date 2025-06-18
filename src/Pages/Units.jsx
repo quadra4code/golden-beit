@@ -495,6 +495,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import { Gi3dStairs } from "react-icons/gi";
 import AppContext from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader';
@@ -708,13 +709,19 @@ const Units = () => {
                                 <FaLocationDot />
                                 {newArrivalUnit.title}
                               </h1>
+                              {newArrivalUnit&& newArrivalUnit.floor&&
+                                <h1>
+                                  <Gi3dStairs />
+                                  الدور : {newArrivalUnit.floor}
+                                </h1>
+                              }
                               <h1>
                                 <TbRulerMeasure2 />
                                 المساحة : {newArrivalUnit.area}
                               </h1>
                               <h1>
                                 <MdOutlineAttachMoney />
-                                السعر : {newArrivalUnit.total_price_obj.price_value}
+                                الأوڤر : {newArrivalUnit.over_price_obj.price_value} {newArrivalUnit.over_price_obj.currency}
                               </h1>
                               <button className="see_more" onClick={() => navigate(`/all-units/${newArrivalUnit.id}`)}>التفاصيل</button>
                             </div>
@@ -754,12 +761,14 @@ const Units = () => {
                         <UnitCard
                           key={unit.id}
                           title={unit.title}
+                          proposal={unit.proposal_str}
                           project={unit.project}
                           mainImage={unit.main_image}
                           over_price_obj={unit.over_price_obj}
                           total_price_obj={unit.total_price_obj}
                           city={unit.city}
                           area={unit.area}
+                          floor={unit.floor ? unit.floor : null}
                           price={unit.price_obj}
                           id={unit.id}
                           isSoldOut={unit.status.code==3 && true}

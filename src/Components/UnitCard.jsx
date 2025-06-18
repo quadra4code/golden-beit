@@ -3,9 +3,10 @@ import image1 from '../Images/form.png';
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { BsBuildings } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { Gi3dStairs } from "react-icons/gi";
 import image2 from '../Images/form.png';
 import { IoLocationOutline } from "react-icons/io5";
-const UnitCard = ({title, area, over_price_obj, total_price_obj, city, project, onClick, addFav, key, mainImage,isSoldOut}) => {
+const UnitCard = ({title, proposal, area, floor, over_price_obj, total_price_obj, city, project, onClick, addFav, key, mainImage,isSoldOut}) => {
   return (
     <div className="unit-card" key={key}>
       {isSoldOut && <span className='sold_out'>تم البيع</span>}
@@ -21,6 +22,10 @@ const UnitCard = ({title, area, over_price_obj, total_price_obj, city, project, 
         <h1>
           <BsBuildings/>
           {project}
+        </h1>
+        <h1>
+          <Gi3dStairs />
+          {floor}
         </h1>
         <h1>
           <TbRulerMeasure2/>
