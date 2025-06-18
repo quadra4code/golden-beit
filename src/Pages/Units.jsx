@@ -717,7 +717,7 @@ const Units = () => {
                               }
                               <h1>
                                 <TbRulerMeasure2 />
-                                المساحة : {newArrivalUnit.area}
+                                المساحة : {newArrivalUnit.area} متر مربع
                               </h1>
                               <h1>
                                 <MdOutlineAttachMoney />
