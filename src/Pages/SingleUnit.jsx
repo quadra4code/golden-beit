@@ -319,6 +319,12 @@ const SingleUnit = () => {
           </div> */}
           <div className='unit_data'>
             <h2>{singleUnit&& singleUnit.title}</h2>
+            {singleUnit&& singleUnit.proposal_str&&
+            <span className='holder'>
+              <h3>الطرح:</h3>
+              <span>{singleUnit&& singleUnit.proposal_str}</span>
+            </span>
+            }
             <span className='holder'>
               <h3>المشروع:</h3>
               <span>{singleUnit&& singleUnit.project}</span>
@@ -331,6 +337,12 @@ const SingleUnit = () => {
               <h3>المساحة:</h3>
               <span>{singleUnit&& singleUnit.area} متر مربع</span>
             </span>
+            {singleUnit&& singleUnit.floor&&
+            <span className='holder'>
+              <h3>الدور:</h3>
+              <span>{singleUnit&& singleUnit.floor}</span>
+            </span>
+            }
             <span className='holder'>
               <h3> نظام السداد:</h3>
               <span>{singleUnit&& singleUnit.payment_method}</span>
