@@ -30,6 +30,8 @@ const TopShow = () => {
               <UnitCard
                 key={project.id}
                 title={project.title}
+                proposal_str={project.proposal_str}
+                floor={project.floor}
                 project={project.project}
                 mainImage={project.main_image}
                 over_price_obj={project.over_price_obj}

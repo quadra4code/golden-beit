@@ -32,21 +32,23 @@ const OurProjects = () => {
         {featuredUnits&& featuredUnits.map((project, index) => 
           <SwiperSlide className='swiper-slide' key={index}>
             <div className="slide-content">
-            <UnitCard
-              key={project.id}
-              title={project.title}
-              project={project.project}
-              mainImage={project.main_image}
-              over_price_obj={project.over_price_obj}
-              total_price_obj={project.total_price_obj}
-              city={project.city}
-              area={project.area}
-              price={project.price_obj}
-              id={project.id}
-              isSoldOut={project.status.code==4 && true}
-              onClick={() => navigate(`/all-units/${project.id}`)}
-              addFav = {()=>{handelAddToFav(project.id)}}
-            />
+              <UnitCard
+                key={project.id}
+                title={project.title}
+                proposal_str={project.proposal_str}
+                floor={project.floor}
+                project={project.project}
+                mainImage={project.main_image}
+                over_price_obj={project.over_price_obj}
+                total_price_obj={project.total_price_obj}
+                city={project.city}
+                area={project.area}
+                price={project.price_obj}
+                id={project.id}
+                isSoldOut={project.status.code==4 && true}
+                onClick={() => navigate(`/all-units/${project.id}`)}
+                addFav = {()=>{handelAddToFav(project.id)}}
+              />
             </div>
           </SwiperSlide>        
         )}

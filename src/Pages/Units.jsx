@@ -768,7 +768,7 @@ const Units = () => {
                           total_price_obj={unit.total_price_obj}
                           city={unit.city}
                           area={unit.area}
-                          floor={unit.floor ? unit.floor : null}
+                          floor={unit.floor}
                           price={unit.price_obj}
                           id={unit.id}
                           isSoldOut={unit.status.code==3 && true}

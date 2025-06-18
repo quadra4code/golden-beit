@@ -77,6 +77,8 @@ const Favorites = () => {
                   <div className="unit-card-wrapper" key={unit.id}>
                     <UnitCard
                       title={unit.title}
+                      proposal_str={project.proposal_str}
+                      floor={project.floor}
                       area={unit.area}
                       price={unit.price_obj}
                       over_price_obj={unit.over_price_obj}
