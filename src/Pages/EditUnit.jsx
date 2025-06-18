@@ -6,7 +6,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import CustomInpSelect from '../Components/CustomInpSelect';
 import MiniLoader from '../Components/Miniloader';
-
+import PhoneInput from 'react-phone-input-2'
 const EditUnit = () => {
   const param = useParams();
   console.log(param);
@@ -15,6 +15,7 @@ const EditUnit = () => {
   const [error, setError] = useState();
   const [unitImages, setUnitImages] = useState([]);
   const [showImageFields, setShowImageFields] = useState([]);
+    const [defCountry, setDefCountry] = useState('eg');
   const { handleUnAuth, filterData, token, notificationRef } = useContext(AppContext);
   const [formData, setFormData] = useState({
     id: param.id,
@@ -155,6 +156,31 @@ const EditUnit = () => {
     const updatedImages = unitImages.filter((img) => img !== image);
     setUnitImages(updatedImages);
   };
+
+  const handlePhoneChange = (value, countryData) => {
+    const countryCode = countryData?.countryCode;
+    const dialCode = countryData?.dialCode;
+    // Better phone number processing
+    // let phoneWithoutDialCode = value;
+    //  Remove country code if present (more robust handling)
+    // if (dialCode && value.startsWith(`+${dialCode}`)) {
+    //   phoneWithoutDialCode = value.slice(dialCode.length ); // +1 for the '+' sign
+    // }
+    // console.log('Processed number:', phoneWithoutDialCode);
+    setDefCountry(countryCode);
+    const maxLength = countryLengths[countryCode] || 0;
+    const isValidLength = value.slice(dialCode.length).length === maxLength;
+    setIsValid(isValidLength);
+    // Only update if number is valid length or empty
+    if (value.slice(dialCode.length).length <= maxLength) {
+      console.log('e.name');
+      setFormData({
+      ...formData,
+      phone_number: value
+      });
+    }
+  };
+
   return (
     <>
       {isLoading ? (
