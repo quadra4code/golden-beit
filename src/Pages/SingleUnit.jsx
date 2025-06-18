@@ -385,7 +385,7 @@ const SingleUnit = () => {
               </span>
             }
             <div className='btns'>
-              <button className='add_fav' {disabled=singleUnit.status.code==3?true:false} onClick={handleReqUnit}>طلب الوحدة</button>
+              <button className='add_fav' disabled={singleUnit.status.code==3} onClick={handleReqUnit}>طلب الوحدة</button>
               <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
                 ({singleUnit&& singleUnit.favorite_count})
                 <FaRegHeart/>
