@@ -23,10 +23,12 @@ const UnitCard = ({title, proposal, area, floor, over_price_obj, total_price_obj
           <BsBuildings/>
           {project}
         </h1>
-        <h1>
-          <Gi3dStairs />
-          {floor}
-        </h1>
+        {floor&&
+          <h1>
+            <Gi3dStairs />
+            {floor}
+          </h1>
+        }
         <h1>
           <TbRulerMeasure2/>
           {area} متر مربع
