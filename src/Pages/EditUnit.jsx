@@ -20,7 +20,8 @@ const EditUnit = () => {
     id: param.id,
     unit_type_id: null,
     project_id: null,
-    proposal_id: null,
+    // proposal_id: null,
+    proposal_str: null,
     city_id: null,
     floor: null,
     facade: null,
@@ -192,7 +193,7 @@ const EditUnit = () => {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="unitName">اسم المشروع <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="unit">اسم المشروع <span className='req'>(مطلوب)</span></label>
                 <select value={formData.project_id} name="project_id" id="unit" onChange={handleChange}>
                   <option value="" disabled hidden>
                     اختر مشروع
@@ -205,7 +206,7 @@ const EditUnit = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="floorNumber">الطرح <span className='req'>(مطلوب)</span></label>
+                {/* <label htmlFor="floorNumber">الطرح <span className='req'>(مطلوب)</span></label>
                 <select
                   id="unitType"
                   name="proposal_id"
@@ -217,12 +218,21 @@ const EditUnit = () => {
                   {filterData && filterData.proposals.map((proposal) =>
                     <option key={proposal.id} value={proposal.id}>{proposal.name}</option>
                   )}
-                </select>
+                </select> */}
+                <label htmlFor="proposalStr">الطرح <span className='req'>(مطلوب)</span></label>
+                <input
+                  type="text"
+                  id="proposalStr"
+                  name="proposal_str"
+                  value={formData.proposal_str}
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="floorNumber">المدينة <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="city">المدينة <span className='req'>(مطلوب)</span></label>
                 <select
-                  id="unitType"
+                  id="city"
                   name="city_id"
                   value={formData.city_id}
                   onChange={handleChange}
@@ -235,9 +245,9 @@ const EditUnit = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="floorNumber">الواجهة</label>
+                <label htmlFor="facadeId">الواجهة</label>
                 <select
-                  id="unitType"
+                  id="facadeId"
                   name="facade"
                   value={formData.facade}
                   onChange={handleChange}
@@ -253,7 +263,7 @@ const EditUnit = () => {
                 <div className="form-group">
                   <label htmlFor="floorNumber">الطابق <span className='req'>(مطلوب)</span></label>
                   <select
-                    id="unitType"
+                    id="floorNumber"
                     name="floor"
                     value={formData.floor}
                     onChange={handleChange}
@@ -267,10 +277,10 @@ const EditUnit = () => {
                 </div>
               }
               <div className="form-group">
-                <label htmlFor="area">رقم الوحدة / القطعة <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="unitNumber">رقم الوحدة / القطعة <span className='req'>(مطلوب)</span></label>
                 <input
                   type="number"
-                  id="area"
+                  id="unitNumber"
                   name="unit_number"
                   onWheel={(e) => e.target.blur()} 
                   onFocus={(e) => e.target.select()}
@@ -281,10 +291,10 @@ const EditUnit = () => {
               </div>
               {formData.unit_type_id === '2' &&
                 <div className="form-group">
-                  <label htmlFor="unitType">رقم العمارة <span className='req'>(مطلوب)</span></label>
+                  <label htmlFor="buildingNumber">رقم العمارة <span className='req'>(مطلوب)</span></label>
                   <input
                     type="text"
-                    id="area"
+                    id="buildingNumber"
                     name="building_number"
                     value={formData.building_number}
                     onChange={handleChange}
@@ -293,10 +303,10 @@ const EditUnit = () => {
                 </div>
               }
               <div className="form-group">
-                <label htmlFor="unitType">نظام السداد <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="paymentMethod">نظام السداد <span className='req'>(مطلوب)</span></label>
                 <input
                   type="text"
-                  id="area"
+                  id="paymentMethod"
                   name="payment_method"
                   value={formData.payment_method}
                   onChange={handleChange}
@@ -340,10 +350,10 @@ const EditUnit = () => {
                 /> */}
               </div>
               <div className="form-group">
-                <label htmlFor="price">مدة التقسيط</label>
+                <label htmlFor="installmentPeriod">مدة التقسيط</label>
                 <input
                   type="number"
-                  id="price"
+                  id="installmentPeriod"
                   name="installment_period"
                   value={formData.installment_period}
                   onChange={handleChange}
@@ -368,10 +378,10 @@ const EditUnit = () => {
                 /> */}
               </div>
               <div className="form-group">
-                <label htmlFor="price">المساحة بالمتر <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="areaMeter">المساحة بالمتر <span className='req'>(مطلوب)</span></label>
                 <input
                   type="number"
-                  id="price"
+                  id="areaMeter"
                   name="area"
                   onWheel={(e) => e.target.blur()} 
                   onFocus={(e) => e.target.select()}
@@ -437,10 +447,10 @@ const EditUnit = () => {
                 /> */}
               </div>
               <div className="form-group">
-                <label htmlFor="price">العنوان <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="unitTitle">العنوان <span className='req'>(مطلوب)</span></label>
                 <input
                   type="text"
-                  id="price"
+                  id="unitTitle"
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
@@ -448,20 +458,20 @@ const EditUnit = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="price">المميزات</label>
+                <label htmlFor="benefits">المميزات</label>
                 <input
                   type="text"
-                  id="price"
+                  id="benefits"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="price">رقم الهاتف للتواصل <span className='req'>(مطلوب)</span></label>
+                <label htmlFor="phoneNumberContact">رقم الهاتف للتواصل <span className='req'>(مطلوب)</span></label>
                 <input
                   type="number"
-                  id="price"
+                  id="phoneNumberContact"
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}

@@ -72,7 +72,7 @@ const AccountUnits = () => {
         >هل انت متأكد من حذف هذه الوحدة</p>
       </Modal>
       <h2 className="orders-title">وحداتي</h2>
-      <span>{`${<h1>hello</h1>}`}</span>
+      {/* <span>{`${<h1>hello</h1>}`}</span> */}
       {data && data.length>0 ?
       <div className="table-wrapper">
         <table>
