@@ -14,7 +14,7 @@ export const AppProvider = ({children}) => {
   const [notifications, setNotifications] = useState();
   const [popupHeader, setPopupHeader] = useState('')
   const [isOpen, setIsOpen] = useState(false);
-  const [singleUnit, setSingleUnit] = useState();
+  // const [singleUnit, setSingleUnit] = useState();
   const [filterData, setFilterData] = useState();
   const [articlesData, setArticlesData] = useState();
   const [consultationsData, setConsultationsData] = useState();
@@ -140,16 +140,17 @@ export const AppProvider = ({children}) => {
     .finally(()=>{setLoading(false)})
   },[])
   // ///////handleSingleUnitDetails//////
-  const handleSingleUnitDetails = (id) => {
-    axios.get(`https://api.goldenbeit.com/core/unit-details/${id}`)
-      .then((res) => {
-        setSingleUnit(res.data.data);
-        navigate(`/all-units/${id}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleSingleUnitDetails = (id) => {
+  //   axios.get(`https://api.goldenbeit.com/core/unit-details/${id}`)
+  //     .then((res) => {
+  //       console.log('sent request to singel unit from app context page line 147 and got response')
+  //       setSingleUnit(res.data.data);
+  //       navigate(`/all-units/${id}`);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   //////////////post all units screen filter 
   const handleFilterClick = (unit_type_id,project_id, city_id, min_price, max_price, min_area, max_area,selectedFloor, selectedFacade)=> {
     setLoading(true);
@@ -333,13 +334,13 @@ export const AppProvider = ({children}) => {
   return (
     <AppContext.Provider 
       value={{isOpen, setIsOpen, popupContent,newArrivalUnits,setNewArrivalUnits,
-      setPopupContent, popupHeader, setPopupHeader ,setSingleUnit,singleUnit,
+      setPopupContent, popupHeader, setPopupHeader ,//setSingleUnit,singleUnit,
       filterData, setFilterData, loading, setLoading,articlesData, allUnits,
       contextHolder, openNotificationWithIcon, setAllUnits,isReview, setIsReview,
       handleFilterClick, handleApplySearch, token, winnersData, setWinnersData,
       numberInpValue, setNumberInpValue, isNormalPop, setIsNormalPop,
       rating, setRating,handleAddReview, setReviewMessage, consultationsData,
-      faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, handleSingleUnitDetails,
+      faqId, setFaqId, ourReviewsData, handleUnAuth, featuredUnits, //handleSingleUnitDetails,
       changePassUi, setChangePassUi,currencies, setCurrencies,handelAddToFav,
       mostViewedUnits, setMostViewedUnits,handleLogout,userType, setUserType,
       isLogin, setIsLogin ,notificationRef ,handleGetNotifications, notifications,

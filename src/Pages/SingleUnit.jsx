@@ -17,11 +17,12 @@ import { Pagination } from 'swiper/modules';
 import { Modal } from 'antd';
 import { IoMdDoneAll } from "react-icons/io";
 const SingleUnit = () => {
-  const {handelAddToFav, singleUnit, setSingleUnit, token, notificationRef, handleUnAuth} = useContext(AppContext)
+  const {handelAddToFav, token, notificationRef, handleUnAuth} = useContext(AppContext)//singleUnit, setSingleUnit, 
   const [value, setValue] = useState('1');
   const [discoverMore, setDiscoverMore] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [singleUnit, setSingleUnit] = useState();
   const [paginationData, setPaginationData] = useState();
   const [dataLoaded, setDataLoaded] = useState(false);
   const [unitsPerPage] = useState(10);
@@ -41,7 +42,7 @@ const SingleUnit = () => {
     setDataLoaded(false)
     axios.get(`https://api.goldenbeit.com/core/unit-details/${params.id}`)
     .then(res => {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       setSingleUnit(res.data.data.unit_details);
       setDiscoverMore(res.data.data.discover_more);
     })
@@ -51,8 +52,8 @@ const SingleUnit = () => {
       setDataLoaded(true);
       setLoading(false)
     })
-  },[])
-  console.log(singleUnit);
+  }, [])
+  
   useEffect(() => {
     if (singleUnit && singleUnit.images && singleUnit.images.length > 0) {
       setSelectedImage(singleUnit.images[0]);
@@ -385,8 +386,14 @@ const SingleUnit = () => {
               </span>
             }
             <div className='btns'>
-              {/* <button className='add_fav' disabled={singleUnit.status.code===3} onClick={handleReqUnit}>طلب الوحدة</button> */}
-              <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
+              {/* <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button> */}
+              <button 
+                className={`req_unit ${singleUnit?.status.code === "3" ? "req_disabled" : ""}`}
+                disabled={singleUnit?.status.code === "3"}
+                onClick={handleReqUnit}
+              >
+                {singleUnit?.status.code === "3" ? "تم البيع" : "طلب الوحدة"}
+              </button>
               <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
                 ({singleUnit&& singleUnit.favorite_count})
                 <FaRegHeart/>
@@ -415,7 +422,7 @@ const SingleUnit = () => {
                 total_price_obj={unit.total_price_obj}
                 price = {unit.price_obj}
                 id = {unit.id}
-                isSoldOut={unit.status.code==3 && true}
+                isSoldOut={unit.status.code===3 && true}
                 onClick = {()=>{navigate(`/all-units/${unit.id}`)}}
                 addFav = {()=>{handelAddToFav(unit.id)}}
                 />
@@ -473,46 +480,4 @@ const SingleUnit = () => {
   )
 }
 
-export default SingleUnit
-            {/* {singleUnit&& singleUnit.paid_amount&&
-              <span className='holder'>
-                <h3>المدفوع :</h3>
-              </span>
-            }
-            {singleUnit&& singleUnit.remaining_amount&&
-              <span className='holder'>
-                <h3> الباقي:</h3>
-                <span className='price'>{singleUnit&& singleUnit.remaining_amount}</span>
-                {singleUnit&& singleUnit.remaining_amount_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.meter_price&&
-              <span className='holder'>
-                <h3>سعر المتر:</h3> <span className='price'>{singleUnit&& singleUnit.meter_price}</span>
-                {singleUnit&& singleUnit.meter_price_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.total_price&&
-              <span className='holder'>
-                <h3>السعر الاجمالى:</h3> <span className='price'>{singleUnit&& singleUnit.total_price}</span>
-                {singleUnit&& singleUnit.total_price_currency}
-              </span>
-            }
-            {singleUnit&& singleUnit.over_price&&
-              <span className='holder'>
-                <h3>سعر الاوفر:</h3> <span className='price'>{singleUnit&& singleUnit.over_price}</span>
-                {singleUnit&& singleUnit.over_price_currency}
-              </span>
-            }
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.city}</span>
-            </span> */}
-            {/* <span className='holder'>
-              <span>{singleUnit&& singleUnit.area} متر مربع</span>
-            </span>
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.payment_method}</span>
-            </span>
-            <span className='holder'>
-              <span>{singleUnit&& singleUnit.latest_date}</span>
-            </span> */}
+export default SingleUnit;
