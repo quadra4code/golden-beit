@@ -16,6 +16,7 @@ const EditUnit = () => {
   const [unitImages, setUnitImages] = useState([]);
   const [showImageFields, setShowImageFields] = useState([]);
     const [defCountry, setDefCountry] = useState('eg');
+      const [isValid, setIsValid] = useState(false);
   const { handleUnAuth, filterData, token, notificationRef } = useContext(AppContext);
   const [formData, setFormData] = useState({
     id: param.id,
@@ -156,7 +157,15 @@ const EditUnit = () => {
     const updatedImages = unitImages.filter((img) => img !== image);
     setUnitImages(updatedImages);
   };
-
+  
+  const countryLengths = {
+    eg: 10,
+    sa: 9,
+    ae: 9,
+    qa: 7,
+    bh: 8,
+    kw: 8,
+  };
   const handlePhoneChange = (value, countryData) => {
     const countryCode = countryData?.countryCode;
     const dialCode = countryData?.dialCode;
