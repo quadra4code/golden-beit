@@ -469,14 +469,28 @@ const EditUnit = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="phoneNumberContact">رقم الهاتف للتواصل <span className='req'>(مطلوب)</span></label>
-                <input
+                <PhoneInput
+                  country={defCountry} // Default country (Egypt)
+                  onlyCountries={['eg', 'sa', 'ae', 'qa', 'bh', 'kw']}
+                  value={formData.phone_number}
+                  onChange={handlePhoneChange }
+                  inputProps={{
+                    required: true,
+                    name: 'phone_number',
+                    placeholder: 'رقم الهاتف',
+                  }}
+                  containerStyle={{ direction: 'ltr',  }}
+                  // inputStyle={{ width: '100%', paddingLeft: '48px', direction: 'ltr' }}
+                  buttonStyle={{ direction: 'ltr' }}
+                />
+                {/* <input
                   type="number"
                   id="phoneNumberContact"
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}
                   required
-                />
+                /> */}
               </div>
               <div className="form-group-images">
                 {unitImages.map((image, index) => (

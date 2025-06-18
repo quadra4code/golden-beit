@@ -52,7 +52,7 @@ const SingleUnit = () => {
       setLoading(false)
     })
   },[])
-  console.log(singleUnit);
+  console.log(singleUnit, singleUnit.status.code, singleUnit.status.code===3);
   useEffect(() => {
     if (singleUnit && singleUnit.images && singleUnit.images.length > 0) {
       setSelectedImage(singleUnit.images[0]);
@@ -386,7 +386,7 @@ const SingleUnit = () => {
             }
             <div className='btns'>
               {/* <button className='add_fav' disabled={singleUnit.status.code===3} onClick={handleReqUnit}>طلب الوحدة</button> */}
-              <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة</button>
+              <button className='add_fav' onClick={handleReqUnit}>طلب الوحدة  {singleUnit.status.code}</button>
               <button className='add_fav' onClick={(e)=>{handelAddToFav(singleUnit.id)}}>
                 ({singleUnit&& singleUnit.favorite_count})
                 <FaRegHeart/>
