@@ -21,7 +21,9 @@ const AccountUnits = () => {
   };
   useEffect(() => {
     axios.post('https://api.goldenbeit.com/core/paginated-client-units',
-      {}, 
+      {
+        "page_size": 200
+      }, 
       {
         headers: { Authorization: `Bearer ${token}` },
       }
