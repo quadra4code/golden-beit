@@ -29,7 +29,7 @@ const Articles = () => {
                   <FaArrowLeft/>
                 </div>
               </div>
-              <img width="576" height="355" src={articlesData.main_article.image} alt="article-image" />
+              <img style={{width:'570px',height:'355px'}} src={articlesData.main_article.image} alt="article-image" />
             </article>
           }
           {/* {
@@ -72,7 +72,7 @@ const Articles = () => {
                 <div className="row-article" key={index}>
                   {firstArticle && (
                     <article className='article'>
-                      <img width="576" height="355" src={firstArticle.image} alt="article-image" />
+                      <img style={{width:'570px',height:'355px'}} src={firstArticle.image} alt="article-image" />
                       <div className="col">
                         <h2>{firstArticle.title}</h2>
                         <p>{firstArticle.body.slice(0, articlesData.min_body_length)}....</p>
@@ -86,7 +86,7 @@ const Articles = () => {
                   )}
                   {secondArticle && (
                     <article className='article'>
-                      <img width="576" height="355" src={secondArticle.image} alt="article-image" />
+                      <img style={{width:'570px',height:'355px'}} src={secondArticle.image} alt="article-image" />
                       <div className="col">
                         <h2>{secondArticle.title}</h2>
                         <p>{secondArticle.body.slice(0, articlesData.min_body_length)}....</p>
