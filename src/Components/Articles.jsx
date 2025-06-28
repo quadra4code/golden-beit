@@ -32,37 +32,6 @@ const Articles = () => {
               <img style={{maxWidth:"631px", maxHeight:"389px"}} src={articlesData.main_article.image} alt="article-image" />
             </article>
           }
-          {/* {
-            articlesData.articles.length > 0 &&
-            articlesData.articles.map(articleData => 
-            <div className="row-article">
-              <article className='article'>
-                <img src={article} alt="article-image" />
-                <div className="col">
-                  <h2>{articleData.title}</h2>
-                  <p>{articleData.body}</p>
-                  <div className='footer'
-                    onClick={()=>handleArticleClick(articleData.title, articleData.body)}>
-                    <span style={{direction:"ltr"}}>{articleData.created_at}</span>
-                    <FaArrowLeft/>
-                  </div>
-                </div>
-              </article>     
-              <article className='article'>
-                <img src={article} alt="article-image" />
-                <div className="col">
-                  <h2>{articleData.title}</h2>
-                  <p>{articleData.body}</p>
-                  <div className='footer'
-                    onClick={()=>handleArticleClick(articleData.title, articleData.body)}>
-                    <span style={{direction:"ltr"}}>{articleData.created_at}</span>
-                    <FaArrowLeft/>
-                  </div>
-                </div>
-              </article>
-            </div>
-            )
-          } */}
           {
             articlesData.articles.length > 0 &&
             Array.from({ length: Math.ceil(articlesData.articles.length / 2) }, (_, index) => {
