@@ -9,6 +9,7 @@ const Popup = () => {
   const {isNormalPop, isOpen, setIsOpen, popupHeader, isReview, token, handleUnAuth,
         popupContent, notificationRef, setIsNormalPop,reviewMessage,setPopupHeader,
         handleAddReview,setIsReview, setReviewMessage,setRating,changePassUi, setChangePassUi} = useContext(AppContext);
+  const wrapperRef = useRef(null);
   const handleCopy = () => {
     navigator.clipboard.writeText(popupContent).then(() => {
       notificationRef.current.show('success','تم نسخ اللينك بنجاح')
@@ -17,6 +18,9 @@ const Popup = () => {
     });
   };
   const handleClose = ()=> {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollTop = 0;
+    }
     setIsOpen(false)
     setIsNormalPop(false)
     setIsReview(false)
@@ -93,7 +97,7 @@ const Popup = () => {
       <main className={`popup ${isOpen ? 'active' : ''}`}>
         <div className='popup_inner'>
           <h2>{popupHeader}</h2>
-          <div className='wrapper'>
+          <div className='wrapper' ref={wrapperRef}>
             <span onClick={isNormalPop? handleCopy:null}>{popupContent}</span>
           </div>
           <div className='btns'>
