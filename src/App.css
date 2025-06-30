@@ -442,7 +442,6 @@ main.single_unit_page section.unit_info .unit_data .btns {
   align-items: center;
   gap: 20px;
 }
-main.single_unit_page section.unit_info .unit_data .btns button.req_unit,
 main.single_unit_page section.unit_info .unit_data .btns button.add_fav {
   background-color: transparent;
   border: 1px solid #333;
@@ -456,12 +455,6 @@ main.single_unit_page section.unit_info .unit_data .btns button.add_fav {
   color: #333;
   border-radius: 4px;
   cursor: pointer;
-}
-main.single_unit_page section.unit_info .unit_data .btns button.req_unit.req_disabled {
-  background-color: #cccccc; /* Medium gray (most common) */
-  color: #666666; /* Darker gray text for better contrast */
-  border-color: #999999; /* Optional: make border match disabled state */
-  cursor: not-allowed
 }
 main.single_unit_page section.unit_info .unit_data .btns button.add_fav:hover {
   background-color: var(--dark-primary-color);
@@ -2647,6 +2640,8 @@ main.popup .popup_inner .wrapper {
   padding: 12px;
   border-radius: 12px;
   cursor: pointer;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 main.popup .popup_inner .wrapper span {
   display: block;

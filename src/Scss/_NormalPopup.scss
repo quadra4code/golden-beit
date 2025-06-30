@@ -89,6 +89,8 @@ main.popup {
       padding: 12px;
       border-radius: 12px;
       cursor: pointer;
+      max-height: 70vh;
+      overflow-y: auto;
       span{
         display: block;
         line-height: 1.5;
