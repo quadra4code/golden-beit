@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 .data-notFound {
   width: 100%;
   margin-top: 6rem;
@@ -943,7 +944,7 @@ main.add_unit .add-build-unit .add-image-button {
   display: block;
 }
 main.add_unit .add-build-unit .add-image-button:hover {
-  background-color: #6c5948;
+  background-color: rgb(107.5324675325, 88.8311688312, 72.4675324675);
 }
 main.add_unit .add-build-unit .error-message {
   color: #ff4d4d;
@@ -961,7 +962,7 @@ main.add_unit .add-build-unit button[type=submit] {
   transition: background-color 0.3s ease;
 }
 main.add_unit .add-build-unit button[type=submit]:hover {
-  background-color: #6c5948;
+  background-color: rgb(107.5324675325, 88.8311688312, 72.4675324675);
 }
 
 .input-page {
@@ -1013,7 +1014,7 @@ main.add_unit .add-build-unit button[type=submit]:hover {
   transition: background-color 0.3s ease;
 }
 .input-page .container button:hover {
-  background-color: #6c5948;
+  background-color: rgb(107.5324675325, 88.8311688312, 72.4675324675);
 }
 
 main.success-popup {
@@ -2813,7 +2814,7 @@ main.popup .popup_inner .wrapper span {
   transition: background-color 0.3s ease;
 }
 .contact-us-container .cols-container .contact-us-form .submit-button:hover {
-  background-color: #6c5948;
+  background-color: rgb(107.5324675325, 88.8311688312, 72.4675324675);
 }
 @media (max-width: 750px) {
   .contact-us-container .cols-container {
@@ -3001,14 +3002,14 @@ main.my-account .container section.content .account-details .user-data .floating
   background: white;
   padding: 0 5px;
 }
-main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) {
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder) {
   border-color: var(--primary-color);
 }
 main.my-account .container section.content .account-details .user-data .floating-label input:focus,
 main.my-account .container section.content .account-details .user-data .floating-label input:not(:placeholder-shown) {
   border-color: var(--primary-color);
 }
-main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder-shown) + label {
+main.my-account .container section.content .account-details .user-data .floating-label input:not(:-moz-placeholder) + label {
   top: 0;
   font-size: 12px;
   color: var(--primary-color);
@@ -3535,7 +3536,7 @@ main.my-account section.account-safety .pass-btn {
 }
 .add-new-unit-btn-wrapper .add-new-unit-btn .btn:hover {
   color: rgba(255, 255, 255, 0.8745098039);
-  background-color: #6c5948;
+  background-color: rgb(107.5324675325, 88.8311688312, 72.4675324675);
 }
 .add-new-unit-btn-wrapper .add-new-unit-btn svg {
   font-size: 28px;
@@ -3633,6 +3634,49 @@ main.my-account section.account-safety .pass-btn {
 }
 .notification-ic .notifications-center .null {
   padding: 10px;
+}
+
+.coming-soon-container {
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+  color: #e0d9cc;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+.coming-soon-container .container {
+  max-width: 600px;
+  padding: 20px;
+}
+.coming-soon-container .container .logo {
+  max-width: 200px;
+  margin-bottom: 2rem;
+}
+.coming-soon-container .container h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #d4af37;
+}
+.coming-soon-container .container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ccc;
+  font-style: italic;
+}
+.coming-soon-container .container .footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+.coming-soon-container .container .footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
+.coming-soon-container .container .footer a:hover {
+  text-decoration: underline;
 }
 
 * {
