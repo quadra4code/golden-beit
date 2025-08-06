@@ -6,7 +6,7 @@ const ComingSoon = () => {
   return (
     <div className="coming-soon-container">
       <div className="container">
-        <img src={logo} alt="Golden Beit logo" className="logo" />
+        <img src={Logo} alt="Golden Beit logo" className="logo" />
         <h1>Coming Soon</h1>
         <p>
           Something extraordinary is being forged in silence.<br />
