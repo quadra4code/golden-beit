@@ -1,0 +1,52 @@
+// src/components/ComingSoon.scss
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.coming-soon-container {
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+  color: #e0d9cc;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+
+  .container {
+    max-width: 600px;
+    padding: 20px;
+
+    .logo {
+      max-width: 200px;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #d4af37;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+
+      a {
+        color: #d4af37;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
