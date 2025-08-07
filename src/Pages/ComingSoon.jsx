@@ -7,7 +7,7 @@ const ComingSoon = () => {
     <div className="coming-soon-container">
       <div className="container">
         <img src={Logo} alt="Golden Beit logo" className="logo" />
-        <h1>قريباً</h1>
+        <h1>انتظرونا</h1>
         <p>
           شركة Golden Beit، أول موقع متخصص في بيع وشراء الوحدات الخاصة بطروحات هيئة المجتمعات العمرانية.<br />
           ... قريبًا Golden Beit هيغير مفهوم الطروحات!
@@ -16,8 +16,8 @@ const ComingSoon = () => {
         
         <div className="footer">
           Follow us:
-          <a href="#">Instagram</a> · 
-          <a href="#">Facebook</a>
+          <a href="https://www.instagram.com/golden_beit/">Instagram</a> · 
+          <a href="https://www.facebook.com/golden.beit/">Facebook</a>
         </div>
       </div>
     </div>
@@ -25,3 +25,4 @@ const ComingSoon = () => {
 };
 
 export default ComingSoon;
+
