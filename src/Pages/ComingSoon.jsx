@@ -15,9 +15,9 @@ const ComingSoon = () => {
         </p>
         
         <div className="footer">
-          Follow us:
+          Follow us: 
           <a href="https://www.instagram.com/golden_beit/">Instagram</a> · 
-          <a href="https://www.facebook.com/golden.beit/">Facebook</a>
+           <a href="https://www.facebook.com/golden.beit/">Facebook</a>
         </div>
       </div>
     </div>
@@ -25,4 +25,5 @@ const ComingSoon = () => {
 };
 
 export default ComingSoon;
+
 
