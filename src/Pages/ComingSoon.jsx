@@ -7,10 +7,11 @@ const ComingSoon = () => {
     <div className="coming-soon-container">
       <div className="container">
         <img src={Logo} alt="Golden Beit logo" className="logo" />
-        <h1>Coming Soon</h1>
+        <h1>قريباً</h1>
         <p>
-          Something extraordinary is being forged in silence.<br />
-          Stay close... the gold is about to shine.
+          شركة Golden Beit، أول موقع متخصص في بيع وشراء الوحدات الخاصة بطروحات هيئة المجتمعات العمرانية.<br />
+          ... قريبًا Golden Beit هيغير مفهوم الطروحات!
+هتبيع و تشتري بطغطة واحدة!!.
         </p>
         
         <div className="footer">
