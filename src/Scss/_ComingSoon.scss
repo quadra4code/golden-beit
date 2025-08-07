@@ -15,7 +15,9 @@
   .container {
     max-width: 600px;
     padding: 20px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .logo {
       max-width: 200px;
       margin-bottom: 2rem;

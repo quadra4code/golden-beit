@@ -3651,6 +3651,9 @@ main.my-account section.account-safety .pass-btn {
 .coming-soon-container .container {
   max-width: 600px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .coming-soon-container .container .logo {
   max-width: 200px;
