@@ -79,27 +79,27 @@ const App = () => {
   useScrollToTop()
   const location = useLocation();
   const routes = [
-    // { path: "/", element: <Home /> },
+    { path: "/", element: <Home /> },
     { path: "/", element: <ComingSoon /> },
-    // { path: "/register/:params", element: <Login /> },
-    // { path: "/register", element: <Login /> },
-    // { path: "/all-units", element: <Units /> },
-    // { path: "/favorites", element: <ProtectedRoute><Favorites /></ProtectedRoute> },
-    // { path: "/add-new-unit", element: <AddNewUnit /> },
-    // { path: "/inquiry-page", element: <InquiryPage /> },
-    // { path: "/contact-us", element: <ContactUs /> },
-    // { path: "/leader-board", element: <Leaderboard /> },
-    // { path: "/faq/:id", element: <FAQ /> },
-    // { path: "all-units/:id", element: <SingleUnit /> },
-    // { path: "edit-unit/:id", element: <EditUnit /> },
-    // { path: "*", element: <ErrorPage /> },
+    { path: "/register/:params", element: <Login /> },
+    { path: "/register", element: <Login /> },
+    { path: "/all-units", element: <Units /> },
+    { path: "/favorites", element: <ProtectedRoute><Favorites /></ProtectedRoute> },
+    { path: "/add-new-unit", element: <AddNewUnit /> },
+    { path: "/inquiry-page", element: <InquiryPage /> },
+    { path: "/contact-us", element: <ContactUs /> },
+    { path: "/leader-board", element: <Leaderboard /> },
+    { path: "/faq/:id", element: <FAQ /> },
+    { path: "all-units/:id", element: <SingleUnit /> },
+    { path: "edit-unit/:id", element: <EditUnit /> },
+    { path: "*", element: <ErrorPage /> },
   ];
   return (
     <>
-      {/* {!location.pathname.startsWith('/register') && <Navbar />}
-      {!location.pathname.startsWith('/register') && <ContactButton/>} */}
+      {!location.pathname.startsWith('/register') && <Navbar />}
+      {!location.pathname.startsWith('/register') && <ContactButton/>}
       <PageTransition routes={routes} />
-      {/* {!location.pathname.startsWith('/register') && <Footer />} */}
+      {!location.pathname.startsWith('/register') && <Footer />}
     </>
   );
 }
